@@ -1,15 +1,17 @@
 ---
 name: "[Client] Main Page"
 about: Use this template for Main Page
-title: ''
+title: "[Client] Main Page - "
 labels: ''
 assignees: ''
 
 ---
 
+**Assignee** : 작성자 본명
+
 > ### ISSUE
-> * Group:  `client`, `server`, `sr`
-> * Type: `bug`, `feature`, `delete`
+> * Group:  `client`
+> * Type: `bug`, `feature`, `delete`, `fix`
 > * Detail: fix actions from client redux
 > 
 > ### TODO
@@ -26,8 +28,3 @@ assignees: ''
 > ### `2h`
 > ### `2.5h`
 > ### `3h`
-> ### Labels
-> * Estimated time: `E: 1h`
-> * Group : `client`, `server`
-> * Sprint: `Sprint__NUMBER__`
-> * Urgency: `High`, `Middle`, `Low`
