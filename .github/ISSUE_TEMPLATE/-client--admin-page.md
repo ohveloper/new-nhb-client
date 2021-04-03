@@ -1,7 +1,7 @@
 ---
-name: "[Client] N행시 세부 페이지"
-about: Use this template for N행시 세부 페이지
-title: "[Client] N행시 세부 페이지 - "
+name: "[Client] Admin Page"
+about: Use this template for Admin Page
+title: "[Client] Admin Page - "
 labels: ''
 assignees: ''
 
@@ -13,7 +13,7 @@ assignees: ''
  * Group:  `client`
  * Type: `bug`, `feature`, `delete`, `fix`
  * Detail: fix actions from client redux
- 
+
  ### TODO
  1. [ ]  Job1
  2. [ ]  Job2

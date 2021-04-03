@@ -1,7 +1,7 @@
 ---
-name: "[Client] N행시 세부 페이지"
-about: Use this template for N행시 세부 페이지
-title: "[Client] N행시 세부 페이지 - "
+name: "[Client] Signup Page"
+about: Use this template for Signup Page
+title: "[Client] Signup page - "
 labels: ''
 assignees: ''
 
