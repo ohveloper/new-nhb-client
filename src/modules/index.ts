@@ -1,6 +1,5 @@
-
-import { combineReducers } from "redux";
-import  getInfo  from "./getInfo";
+import { combineReducers } from 'redux';
+import getInfo from './getInfo';
 
 const rootReducer = combineReducers({
   getInfo,
