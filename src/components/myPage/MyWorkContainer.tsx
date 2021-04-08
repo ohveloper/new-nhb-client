@@ -6,14 +6,14 @@ export default function MyWorkContainer() {
   const state = useSelector((state: RootState) => state.getInfo);
   const { privateFeeds } = state;
   const privateFeedsKeys = Object.keys(privateFeeds);
-  console.log(privateFeedsKeys.length);
   return (
     <div>
       <h1>MyWorkContainer</h1>
       <div>
         {privateFeedsKeys.length <= 3 ? (
           privateFeedsKeys.map((x) => {
-            return <MyWork x={Number(x)} privateFeeds={privateFeeds} />;
+            console.log(x);
+            return <MyWork x={Number(x)} privateFeeds={privateFeeds} key={x} />;
           })
         ) : (
           <>
