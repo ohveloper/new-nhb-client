@@ -58,7 +58,7 @@ export interface CommentUser {
 export interface PrivateFeed {
   user: PrivateFeedUser;
   topic: string;
-  content: string;
+  content: string[];
   likes: number;
   comments: number;
   createdAt: string;
@@ -122,8 +122,8 @@ const initialState: Welcome = {
   privateFeeds: {
     1: {
       user: { nickName: '진라면은순한맛', tag: 'tagName' },
-      topic: 'keyword',
-      content: 'content',
+      topic: '주말',
+      content: ['주린배를 부여잡고', '말고기'],
       likes: 23,
       comments: 43,
       createdAt: 'date',
@@ -131,8 +131,8 @@ const initialState: Welcome = {
     },
     2: {
       user: { nickName: '아닌데매운맛인데', tag: 'tagName' },
-      topic: 'keyword',
-      content: 'content',
+      topic: '주말',
+      content: ['주단태가 말했습니다', '말고기'],
       likes: 22,
       comments: 1,
       createdAt: 'date',
@@ -179,7 +179,7 @@ const initialState: Welcome = {
     4: {
       user: { nickName: '타입스크립트', tag: 'newbie' },
       topic: '시장',
-      content: ['시장에 갔습니다', '장군'],
+      content: ['시장에 갔습니다', '장발장'],
       likes: 32,
       comments: 354,
       createdAt: 'date',
