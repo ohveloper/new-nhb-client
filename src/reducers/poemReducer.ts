@@ -1,17 +1,35 @@
-import axios from 'axios';
+import { stat } from 'node:fs';
+import {
+  CREATE_POEM,
+  MODIFY_POEM,
+  REMOVE_POEM,
+  poemType,
+  poemDispatchType,
+} from '../actions/actionTypes';
+// import { initialState } from './initialState';
 
-export const CREATE_POEM = 'CREATE_POEM';
-export const MODIFY_POEM = 'MODIFY_POEM';
-export const REMOVE_POEM = 'REMOVE_POEM';
-
-const FEED_URL = 'http://localhost:3000/feed';
-
-//? -------------------액션 생성 함수 ----------------------//
-export function createPoem(content: string, word: string) {
-  return async () => {
-    const data = await axios
-      .post(FEED_URL, { content, word })
-      .then((res) => res.data)
-      .catch((err) => console.log(err));
-  };
+interface initialState {
+  feed?: poemType;
 }
+
+const initialState: initialState = {};
+
+const poemReducer = (
+  state = initialState,
+  action: poemDispatchType
+): initialState => {
+  switch (action.type) {
+    case CREATE_POEM:
+      const { data } = action.payload;
+      return {
+        ...state,
+        feed: { data },
+      };
+    case MODIFY_POEM:
+    case REMOVE_POEM:
+    default:
+      return state;
+      break;
+  }
+};
+export default poemReducer;
