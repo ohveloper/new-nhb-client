@@ -14,7 +14,7 @@ export default function MyWork({ x, privateFeeds }: MyWorkProps) {
       <div>
         작성한시 :{' '}
         {privateFeeds[x].content.map((x) => (
-          <p>{x}</p>
+          <p key={x}>{x}</p>
         ))}
       </div>
       <div>댓글 수 : {privateFeeds[x].comments}</div>

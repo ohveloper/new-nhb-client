@@ -89,7 +89,7 @@ export interface UserFeed {
 export interface UserInfo {
   nickName: string;
   introduction: string;
-  tags: Tags;
+  tags: { [key: string]: Hund };
   avatarUrl: string;
   createdAt: string;
   updatedAt: string;
@@ -112,7 +112,7 @@ const initialState: Welcome = {
     introduction: '원펀치 쓰리강냉이',
     tags: {
       hund: { description: '100일연속 글쓰기', isUsed: true },
-      pig: { description: '별 많이받음', isUsed: false },
+      king: { description: '별 많이받음', isUsed: false },
       newbie: { description: '글 처음씀', isUsed: false },
     },
     avatarUrl: 'url',
