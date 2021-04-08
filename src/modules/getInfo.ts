@@ -71,6 +71,7 @@ export interface PrivateFeedUser {
 }
 
 export interface Rank {
+  userId: number;
   nickName: string;
   like: number;
   tag: string;
@@ -140,11 +141,11 @@ const initialState: Welcome = {
     },
   },
   rank: [
-    { nickName: '주님또한명갑니다', like: 12, tag: 'tag' },
-    { nickName: 'tester2', like: 23, tag: 'tag' },
-    { nickName: 'tester1', like: 123, tag: 'tag' },
-    { nickName: '굴진짬뽕', like: 222, tag: 'tag' },
-    { nickName: '크림진짬뽕', like: 3212, tag: 'tag' },
+    { userId: 1, nickName: '주님또한명갑니다', like: 12, tag: 'tag' },
+    { userId: 2, nickName: 'tester2', like: 23, tag: 'tag' },
+    { userId: 3, nickName: 'tester1', like: 123, tag: 'tag' },
+    { userId: 4, nickName: '굴진짬뽕', like: 222, tag: 'tag' },
+    { userId: 5, nickName: '크림진짬뽕', like: 3212, tag: 'tag' },
   ],
   comments: [
     {
