@@ -1,6 +1,7 @@
 import React from 'react';
 
-import GetUserInfo from './comp/getUserInfo';
+import GetUserInfo from './components/getUserInfo';
+import MyPage from './pages/MyPage';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <div>
         <div className="App">:sunglasses: </div>
         <GetUserInfo />
+        <MyPage />
       </div>
     </>
   );
