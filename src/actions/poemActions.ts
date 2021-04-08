@@ -10,14 +10,6 @@ import {
 const FEED_URL = 'http://54.173.92.145:5000/feed';
 
 //? -------------------액션 생성 함수 ----------------------//
-// export function createPoem(content: string, word: string) {
-//   return async () => {
-//     const data = await axios
-//       .post(FEED_URL, { content, word })
-//       .then((res) => res.data)
-//       .catch((err) => console.log(err));
-//   };
-// }
 export const createPoem = (content: string, word: string) => async (
   dispatch: Dispatch<poemDispatchType>
 ) => {

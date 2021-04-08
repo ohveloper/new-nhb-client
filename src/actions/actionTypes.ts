@@ -1,10 +1,10 @@
-//? ------------------------------Action Types----------------------------------//
+//? --------------------Action Types----------------------//
 //? POEM ACTIONS
 export const CREATE_POEM = 'CREATE_POEM';
 export const MODIFY_POEM = 'MODIFY_POEM';
 export const REMOVE_POEM = 'REMOVE_POEM';
 
-//? --------------------------Action Type의 타입 정의-----------------------------//
+//? ---------------Action Type의 타입 정의-----------------//
 //? POEM ACTIONS
 export type poemType = {
   data: poemCreateData;
