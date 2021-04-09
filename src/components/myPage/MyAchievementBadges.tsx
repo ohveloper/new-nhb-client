@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../../modules';
+import { RootState } from '../../reducers';
 
 export default function MyAchievementBadges() {
-  const state = useSelector((state: RootState) => state.myPage);
+  const state = useSelector((state: RootState) => state.getInfoReducer);
   const { tags } = state.userInfo;
   const tagsKeys = Object.keys(tags);
   return (
@@ -10,7 +10,6 @@ export default function MyAchievementBadges() {
       <h1>MyAchievementBadges</h1>
       <div>
         {tagsKeys.map((x, idx) => {
-          console.log(tags[x].isUsed);
           return tags[x].isUsed ? (
             <p style={{ color: 'red' }} key={idx}>
               true : {x}
