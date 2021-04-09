@@ -3,7 +3,7 @@ import { RootState } from '../../modules';
 import MyWork from './MyWork';
 
 export default function MyWorkContainer() {
-  const state = useSelector((state: RootState) => state.getInfo);
+  const state = useSelector((state: RootState) => state.myPage);
   const { privateFeeds } = state;
   console.log('작동되는겨?', privateFeeds);
 

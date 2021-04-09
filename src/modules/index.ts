@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
-import getInfo, { Welcome } from './getInfo';
+import myPage, { Welcome } from './myPage';
+import { initialState } from '../reducers/initialState';
+import poemReducer from '../reducers/poemReducer';
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 export default combineReducers({
-  getInfo,
+  myPage,
+  poemReducer,
 });
 
-export type RootState = { getInfo: Welcome };
+export type RootState = { myPage: Welcome; poemReducer: initialState };
