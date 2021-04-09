@@ -25,3 +25,37 @@ export const createPoem = (content: string, word: string) => async (
     console.log(err);
   }
 };
+
+export const modifyPoem = (id: number, content: string) => async (
+  dispatch: Dispatch<poemDispatchType>
+) => {
+  try {
+    const result = await axios.patch(FEED_URL, { id, content });
+    const data = result.data;
+    dispatch({
+      type: MODIFY_POEM,
+      payload: data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const removePoem = (id: number) => async (
+  dispatch: Dispatch<poemDispatchType>
+) => {
+  try {
+    const result = await axios.delete(FEED_URL, {
+      data: {
+        id: id,
+      },
+    });
+    const data = result.data;
+    dispatch({
+      type: REMOVE_POEM,
+      payload: data,
+    });
+  } catch (err) {
+    //
+  }
+};
