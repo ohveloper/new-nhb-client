@@ -5,7 +5,8 @@ import {
   GET_USER_FEEDS,
   GET_USER_INFO,
 } from '../actions/getInfoActions';
-import { initialState, Actions } from './initialState';
+import { initialState } from './initialState';
+import { Actions } from '../actions';
 
 export default function reducer(
   state: initialState = initialState,
