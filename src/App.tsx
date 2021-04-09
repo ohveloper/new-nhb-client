@@ -17,7 +17,6 @@ function App() {
             <MainPage />
           </Route>
           <Route path="/mypage">
-            <GetUserInfo />
             <MyPage />
           </Route>
         </Switch>

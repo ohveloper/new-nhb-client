@@ -1,61 +1,78 @@
-const GET_USER_INFO = 'getInfo/GET_USER_INFO' as const;
-const GET_PRIVATE_FEEDS = 'getInfo/GET_PRIVATE_FEEDS' as const;
-const GET_RANK = 'getInfo/GET_RANK' as const;
-const GET_COMMENTS = 'getInfo/GET_COMMENTS' as const;
-const GET_USER_FEEDS = 'getInfo/GET_USER_FEEDS' as const;
+const GET_USER_INFO = 'myPage/GET_USER_INFO' as const;
+const GET_PRIVATE_FEEDS = 'myPage/GET_PRIVATE_FEEDS' as const;
+const GET_RANK = 'myPage/GET_RANK' as const;
+const GET_COMMENTS = 'myPage/GET_COMMENTS' as const;
+const GET_USER_FEEDS = 'myPage/GET_USER_FEEDS' as const;
 
-export const getUserInfo = (userInfo: UserInfo) => ({
-  type: GET_USER_INFO,
-  payload: {
-    userInfo,
-  },
-});
+// ? 액션 생성 함수--------------------------
+export const myPageActions = {
+  getUserInfo: (userInfo: UserInfo) => ({
+    type: GET_USER_INFO,
+    payload: {
+      userInfo,
+    },
+  }),
+  getPrivateFeeds: (privateFeeds: PrivateFeed[]) => ({
+    type: GET_PRIVATE_FEEDS,
+    payload: {
+      privateFeeds,
+    },
+  }),
+  getRank: (rank: Rank[]) => ({
+    type: GET_RANK,
+    payload: {
+      rank,
+    },
+  }),
+  getComments: (comments: Comment[]) => ({
+    type: GET_COMMENTS,
+    payload: {
+      comments,
+    },
+  }),
+  getUserFeeds: (userFeeds: UserFeed[]) => ({
+    type: GET_USER_FEEDS,
+    payload: {
+      userFeeds,
+    },
+  }),
+};
 
-export const getPrivateFeeds = (privateFeeds: PrivateFeed) => ({
-  type: GET_PRIVATE_FEEDS,
-  payload: {
-    privateFeeds,
-  },
-});
-export const getRank = (rank: Rank[]) => ({
-  type: GET_RANK,
-  payload: {
-    rank,
-  },
-});
-export const getComments = (comments: Comment[]) => ({
-  type: GET_COMMENTS,
-  payload: {
-    comments,
-  },
-});
-export const getUserFeeds = (userFeeds: { [key: string]: UserFeed }) => ({
-  type: GET_USER_FEEDS,
-  payload: {
-    userFeeds,
-  },
-});
+//? 액션 객체 타입----------------------------
+type GetUserInfo = ReturnType<typeof myPageActions.getUserInfo>;
+type GetPrivateFeeds = ReturnType<typeof myPageActions.getPrivateFeeds>;
+type GetRank = ReturnType<typeof myPageActions.getRank>;
+type GetComments = ReturnType<typeof myPageActions.getComments>;
+type GetUserFeeds = ReturnType<typeof myPageActions.getUserFeeds>;
 
-export interface Welcome {
+type Action =
+  | GetUserInfo
+  | GetPrivateFeeds
+  | GetRank
+  | GetComments
+  | GetUserFeeds;
+
+//? myPage 리듀서 값 타입---------------------------
+export type Welcome = Readonly<{
   userInfo: UserInfo;
   privateFeeds: PrivateFeed[];
   rank: Rank[];
   comments: Comment[];
   userFeeds: UserFeed[];
-}
+}>;
 
-export interface Comment {
+export type Comment = Readonly<{
   user: CommentUser;
   comment: string;
   createdAt: string;
   updatedAt: string;
-}
+}>;
 
-export interface CommentUser {
+export type CommentUser = Readonly<{
   nickName: string;
-}
+}>;
 
-export interface PrivateFeed {
+export type PrivateFeed = Readonly<{
   feedId: number;
   user: PrivateFeedUser;
   topic: string;
@@ -64,21 +81,21 @@ export interface PrivateFeed {
   comments: number;
   createdAt: string;
   updatedAt: string;
-}
+}>;
 
-export interface PrivateFeedUser {
+export type PrivateFeedUser = Readonly<{
   nickName: string;
   tag: string;
-}
+}>;
 
-export interface Rank {
+export type Rank = Readonly<{
   userId: number;
   nickName: string;
   like: number;
   tag: string;
-}
+}>;
 
-export interface UserFeed {
+export type UserFeed = Readonly<{
   feedId: number;
   user: PrivateFeedUser;
   topic: string;
@@ -87,27 +104,27 @@ export interface UserFeed {
   comments: number;
   createdAt: string;
   updatedAt: string;
-}
+}>;
 
-export interface UserInfo {
+export type UserInfo = Readonly<{
   nickName: string;
   introduction: string;
   tags: { [key: string]: Hund };
   avatarUrl: string;
   createdAt: string;
   updatedAt: string;
-}
+}>;
 
-export interface Tags {
+export type Tags = Readonly<{
   hund: Hund;
   pig: Hund;
   newbie: Hund;
-}
+}>;
 
-export interface Hund {
+export type Hund = Readonly<{
   description: string;
   isUsed: boolean;
-}
+}>;
 
 const initialState: Welcome = {
   userInfo: {
@@ -195,14 +212,10 @@ const initialState: Welcome = {
   ],
 };
 
-type ReducerAction =
-  | ReturnType<typeof getUserInfo>
-  | ReturnType<typeof getPrivateFeeds>
-  | ReturnType<typeof getRank>
-  | ReturnType<typeof getComments>
-  | ReturnType<typeof getUserFeeds>;
-
-function getInfo(state: Welcome = initialState, action: ReducerAction) {
+export default function reducer(
+  state: Welcome = initialState,
+  action: Action
+): Welcome {
   switch (action.type) {
     case GET_USER_INFO:
       return {
@@ -233,5 +246,3 @@ function getInfo(state: Welcome = initialState, action: ReducerAction) {
       return state;
   }
 }
-
-export default getInfo;

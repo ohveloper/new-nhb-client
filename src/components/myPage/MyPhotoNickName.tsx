@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 
 export default function MyPhotoNickName() {
-  const state = useSelector((state: RootState) => state.getInfo);
+  const state = useSelector((state: RootState) => state.myPage);
   const { nickName } = state.userInfo;
   return (
     <div>
