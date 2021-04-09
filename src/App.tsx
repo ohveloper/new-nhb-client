@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import GetUserInfo from './components/getUserInfo';
 import MyPage from './pages/MyPage';
 import Homepage from './pages/HomePage';
+import MainPage from './pages/MainPage';
 
 function App() {
   return (
@@ -16,7 +16,12 @@ function App() {
           </Route>
           <Route path="/main"></Route>
           <Route path="/mypage">
-            <GetUserInfo />
+            <div className="App">:sunglasses: </div>
+          </Route>
+          <Route path="/main">
+            <MainPage />
+          </Route>
+          <Route path="/mypage">
             <MyPage />
           </Route>
         </Switch>

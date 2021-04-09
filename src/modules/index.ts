@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import getInfo, { Welcome } from './getInfo';
+import myPage, { Welcome } from './myPage';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
 export default combineReducers({
-  getInfo,
+  myPage,
 });
 
-export type RootState = { getInfo: Welcome };
+export type RootState = { myPage: Welcome };

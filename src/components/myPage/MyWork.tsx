@@ -1,20 +1,24 @@
-import { RootState } from '../../modules';
-import { PrivateFeed } from '../../modules/getInfo';
+import { PrivateFeed } from '../../modules/myPage';
 
-interface MyWorkProps {
-  x: string;
-  privateFeeds: PrivateFeed;
-}
+type privateFeedProps = {
+  privateFeed: PrivateFeed;
+};
 
-export default function MyWork({ x, privateFeeds }: any) {
+export default function MyWork({ privateFeed }: privateFeedProps) {
+  console.log('보여줘', privateFeed);
   return (
-    <div>
-      <h1>MyWork Redux</h1>
-      <div>유저 네임 : {privateFeeds[x].user.nickName}</div>
-      <div>착용중인 뱃지 이름 : {privateFeeds[x].user.tag}</div>
-      <div>작성한시 : {privateFeeds[x].content}</div>
-      <div>댓글 수 : {privateFeeds[x].comments}</div>
-      <div>좋아요 수 : {privateFeeds[x].likes}</div>
-    </div>
+    <>
+      <h1>MyWork</h1>
+      <div>유저 네임 : {privateFeed.user.nickName}</div>
+      <div>착용중인 뱃지 이름 : {privateFeed.user.tag}</div>
+      <div>
+        {/* 작성한시 :{' '}
+        {privateFeeds.content.map((x: {} | null | undefined) => (
+          <p key={x}>{x}</p>
+        ))} */}
+      </div>
+      <div>댓글 수 : {privateFeed.comments}</div>
+      <div>좋아요 수 : {privateFeed.likes}</div>
+    </>
   );
 }

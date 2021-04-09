@@ -1,6 +1,6 @@
 import { compose, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import rootReducer from '../reducers/index';
+import rootReducer from '../modules/index';
 
 //? __REDUX_DEVTOOLS_EXTENSION_COMPOSE__ 가 window 타입이 아니기 때문에 오류 발생. window 타입을 정의해준다.
 declare global {
