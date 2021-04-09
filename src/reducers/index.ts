@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import poemReducer from './poemReducer';
 import getInfoReducer from './getInfoReducer';
-import { Welcome } from '../actions/getInfoTypes';
+import { initialState } from './initialState';
 
 const rootReducer = combineReducers({
   poemReducer,
@@ -9,4 +9,4 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-export type RootState = { getInfoReducer: Welcome };
+export type RootState = { getInfoReducer: initialState };

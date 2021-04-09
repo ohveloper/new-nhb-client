@@ -1,4 +1,10 @@
-import { PrivateFeed, UserInfo, Rank, Comment, UserFeed } from './getInfoTypes';
+import {
+  PrivateFeed,
+  UserInfo,
+  Rank,
+  Comment,
+  UserFeed,
+} from '../reducers/initialState';
 
 export const GET_USER_INFO = 'getInfo/GET_USER_INFO' as const;
 export const GET_PRIVATE_FEEDS = 'getInfo/GET_PRIVATE_FEEDS' as const;

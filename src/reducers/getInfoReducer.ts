@@ -5,13 +5,12 @@ import {
   GET_USER_FEEDS,
   GET_USER_INFO,
 } from '../actions/getInfoActions';
-import { initialState } from './initialState';
-import { Welcome, Actions } from '../actions/getInfoTypes';
+import { initialState, Actions } from './initialState';
 
 export default function reducer(
-  state: Welcome = initialState,
+  state: initialState = initialState,
   action: Actions
-): Welcome {
+): initialState {
   switch (action.type) {
     case GET_USER_INFO:
       return {

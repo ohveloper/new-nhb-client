@@ -1,3 +1,7 @@
+import { ActionType } from 'typesafe-actions';
+import * as actions from '../actions/getInfoActions';
+
+export type Actions = ActionType<typeof actions>;
 
 export interface initialState {
   userInfo: UserInfo;
