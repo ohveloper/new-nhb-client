@@ -10,14 +10,6 @@ import {
 const FEED_URL = 'http://54.173.92.145:5000/feed';
 
 //? -------------------액션 생성 함수 ----------------------//
-// export function createPoem(content: string, word: string) {
-//   return async () => {
-//     const data = await axios
-//       .post(FEED_URL, { content, word })
-//       .then((res) => res.data)
-//       .catch((err) => console.log(err));
-//   };
-// }
 export const createPoem = (content: string, word: string) => async (
   dispatch: Dispatch<poemDispatchType>
 ) => {
@@ -31,5 +23,39 @@ export const createPoem = (content: string, word: string) => async (
     });
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const modifyPoem = (id: number, content: string) => async (
+  dispatch: Dispatch<poemDispatchType>
+) => {
+  try {
+    const result = await axios.patch(FEED_URL, { id, content });
+    const data = result.data;
+    dispatch({
+      type: MODIFY_POEM,
+      payload: data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const removePoem = (id: number) => async (
+  dispatch: Dispatch<poemDispatchType>
+) => {
+  try {
+    const result = await axios.delete(FEED_URL, {
+      data: {
+        id: id,
+      },
+    });
+    const data = result.data;
+    dispatch({
+      type: REMOVE_POEM,
+      payload: data,
+    });
+  } catch (err) {
+    //
   }
 };
