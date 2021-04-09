@@ -1,9 +1,9 @@
 import Sample_User_Icon from '../../img/Sample_User_Icon.png';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../modules';
+import { RootState } from '../../reducers';
 
 export default function MyPhotoNickName() {
-  const state = useSelector((state: RootState) => state.getInfo);
+  const state = useSelector((state: RootState) => state.getInfoReducer);
   const { nickName } = state.userInfo;
   return (
     <div>

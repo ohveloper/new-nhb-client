@@ -1,11 +1,10 @@
-import { PrivateFeed } from '../../modules/getInfo';
+import { PrivateFeed } from '../../actions/getInfoTypes';
 
 type privateFeedProps = {
   privateFeed: PrivateFeed;
 };
 
 export default function MyWork({ privateFeed }: privateFeedProps) {
-  console.log('보여줘', privateFeed);
   return (
     <>
       <h1>MyWork</h1>
