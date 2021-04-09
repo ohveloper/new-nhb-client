@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../../modules';
+import { RootState } from '../../modules/';
 import MyWork from './MyWork';
 
 export default function MyWorkContainer() {
-  const state = useSelector((state: RootState) => state.myPage);
+  const state = useSelector((state: RootState) => state.getInfo);
   const { privateFeeds } = state;
   console.log('작동되는겨?', privateFeeds);
 
