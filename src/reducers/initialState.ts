@@ -1,6 +1,84 @@
-import { Welcome } from '../actions/getInfoTypes';
 
-export const initialState: Welcome = {
+export interface initialState {
+  userInfo: UserInfo;
+  privateFeeds: PrivateFeed[];
+  rank: Rank[];
+  comments: Comment[];
+  userFeeds: UserFeed[];
+  newFeed: newFeed;
+  todaysWord: string[];
+}
+
+export interface Comment {
+  user: CommentUser;
+  comment: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CommentUser {
+  nickName: string;
+}
+
+export interface PrivateFeed {
+  feedId: number;
+  user: PrivateFeedUser;
+  topic: string;
+  content: string[];
+  likes: number;
+  comments: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PrivateFeedUser {
+  nickName: string;
+  tag: string;
+}
+
+export interface Rank {
+  userId: number;
+  nickName: string;
+  like: number;
+  tag: string;
+}
+
+export interface UserFeed {
+  feedId: number;
+  user: PrivateFeedUser;
+  topic: string;
+  content: string[];
+  likes: number;
+  comments: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface UserInfo {
+  nickName: string;
+  introduction: string;
+  tags: { [key: string]: Hund };
+  avatarUrl: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Tags {
+  hund: Hund;
+  pig: Hund;
+  newbie: Hund;
+}
+
+export interface Hund {
+  description: string;
+  isUsed: boolean;
+}
+
+export interface newFeed {
+  content: string[];
+}
+
+export const initialState = {
   userInfo: {
     nickName: '불광동핵주먹',
     introduction: '원펀치 쓰리강냉이',
@@ -84,4 +162,8 @@ export const initialState: Welcome = {
       updatedAt: 'date',
     },
   ],
+  newFeed: {
+    content: [],
+  },
+  todaysWord: ['시', '장'],
 };
