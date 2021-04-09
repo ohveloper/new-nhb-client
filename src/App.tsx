@@ -16,7 +16,7 @@ function App() {
           </Route>
           <Route path="/main"></Route>
           <Route path="/mypage">
-            <div className="App">:sunglasses: </div>
+            <MyPage />
           </Route>
           <Route path="/main">
             <MainPage />
