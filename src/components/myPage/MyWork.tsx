@@ -1,4 +1,4 @@
-import { PrivateFeed } from '../../actions/getInfoTypes';
+import { PrivateFeed } from '../../reducers/initialState';
 
 type privateFeedProps = {
   privateFeed: PrivateFeed;

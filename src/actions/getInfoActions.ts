@@ -1,10 +1,16 @@
-import { PrivateFeed, UserInfo, Rank, Comment, UserFeed } from './getInfoTypes';
+import {
+  PrivateFeed,
+  UserInfo,
+  Rank,
+  Comment,
+  UserFeed,
+} from '../reducers/initialState';
 
-export const GET_USER_INFO = 'getInfo/GET_USER_INFO' as const;
-export const GET_PRIVATE_FEEDS = 'getInfo/GET_PRIVATE_FEEDS' as const;
-export const GET_RANK = 'getInfo/GET_RANK' as const;
-export const GET_COMMENTS = 'getInfo/GET_COMMENTS' as const;
-export const GET_USER_FEEDS = 'getInfo/GET_USER_FEEDS' as const;
+export const GET_USER_INFO = 'GET_USER_INFO' as const;
+export const GET_PRIVATE_FEEDS = 'GET_PRIVATE_FEEDS' as const;
+export const GET_RANK = 'GET_RANK' as const;
+export const GET_COMMENTS = 'GET_COMMENTS' as const;
+export const GET_USER_FEEDS = 'GET_USER_FEEDS' as const;
 
 export const myPageActions = {
   getUserInfo: (userInfo: UserInfo) => ({

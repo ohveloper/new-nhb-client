@@ -1,4 +1,3 @@
-
 export interface initialState {
   userInfo: UserInfo;
   privateFeeds: PrivateFeed[];
