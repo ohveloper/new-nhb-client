@@ -20,6 +20,7 @@ export default function MyAchievementBadges() {
           );
         })}
       </div>
+      <button>뱃지고르러가기</button>
     </div>
   );
 }
