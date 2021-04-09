@@ -3,7 +3,7 @@ import { RootState } from '../modules';
 
 export default function GetUserInfo() {
   const state = useSelector((state: RootState) => state.getInfo);
-  console.log(state.rank);
+  console.log(state);
   return (
     <div>
       <div>타입스크립트</div>
