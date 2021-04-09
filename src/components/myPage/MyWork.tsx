@@ -1,4 +1,4 @@
-import { PrivateFeed } from '../../modules/getInfo';
+import { PrivateFeed } from '../../modules/myPage';
 
 type privateFeedProps = {
   privateFeed: PrivateFeed;
