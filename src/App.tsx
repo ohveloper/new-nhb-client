@@ -1,7 +1,5 @@
-import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import GetUserInfo from './components/getUserInfo';
 import MyPage from './pages/MyPage';
 import MainPage from './pages/MainPage';
 
