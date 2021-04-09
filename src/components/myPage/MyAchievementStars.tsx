@@ -1,6 +1,3 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../modules';
-
 export default function MyAchievementStars() {
   const state = useSelector((state: RootState) => state.myPage);
   const { userInfo } = state;

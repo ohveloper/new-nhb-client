@@ -10,3 +10,4 @@ export default combineReducers({
 });
 
 export type RootState = { myPage: Welcome; poemReducer: initialState };
+});

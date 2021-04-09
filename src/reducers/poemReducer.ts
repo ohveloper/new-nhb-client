@@ -43,6 +43,8 @@ function poemReducer(
 ): initialState {
   switch (action.type) {
     case CREATE_POEM:
+      // eslint-disable-next-line no-case-declarations
+      const { data } = action.payload;
       return {
         ...state,
         newFeed: action.payload.newFeed,
