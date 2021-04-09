@@ -14,15 +14,11 @@ function App() {
             <Route path="/" component={Homepage} exact />
             <div className="App">:sunglasses: </div>
           </Route>
-          <Route path="/main"></Route>
           <Route path="/mypage">
             <MyPage />
           </Route>
           <Route path="/main">
             <MainPage />
-          </Route>
-          <Route path="/mypage">
-            <MyPage />
           </Route>
         </Switch>
       </Router>
