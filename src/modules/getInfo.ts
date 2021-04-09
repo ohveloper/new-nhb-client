@@ -38,10 +38,10 @@ export const getUserFeeds = (userFeeds: { [key: string]: UserFeed }) => ({
 
 export interface Welcome {
   userInfo: UserInfo;
-  privateFeeds: { [key: number]: PrivateFeed };
+  privateFeeds: PrivateFeed[];
   rank: Rank[];
   comments: Comment[];
-  userFeeds: { [key: number]: UserFeed };
+  userFeeds: UserFeed[];
 }
 
 export interface Comment {
@@ -56,6 +56,7 @@ export interface CommentUser {
 }
 
 export interface PrivateFeed {
+  feedId: number;
   user: PrivateFeedUser;
   topic: string;
   content: string[];
@@ -78,6 +79,7 @@ export interface Rank {
 }
 
 export interface UserFeed {
+  feedId: number;
   user: PrivateFeedUser;
   topic: string;
   content: string[];
@@ -120,8 +122,9 @@ const initialState: Welcome = {
     createdAt: 'date',
     updatedAt: 'date',
   },
-  privateFeeds: {
-    1: {
+  privateFeeds: [
+    {
+      feedId: 1,
       user: { nickName: '진라면은순한맛', tag: 'tagName' },
       topic: '주말',
       content: ['주린배를 부여잡고', '말고기'],
@@ -130,7 +133,8 @@ const initialState: Welcome = {
       createdAt: 'date',
       updatedAt: 'date',
     },
-    2: {
+    {
+      feedId: 2,
       user: { nickName: '아닌데매운맛인데', tag: 'tagName' },
       topic: '주말',
       content: ['주단태가 말했습니다', '말고기'],
@@ -139,7 +143,7 @@ const initialState: Welcome = {
       createdAt: 'date',
       updatedAt: 'date',
     },
-  },
+  ],
   rank: [
     { userId: 1, nickName: '주님또한명갑니다', like: 12, tag: 'tag' },
     { userId: 2, nickName: 'tester2', like: 23, tag: 'tag' },
@@ -167,8 +171,9 @@ const initialState: Welcome = {
       updatedAt: 'date',
     },
   ],
-  userFeeds: {
-    3: {
+  userFeeds: [
+    {
+      feedId: 3,
       user: { nickName: '이렇게하는거맞아요?', tag: 'newbie' },
       topic: '시장',
       content: ['시장에 갔습니다', '장군'],
@@ -177,7 +182,8 @@ const initialState: Welcome = {
       createdAt: 'date',
       updatedAt: 'date',
     },
-    4: {
+    {
+      feedId: 4,
       user: { nickName: '타입스크립트', tag: 'newbie' },
       topic: '시장',
       content: ['시장에 갔습니다', '장발장'],
@@ -186,7 +192,7 @@ const initialState: Welcome = {
       createdAt: 'date',
       updatedAt: 'date',
     },
-  },
+  ],
 };
 
 type ReducerAction =
