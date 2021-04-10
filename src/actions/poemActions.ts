@@ -1,7 +1,12 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
-import { CREATE_POEM, MODIFY_POEM, REMOVE_POEM } from './actionTypes';
-import { newFeed } from '../reducers/initialState';
+import {
+  CREATE_POEM,
+  MODIFY_POEM,
+  REMOVE_POEM,
+  GET_ALL_FEEDS,
+} from './actionTypes';
+import { newFeed, UserFeed } from '../reducers/initialState';
 
 const FEED_URL = 'https://server.sangraecho.com/feed';
 
@@ -64,6 +69,13 @@ export const createPoem = (newFeed: newFeed) => ({
   },
 });
 
+export const getAllFeeds = (userFeeds: UserFeed[]) => ({
+  type: GET_ALL_FEEDS,
+  payload: {
+    userFeeds,
+  },
+});
+
 // export const modifyPoem = (id: number, content: string) => ({
 //   type: MODIFY_POEM,
 //   payload: {
@@ -78,6 +90,4 @@ export const createPoem = (newFeed: newFeed) => ({
 // });
 
 // 모든 액션객체의 타입
-export type PoemAction = ReturnType<typeof createPoem>;
-// | ReturnType<typeof modifyPoem>
-// | ReturnType<typeof removePoem>;
+// export type PoemAction = ReturnType<typeof createPoem>;
