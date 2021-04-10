@@ -5,7 +5,7 @@ export interface initialState {
   comments: Comment[];
   userFeeds: UserFeed[];
   newFeed: newFeed;
-  todaysWord: string[];
+  todaysTopic: string[];
 }
 
 export interface Comment {
@@ -164,5 +164,5 @@ export const initialState = {
   newFeed: {
     content: [],
   },
-  todaysWord: ['시', '장'],
+  todaysTopic: ['시', '장'],
 };

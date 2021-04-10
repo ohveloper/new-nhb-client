@@ -9,4 +9,7 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-export type RootState = { getInfoReducer: initialState };
+export type RootState = {
+  getInfoReducer: initialState;
+  poemReducer: initialState;
+};
