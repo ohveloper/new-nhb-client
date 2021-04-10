@@ -10,7 +10,7 @@ type MainpagePoemInputProps = {
 const MainpagePoemInput = ({ onPoemInsert }: MainpagePoemInputProps) => {
   const state = useSelector((state: RootState) => state.poemReducer);
   //? 오늘의 주제어 불러오기
-  const { todaysWord } = state;
+  const { todaysTopic } = state;
 
   const [val, setVal] = useState({
     content: [],
@@ -36,7 +36,7 @@ const MainpagePoemInput = ({ onPoemInsert }: MainpagePoemInputProps) => {
     <>
       <h1>PoemInput</h1>
       <form onSubmit={onPoemSubmit}>
-        {todaysWord.map((letter, idx) => {
+        {todaysTopic.map((letter, idx) => {
           return (
             <div key={idx}>
               <input
