@@ -9,8 +9,10 @@ export default function MyWorkContainer() {
   return (
     <div>
       <h1>MyWorkContainer</h1>
-
-      {privateFeeds.length <= 3 ? (
+      <button>더보기</button>
+      {privateFeeds.length === 0 ? (
+        <p>아무것도 없습니다</p>
+      ) : privateFeeds.length <= 3 ? (
         privateFeeds.map((x, idx) => {
           return <MyWork privateFeed={x} key={idx} />;
         })

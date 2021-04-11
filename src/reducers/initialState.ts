@@ -6,6 +6,7 @@ export interface initialState {
   userFeeds: UserFeed[];
   newFeed: newFeed;
   todaysTopic: string[];
+  badges: Badges[];
 }
 
 export interface Comment {
@@ -56,19 +57,15 @@ export interface UserFeed {
 export interface UserInfo {
   nickName: string;
   introduction: string;
-  tags: { [key: string]: Hund };
+  tags: Tags[];
   avatarUrl: string;
   createdAt: string;
   updatedAt: string;
 }
 
 export interface Tags {
-  hund: Hund;
-  pig: Hund;
-  newbie: Hund;
-}
-
-export interface Hund {
+  tagId: number;
+  tagName: string;
   description: string;
   isUsed: boolean;
 }
@@ -77,15 +74,27 @@ export interface newFeed {
   content: string[];
 }
 
+export interface Badges {
+  tagId: number;
+  tagName: string;
+  description: string;
+  url: string;
+}
+
 export const initialState = {
   userInfo: {
     nickName: '불광동핵주먹',
     introduction: '원펀치 쓰리강냉이',
-    tags: {
-      hund: { description: '100일연속 글쓰기', isUsed: true },
-      king: { description: '별 많이받음', isUsed: false },
-      newbie: { description: '글 처음씀', isUsed: false },
-    },
+    tags: [
+      {
+        tagId: 1,
+        tagName: 'hund',
+        description: '100일연속 글쓰기',
+        isUsed: true,
+      },
+      { tagId: 2, tagName: 'king', description: '별 많이받음', isUsed: false },
+      { tagId: 3, tagName: 'newbie', description: '글 처음씀', isUsed: false },
+    ],
     avatarUrl: 'url',
     createdAt: 'date',
     updatedAt: 'date',
@@ -103,7 +112,7 @@ export const initialState = {
     },
     {
       feedId: 2,
-      user: { nickName: '아닌데매운맛인데', tag: 'tagName' },
+      user: { nickName: '진라면은순한맛', tag: 'tagName' },
       topic: '주말',
       content: ['주단태가 말했습니다', '말고기'],
       likes: 22,
@@ -165,4 +174,10 @@ export const initialState = {
     content: [],
   },
   todaysTopic: ['시', '장'],
+  badges: [
+    { tagId: 1, tagName: 'hund', description: '100일연속 글쓰기', url: 'url' },
+    { tagId: 2, tagName: 'king', description: '별 많이받음', url: 'url' },
+    { tagId: 3, tagName: 'newbie', description: '글 처음씀', url: 'url' },
+    { tagId: 4, tagName: 'everyday', description: '매일 글씀', url: 'url' },
+  ],
 };
