@@ -22,31 +22,58 @@ const initState: UserInfoState = {
   },
 };
 
-const reducer = createReducer<UserInfoState, Actions>(initState, {
-  [GET_USER_INFO_API]: (state) => ({
-    ...state,
-    userInfo: {
-      loading: true,
-      error: null,
-      data: null,
-    },
-  }),
-  [GET_USER_INFO_SUCCESS_API]: (state, action) => ({
-    ...state,
-    userInfo: {
-      loading: false,
-      error: null,
-      data: action.payload,
-    },
-  }),
-  [GET_USER_INFO_ERROR_API]: (state, action) => ({
-    ...state,
-    userInfo: {
-      loading: false,
-      error: action.payload,
-      data: null,
-    },
-  }),
-});
+export function reducer(
+  state: UserInfoState = initState,
+  action: Actions
+): UserInfoState {
+  switch (action.type) {
+    case GET_USER_INFO_API:
+      return {
+        ...state,
+        userInfo: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case GET_USER_INFO_SUCCESS_API:
+      return {
+        ...state,
+        userInfo: {
+          loading: false,
+          error: null,
+          data: action.payload,
+        },
+      };
+    case GET_USER_INFO_ERROR_API:
+      return {
+        ...state,
+        userInfo: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+    default:
+      return state;
+
+    // [GET_USER_INFO_SUCCESS_API]: (state, action) => ({
+    //   ...state,
+    //   userInfo: {
+    //     loading: false,
+    //     error: null,
+    //     data: action.payload,
+    //   },
+    // }),
+    // [GET_USER_INFO_ERROR_API]: (state, action) => ({
+    //   ...state,
+    //   userInfo: {
+    //     loading: false,
+    //     error: action.payload,
+    //     data: null,
+    //   },
+    // }),
+  }
+}
 
 export default reducer;
