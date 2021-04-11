@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createPoem } from '../actions/poemActions';
-import { RootState } from '../modules';
+import { RootState } from '../reducers';
 import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
 import { newFeed } from '../reducers/initialState';
