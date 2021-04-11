@@ -1,8 +1,9 @@
 //? --------------------Action Types----------------------//
 //? POEM ACTIONS
-export const CREATE_POEM = 'CREATE_POEM';
-export const MODIFY_POEM = 'MODIFY_POEM';
-export const REMOVE_POEM = 'REMOVE_POEM';
+export const CREATE_POEM = 'CREATE_POEM' as const;
+export const MODIFY_POEM = 'MODIFY_POEM' as const;
+export const REMOVE_POEM = 'REMOVE_POEM' as const;
+export const GET_ALL_FEEDS = 'GET_ALL_FEEDS' as const;
 
 //? ---------------Action Type의 타입 정의-----------------//
 //? POEM ACTIONS
@@ -70,4 +71,8 @@ export interface modifyPoemDispatch {
 export interface removePoemDispatch {
   type: typeof REMOVE_POEM;
   payload: { id: number };
+}
+
+export interface getUserFeedsDispatch {
+  type: typeof GET_ALL_FEEDS;
 }

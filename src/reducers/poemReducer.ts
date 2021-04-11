@@ -1,6 +1,10 @@
-import { type } from 'node:os';
-import { CREATE_POEM, MODIFY_POEM, REMOVE_POEM } from '../actions/actionTypes';
-import { PoemAction } from '../actions/poemActions';
+import {
+  CREATE_POEM,
+  MODIFY_POEM,
+  REMOVE_POEM,
+  GET_ALL_FEEDS,
+} from '../actions/actionTypes';
+import { PoemActions } from '../actions';
 import { initialState } from './initialState';
 
 // interface initialState {
@@ -39,7 +43,7 @@ import { initialState } from './initialState';
 
 function poemReducer(
   state: initialState = initialState,
-  action: PoemAction
+  action: PoemActions
 ): initialState {
   switch (action.type) {
     case CREATE_POEM:
@@ -47,6 +51,11 @@ function poemReducer(
       return {
         ...state,
         newFeed: action.payload.newFeed,
+      };
+    case GET_ALL_FEEDS:
+      return {
+        ...state,
+        userFeeds: action.payload.userFeeds,
       };
 
     default:
