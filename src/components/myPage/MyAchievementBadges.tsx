@@ -1,37 +1,49 @@
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 
 export default function MyAchievementBadges() {
-  const [badges, setBadges] = useState([
-    { hund: 'url' },
-    { king: 'url' },
-    { newbie: 'url' },
-    { everyday: 'url' },
-  ]);
   const state = useSelector((state: RootState) => state.getInfoReducer);
   const { tags } = state.userInfo;
-  const tagsKeys = Object.keys(tags);
+  const { badges } = state;
+  const myTagsId = tags.map((x) => x.tagId);
+
   return (
     <div>
       <h1>MyAchievementBadges</h1>
       <div>
-        {tagsKeys.map((x, idx) => {
-          return tags[x].isUsed ? (
-            <p style={{ color: 'red' }} key={idx}>
-              true : {x}
+        {badges.map((badge) =>
+          !myTagsId.includes(badge.tagId) ? (
+            <p style={{ color: 'gray' }}>{badge.tagName}</p>
+          ) : tags[badge.tagId - 1].isUsed ? (
+            <p style={{ border: 'blue 2px solid', color: 'red' }}>
+              {badge.tagName}
             </p>
           ) : (
-            <p key={idx}>false : {x}</p>
-          );
-        })}
+            <p style={{ color: 'red' }}>{badge.tagName}</p>
+          )
+        )}
       </div>
       <div>
-        {badges.map((x) => (
-          <p style={{ color: 'blue' }}>{Object.keys(x)[0]}</p>
-        ))}
+        {
+          //? 내가 가지고 있으면 빨강색
+          //? 내가 선택한건 테두리 파랑색
+          //? 없는건 회색
+        }
+        {/* {badges.map((x) =>
+          !tagsKeys.includes(Object.keys(x)[0]) ? (
+            <p style={{ color: 'gray' }}>
+              아직 못가진 뱃지: {Object.keys(x)[0]}
+            </p>
+          ) : tags[Object.keys(x)[0]].isUsed ? (
+            <p style={{ border: 'blue 2px solid' }}>
+              선택한 뱃지: {Object.keys(x)[0]}
+            </p>
+          ) : (
+            <p style={{ color: 'red' }}>내가 가진 뱃지: {Object.keys(x)[0]}</p>
+          )
+        )} */}
       </div>
-      <button>뱃지고르러가기</button>
+      <button>뱃지선택</button>
     </div>
   );
 }
