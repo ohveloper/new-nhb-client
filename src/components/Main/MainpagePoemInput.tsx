@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../modules';
+import { RootState } from '../../reducers';
 import { newFeed } from '../../reducers/initialState';
 
 type MainpagePoemInputProps = {
