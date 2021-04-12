@@ -17,7 +17,7 @@ export interface UUID {
   userId: number | null;
 }
 
-export async function getUserInfoT(userId: UUID) {
+export async function postBringUserInfoT(userId: UUID) {
   const response = await apiClient.post<UserInfoT>('/user', userId);
   return response.data;
 }
