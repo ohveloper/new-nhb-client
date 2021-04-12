@@ -3,23 +3,33 @@ import MyPhotoNickName from '../components/myPage/MyPhotoNickName';
 import MyWorkContainer from '../components/myPage/MyWorkContainer';
 import { RootState } from '../reducers';
 import { useDispatch, useSelector } from 'react-redux';
-import { postBringFeedsThunk } from '../actions/getInfoActions';
+import {
+  getUserInfoThunk,
+  postBringFeedsThunk,
+} from '../actions/getInfoActions';
+import Homebutton from '../components/Homebutton';
+import Sidebar from '../components/sidebar';
 
 export default function MyPage() {
-  const { data } = useSelector((state: RootState) => state.reducer.userFeeds);
+  const { userFeeds } = useSelector((state: RootState) => state.reducer);
+  const { userInfo } = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
   const onClickHandler = () => {
-    dispatch(postBringFeedsThunk({}));
+    dispatch(postBringFeedsThunk({ limit: 3, feedId: 2 }));
+    dispatch(getUserInfoThunk({ userId: 1 }));
   };
-  console.log(data);
+  console.log('userFeeds: ', userFeeds);
+  console.log('userInfo: ', userInfo);
   return (
     <>
+      <Homebutton />
+      <Sidebar />
       <button onClick={onClickHandler}>클릭</button>
       <div>
         <MyWorkContainer />
       </div>
       <div>
-        <MyAchievementContainer />
+        <MyAchievementContainer />ㅗ
       </div>
       <div>
         <MyPhotoNickName />

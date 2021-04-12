@@ -3,16 +3,18 @@ import {
   GET_USER_INFO_SUCCESS,
   POST_BRING_FEEDS_SUCCESS,
 } from '../actions/getInfoActions';
+
 export interface InitState {
   userInfo: {
-    data: UserInfo | null;
+    data: UserInfoT | null;
   };
   userFeeds: {
     data: Welcome | null;
   };
 }
 
-export interface UserInfo {
+export interface UserInfoT {
+  userId: number;
   nickName: string;
   introduction: string;
   tags: Tags[];

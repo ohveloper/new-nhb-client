@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { Dispatch } from 'redux';
 import { createAsyncAction } from 'typesafe-actions';
-import { getUserInfoT } from '../api/getUserInfo';
+import { getUserInfoT, UUID } from '../api/getUserInfo';
 import { getPrivateFeedT } from '../api/getPrivateFeeds';
 import { postUserFeedT } from '../api/postPrivateFeeds';
 
@@ -15,6 +15,7 @@ import {
 } from '../reducers/initialState';
 import { getRankT } from '../api/getRank';
 import { Welcome } from '../reducers/reducer';
+import { UserInfoT } from '../reducers/reducer';
 
 export const GET_USER_INFO_API = 'GET_USER_INFO_API' as const;
 export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS' as const;
@@ -45,7 +46,7 @@ export const getUserInfoAsync = createAsyncAction(
   GET_USER_INFO_API,
   GET_USER_INFO_SUCCESS,
   GET_USER_INFO_ERROR
-)<undefined, UserInfo, AxiosError>();
+)<undefined, UserInfoT, AxiosError>();
 
 export const getPrivateFeedsAsync = createAsyncAction(
   GET_PRIVATE_FEEDS_API,
@@ -61,23 +62,24 @@ export const getRankAsync = createAsyncAction(
 
 export function postBringFeedsThunk(feed: Feed) {
   return async (dispatch: Dispatch) => {
-    const { success } = postBringFeedsAsync;
+    const { request, success, failure } = postBringFeedsAsync;
+    dispatch(request());
     try {
       const userFeeds = await postUserFeedT(feed);
       dispatch(success(userFeeds));
     } catch (e) {
-      console.log(e);
+      dispatch(failure(e));
     }
   };
 }
 
-export function getUserInfoThunk(url: string) {
+export function getUserInfoThunk(userId: UUID) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = getUserInfoAsync;
     dispatch(request());
 
     try {
-      const userInfo = await getUserInfoT(url);
+      const userInfo = await getUserInfoT(userId);
       dispatch(success(userInfo));
     } catch (e) {
       dispatch(failure(e));
