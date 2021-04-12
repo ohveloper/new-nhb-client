@@ -6,6 +6,7 @@ a:any-link {
 a:hover {
   color: rgb(128, 73, 255);
 }
+
 * {
   box-sizing: border-box;
   margin: 0;

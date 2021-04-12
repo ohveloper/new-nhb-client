@@ -14,16 +14,16 @@ const apiClient = axios.create({
   },
 });
 export interface Feed {
-  limit?: number;
-  feedId?: number;
+  limit: number;
+  feedId: number | null;
 }
 
-export async function postUserFeedT(feed?: Feed) {
+export async function postUserFeedT(feed: Feed) {
   if (feed) {
     const response = await apiClient.post<Welcome>('/feed/lookup', feed);
     return response.data;
   } else {
-    const response = await apiClient.post<Welcome>('/feed/lookup', {});
+    const response = await apiClient.post<Welcome>('/feed/lookup', feed);
     return response.data;
   }
 }
