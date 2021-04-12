@@ -1,16 +1,16 @@
-import { UserFeed } from '../../reducers/initialState';
+import { UserFeeds } from '../../reducers/poemReducer';
 
 type PoemViewProps = {
-  userFeed: UserFeed;
+  userFeeds: UserFeeds;
 };
 
-export default function PoemView({ userFeed }: PoemViewProps) {
+export default function PoemView({ userFeeds }: PoemViewProps) {
   return (
     <>
-      {userFeed.content.map((line, idx) => {
+      {userFeeds.content.map((line, idx) => {
         const head = line.slice(0, 1);
         const tail = line.slice(1);
-        const key = String(idx) + String(userFeed.feedId);
+        const key = String(idx) + String(userFeeds.feedId);
         return (
           <div key={key}>
             {head} : {tail}
