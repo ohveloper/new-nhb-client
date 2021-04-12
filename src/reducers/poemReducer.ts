@@ -1,11 +1,6 @@
-import {
-  CREATE_POEM,
-  MODIFY_POEM,
-  REMOVE_POEM,
-  GET_ALL_FEEDS,
-} from '../actions/actionTypes';
+import { CREATE_POEM } from '../actions/actionTypes';
 import { PoemActions } from '../actions';
-import { initialState } from './initialState';
+import { initialState, UserFeed } from './initialState';
 
 // interface initialState {
 //   feed?: poemType;
@@ -34,28 +29,16 @@ import { initialState } from './initialState';
 // };
 
 //?--------------------WITH DUMMY DATA---------------------//
-// 상태에서 사용할 데이터 타입
-// export type Poem = {
-//   id: number;
-//   content: string;
-//   word: string;
-// };
 
 function poemReducer(
-  state: initialState = initialState,
+  state: UserFeed = initialState.userFeeds,
   action: PoemActions
-): initialState {
+): UserFeed {
   switch (action.type) {
     case CREATE_POEM:
       // eslint-disable-next-line no-case-declarations
       return {
         ...state,
-        newFeed: action.payload.newFeed,
-      };
-    case GET_ALL_FEEDS:
-      return {
-        ...state,
-        userFeeds: action.payload.userFeeds,
       };
 
     default:

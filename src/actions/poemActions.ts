@@ -6,9 +6,9 @@ import {
   REMOVE_POEM,
   GET_ALL_FEEDS,
 } from './actionTypes';
-import { newFeed, UserFeed } from '../reducers/initialState';
+import { UserFeed } from '../reducers/initialState';
 
-const FEED_URL = 'https://server.sangraecho.com/feed';
+const FEED_URL = 'http://localhost:5000/feed';
 
 //? -------------------액션 생성 함수 ----------------------//
 // export const createPoem = (content: string, word: string) => async (
@@ -62,7 +62,7 @@ const FEED_URL = 'https://server.sangraecho.com/feed';
 // };
 
 //?--------------------WITH DUMMY DATA---------------------//
-export const createPoem = (newFeed: newFeed) => ({
+export const createPoem = (newFeed: UserFeed) => ({
   type: CREATE_POEM,
   payload: {
     newFeed,
@@ -75,19 +75,3 @@ export const getAllFeeds = (userFeeds: UserFeed[]) => ({
     userFeeds,
   },
 });
-
-// export const modifyPoem = (id: number, content: string) => ({
-//   type: MODIFY_POEM,
-//   payload: {
-//     id,
-//     content,
-//   },
-// });
-
-// export const removePoem = (id: number) => ({
-//   type: REMOVE_POEM,
-//   payload: id,
-// });
-
-// 모든 액션객체의 타입
-// export type PoemAction = ReturnType<typeof createPoem>;
