@@ -6,9 +6,7 @@ type privateFeedProps = {
 
 export default function MyWork({ privateFeed }: privateFeedProps) {
   const topics = privateFeed.topic.split('');
-  console.log(topics);
   const { content } = privateFeed;
-  console.log(content);
   return (
     <>
       <h1>MyWork</h1>
@@ -18,7 +16,7 @@ export default function MyWork({ privateFeed }: privateFeedProps) {
       <div>착용중인 뱃지 이름 : {privateFeed.user.tag}</div>
       <div>
         {content.map((x, idx) => (
-          <p>
+          <p key={idx}>
             {topics[idx]}: {x}
           </p>
         ))}

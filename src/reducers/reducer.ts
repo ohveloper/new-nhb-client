@@ -1,78 +1,86 @@
-import { createReducer } from 'typesafe-actions';
-import { UserInfo } from './initialState';
 import { Actions } from '../actions';
 import {
-  GET_USER_INFO_API,
-  GET_USER_INFO_ERROR_API,
-  GET_USER_INFO_SUCCESS_API,
+  GET_USER_INFO_SUCCESS,
+  POST_BRING_FEEDS_SUCCESS,
 } from '../actions/getInfoActions';
-export interface UserInfoState {
+export interface InitState {
   userInfo: {
-    loading: boolean;
-    error: Error | null;
     data: UserInfo | null;
+  };
+  userFeeds: {
+    data: Welcome | null;
   };
 }
 
-const initState: UserInfoState = {
+export interface UserInfo {
+  nickName: string;
+  introduction: string;
+  tags: Tags[];
+  avatarUrl: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Tags {
+  tagId: number;
+  tagName: string;
+  description: string;
+  isUsed: boolean;
+}
+
+export interface Welcome {
+  userFeeds: UserFeeds[];
+}
+
+export interface UserFeeds {
+  feedId: string;
+  user: User;
+  topic: string;
+  content: string;
+  likes: string;
+  comments: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface User {
+  userId: string;
+  nickName: string;
+  tag: string;
+}
+
+const initState: InitState = {
   userInfo: {
-    loading: false,
-    error: null,
+    data: null,
+  },
+  userFeeds: {
     data: null,
   },
 };
 
 export function reducer(
-  state: UserInfoState = initState,
+  state: InitState = initState,
   action: Actions
-): UserInfoState {
+): InitState {
   switch (action.type) {
-    case GET_USER_INFO_API:
+    case GET_USER_INFO_SUCCESS:
       return {
         ...state,
         userInfo: {
-          loading: true,
-          error: null,
-          data: null,
-        },
-      };
-    case GET_USER_INFO_SUCCESS_API:
-      return {
-        ...state,
-        userInfo: {
-          loading: false,
-          error: null,
           data: action.payload,
         },
       };
-    case GET_USER_INFO_ERROR_API:
+
+    case POST_BRING_FEEDS_SUCCESS:
       return {
         ...state,
-        userInfo: {
-          loading: false,
-          error: action.payload,
-          data: null,
+        userFeeds: {
+          data: action.payload,
         },
       };
+
     default:
       return state;
-
-    // [GET_USER_INFO_SUCCESS_API]: (state, action) => ({
-    //   ...state,
-    //   userInfo: {
-    //     loading: false,
-    //     error: null,
-    //     data: action.payload,
-    //   },
-    // }),
-    // [GET_USER_INFO_ERROR_API]: (state, action) => ({
-    //   ...state,
-    //   userInfo: {
-    //     loading: false,
-    //     error: action.payload,
-    //     data: null,
-    //   },
-    // }),
   }
 }
 

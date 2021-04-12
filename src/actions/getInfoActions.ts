@@ -3,7 +3,9 @@ import { Dispatch } from 'redux';
 import { createAsyncAction } from 'typesafe-actions';
 import { getUserInfoT } from '../api/getUserInfo';
 import { getPrivateFeedT } from '../api/getPrivateFeeds';
+import { postUserFeedT } from '../api/postPrivateFeeds';
 
+import { Feed } from '../api/postPrivateFeeds';
 import {
   PrivateFeed,
   UserInfo,
@@ -12,18 +14,20 @@ import {
   UserFeed,
 } from '../reducers/initialState';
 import { getRankT } from '../api/getRank';
+import { Welcome } from '../reducers/reducer';
 
 export const GET_USER_INFO_API = 'GET_USER_INFO_API' as const;
-export const GET_USER_INFO_SUCCESS_API = 'GET_USER_INFO_SUCCESS_API' as const;
-export const GET_USER_INFO_ERROR_API = 'GET_USER_INFO_ERROR_API' as const;
-
-export const GET_PRIVATE_FEEDS_API = 'GET_PRIVATE_FEEDS_API' as const;
-export const GET_PRIVATE_FEEDS_SUCCESS = 'GET_PRIVATE_FEEDS_SUCCES' as const;
-export const GET_PRIVATE_FEEDS_ERROR = 'GET_PRIVATE_FEEDS_ERROR' as const;
-
+export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS' as const;
+export const GET_USER_INFO_ERROR = 'GET_USER_INFO_ERROR' as const;
 export const GET_RANK_API = 'GET_RANK_API' as const;
 export const GET_RANK_SUCCESS = 'GET_RANK_SUCCES' as const;
 export const GET_RANK_ERROR = 'GET_RANK_ERROR' as const;
+export const GET_PRIVATE_FEEDS_API = 'GET_PRIVATE_FEEDS_API' as const;
+export const GET_PRIVATE_FEEDS_SUCCESS = 'GET_PRIVATE_FEEDS_SUCCES' as const;
+export const GET_PRIVATE_FEEDS_ERROR = 'GET_PRIVATE_FEEDS_ERROR' as const;
+export const POST_BRING_FEEDS_API = 'POST_BRING_FEEDS_API' as const;
+export const POST_BRING_FEEDS_SUCCESS = 'POST_BRING_FEEDS_SUCCESS' as const;
+export const POST_BRING_FEEDS_ERROR = 'POST_BRING_FEEDS_ERROR' as const;
 
 export const GET_USER_INFO = 'GET_USER_INFO' as const;
 export const GET_PRIVATE_FEEDS = 'GET_PRIVATE_FEEDS' as const;
@@ -31,10 +35,16 @@ export const GET_RANK = 'GET_RANK' as const;
 export const GET_COMMENTS = 'GET_COMMENTS' as const;
 export const GET_USER_FEEDS = 'GET_USER_FEEDS' as const;
 
+export const postBringFeedsAsync = createAsyncAction(
+  POST_BRING_FEEDS_API,
+  POST_BRING_FEEDS_SUCCESS,
+  POST_BRING_FEEDS_ERROR
+)<undefined, Welcome, AxiosError>();
+
 export const getUserInfoAsync = createAsyncAction(
   GET_USER_INFO_API,
-  GET_USER_INFO_SUCCESS_API,
-  GET_USER_INFO_ERROR_API
+  GET_USER_INFO_SUCCESS,
+  GET_USER_INFO_ERROR
 )<undefined, UserInfo, AxiosError>();
 
 export const getPrivateFeedsAsync = createAsyncAction(
@@ -49,10 +59,23 @@ export const getRankAsync = createAsyncAction(
   GET_RANK_ERROR
 )<undefined, Rank, AxiosError>();
 
+export function postBringFeedsThunk(feed: Feed) {
+  return async (dispatch: Dispatch) => {
+    const { success } = postBringFeedsAsync;
+    try {
+      const userFeeds = await postUserFeedT(feed);
+      dispatch(success(userFeeds));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+}
+
 export function getUserInfoThunk(url: string) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = getUserInfoAsync;
     dispatch(request());
+
     try {
       const userInfo = await getUserInfoT(url);
       dispatch(success(userInfo));
