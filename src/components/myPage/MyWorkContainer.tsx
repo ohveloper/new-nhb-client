@@ -1,17 +1,18 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../../modules';
+import { RootState } from '../../reducers';
 import MyWork from './MyWork';
 
 export default function MyWorkContainer() {
-  const state = useSelector((state: RootState) => state.myPage);
+  const state = useSelector((state: RootState) => state.getInfoReducer);
   const { privateFeeds } = state;
-  console.log('작동되는겨?', privateFeeds);
 
   return (
     <div>
       <h1>MyWorkContainer</h1>
-
-      {privateFeeds.length <= 3 ? (
+      <button>더보기</button>
+      {privateFeeds.length === 0 ? (
+        <p>아무것도 없습니다</p>
+      ) : privateFeeds.length <= 3 ? (
         privateFeeds.map((x, idx) => {
           return <MyWork privateFeed={x} key={idx} />;
         })
