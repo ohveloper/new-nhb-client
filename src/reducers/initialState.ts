@@ -4,7 +4,6 @@ export interface initialState {
   rank: Rank[];
   comments: Comment[];
   userFeeds: UserFeed[];
-  newFeed: newFeed;
   todaysTopic: string[];
   badges: Badges[];
 }
@@ -70,10 +69,6 @@ export interface Tags {
   tagName: string;
   description: string;
   isUsed: boolean;
-}
-
-export interface newFeed {
-  content: string[];
 }
 
 export interface Badges {
@@ -173,9 +168,6 @@ export const initialState = {
       updatedAt: 'date',
     },
   ],
-  newFeed: {
-    content: [],
-  },
   todaysTopic: ['시', '장'],
   badges: [
     { tagId: 1, tagName: 'hund', description: '100일연속 글쓰기', url: 'url' },

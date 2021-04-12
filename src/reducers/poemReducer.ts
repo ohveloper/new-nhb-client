@@ -1,65 +1,55 @@
-import {
-  CREATE_POEM,
-  MODIFY_POEM,
-  REMOVE_POEM,
-  GET_ALL_FEEDS,
-} from '../actions/actionTypes';
 import { PoemActions } from '../actions';
-import { initialState } from './initialState';
+import { POST_CREATE_POEM_SUCCESS } from '../actions/poemActions';
 
-// interface initialState {
-//   feed?: poemType;
-// }
+export interface poemInitState {
+  userFeeds: {
+    data: Feed | null;
+  };
+  todaysTopic: string[];
+}
+export interface UserFeeds {
+  feedId: number;
+  user: User;
+  topic: string;
+  content: string[];
+  likes: number;
+  comments: number;
+  createdAt: string;
+  updatedAt: string;
+}
 
-// const initialState: initialState = {};
+export interface Feed {
+  userFeeds: UserFeeds[];
+}
 
-// const poemReducer = (
-//   state = initialState,
-//   action: poemDispatchType
-// ): initialState => {
-//   switch (action.type) {
-//     case CREATE_POEM:
-//       // eslint-disable-next-line no-case-declarations
-//       const { data } = action.payload;
-//       return {
-//         ...state,
-//         feed: { data },
-//       };
-//     case MODIFY_POEM:
-//     case REMOVE_POEM:
-//     default:
-//       return state;
-//       break;
-//   }
-// };
+export interface User {
+  userId: string;
+  nickName: string;
+  tag: string;
+}
 
-//?--------------------WITH DUMMY DATA---------------------//
-// 상태에서 사용할 데이터 타입
-// export type Poem = {
-//   id: number;
-//   content: string;
-//   word: string;
-// };
+const poemInitState: poemInitState = {
+  userFeeds: {
+    data: null,
+  },
+  todaysTopic: ['시', '장'],
+};
 
-function poemReducer(
-  state: initialState = initialState,
+export function poemReducer(
+  state: poemInitState = poemInitState,
   action: PoemActions
-): initialState {
+): poemInitState {
   switch (action.type) {
-    case CREATE_POEM:
-      // eslint-disable-next-line no-case-declarations
+    case POST_CREATE_POEM_SUCCESS:
       return {
         ...state,
-        newFeed: action.payload.newFeed,
+        userFeeds: {
+          data: action.payload,
+        },
       };
-    case GET_ALL_FEEDS:
-      return {
-        ...state,
-        userFeeds: action.payload.userFeeds,
-      };
-
     default:
       return state;
+      break;
   }
 }
 

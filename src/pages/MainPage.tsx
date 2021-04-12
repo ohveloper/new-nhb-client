@@ -1,24 +1,27 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { createPoem } from '../actions/poemActions';
+import { postCreatePoemThunk } from '../actions/poemActions';
 import { RootState } from '../reducers';
 import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
-import { newFeed } from '../reducers/initialState';
+import { UserFeeds } from '../reducers/poemReducer';
+import { Content } from '../api/postCreatePoem';
 
 export default function MainPage() {
-  const poemReducer = useSelector((state: RootState) => state.poemReducer);
+  const userFeeds = useSelector((state: RootState) => state.poemReducer);
   const dispatch = useDispatch();
+  console.log(userFeeds);
 
-  const onPoemInsert = (newFeed: newFeed) => {
-    dispatch(createPoem(newFeed));
+  const onPoemInsert = (feed: Content) => {
+    dispatch(postCreatePoemThunk(feed));
+    console.log(feed);
   };
 
   return (
     <>
       <div>[MainPage]</div>
       <MainpagePoemInput onPoemInsert={onPoemInsert} />
-      <MainpagePoemList />
+      <MainpagePoemList userFeeds={userFeeds} />
     </>
   );
 }
