@@ -32,6 +32,7 @@ export interface PrivateFeed {
 }
 
 export interface PrivateFeedUser {
+  userId: number;
   nickName: string;
   tag: string;
 }
@@ -102,7 +103,7 @@ export const initialState = {
   privateFeeds: [
     {
       feedId: 1,
-      user: { nickName: '진라면은순한맛', tag: 'tagName' },
+      user: { userId: 1, nickName: '진라면은순한맛', tag: 'tagName' },
       topic: '주말',
       content: ['주린배를 부여잡고', '말고기'],
       likes: 23,
@@ -112,7 +113,7 @@ export const initialState = {
     },
     {
       feedId: 2,
-      user: { nickName: '진라면은순한맛', tag: 'tagName' },
+      user: { userId: 1, nickName: '진라면은순한맛', tag: 'tagName' },
       topic: '주말',
       content: ['주단태가 말했습니다', '말고기'],
       likes: 22,
@@ -151,7 +152,7 @@ export const initialState = {
   userFeeds: [
     {
       feedId: 3,
-      user: { nickName: '이렇게하는거맞아요?', tag: 'newbie' },
+      user: { userId: 2, nickName: '이렇게하는거맞아요?', tag: 'newbie' },
       topic: '시장',
       content: ['시장에 갔습니다', '장군'],
       likes: 234,
@@ -161,7 +162,7 @@ export const initialState = {
     },
     {
       feedId: 4,
-      user: { nickName: '타입스크립트', tag: 'newbie' },
+      user: { userId: 3, nickName: '타입스크립트', tag: 'newbie' },
       topic: '시장',
       content: ['시장에 갔습니다', '장발장'],
       likes: 32,
