@@ -1,53 +1,5 @@
 //? --------------------Action Types----------------------//
 //? POEM ACTIONS
-export const CREATE_POEM = 'CREATE_POEM' as const;
-export const MODIFY_POEM = 'MODIFY_POEM' as const;
-export const REMOVE_POEM = 'REMOVE_POEM' as const;
-export const GET_ALL_FEEDS = 'GET_ALL_FEEDS' as const;
-
-//? ---------------Action Type의 타입 정의-----------------//
-//? POEM ACTIONS
-// export type poemType = {
-//   data: poemCreateData;
-// };
-// export type poemCreateData = {
-//   data: {
-//     userFeeds: {
-//       id: {
-//         user: {
-//           userId: string;
-//           nickName: string;
-//           tag: string;
-//         };
-//         topic: string;
-//         content: string;
-//         likes: number;
-//         comments: number;
-//         createdAt: Date;
-//         updatedAt: Date;
-//       };
-//     };
-//   };
-//   message: 'ok';
-// };
-
-// export const poemModifyData = {};
-// export const poemRemoveData = {};
-
-// export interface createPoemDispatch {
-//   type: typeof CREATE_POEM;
-//   payload: { data: poemCreateData };
-// }
-
-// export interface modifyPoemDispatch {
-//   type: typeof MODIFY_POEM;
-// }
-
-// export interface removePoemDispatch {
-//   type: typeof REMOVE_POEM;
-// }
-
-// export type poemDispatchType =
-//   | createPoemDispatch
-//   | modifyPoemDispatch
-//   | removePoemDispatch;
+export const POST_CREATE_POEM_API = 'POST_CREATE_POEM_API' as const;
+export const POST_CREATE_POEM_SUCCESS = 'POST_CREATE_POEM_SUCCESS' as const;
+export const POST_CREATE_POEM_ERROR = 'POST_CREATE_POEM_ERROR' as const;

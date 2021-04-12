@@ -71,17 +71,6 @@ export interface Tags {
   isUsed: boolean;
 }
 
-// export interface newFeed {
-//   feedId: number;
-//   user: PrivateFeedUser;
-//   topic: string;
-//   content: string[];
-//   likes: number;
-//   comments: number;
-//   createdAt: string;
-//   updatedAt: string;
-// }
-
 export interface Badges {
   tagId: number;
   tagName: string;

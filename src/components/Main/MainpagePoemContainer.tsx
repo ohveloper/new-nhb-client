@@ -4,10 +4,10 @@ import { RootState } from '../../reducers';
 import PoemInfo from './PoemInfo';
 import PoemView from './PoemView';
 import PoemButtonGroup from './PoemButtonGroup';
-import { UserFeed } from '../../reducers/initialState';
+import { UserFeeds } from '../../reducers/poemReducer';
 
 type MainpagePoemContainerProps = {
-  userFeeds: UserFeed[];
+  userFeeds: UserFeeds[];
 };
 
 export default function MainpagePoemContainer({
@@ -24,9 +24,9 @@ export default function MainpagePoemContainer({
         return (
           <div key={key}>
             {feed.feedId}
-            <PoemInfo userFeed={feed} />
-            <PoemView userFeed={feed} />
-            <PoemButtonGroup userFeed={feed} />
+            <PoemInfo userFeeds={feed} />
+            <PoemView userFeeds={feed} />
+            <PoemButtonGroup userFeeds={feed} />
           </div>
         );
       })}
