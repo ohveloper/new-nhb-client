@@ -1,15 +1,23 @@
 import axios from 'axios';
-import { UserInfo } from '../reducers/initialState';
+import dotenv from 'dotenv';
+import { UserInfoT } from '../reducers/reducer';
+dotenv.config();
+
+const api = process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
 
 const apiClient = axios.create({
-  baseURL: 'https://localhost:5000/',
+  baseURL: api,
   responseType: 'json',
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-export async function getUserInfoT(url: string) {
-  const response = await apiClient.get<UserInfo>(url);
+export interface UUID {
+  userId: number | null;
+}
+
+export async function getUserInfoT(userId: UUID) {
+  const response = await apiClient.post<UserInfoT>('/user', userId);
   return response.data;
 }
