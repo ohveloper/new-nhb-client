@@ -1,9 +1,10 @@
 import { PoemActions } from '../actions';
 import { POST_CREATE_POEM_SUCCESS } from '../actions/poemActions';
+import { UploadMsg } from '../api/postCreatePoem';
 
 export interface poemInitState {
   userFeeds: {
-    data: Feed | null;
+    data: UploadMsg | null;
   };
   todaysTopic: string[];
 }

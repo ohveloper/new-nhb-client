@@ -15,6 +15,7 @@ const MainpagePoemInput = ({ onPoemInsert }: MainpagePoemInputProps) => {
 
   const [val, setVal] = useState<Content>({
     content: [],
+    word: '',
   });
 
   const onPoemChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -29,6 +30,7 @@ const MainpagePoemInput = ({ onPoemInsert }: MainpagePoemInputProps) => {
     onPoemInsert(val);
     setVal({
       content: [],
+      word: '',
     });
     console.log(val);
   };

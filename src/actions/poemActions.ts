@@ -4,7 +4,7 @@ import { createAsyncAction } from 'typesafe-actions';
 import { Feed } from '../reducers/poemReducer';
 
 import { UserFeeds } from '../reducers/poemReducer';
-import { postCreatePoemT, Content } from '../api/postCreatePoem';
+import { postCreatePoemT, Content, UploadMsg } from '../api/postCreatePoem';
 
 //? ---------------------Action Type-----------------------//
 export const POST_CREATE_POEM = 'POST_CREATE_POEM' as const;
@@ -17,7 +17,7 @@ export const postCreatePoemAsync = createAsyncAction(
   POST_CREATE_POEM_API,
   POST_CREATE_POEM_SUCCESS,
   POST_CREATE_POEM_ERROR
-)<undefined, Feed, AxiosError>();
+)<undefined, UploadMsg, AxiosError>();
 
 //? -------------------액션 생성 함수 ----------------------//
 export function postCreatePoemThunk(feed: Content) {
