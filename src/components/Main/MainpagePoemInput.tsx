@@ -1,10 +1,10 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
-import { newFeed } from '../../reducers/initialState';
+import { UserFeed } from '../../reducers/initialState';
 
 type MainpagePoemInputProps = {
-  onPoemInsert: (newFeed: newFeed) => void;
+  onPoemInsert: (newFeed: UserFeed) => void;
 };
 
 const MainpagePoemInput = ({ onPoemInsert }: MainpagePoemInputProps) => {
@@ -12,8 +12,15 @@ const MainpagePoemInput = ({ onPoemInsert }: MainpagePoemInputProps) => {
   //? 오늘의 주제어 불러오기
   const { todaysTopic } = state;
 
-  const [val, setVal] = useState({
+  const [val, setVal] = useState<UserFeed>({
+    feedId: 0,
+    user: { nickName: '', tag: '' },
+    topic: '',
     content: [],
+    likes: 0,
+    comments: 0,
+    createdAt: '',
+    updatedAt: '',
   });
   const { content } = val;
 
@@ -28,8 +35,16 @@ const MainpagePoemInput = ({ onPoemInsert }: MainpagePoemInputProps) => {
     event.preventDefault();
     onPoemInsert(val);
     setVal({
+      feedId: 0,
+      user: { nickName: '', tag: '' },
+      topic: '',
       content: [],
+      likes: 0,
+      comments: 0,
+      createdAt: '',
+      updatedAt: '',
     });
+    console.log(val);
   };
 
   return (
@@ -37,8 +52,9 @@ const MainpagePoemInput = ({ onPoemInsert }: MainpagePoemInputProps) => {
       <h1>PoemInput</h1>
       <form onSubmit={onPoemSubmit}>
         {todaysTopic.map((letter, idx) => {
+          const key = letter + String(idx);
           return (
-            <div key={idx}>
+            <div key={key}>
               <input
                 name={letter}
                 value={content[idx]}

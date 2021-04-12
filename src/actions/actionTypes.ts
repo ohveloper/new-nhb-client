@@ -51,28 +51,3 @@ export const GET_ALL_FEEDS = 'GET_ALL_FEEDS' as const;
 //   | createPoemDispatch
 //   | modifyPoemDispatch
 //   | removePoemDispatch;
-
-//?--------------------WITH DUMMY DATA---------------------//
-//? POEM ACTIONS
-export interface createPoemDispatch {
-  type: typeof CREATE_POEM;
-  payload: {
-    content: string;
-    word: string;
-  };
-}
-export interface modifyPoemDispatch {
-  type: typeof MODIFY_POEM;
-  payload: {
-    id: number;
-    content: string;
-  };
-}
-export interface removePoemDispatch {
-  type: typeof REMOVE_POEM;
-  payload: { id: number };
-}
-
-export interface getUserFeedsDispatch {
-  type: typeof GET_ALL_FEEDS;
-}
