@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import SlidingPanel from 'react-sliding-side-panel';
 import 'react-sliding-side-panel/lib/index.css';
 
@@ -15,6 +16,9 @@ const Sidebar = () => {
           <button onClick={() => setOpenPanel(false)}>close</button>
         </div>
       </SlidingPanel>
+      <Link to="/mypage">
+        <button>mypage</button>
+      </Link>
     </div>
   );
 };

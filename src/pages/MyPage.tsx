@@ -4,6 +4,8 @@ import MyWorkContainer from '../components/myPage/MyWorkContainer';
 import { RootState } from '../reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { postBringFeedsThunk } from '../actions/getInfoActions';
+import Homebutton from '../components/Homebutton';
+import Sidebar from '../components/sidebar';
 
 export default function MyPage() {
   const { data } = useSelector((state: RootState) => state.reducer.userFeeds);
@@ -14,6 +16,8 @@ export default function MyPage() {
   console.log(data);
   return (
     <>
+      <Homebutton />
+      <Sidebar />
       <button onClick={onClickHandler}>클릭</button>
       <div>
         <MyWorkContainer />

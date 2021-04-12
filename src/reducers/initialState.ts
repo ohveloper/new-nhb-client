@@ -60,6 +60,7 @@ export interface UserInfo {
   introduction: string;
   tags: Tags[];
   avatarUrl: string;
+  userLikeNum: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -96,6 +97,7 @@ export const initialState = {
       { tagId: 2, tagName: 'king', description: '별 많이받음', isUsed: false },
       { tagId: 3, tagName: 'newbie', description: '글 처음씀', isUsed: false },
     ],
+    userLikeNum: 233,
     avatarUrl: 'url',
     createdAt: 'date',
     updatedAt: 'date',
