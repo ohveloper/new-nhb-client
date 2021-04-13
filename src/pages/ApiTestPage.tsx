@@ -7,6 +7,8 @@ import {
   getRankThunk,
   postUploadFeedThunk,
   postBringCommentThunk,
+  postSignUpThunk,
+  postLogInThunk,
 } from '../actions/getInfoActions';
 import { delRemoveFeedT } from '../api/delRemoveFeed';
 import { postLikeCommentT } from '../api/postLikeComment';
@@ -14,11 +16,10 @@ import { postUploadCommentT } from '../api/postUploadComment';
 import { delRemoveCommentT } from '../api/delRemoveComment';
 import { patchEditCommentT } from '../api/patchEditComment';
 import { postSendAuthEmailT } from '../api/postSendAuthEmail';
-import { postSignUpT } from '../api/postSignUp';
-import { postLoginT } from '../api/postLogin';
 import { patchEditUserInfoT } from '../api/patchEditUserInfo';
 import { patchEditTagsT } from '../api/patchEditTag';
 import { delUserWithdrawalT } from '../api/delUserWithdrawal';
+import { postSignUpT } from '../api/postSignUp';
 
 export interface FeedId {
   feedId: number;
@@ -26,18 +27,45 @@ export interface FeedId {
 export default function ApiTestPage() {
   const state = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
-  const onClickHandler = () => {
-    dispatch(postBringFeedsThunk({ topic: '여행', limit: 3, feedId: 2 }));
+  const postBringUserInfoHandler = () => {
     dispatch(postBringUserInfoThunk({ userId: 1 }));
-    dispatch(postLikeFeedThunk({ feedId: 45 }));
+  };
+  const postBringFeedsHandler = () => {
+    dispatch(postBringFeedsThunk({ topic: '여행', limit: 3, feedId: 2 }));
+  };
+  const getRankHandler = () => {
     dispatch(getRankThunk());
+  };
+  const postLikeFeedHandler = () => {
+    dispatch(postLikeFeedThunk({ feedId: 45 }));
+  };
+  const postUploadFeedHandler = () => {
     dispatch(
       postUploadFeedThunk({
         content: ['여러분', '행쇼'],
         word: '여행',
       })
     );
+  };
+  const postBringCommentHandler = () => {
     dispatch(postBringCommentThunk({ feedId: 1 }));
+  };
+  const postSignUpHandler = () => {
+    postSignUpT({ authCode: 'ry3gl6rpy9' })
+      .then((result) => {
+        if (result) {
+          console.log(result);
+          console.log(result.data);
+          console.log(result.data.accessToken);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const postLoginHandler = () => {
+    dispatch(postLogInThunk({ authCode: '6b7op65qb64' }));
+    console.log(state.login.data);
   };
   const delRemoveFeedHandler = () => {
     delRemoveFeedT({ data: { feedId: 6 } })
@@ -70,16 +98,7 @@ export default function ApiTestPage() {
       .then((x) => console.log(x))
       .catch((e) => console.log(e));
   };
-  const postSignUpHandler = () => {
-    postSignUpT({ authCode: '375kg59tit9' })
-      .then((x) => console.log(x))
-      .catch((e) => console.log(e));
-  };
-  const postLoginHandler = () => {
-    postLoginT({ authCode: '375kg59tit9' })
-      .then((x) => console.log(x))
-      .catch((e) => console.log(e));
-  };
+
   const patchEditUserInfoHandler = () => {
     patchEditUserInfoT({
       avatarUrl: 'urls',
@@ -105,25 +124,54 @@ export default function ApiTestPage() {
         <h1>ApiTestPage</h1>
       </div>
       <h1>redux</h1>
-      <button onClick={onClickHandler}>api</button>
-      <div>{state.userInfo.loading && 'post bring userInfo 로딩'}</div>
-      <div>{state.userInfo.error && 'post bring userInfo 에러'}</div>
-      <div>{state.userInfo.data && 'post bring userInfo 완료'}</div>
-      <div>{state.userFeeds.loading && 'post bring Feeds 로딩'}</div>
-      <div>{state.userFeeds.error && 'post bring Feeds 에러'}</div>
-      <div>{state.userFeeds.data && 'post bring Feeds 완료'}</div>
-      <div>{state.rank.loading && 'get rank 로딩'}</div>
-      <div>{state.rank.error && 'get rank 에러'}</div>
-      <div>{state.rank.data && 'get rank 완료'}</div>
-      <div>{state.likeFeed.loading && 'post likeFeed 로딩'}</div>
-      <div>{state.likeFeed.error && 'post likeFeed 에러'}</div>
-      <div>{state.likeFeed.data && 'post likeFeed 완료'}</div>
-      <div>{state.uploadFeed.loading && 'post uploadFeed 로딩'}</div>
-      <div>{state.uploadFeed.error && 'post uploadFeed 에러'}</div>
-      <div>{state.uploadFeed.data && 'post uploadFeed 완료'}</div>
-      <div>{state.comments.loading && 'post bring comments 로딩'}</div>
-      <div>{state.comments.error && 'post bring comments 에러'}</div>
-      <div>{state.comments.data && 'post bring comments 완료'}</div>
+      <div>
+        <button onClick={postBringUserInfoHandler}>post bring userInfo</button>
+        {state.userInfo.loading && 'post bring userInfo 로딩'}
+        {state.userInfo.error && 'post bring userInfo 에러'}
+        {state.userInfo.data && 'post bring userInfo 완료'}
+      </div>
+      <div>
+        <button onClick={postBringFeedsHandler}>post bring Feeds</button>
+        {state.userFeeds.loading && 'post bring Feeds 로딩'}
+        {state.userFeeds.error && 'post bring Feeds 에러'}
+        {state.userFeeds.data && 'post bring Feeds 완료'}
+      </div>
+      <div>
+        <button onClick={getRankHandler}>get Rank</button>
+        {state.rank.loading && 'get rank 로딩'}
+        {state.rank.error && 'get rank 에러'}
+        {state.rank.data && 'get rank 완료'}
+      </div>
+      <div>
+        <button onClick={postLikeFeedHandler}>post Like Feed</button>
+        {state.likeFeed.loading && 'post likeFeed 로딩'}
+        {state.likeFeed.error && 'post likeFeed 에러'}
+        {state.likeFeed.data && 'post likeFeed 완료'}
+      </div>
+      <div>
+        <button onClick={postUploadFeedHandler}>post Upload Feed</button>
+        {state.uploadFeed.loading && 'post uploadFeed 로딩'}
+        {state.uploadFeed.error && 'post uploadFeed 에러'}
+        {state.uploadFeed.data && 'post uploadFeed 완료'}
+      </div>
+      <div>
+        <button onClick={postBringCommentHandler}>post Bring Comment</button>
+        {state.comments.loading && 'post bring comments 로딩'}
+        {state.comments.error && 'post bring comments 에러'}
+        {state.comments.data && 'post bring comments 완료'}
+      </div>
+      <div>
+        <button onClick={postSignUpHandler}>post SignUp</button>
+        {state.signup.loading && 'post signup 로딩'}
+        {state.signup.error && 'post signup 에러'}
+        {state.signup.data && 'post signup 완료'}
+      </div>
+      <div>
+        <button onClick={postLoginHandler}>post login</button>
+        {state.login.loading && 'post login 로딩'}
+        {state.login.error && 'post login 에러'}
+        {state.login.data && 'post login 완료'}
+      </div>
       <div>
         <h1>axios 요청만</h1>
         <div>
@@ -148,17 +196,6 @@ export default function ApiTestPage() {
         <div>
           post SendAuthEmailT 완료
           <button onClick={postSendAuthEmailHandler}>요청</button>
-        </div>
-        <div>
-          post SignUpT 완료
-          <button onClick={postSignUpHandler}>요청</button>
-        </div>
-        <div>
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjE4MzAxOTQ4LCJleHAiOjE2MTgzMTk5NDh9.d2nvQj3sVCfDv-2P8P78IMdOui6XA0JMB4kO-o271oA"{' '}
-        </div>
-        <div>
-          post Login 완료
-          <button onClick={postLoginHandler}>요청</button>
         </div>
         <div>
           patch EditUserInfoT 완료
