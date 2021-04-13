@@ -16,6 +16,9 @@ import { patchEditCommentT } from '../api/patchEditComment';
 import { postSendAuthEmailT } from '../api/postSendAuthEmail';
 import { postSignUpT } from '../api/postSignUp';
 import { postLoginT } from '../api/postLogin';
+import { patchEditUserInfoT } from '../api/patchEditUserInfo';
+import { patchEditTagsT } from '../api/patchEditTag';
+import { delUserWithdrawalT } from '../api/delUserWithdrawal';
 
 export interface FeedId {
   feedId: number;
@@ -74,6 +77,25 @@ export default function ApiTestPage() {
   };
   const postLoginHandler = () => {
     postLoginT({ authCode: 'zke2ojqs5dn' })
+      .then((x) => console.log(x))
+      .catch((e) => console.log(e));
+  };
+  const patchEditUserInfoHandler = () => {
+    patchEditUserInfoT({
+      avatarUrl: 'urls',
+      nickName: '시민박명수',
+      introduction: '너와나의 연결고리',
+    })
+      .then((x) => console.log(x))
+      .catch((e) => console.log(e));
+  };
+  const patchEditTagsHandler = () => {
+    patchEditTagsT({ tagName: 'newbie' })
+      .then((x) => console.log(x))
+      .catch((e) => console.log(e));
+  };
+  const delUserWithdrawalHandler = () => {
+    delUserWithdrawalT()
       .then((x) => console.log(x))
       .catch((e) => console.log(e));
   };
@@ -137,6 +159,18 @@ export default function ApiTestPage() {
         <div>
           post Login 완료
           <button onClick={postLoginHandler}>요청</button>
+        </div>
+        <div>
+          patch EditUserInfoT 완료
+          <button onClick={patchEditUserInfoHandler}>요청</button>
+        </div>
+        <div>
+          patch EditTagsT 완료
+          <button onClick={patchEditTagsHandler}>요청</button>
+        </div>
+        <div>
+          del UserWithdrawalT 완료
+          <button onClick={delUserWithdrawalHandler}>요청</button>
         </div>
       </div>
     </div>
