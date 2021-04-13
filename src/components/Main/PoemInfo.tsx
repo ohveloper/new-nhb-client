@@ -1,16 +1,19 @@
-import { UserFeeds } from '../../reducers/poemReducer';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducers';
 
-type PoemInfoProps = {
-  userFeeds: UserFeeds;
-};
+export default function PoemInfo() {
+  const state = useSelector((state: RootState) => state.getInfoReducer);
+  const { userFeeds } = state;
+  const users = userFeeds.map((feed) => feed.user);
+  const createdAt = userFeeds.map((feed) => feed.createdAt);
 
-export default function PoemInfo({ userFeeds }: PoemInfoProps) {
-  const { user, createdAt } = userFeeds;
   return (
     <>
-      <div>
-        ({user.tag}) {user.nickName} [{createdAt}]
-      </div>
+      {users.map((user) => {
+        <div key={user.userId}>
+          {user.tag} {user.nickName} [{createdAt}]
+        </div>;
+      })}
     </>
   );
 }

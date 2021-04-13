@@ -1,10 +1,10 @@
 import { PoemActions } from '../actions';
 import { POST_CREATE_POEM_SUCCESS } from '../actions/poemActions';
-import { UploadMsg } from '../api/postCreatePoem';
+import { UploadFeed } from '../api/postUploadFeed';
 
 export interface poemInitState {
   userFeeds: {
-    data: UploadMsg | null;
+    data: UploadFeed | null;
   };
   todaysTopic: string[];
 }
@@ -19,7 +19,7 @@ export interface UserFeeds {
   updatedAt: string;
 }
 
-export interface Feed {
+export interface Welcome {
   userFeeds: UserFeeds[];
 }
 
