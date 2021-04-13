@@ -1,6 +1,5 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-import { UserInfoT } from '../reducers/reducer';
 dotenv.config();
 
 const api = process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
@@ -16,11 +15,11 @@ const apiClient = axios.create({
   },
 });
 
-export interface UUID {
-  userId: number | null;
+export interface CommentId {
+  commentId: number;
 }
 
-export async function postBringUserInfoT(userId: UUID) {
-  const response = await apiClient.post<UserInfoT>('/user', userId);
+export async function postLikeCommentT(commentId: CommentId) {
+  const response = await apiClient.post('/feed/comment/like', commentId);
   return response.data;
 }

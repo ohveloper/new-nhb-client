@@ -1,9 +1,9 @@
-import { Rank } from '../reducers/initialState';
 import axios from 'axios';
 import dotenv from 'dotenv';
 dotenv.config();
 
 const api = process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
+
 const apiClient = axios.create({
   baseURL: api,
   responseType: 'json',
@@ -13,7 +13,10 @@ const apiClient = axios.create({
   },
 });
 
-export async function getRankT() {
-  const response = await apiClient.get<Rank>('/feed/rank');
+export interface Email {
+  email: string;
+}
+export async function postSendAuthEmailT(email: Email) {
+  const response = await apiClient.post('/main/authemail', email);
   return response.data;
 }

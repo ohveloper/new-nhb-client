@@ -8,10 +8,10 @@ import { AxiosError } from 'axios';
 import { Dispatch } from 'redux';
 import { createAsyncAction } from 'typesafe-actions';
 import { postBringUserInfoT, UUID } from '../api/postBringUserInfo';
-import { postUserFeedT } from '../api/postUserFeeds';
-import { FeedId, postLikeFeedT } from '../api/postLikeFeed';
+import { postBringFeedT } from '../api/postBringFeeds';
+import { FeedId, postLikeFeedT } from '../api/postFeedLike';
 
-import { Feed } from '../api/postUserFeeds';
+import { Feed } from '../api/postBringFeeds';
 import {
   PrivateFeed,
   UserInfo,
@@ -20,10 +20,11 @@ import {
   UserFeed,
 } from '../reducers/initialState';
 import { getRankT } from '../api/getRank';
-import { Welcome } from '../reducers/reducer';
+import { BringComment, Welcome } from '../reducers/reducer';
 import { UserInfoT } from '../reducers/reducer';
-import { FeedLike } from '../api/postLikeFeed';
+import { FeedLike } from '../api/postFeedLike';
 import { Content, postUploadFeedT, UploadFeed } from '../api/postUploadFeed';
+import { postBringCommentT } from '../api/postBringComment';
 
 export const GET_USER_INFO_API = 'GET_USER_INFO_API' as const;
 export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS' as const;
@@ -43,6 +44,15 @@ export const POST_LIKE_FEED_ERROR = 'POST_LIKE_FEED_ERROR' as const;
 export const POST_UPLOAD_FEED_API = 'POST_UPLOAD_FEED_API' as const;
 export const POST_UPLOAD_FEED_SUCCESS = 'POST_UPLOAD_FEED_SUCCESS' as const;
 export const POST_UPLOAD_FEED_ERROR = 'POST_UPLOAD_FEED_ERROR' as const;
+export const POST_BRING_COMMENT_API = 'POST_BRING_COMMENT_API' as const;
+export const POST_BRING_COMMENT_SUCCESS = 'POST_BRING_COMMENT_SUCCESS' as const;
+export const POST_BRING_COMMENT_ERROR = 'POST_BRING_COMMENT_ERROR' as const;
+
+export const postBringCommentAsync = createAsyncAction(
+  POST_BRING_COMMENT_API,
+  POST_BRING_COMMENT_SUCCESS,
+  POST_BRING_COMMENT_ERROR
+)<undefined, BringComment, AxiosError>();
 
 export const postBringFeedsAsync = createAsyncAction(
   POST_BRING_FEEDS_API,
@@ -80,6 +90,19 @@ export const postLikeFeedAsync = createAsyncAction(
   POST_LIKE_FEED_ERROR
 )<undefined, FeedLike, AxiosError>();
 
+export function postBringCommentThunk(feedId: FeedId) {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = postBringCommentAsync;
+    dispatch(request());
+    try {
+      const bringComment = await postBringCommentT(feedId);
+      dispatch(success(bringComment));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
+
 export function postLikeFeedThunk(feedId: FeedId) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = postLikeFeedAsync;
@@ -92,6 +115,7 @@ export function postLikeFeedThunk(feedId: FeedId) {
     }
   };
 }
+
 export function postUploadFeedThunk(content: Content) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = postUploadFeedsAsync;
@@ -110,7 +134,7 @@ export function postBringFeedsThunk(feed: Feed) {
     const { request, success, failure } = postBringFeedsAsync;
     dispatch(request());
     try {
-      const userFeeds = await postUserFeedT(feed);
+      const userFeeds = await postBringFeedT(feed);
       dispatch(success(userFeeds));
     } catch (e) {
       dispatch(failure(e));
