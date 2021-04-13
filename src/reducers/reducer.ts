@@ -6,6 +6,9 @@ import {
   GET_USER_INFO_API,
   GET_USER_INFO_ERROR,
   GET_USER_INFO_SUCCESS,
+  POST_BRING_COMMENT_API,
+  POST_BRING_COMMENT_ERROR,
+  POST_BRING_COMMENT_SUCCESS,
   POST_BRING_FEEDS_API,
   POST_BRING_FEEDS_ERROR,
   POST_BRING_FEEDS_SUCCESS,
@@ -43,6 +46,29 @@ export interface InitState {
     error: Error | null;
     data: UploadFeed | null;
   };
+  comments: {
+    loading: boolean;
+    error: Error | null;
+    data: BringComment | null;
+  };
+}
+
+export interface BringComment {
+  comments: Comment[];
+}
+
+export interface Comment {
+  user: User;
+  commentId: string;
+  comment: string;
+  commentLike: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface User {
+  nickName: string;
+  userId: string;
 }
 
 export interface Rank {
@@ -114,6 +140,11 @@ const initState: InitState = {
     data: null,
   },
   uploadFeed: {
+    loading: false,
+    error: null,
+    data: null,
+  },
+  comments: {
     loading: false,
     error: null,
     data: null,
@@ -255,6 +286,33 @@ export function reducer(
       return {
         ...state,
         uploadFeed: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+    case POST_BRING_COMMENT_API:
+      return {
+        ...state,
+        comments: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case POST_BRING_COMMENT_SUCCESS:
+      return {
+        ...state,
+        comments: {
+          loading: false,
+          error: null,
+          data: action.payload,
+        },
+      };
+    case POST_BRING_COMMENT_ERROR:
+      return {
+        ...state,
+        comments: {
           loading: false,
           error: action.payload,
           data: null,
