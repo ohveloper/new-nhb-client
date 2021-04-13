@@ -9,7 +9,7 @@ import { Dispatch } from 'redux';
 import { createAsyncAction } from 'typesafe-actions';
 import { postBringUserInfoT, UUID } from '../api/postBringUserInfo';
 import { postBringFeedT } from '../api/postBringFeeds';
-import { FeedId, postLikeFeedT } from '../api/postFeedLike';
+import { FeedId, postLikeFeedT } from '../api/postLikeFeed';
 
 import { Feed } from '../api/postBringFeeds';
 import {
@@ -22,7 +22,7 @@ import {
 import { getRankT } from '../api/getRank';
 import { BringComment, Welcome } from '../reducers/reducer';
 import { UserInfoT } from '../reducers/reducer';
-import { FeedLike } from '../api/postFeedLike';
+import { FeedLike } from '../api/postLikeFeed';
 import { Content, postUploadFeedT, UploadFeed } from '../api/postUploadFeed';
 import { postBringCommentT } from '../api/postBringComment';
 
