@@ -29,7 +29,7 @@ export default function ApiTestPage() {
   const onClickHandler = () => {
     dispatch(postBringFeedsThunk({ topic: '여행', limit: 3, feedId: 2 }));
     dispatch(postBringUserInfoThunk({ userId: 1 }));
-    dispatch(postLikeFeedThunk({ feedId: 1 }));
+    dispatch(postLikeFeedThunk({ feedId: 45 }));
     dispatch(getRankThunk());
     dispatch(
       postUploadFeedThunk({
@@ -40,7 +40,7 @@ export default function ApiTestPage() {
     dispatch(postBringCommentThunk({ feedId: 1 }));
   };
   const delRemoveFeedHandler = () => {
-    delRemoveFeedT({ data: { feedId: 9 } })
+    delRemoveFeedT({ data: { feedId: 6 } })
       .then((x) => console.log(x))
       .catch((e) => console.log(e));
   };
@@ -71,12 +71,12 @@ export default function ApiTestPage() {
       .catch((e) => console.log(e));
   };
   const postSignUpHandler = () => {
-    postSignUpT({ authCode: 'z1ipytnj3eg' })
+    postSignUpT({ authCode: '375kg59tit9' })
       .then((x) => console.log(x))
       .catch((e) => console.log(e));
   };
   const postLoginHandler = () => {
-    postLoginT({ authCode: 'zke2ojqs5dn' })
+    postLoginT({ authCode: '375kg59tit9' })
       .then((x) => console.log(x))
       .catch((e) => console.log(e));
   };
@@ -109,9 +109,9 @@ export default function ApiTestPage() {
       <div>{state.userInfo.loading && 'post bring userInfo 로딩'}</div>
       <div>{state.userInfo.error && 'post bring userInfo 에러'}</div>
       <div>{state.userInfo.data && 'post bring userInfo 완료'}</div>
-      <div>{state.userFeeds.loading && 'post userFeeds 로딩'}</div>
-      <div>{state.userFeeds.error && 'post userFeeds 에러'}</div>
-      <div>{state.userFeeds.data && 'post userFeeds 완료'}</div>
+      <div>{state.userFeeds.loading && 'post bring Feeds 로딩'}</div>
+      <div>{state.userFeeds.error && 'post bring Feeds 에러'}</div>
+      <div>{state.userFeeds.data && 'post bring Feeds 완료'}</div>
       <div>{state.rank.loading && 'get rank 로딩'}</div>
       <div>{state.rank.error && 'get rank 에러'}</div>
       <div>{state.rank.data && 'get rank 완료'}</div>
@@ -154,7 +154,7 @@ export default function ApiTestPage() {
           <button onClick={postSignUpHandler}>요청</button>
         </div>
         <div>
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjE4Mjk0MzA0LCJleHAiOjE2MTgzMTIzMDR9.lm-N89YU5BM30emDj0gzbUobrbJkdUkZOqIFitx_X8E"
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjE4MzAxOTQ4LCJleHAiOjE2MTgzMTk5NDh9.d2nvQj3sVCfDv-2P8P78IMdOui6XA0JMB4kO-o271oA"{' '}
         </div>
         <div>
           post Login 완료

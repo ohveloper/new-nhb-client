@@ -10,7 +10,7 @@ const apiClient = axios.create({
   responseType: 'json',
   headers: {
     authorization:
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjE4Mjc3NTYyLCJleHAiOjE2MTgyOTU1NjJ9._gi5L0jux1h7E3euLIYV5jyFabWQFJGiRp9A-s6MzN8',
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjE4MzAxOTQ4LCJleHAiOjE2MTgzMTk5NDh9.d2nvQj3sVCfDv-2P8P78IMdOui6XA0JMB4kO-o271oA',
   },
 });
 
