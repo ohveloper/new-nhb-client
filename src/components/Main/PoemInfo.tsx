@@ -1,11 +1,11 @@
-import { UserFeed } from '../../reducers/initialState';
+import { UserFeeds } from '../../reducers/poemReducer';
 
 type PoemInfoProps = {
-  userFeed: UserFeed;
+  userFeeds: UserFeeds;
 };
 
-export default function PoemInfo({ userFeed }: PoemInfoProps) {
-  const { user, createdAt } = userFeed;
+export default function PoemInfo({ userFeeds }: PoemInfoProps) {
+  const { user, createdAt } = userFeeds;
   return (
     <>
       <div>

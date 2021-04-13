@@ -1,11 +1,11 @@
-import { UserFeed } from '../../reducers/initialState';
+import { UserFeeds } from '../../reducers/poemReducer';
 
 type PoemButtonGroupProps = {
-  userFeed: UserFeed;
+  userFeeds: UserFeeds;
 };
 
-export default function PoemButtonGroup({ userFeed }: PoemButtonGroupProps) {
-  const { likes, comments } = userFeed;
+export default function PoemButtonGroup({ userFeeds }: PoemButtonGroupProps) {
+  const { likes, comments } = userFeeds;
   return (
     <>
       <div>

@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../reducers';
-import { newFeed } from '../../reducers/initialState';
+import { UserFeeds } from '../../reducers/poemReducer';
 import MainpagePoemContainer from './MainpagePoemContainer';
 
-export default function MainpagePoemList() {
-  const poemReducer = useSelector((state: RootState) => state.poemReducer);
-  const dispatch = useDispatch();
-
+type MainpagePoemContainerProps = {
+  userFeeds: UserFeeds[];
+};
+export default function MainpagePoemList({
+  userFeeds,
+}: MainpagePoemContainerProps) {
   return (
     <>
       <h1>MainpagePoemList</h1>
-      <MainpagePoemContainer />
+      <MainpagePoemContainer userFeeds={userFeeds} />
     </>
   );
 }
