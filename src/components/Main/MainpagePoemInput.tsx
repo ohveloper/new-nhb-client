@@ -1,8 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Content } from '../../api/postCreatePoem';
+import { Content } from '../../api/postUploadFeed';
 import { RootState } from '../../reducers';
-import { UserFeeds } from '../../reducers/poemReducer';
 
 type MainpagePoemInputProps = {
   onPoemInsert: (feed: Content) => void;
@@ -18,11 +17,11 @@ const MainpagePoemInput = ({ onPoemInsert }: MainpagePoemInputProps) => {
     word: '',
   });
 
-  const onPoemChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const onPoemChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
+
     setVal({
       ...val,
-      [name]: value,
     });
   };
   const onPoemSubmit = (event: FormEvent) => {
@@ -32,7 +31,7 @@ const MainpagePoemInput = ({ onPoemInsert }: MainpagePoemInputProps) => {
       content: [],
       word: '',
     });
-    console.log(val);
+    console.log('val:', val);
   };
 
   return (
@@ -43,7 +42,12 @@ const MainpagePoemInput = ({ onPoemInsert }: MainpagePoemInputProps) => {
           const key = letter + String(idx);
           return (
             <div key={key}>
-              <input name={letter} value={idx} onChange={onPoemChange} />
+              <input
+                type="text"
+                name={letter}
+                value={val.content[idx]}
+                onChange={onPoemChange}
+              />
             </div>
           );
         })}
