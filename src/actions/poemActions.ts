@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { Dispatch } from 'redux';
 import { createAsyncAction } from 'typesafe-actions';
 import { Welcome, UserFeeds } from '../reducers/reducer';
-import { Feed, postUserFeedT } from '../api/postUserFeeds';
+import { Feed, postBringFeedT } from '../api/postBringFeeds';
 import { postUploadFeedT, UploadFeed, Content } from '../api/postUploadFeed';
 
 //? ---------------------Action Type-----------------------//
@@ -54,7 +54,7 @@ export function postBringFeedsThunk(feed: Feed) {
     const { request, success, failure } = postBringFeedsAsync;
     dispatch(request());
     try {
-      const userFeeds = await postUserFeedT(feed);
+      const userFeeds = await postBringFeedT(feed);
       dispatch(success(userFeeds));
     } catch (e) {
       dispatch(failure(e));
