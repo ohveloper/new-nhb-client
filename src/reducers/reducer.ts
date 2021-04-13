@@ -82,19 +82,28 @@ export interface LikeFeed {
   message: string;
 }
 export interface UserInfoT {
+  userId: number;
   nickName: string;
   introduction: string;
   tags: Tags[];
   avatarUrl: string;
   userLikeNum: number;
+  myActivity: MyActivity;
   createdAt: string;
   updatedAt: string;
 }
+
+export interface MyActivity {
+  likedFeed: number[];
+  commentFeed: number[];
+  likeCommnet: number[];
+}
+
 export interface Tags {
   tagId: number;
   tagName: string;
   description: string;
-  isUsed: boolean;
+  isUsed: number;
 }
 
 export interface Welcome {
