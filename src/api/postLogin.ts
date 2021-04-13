@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Welcome } from '../reducers/reducer';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -13,15 +12,12 @@ const apiClient = axios.create({
     'withCredentials': true,
   },
 });
-export interface Feed {
-  topic: string;
-  limit: number;
-  feedId: number | null;
-  userId?: number;
-  isMakLike?: boolean;
+
+export interface AuthCode {
+  authCode: string;
 }
 
-export async function postBringFeedT(feed: Feed) {
-  const response = await apiClient.post<Welcome>('/feed/lookup', feed);
+export async function postLoginT(authCode: AuthCode) {
+  const response = await apiClient.post('/main/login', authCode);
   return response.data;
 }
