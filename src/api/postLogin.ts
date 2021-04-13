@@ -17,7 +17,11 @@ export interface AuthCode {
   authCode: string;
 }
 
+export interface AccessToken {
+  accessToken: string;
+}
+
 export async function postLoginT(authCode: AuthCode) {
-  const response = await apiClient.post('/main/login', authCode);
+  const response = await apiClient.post<AccessToken>('/main/login', authCode);
   return response.data;
 }

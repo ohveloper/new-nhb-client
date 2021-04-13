@@ -15,6 +15,12 @@ import {
   POST_LIKE_FEED_API,
   POST_LIKE_FEED_ERROR,
   POST_LIKE_FEED_SUCCESS,
+  POST_LOG_IN_API,
+  POST_LOG_IN_SUCCESS,
+  POST_LOG_IN_ERROR,
+  POST_SIGN_UP_API,
+  POST_SIGN_UP_ERROR,
+  POST_SIGN_UP_SUCCESS,
   POST_UPLOAD_FEED_API,
   POST_UPLOAD_FEED_ERROR,
   POST_UPLOAD_FEED_SUCCESS,
@@ -51,6 +57,25 @@ export interface InitState {
     error: Error | null;
     data: BringComment | null;
   };
+  signup: {
+    loading: boolean;
+    error: Error | null;
+    data: SignUp | null;
+  };
+  login: {
+    loading: boolean;
+    error: Error | null;
+    data: AccessToken | null;
+  };
+}
+export interface AccessToken {
+  accessToken: string;
+}
+
+export interface SignUp {
+  accessToken: string;
+  email: string;
+  nickName: string;
 }
 
 export interface BringComment {
@@ -154,6 +179,16 @@ const initState: InitState = {
     data: null,
   },
   comments: {
+    loading: false,
+    error: null,
+    data: null,
+  },
+  signup: {
+    loading: false,
+    error: null,
+    data: null,
+  },
+  login: {
     loading: false,
     error: null,
     data: null,
@@ -322,6 +357,60 @@ export function reducer(
       return {
         ...state,
         comments: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+    case POST_SIGN_UP_API:
+      return {
+        ...state,
+        signup: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case POST_SIGN_UP_SUCCESS:
+      return {
+        ...state,
+        signup: {
+          loading: false,
+          error: null,
+          data: action.payload.data,
+        },
+      };
+    case POST_SIGN_UP_ERROR:
+      return {
+        ...state,
+        signup: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+    case POST_LOG_IN_API:
+      return {
+        ...state,
+        login: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case POST_LOG_IN_SUCCESS:
+      return {
+        ...state,
+        login: {
+          loading: false,
+          error: null,
+          data: action.payload,
+        },
+      };
+    case POST_LOG_IN_ERROR:
+      return {
+        ...state,
+        login: {
           loading: false,
           error: action.payload,
           data: null,

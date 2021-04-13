@@ -25,6 +25,8 @@ import { UserInfoT } from '../reducers/reducer';
 import { FeedLike } from '../api/postLikeFeed';
 import { Content, postUploadFeedT, UploadFeed } from '../api/postUploadFeed';
 import { postBringCommentT } from '../api/postBringComment';
+import { AuthCode, postSignUpT, SignUp } from '../api/postSignUp';
+import { AccessToken, postLoginT } from '../api/postLogin';
 
 export const GET_USER_INFO_API = 'GET_USER_INFO_API' as const;
 export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS' as const;
@@ -47,6 +49,24 @@ export const POST_UPLOAD_FEED_ERROR = 'POST_UPLOAD_FEED_ERROR' as const;
 export const POST_BRING_COMMENT_API = 'POST_BRING_COMMENT_API' as const;
 export const POST_BRING_COMMENT_SUCCESS = 'POST_BRING_COMMENT_SUCCESS' as const;
 export const POST_BRING_COMMENT_ERROR = 'POST_BRING_COMMENT_ERROR' as const;
+export const POST_SIGN_UP_API = 'POST_SIGN_UP_API' as const;
+export const POST_SIGN_UP_SUCCESS = 'POST_SIGN_UP_SUCCESS' as const;
+export const POST_SIGN_UP_ERROR = 'POST_SIGN_UP_ERROR' as const;
+export const POST_LOG_IN_API = 'POST_LOG_IN_API' as const;
+export const POST_LOG_IN_SUCCESS = 'POST_LOG_IN_SUCCESS' as const;
+export const POST_LOG_IN_ERROR = 'POST_LOG_IN_ERROR' as const;
+
+export const postLogInAsync = createAsyncAction(
+  POST_LOG_IN_API,
+  POST_LOG_IN_SUCCESS,
+  POST_LOG_IN_ERROR
+)<undefined, AccessToken, AxiosError>();
+
+export const postSignUpAsync = createAsyncAction(
+  POST_SIGN_UP_API,
+  POST_SIGN_UP_SUCCESS,
+  POST_SIGN_UP_ERROR
+)<undefined, SignUp, AxiosError>();
 
 export const postBringCommentAsync = createAsyncAction(
   POST_BRING_COMMENT_API,
@@ -90,6 +110,18 @@ export const postLikeFeedAsync = createAsyncAction(
   POST_LIKE_FEED_ERROR
 )<undefined, FeedLike, AxiosError>();
 
+export function postLogInThunk(authCode: AuthCode) {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = postLogInAsync;
+    dispatch(request());
+    try {
+      const accessToken = await postLoginT(authCode);
+      dispatch(success(accessToken));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
 export function postBringCommentThunk(feedId: FeedId) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = postBringCommentAsync;
@@ -97,6 +129,19 @@ export function postBringCommentThunk(feedId: FeedId) {
     try {
       const bringComment = await postBringCommentT(feedId);
       dispatch(success(bringComment));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
+
+export function postSignUpThunk(authCode: AuthCode) {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = postSignUpAsync;
+    dispatch(request());
+    try {
+      const signup = await postSignUpT(authCode);
+      dispatch(success(signup));
     } catch (e) {
       dispatch(failure(e));
     }

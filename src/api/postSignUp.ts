@@ -17,7 +17,15 @@ export interface AuthCode {
   authCode: string;
 }
 
+export interface SignUp {
+  data: {
+    accessToken: string;
+    email: string;
+    nickName: string;
+  };
+}
+
 export async function postSignUpT(authCode: AuthCode) {
-  const response = await apiClient.post('/main/signup', authCode);
+  const response = await apiClient.post<SignUp>('/main/signup', authCode);
   return response.data;
 }
