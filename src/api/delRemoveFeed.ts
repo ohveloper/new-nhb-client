@@ -1,16 +1,26 @@
-// import axios from 'axios';
-// import { Rank } from '../reducers/initialState';
+import axios from 'axios';
+import dotenv from 'dotenv';
+dotenv.config();
 
-// const apiClient = axios.create({
-//   baseURL: 'https://localhost:5000',
-//   responseType: 'json',
-//   headers: {
-//     'Content-Type': 'application/json',
-//   },
-// });
+const api = process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
 
-// export async function getRankT() {
-//   const response = await apiClient.get<Rank>('/feed/rank');
-//   return response.data;
-// }
-export {};
+const apiClient = axios.create({
+  baseURL: api,
+  responseType: 'json',
+  headers: {
+    'Content-Type': 'application/json',
+    'withCredentials': true,
+    'authorization':
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjE4Mjg4ODM0LCJleHAiOjE2MTgzMDY4MzR9.t03w_OsLusXuBoZZn2j7OLWi6dfWPrGGem6RkQx7Wkg',
+  },
+});
+export interface FeedId {
+  data: {
+    feedId: number;
+  };
+}
+
+export async function delRemoveFeedT(feedId: FeedId) {
+  const response = await apiClient.delete('/feed', feedId);
+  return response.data;
+}

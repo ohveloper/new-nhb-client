@@ -21,7 +21,7 @@ export default function MainPage() {
     <>
       <div>[MainPage]</div>
       <MainpagePoemInput onPoemInsert={onPoemInsert} />
-      <MainpagePoemList userFeeds={userFeeds} />
+      {/* <MainpagePoemList userFeeds={userFeeds} /> */}
     </>
   );
 }

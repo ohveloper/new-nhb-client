@@ -18,7 +18,7 @@ export interface Feed {
   feedId: number | null;
 }
 
-export async function postUserFeedT(feed: Feed) {
+export async function postBringFeedT(feed: Feed) {
   if (feed) {
     const response = await apiClient.post<Welcome>('/feed/lookup', feed);
     return response.data;
