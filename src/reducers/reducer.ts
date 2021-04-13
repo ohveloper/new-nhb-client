@@ -329,23 +329,6 @@ export function reducer(
       };
     default:
       return state;
-
-    // [GET_USER_INFO_SUCCESS_API]: (state, action) => ({
-    //   ...state,
-    //   userInfo: {
-    //     loading: false,
-    //     error: null,
-    //     data: action.payload,
-    //   },
-    // }),
-    // [GET_USER_INFO_ERROR_API]: (state, action) => ({
-    //   ...state,
-    //   userInfo: {
-    //     loading: false,
-    //     error: action.payload,
-    //     data: null,
-    //   },
-    // }),
   }
 }
 
