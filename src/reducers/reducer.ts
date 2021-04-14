@@ -139,7 +139,7 @@ export interface UserFeeds {
   feedId: string;
   user: User;
   topic: string;
-  content: string;
+  content: string[];
   likes: string;
   comments: string;
   createdAt: string;
