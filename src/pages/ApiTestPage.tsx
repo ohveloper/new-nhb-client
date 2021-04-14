@@ -51,7 +51,7 @@ export default function ApiTestPage() {
     dispatch(postBringCommentThunk({ feedId: 1 }));
   };
   const postSignUpHandler = () => {
-    postSignUpT({ authCode: 'ry3gl6rpy9' })
+    postSignUpT({ authCode: '89iw9zujket' })
       .then((result) => {
         if (result) {
           console.log(result);
@@ -64,7 +64,7 @@ export default function ApiTestPage() {
       });
   };
   const postLoginHandler = () => {
-    dispatch(postLogInThunk({ authCode: '6b7op65qb64' }));
+    dispatch(postLogInThunk({ authCode: 'q6wfeelkvlj' }));
     console.log(state.login.data);
   };
   const delRemoveFeedHandler = () => {

@@ -4,6 +4,7 @@ import { UserInfoT } from '../reducers/reducer';
 dotenv.config();
 
 const api = process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
+const accessToken = process.env.AccessToken || 'hello';
 
 const apiClient = axios.create({
   baseURL: api,
@@ -11,8 +12,7 @@ const apiClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
     'withCredentials': true,
-    'authorization':
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjE4MzAxOTQ4LCJleHAiOjE2MTgzMTk5NDh9.d2nvQj3sVCfDv-2P8P78IMdOui6XA0JMB4kO-o271oA',
+    'authorization': `Bearer ${accessToken}`,
   },
 });
 
