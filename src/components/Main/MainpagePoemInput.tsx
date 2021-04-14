@@ -1,50 +1,40 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Content } from '../../api/postUploadFeed';
 import { RootState } from '../../reducers';
-import { UserFeed } from '../../reducers/initialState';
 
 type MainpagePoemInputProps = {
-  onPoemInsert: (newFeed: UserFeed) => void;
+  onPoemInsert: (feed: Content) => void;
 };
 
 const MainpagePoemInput = ({ onPoemInsert }: MainpagePoemInputProps) => {
   const state = useSelector((state: RootState) => state.poemReducer);
   //? 오늘의 주제어 불러오기
   const { todaysTopic } = state;
+  const topic = todaysTopic.join('');
 
-  const [val, setVal] = useState<UserFeed>({
-    feedId: 0,
-    user: { nickName: '', tag: '' },
-    topic: '',
+  const [val, setVal] = useState<Content>({
     content: [],
-    likes: 0,
-    comments: 0,
-    createdAt: '',
-    updatedAt: '',
+    word: topic,
   });
-  const { content } = val;
 
   const onPoemChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setVal({
-      ...val,
-      [name]: value,
+    setVal((state) => {
+      const { content } = state;
+      const text: any = content.slice();
+      text[name] = value;
+      return { content: text, word: topic };
     });
   };
   const onPoemSubmit = (event: FormEvent) => {
     event.preventDefault();
+    console.log('val:', val);
     onPoemInsert(val);
     setVal({
-      feedId: 0,
-      user: { nickName: '', tag: '' },
-      topic: '',
       content: [],
-      likes: 0,
-      comments: 0,
-      createdAt: '',
-      updatedAt: '',
+      word: topic,
     });
-    console.log(val);
   };
 
   return (
@@ -56,8 +46,9 @@ const MainpagePoemInput = ({ onPoemInsert }: MainpagePoemInputProps) => {
           return (
             <div key={key}>
               <input
-                name={letter}
-                value={content[idx]}
+                type="text"
+                name={String(idx)}
+                value={val.content[idx]}
                 onChange={onPoemChange}
               />
             </div>

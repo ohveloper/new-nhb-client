@@ -1,48 +1,56 @@
-import { CREATE_POEM } from '../actions/actionTypes';
 import { PoemActions } from '../actions';
-import { initialState, UserFeed } from './initialState';
+import { POST_CREATE_POEM_SUCCESS } from '../actions/poemActions';
+import { UploadFeed } from '../api/postUploadFeed';
 
-// interface initialState {
-//   feed?: poemType;
-// }
+export interface poemInitState {
+  userFeeds: {
+    data: UploadFeed | null;
+  };
+  todaysTopic: string[];
+}
+export interface UserFeeds {
+  feedId: number;
+  user: User;
+  topic: string;
+  content: string[];
+  likes: number;
+  comments: number;
+  createdAt: string;
+  updatedAt: string;
+}
 
-// const initialState: initialState = {};
+export interface Welcome {
+  userFeeds: UserFeeds[];
+}
 
-// const poemReducer = (
-//   state = initialState,
-//   action: poemDispatchType
-// ): initialState => {
-//   switch (action.type) {
-//     case CREATE_POEM:
-//       // eslint-disable-next-line no-case-declarations
-//       const { data } = action.payload;
-//       return {
-//         ...state,
-//         feed: { data },
-//       };
-//     case MODIFY_POEM:
-//     case REMOVE_POEM:
-//     default:
-//       return state;
-//       break;
-//   }
-// };
+export interface User {
+  userId: string;
+  nickName: string;
+  tag: string;
+}
 
-//?--------------------WITH DUMMY DATA---------------------//
+const poemInitState: poemInitState = {
+  userFeeds: {
+    data: null,
+  },
+  todaysTopic: ['시', '장'],
+};
 
-function poemReducer(
-  state: UserFeed = initialState.userFeeds,
+export function poemReducer(
+  state: poemInitState = poemInitState,
   action: PoemActions
-): UserFeed {
+): poemInitState {
   switch (action.type) {
-    case CREATE_POEM:
-      // eslint-disable-next-line no-case-declarations
+    case POST_CREATE_POEM_SUCCESS:
       return {
         ...state,
+        userFeeds: {
+          data: action.payload,
+        },
       };
-
     default:
       return state;
+      break;
   }
 }
 

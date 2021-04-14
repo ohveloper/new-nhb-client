@@ -1,76 +1,69 @@
-import axios from 'axios';
+import { AxiosError } from 'axios';
 import { Dispatch } from 'redux';
-import {
-  CREATE_POEM,
-  MODIFY_POEM,
-  REMOVE_POEM,
-  GET_ALL_FEEDS,
-} from './actionTypes';
-import { UserFeed } from '../reducers/initialState';
+import { createAsyncAction } from 'typesafe-actions';
+import { Welcome, UserFeeds } from '../reducers/reducer';
+import { Feed, postBringFeedT } from '../api/postBringFeeds';
+import { postUploadFeedT, UploadFeed, Content } from '../api/postUploadFeed';
 
-const FEED_URL = 'http://localhost:5000/feed';
+//? ---------------------Action Type-----------------------//
+export const POST_CREATE_POEM = 'POST_CREATE_POEM' as const;
+export const POST_CREATE_POEM_API = 'POST_CREATE_POEM_API' as const;
+export const POST_CREATE_POEM_SUCCESS = 'POST_CREATE_POEM_SUCCESS' as const;
+export const POST_CREATE_POEM_ERROR = 'POST_CREATE_POEM_ERROR' as const;
+
+export const GET_USER_FEEDS = 'GET_USER_FEEDS' as const;
+export const POST_BRING_FEEDS_API = 'POST_BRING_FEEDS_API' as const;
+export const POST_BRING_FEEDS_SUCCESS = 'POST_BRING_FEEDS_SUCCESS' as const;
+export const POST_BRING_FEEDS_ERROR = 'POST_BRING_FEEDS_ERROR' as const;
+
+//? ---------------Action Type의 타입 정의-----------------//
+export const postCreatePoemAsync = createAsyncAction(
+  POST_CREATE_POEM_API,
+  POST_CREATE_POEM_SUCCESS,
+  POST_CREATE_POEM_ERROR
+)<undefined, UploadFeed, AxiosError>();
+
+export const postBringFeedsAsync = createAsyncAction(
+  POST_BRING_FEEDS_API,
+  POST_BRING_FEEDS_SUCCESS,
+  POST_BRING_FEEDS_ERROR
+)<undefined, Welcome, AxiosError>();
 
 //? -------------------액션 생성 함수 ----------------------//
-// export const createPoem = (content: string, word: string) => async (
-//   dispatch: Dispatch<poemDispatchType>
-// ) => {
-//   try {
-//     const result = await axios.post(FEED_URL, { content, word });
-//     const data = result.data;
-
-//     dispatch({
-//       type: CREATE_POEM,
-//       payload: data,
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-// export const modifyPoem = (id: number, content: string) => async (
-//   dispatch: Dispatch<poemDispatchType>
-// ) => {
-//   try {
-//     const result = await axios.patch(FEED_URL, { id, content });
-//     const data = result.data;
-//     dispatch({
-//       type: MODIFY_POEM,
-//       payload: data,
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-// export const removePoem = (id: number) => async (
-//   dispatch: Dispatch<poemDispatchType>
-// ) => {
-//   try {
-//     const result = await axios.delete(FEED_URL, {
-//       data: {
-//         id: id,
-//       },
-//     });
-//     const data = result.data;
-//     dispatch({
-//       type: REMOVE_POEM,
-//       payload: data,
-//     });
-//   } catch (err) {
-//     //
-//   }
-// };
-
-//?--------------------WITH DUMMY DATA---------------------//
-export const createPoem = (newFeed: UserFeed) => ({
-  type: CREATE_POEM,
+export function postCreatePoemThunk(feed: Content) {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = postCreatePoemAsync;
+    dispatch(request());
+    try {
+      const userFeeds = await postUploadFeedT(feed);
+      dispatch(success(userFeeds));
+    } catch (err) {
+      dispatch(failure(err));
+    }
+  };
+}
+export const postCreatePoem = (feed: UserFeeds) => ({
+  type: POST_CREATE_POEM,
   payload: {
-    newFeed,
+    feed,
   },
 });
 
-export const getAllFeeds = (userFeeds: UserFeed[]) => ({
-  type: GET_ALL_FEEDS,
+export function postBringFeedsThunk(feed: Feed) {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = postBringFeedsAsync;
+    dispatch(request());
+    try {
+      const userFeeds = await postBringFeedT(feed);
+      dispatch(success(userFeeds));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
+
+export const getUserFeeds = (userFeeds: UserFeeds[]) => ({
+  type: GET_USER_FEEDS,
   payload: {
     userFeeds,
   },

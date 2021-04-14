@@ -1,6 +1,5 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-import { UserInfoT } from '../reducers/reducer';
 dotenv.config();
 
 const api = process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
@@ -10,14 +9,23 @@ const apiClient = axios.create({
   responseType: 'json',
   headers: {
     'Content-Type': 'application/json',
+    'withCredentials': true,
   },
 });
 
-export interface UUID {
-  userId: number | null;
+export interface AuthCode {
+  authCode: string;
 }
 
-export async function getUserInfoT(userId: UUID) {
-  const response = await apiClient.post<UserInfoT>('/user', userId);
+export interface SignUp {
+  data: {
+    accessToken: string;
+    email: string;
+    nickName: string;
+  };
+}
+
+export async function postSignUpT(authCode: AuthCode) {
+  const response = await apiClient.post<SignUp>('/main/signup', authCode);
   return response.data;
 }

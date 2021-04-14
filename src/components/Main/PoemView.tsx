@@ -1,21 +1,22 @@
-import { UserFeed } from '../../reducers/initialState';
+import { RootState } from '../../reducers';
+import { useSelector } from 'react-redux';
 
-type PoemViewProps = {
-  userFeed: UserFeed;
-};
-
-export default function PoemView({ userFeed }: PoemViewProps) {
+export default function PoemView() {
+  const state = useSelector((state: RootState) => state.getInfoReducer);
+  const { userFeeds } = state;
   return (
     <>
-      {userFeed.content.map((line, idx) => {
-        const head = line.slice(0, 1);
-        const tail = line.slice(1);
-        const key = String(idx) + String(userFeed.feedId);
-        return (
-          <div key={key}>
-            {head} : {tail}
-          </div>
-        );
+      {userFeeds.map((feed) => {
+        feed.content.map((line, idx) => {
+          const head = line.slice(0, 1);
+          const tail = line.slice(1);
+          const key = String(idx) + String(feed.feedId);
+          return (
+            <div key={key}>
+              {head} : {tail}
+            </div>
+          );
+        });
       })}
     </>
   );
