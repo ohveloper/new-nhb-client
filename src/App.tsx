@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import MyPage from './pages/MyPage';
 import Homepage from './pages/HomePage';
-import MainPage from './pages/MainPage';
+// import MainPage from './pages/MainPage';
 import './styles/styles.css';
 
 function App() {
@@ -16,9 +16,7 @@ function App() {
           <Route path="/mypage">
             <MyPage />
           </Route>
-          <Route path="/main">
-            <MainPage />
-          </Route>
+          <Route path="/main">{/* <MainPage /> */}</Route>
         </Switch>
       </Router>
     </>
