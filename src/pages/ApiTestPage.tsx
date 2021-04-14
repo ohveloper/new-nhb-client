@@ -55,8 +55,6 @@ export default function ApiTestPage() {
       .then((result) => {
         if (result) {
           console.log(result);
-          console.log(result.data);
-          console.log(result.data.accessToken);
         }
       })
       .catch((err) => {
@@ -65,7 +63,6 @@ export default function ApiTestPage() {
   };
   const postLoginHandler = () => {
     dispatch(postLogInThunk({ authCode: 'q6wfeelkvlj' }));
-    console.log(state.login.data);
   };
   const delRemoveFeedHandler = () => {
     delRemoveFeedT({ data: { feedId: 6 } })
