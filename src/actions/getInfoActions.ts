@@ -20,13 +20,14 @@ import {
   UserFeed,
 } from '../reducers/initialState';
 import { getRankT } from '../api/getRank';
-import { BringComment, Welcome } from '../reducers/reducer';
+import { BringComment, PrivateFeedT, Welcome } from '../reducers/reducer';
 import { UserInfoT } from '../reducers/reducer';
 import { FeedLike } from '../api/postLikeFeed';
 import { Content, postUploadFeedT, UploadFeed } from '../api/postUploadFeed';
 import { postBringCommentT } from '../api/postBringComment';
 import { AuthCode, postSignUpT, SignUp } from '../api/postSignUp';
 import { AccessToken, postLoginT } from '../api/postLogin';
+import { FeedIdLimitUserId, postGetUserFeedsT } from '../api/postGetUserFeeds';
 
 export const GET_USER_INFO_API = 'GET_USER_INFO_API' as const;
 export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS' as const;
@@ -55,6 +56,15 @@ export const POST_SIGN_UP_ERROR = 'POST_SIGN_UP_ERROR' as const;
 export const POST_LOG_IN_API = 'POST_LOG_IN_API' as const;
 export const POST_LOG_IN_SUCCESS = 'POST_LOG_IN_SUCCESS' as const;
 export const POST_LOG_IN_ERROR = 'POST_LOG_IN_ERROR' as const;
+export const POST_GET_USER_FEEDS_API = 'POST_GET_USER_FEEDS_API' as const;
+export const POST_GET_USER_FEEDS_SUCCESS = 'POST_GET_USER_FEEDS_SUCCESS' as const;
+export const POST_GET_USER_FEEDS_ERROR = 'POST_GET_USER_FEEDS_ERROR' as const;
+
+export const postGetUserFeedsAsync = createAsyncAction(
+  POST_GET_USER_FEEDS_API,
+  POST_GET_USER_FEEDS_SUCCESS,
+  POST_GET_USER_FEEDS_ERROR
+)<undefined, PrivateFeedT, AxiosError>();
 
 export const postLogInAsync = createAsyncAction(
   POST_LOG_IN_API,
@@ -117,6 +127,18 @@ export function postLogInThunk(authCode: AuthCode) {
     try {
       const accessToken = await postLoginT(authCode);
       dispatch(success(accessToken));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
+export function postGetUserFeedsThunk(userId: FeedIdLimitUserId) {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = postGetUserFeedsAsync;
+    dispatch(request());
+    try {
+      const privateFeeds = await postGetUserFeedsT(userId);
+      dispatch(success(privateFeeds));
     } catch (e) {
       dispatch(failure(e));
     }
