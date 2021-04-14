@@ -2,12 +2,12 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 
 export default function PoemButtonGroup() {
-  const state = useSelector((state: RootState) => state.getInfoReducer);
-  const { userFeeds } = state;
+  const state = useSelector((state: RootState) => state.reducer);
+  const { data } = state.userFeeds;
 
   return (
     <>
-      {userFeeds.map((feed) => {
+      {data?.userFeeds.map((feed) => {
         <div key={feed.feedId}>
           [likes] {feed.likes} &nbsp; [comments] {feed.comments} &nbsp; [share]
         </div>;

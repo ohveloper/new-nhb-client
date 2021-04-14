@@ -9,7 +9,7 @@ import Sidebar from '../components/sidebar';
 import { Content } from '../api/postUploadFeed';
 
 export default function MainPage() {
-  const userFeeds = useSelector((state: RootState) => state.poemReducer);
+  const userFeeds = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
   console.log('userFeeds:', userFeeds);
 
