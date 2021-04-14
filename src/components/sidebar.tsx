@@ -6,6 +6,9 @@ import NavMyPage from './Nav/NavMypage';
 import NavLogin from './Nav/NavLogin';
 import MyLog from './Nav/Mylog';
 import Induce from './Nav/Induce';
+import dotenv from 'dotenv';
+
+dotenv.config;
 
 type sidebarProps = {
   isLoggedIn: boolean;
