@@ -35,17 +35,17 @@ const Sidebar = () => {
         <p onClick={() => setLogin(true)}>Login test</p>
       </div>
       <SlidingPanel type={'right'} isOpen={openPanel} size={30}>
-        <div onClick={() => setOpenPanel(false)}>
+        <div>
           <NavLoginSection isLoggedIn={isLoggedIn} />
           <br />
           <NavLogSection isLoggedIn={isLoggedIn} />
           <br />
-          Click to Close Sidebar
+          <div onClick={() => setOpenPanel(false)}>
+            Click here to Close Sidebar
+          </div>
         </div>
       </SlidingPanel>
-      <Link to="/mypage">
-        <button>mypage</button>
-      </Link>
+      <Link to="/mypage">Mypage</Link>
     </div>
   );
 };
