@@ -19,19 +19,20 @@ import { postSendAuthEmailT } from '../api/postSendAuthEmail';
 import { patchEditUserInfoT } from '../api/patchEditUserInfo';
 import { patchEditTagsT } from '../api/patchEditTag';
 import { delUserWithdrawalT } from '../api/delUserWithdrawal';
-import { postSignUpT } from '../api/postSignUp';
 
 export interface FeedId {
   feedId: number;
 }
 export default function ApiTestPage() {
   const state = useSelector((state: RootState) => state.reducer);
+  console.log(state);
+
   const dispatch = useDispatch();
   const postBringUserInfoHandler = () => {
     dispatch(postBringUserInfoThunk({ userId: 1 }));
   };
   const postBringFeedsHandler = () => {
-    dispatch(postBringFeedsThunk({ topic: '여행', limit: 3, feedId: 2 }));
+    dispatch(postBringFeedsThunk({ topicId: 1, limit: 3, feedId: 2 }));
   };
   const getRankHandler = () => {
     dispatch(getRankThunk());
@@ -51,18 +52,10 @@ export default function ApiTestPage() {
     dispatch(postBringCommentThunk({ feedId: 1 }));
   };
   const postSignUpHandler = () => {
-    postSignUpT({ authCode: '89iw9zujket' })
-      .then((result) => {
-        if (result) {
-          console.log(result);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(postSignUpThunk({ authCode: 'fvnjmuw4avg' }));
   };
   const postLoginHandler = () => {
-    dispatch(postLogInThunk({ authCode: 'q6wfeelkvlj' }));
+    dispatch(postLogInThunk({ authCode: 'aosf0fd0ij6' }));
   };
   const delRemoveFeedHandler = () => {
     delRemoveFeedT({ data: { feedId: 6 } })
@@ -161,13 +154,22 @@ export default function ApiTestPage() {
         <button onClick={postSignUpHandler}>post SignUp</button>
         {state.signup.loading && 'post signup 로딩'}
         {state.signup.error && 'post signup 에러'}
-        {state.signup.data && 'post signup 완료'}
+
+        {state.signup.data &&
+          `경로 : state.signup.data.accessToken :
+          ${state.signup.data.accessToken}`}
+        <br />
+        {state.accessToken && `경로 : state.accessToken : ${state.accessToken}`}
       </div>
       <div>
         <button onClick={postLoginHandler}>post login</button>
         {state.login.loading && 'post login 로딩'}
         {state.login.error && 'post login 에러'}
-        {state.login.data && 'post login 완료'}
+        <br />
+        {state.login.data &&
+          `경로 : state.login.data.accessToken : ${state.login.data.accessToken}`}
+        <br />
+        {state.accessToken && `경로 : state.accessToken : ${state.accessToken}`}
       </div>
       <div>
         <h1>axios 요청만</h1>

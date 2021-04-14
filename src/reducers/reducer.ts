@@ -24,6 +24,9 @@ import {
   POST_UPLOAD_FEED_API,
   POST_UPLOAD_FEED_ERROR,
   POST_UPLOAD_FEED_SUCCESS,
+  POST_GET_USER_FEEDS_API,
+  POST_GET_USER_FEEDS_SUCCESS,
+  POST_GET_USER_FEEDS_ERROR,
 } from '../actions/getInfoActions';
 import { UploadFeed } from '../api/postUploadFeed';
 export interface InitState {
@@ -57,6 +60,7 @@ export interface InitState {
     error: Error | null;
     data: BringComment | null;
   };
+  accessToken: string | null;
   signup: {
     loading: boolean;
     error: Error | null;
@@ -67,7 +71,30 @@ export interface InitState {
     error: Error | null;
     data: AccessToken | null;
   };
+  privateFeeds: {
+    loading: boolean;
+    error: Error | null;
+    data: PrivateFeedT | null;
+  };
 }
+
+export interface PrivateFeedT {
+  feedId: number;
+  user: PrivateFeedUserT;
+  topic: string;
+  content: string[];
+  likes: number;
+  comments: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PrivateFeedUserT {
+  userId: number;
+  nickName: string;
+  tag: string;
+}
+
 export interface AccessToken {
   accessToken: string;
 }
@@ -183,12 +210,18 @@ const initState: InitState = {
     error: null,
     data: null,
   },
+  accessToken: null,
   signup: {
     loading: false,
     error: null,
     data: null,
   },
   login: {
+    loading: false,
+    error: null,
+    data: null,
+  },
+  privateFeeds: {
     loading: false,
     error: null,
     data: null,
@@ -374,6 +407,7 @@ export function reducer(
     case POST_SIGN_UP_SUCCESS:
       return {
         ...state,
+        accessToken: action.payload.data.accessToken,
         signup: {
           loading: false,
           error: null,
@@ -383,7 +417,7 @@ export function reducer(
     case POST_SIGN_UP_ERROR:
       return {
         ...state,
-        signup: {
+        comments: {
           loading: false,
           error: action.payload,
           data: null,
@@ -401,16 +435,44 @@ export function reducer(
     case POST_LOG_IN_SUCCESS:
       return {
         ...state,
+        accessToken: action.payload.data.accessToken,
         login: {
           loading: false,
           error: null,
-          data: action.payload,
+          data: action.payload.data,
         },
       };
     case POST_LOG_IN_ERROR:
       return {
         ...state,
         login: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+    case POST_GET_USER_FEEDS_API:
+      return {
+        ...state,
+        privateFeeds: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case POST_GET_USER_FEEDS_SUCCESS:
+      return {
+        ...state,
+        privateFeeds: {
+          loading: false,
+          error: null,
+          data: action.payload,
+        },
+      };
+    case POST_GET_USER_FEEDS_ERROR:
+      return {
+        ...state,
+        privateFeeds: {
           loading: false,
           error: action.payload,
           data: null,
