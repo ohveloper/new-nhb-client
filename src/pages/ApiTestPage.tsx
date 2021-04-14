@@ -51,12 +51,10 @@ export default function ApiTestPage() {
     dispatch(postBringCommentThunk({ feedId: 1 }));
   };
   const postSignUpHandler = () => {
-    postSignUpT({ authCode: 'ry3gl6rpy9' })
+    postSignUpT({ authCode: '89iw9zujket' })
       .then((result) => {
         if (result) {
           console.log(result);
-          console.log(result.data);
-          console.log(result.data.accessToken);
         }
       })
       .catch((err) => {
@@ -64,8 +62,7 @@ export default function ApiTestPage() {
       });
   };
   const postLoginHandler = () => {
-    dispatch(postLogInThunk({ authCode: '6b7op65qb64' }));
-    console.log(state.login.data);
+    dispatch(postLogInThunk({ authCode: 'q6wfeelkvlj' }));
   };
   const delRemoveFeedHandler = () => {
     delRemoveFeedT({ data: { feedId: 6 } })
