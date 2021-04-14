@@ -25,62 +25,109 @@ export interface FeedId {
 }
 export default function ApiTestPage() {
   const state = useSelector((state: RootState) => state.reducer);
-  console.log(state);
 
   const dispatch = useDispatch();
   const postBringUserInfoHandler = () => {
-    dispatch(postBringUserInfoThunk({ userId: 1 }));
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      dispatch(postBringUserInfoThunk({ userId: 1 }, accessToken));
+    }
+    console.log(state.userInfo.data);
   };
+
   const postBringFeedsHandler = () => {
     dispatch(postBringFeedsThunk({ topicId: 1, limit: 3, feedId: 2 }));
   };
+
   const getRankHandler = () => {
     dispatch(getRankThunk());
   };
+
   const postLikeFeedHandler = () => {
-    dispatch(postLikeFeedThunk({ feedId: 45 }));
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      dispatch(postLikeFeedThunk({ feedId: 1 }, accessToken));
+    }
   };
+
   const postUploadFeedHandler = () => {
-    dispatch(
-      postUploadFeedThunk({
-        content: ['여러분', '행쇼'],
-        word: '여행',
-      })
-    );
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      dispatch(
+        postUploadFeedThunk(
+          {
+            content: ['여러분', '행쇼'],
+            word: '여행',
+          },
+          accessToken
+        )
+      );
+    }
   };
+
   const postBringCommentHandler = () => {
     dispatch(postBringCommentThunk({ feedId: 1 }));
   };
+
   const postSignUpHandler = () => {
-    dispatch(postSignUpThunk({ authCode: 'fvnjmuw4avg' }));
+    dispatch(postSignUpThunk({ authCode: 'a7u8ou6rmu8' }));
   };
+
   const postLoginHandler = () => {
-    dispatch(postLogInThunk({ authCode: 'aosf0fd0ij6' }));
+    dispatch(postLogInThunk({ authCode: 'krqte62ce38' }));
   };
+
   const delRemoveFeedHandler = () => {
-    delRemoveFeedT({ data: { feedId: 6 } })
-      .then((x) => console.log(x))
-      .catch((e) => console.log(e));
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      delRemoveFeedT({ data: { feedId: 1 } }, accessToken)
+        .then((x) => console.log(x))
+        .catch((e) => console.log(e));
+    }
   };
+
   const postLikeCommentHandler = () => {
-    postLikeCommentT({ commentId: 2 })
-      .then((x) => console.log(x))
-      .catch((e) => console.log(e));
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      postLikeCommentT({ commentId: 15 }, accessToken)
+        .then((x) => console.log(x))
+        .catch((e) => console.log(e));
+    }
   };
+
   const postUploadCommentHandler = () => {
-    postUploadCommentT({ comment: 'hello world', feedId: 1 })
-      .then((x) => console.log(x))
-      .catch((e) => console.log(e));
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      postUploadCommentT({ comment: 'hello world', feedId: 2 }, accessToken)
+        .then((x) => console.log(x))
+        .catch((e) => console.log(e));
+    }
   };
+
   const delRemoveCommentHandler = () => {
-    delRemoveCommentT({ data: { feedId: 5, commentId: 4 } })
-      .then((x) => console.log(x))
-      .catch((x) => console.log(x));
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      delRemoveCommentT({ data: { feedId: 2, commentId: 16 } }, accessToken)
+        .then((x) => console.log(x))
+        .catch((x) => console.log(x));
+    }
   };
+
   const patchEditCommentHandler = () => {
-    patchEditCommentT({ comment: 'hello', commentId: 2 })
-      .then((x) => console.log(x))
-      .catch((e) => console.log(e));
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      patchEditCommentT({ comment: 'hello', commentId: 1 }, accessToken)
+        .then((x) => console.log(x))
+        .catch((e) => console.log(e));
+    }
   };
 
   const postSendAuthEmailHandler = () => {
@@ -90,23 +137,40 @@ export default function ApiTestPage() {
   };
 
   const patchEditUserInfoHandler = () => {
-    patchEditUserInfoT({
-      avatarUrl: 'urls',
-      nickName: '시민박명수',
-      introduction: '너와나의 연결고리',
-    })
-      .then((x) => console.log(x))
-      .catch((e) => console.log(e));
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      patchEditUserInfoT(
+        {
+          avatarUrl: 'urls',
+          nickName: '시민박명수',
+          introduction: '너와나의 연결고리',
+        },
+        accessToken
+      )
+        .then((x) => console.log(x))
+        .catch((e) => console.log(e));
+    }
   };
+
   const patchEditTagsHandler = () => {
-    patchEditTagsT({ tagName: 'newbie' })
-      .then((x) => console.log(x))
-      .catch((e) => console.log(e));
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      patchEditTagsT({ tagName: 'newbie' }, accessToken)
+        .then((x) => console.log(x))
+        .catch((e) => console.log(e));
+    }
   };
+
   const delUserWithdrawalHandler = () => {
-    delUserWithdrawalT()
-      .then((x) => console.log(x))
-      .catch((e) => console.log(e));
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      delUserWithdrawalT(accessToken)
+        .then((x) => console.log(x))
+        .catch((e) => console.log(e));
+    }
   };
   return (
     <div>

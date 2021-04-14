@@ -30,12 +30,12 @@ export const postBringFeedsAsync = createAsyncAction(
 )<undefined, Welcome, AxiosError>();
 
 //? -------------------액션 생성 함수 ----------------------//
-export function postCreatePoemThunk(feed: Content) {
+export function postCreatePoemThunk(feed: Content, accessToken: string) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = postCreatePoemAsync;
     dispatch(request());
     try {
-      const userFeeds = await postUploadFeedT(feed);
+      const userFeeds = await postUploadFeedT(feed, accessToken);
       dispatch(success(userFeeds));
     } catch (err) {
       dispatch(failure(err));

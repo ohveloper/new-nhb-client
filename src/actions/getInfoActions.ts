@@ -28,6 +28,7 @@ import { postBringCommentT } from '../api/postBringComment';
 import { AuthCode, postSignUpT, SignUp } from '../api/postSignUp';
 import { AccessToken, postLoginT } from '../api/postLogin';
 import { FeedIdLimitUserId, postGetUserFeedsT } from '../api/postGetUserFeeds';
+import { access } from 'node:fs';
 
 export const GET_USER_INFO_API = 'GET_USER_INFO_API' as const;
 export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS' as const;
@@ -170,12 +171,12 @@ export function postSignUpThunk(authCode: AuthCode) {
   };
 }
 
-export function postLikeFeedThunk(feedId: FeedId) {
+export function postLikeFeedThunk(feedId: FeedId, accessToken: string) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = postLikeFeedAsync;
     dispatch(request());
     try {
-      const likeFeed = await postLikeFeedT(feedId);
+      const likeFeed = await postLikeFeedT(feedId, accessToken);
       dispatch(success(likeFeed));
     } catch (e) {
       dispatch(failure(e));
@@ -183,12 +184,12 @@ export function postLikeFeedThunk(feedId: FeedId) {
   };
 }
 
-export function postUploadFeedThunk(content: Content) {
+export function postUploadFeedThunk(content: Content, accessToken: string) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = postUploadFeedsAsync;
     dispatch(request());
     try {
-      const uploadFeed = await postUploadFeedT(content);
+      const uploadFeed = await postUploadFeedT(content, accessToken);
       dispatch(success(uploadFeed));
     } catch (e) {
       dispatch(failure(e));
@@ -209,13 +210,13 @@ export function postBringFeedsThunk(feed: Feed) {
   };
 }
 
-export function postBringUserInfoThunk(userId: UUID) {
+export function postBringUserInfoThunk(userId: UUID, accessToken: string) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = postBringUserInfoAsync;
     dispatch(request());
 
     try {
-      const userInfo = await postBringUserInfoT(userId);
+      const userInfo = await postBringUserInfoT(userId, accessToken);
       dispatch(success(userInfo));
     } catch (e) {
       dispatch(failure(e));

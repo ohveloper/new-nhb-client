@@ -14,8 +14,12 @@ export default function MainPage() {
   console.log('userFeeds:', userFeeds);
 
   const onPoemInsert = (feed: Content) => {
-    dispatch(postCreatePoemThunk(feed));
-    console.log('feed:', feed);
+    const _accessToken = '';
+    if (userFeeds.accessToken) {
+      const accessToken = _accessToken.concat(userFeeds.accessToken);
+      dispatch(postCreatePoemThunk(feed, accessToken));
+      console.log('feed:', feed);
+    }
   };
 
   return (
