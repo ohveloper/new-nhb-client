@@ -8,9 +8,11 @@ type MainpagePoemInputProps = {
 };
 
 const MainpagePoemInput = ({ onPoemInsert }: MainpagePoemInputProps) => {
-  const state = useSelector((state: RootState) => state.poemReducer);
+  const state = useSelector((state: RootState) => state.reducer);
   //? 오늘의 주제어 불러오기
-  const { todaysTopic } = state;
+  // const { todaysTopic } = state;
+  // const topic = todaysTopic.join('');
+  const todaysTopic = ['여', '행'];
   const topic = todaysTopic.join('');
 
   const [val, setVal] = useState<Content>({
