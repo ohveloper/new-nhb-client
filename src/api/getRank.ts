@@ -1,6 +1,6 @@
-import { Rank } from '../reducers/initialState';
 import axios from 'axios';
 import dotenv from 'dotenv';
+import { Rank } from '../reducers/reducer';
 dotenv.config();
 
 const api = process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';

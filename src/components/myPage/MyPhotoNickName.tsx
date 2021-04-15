@@ -4,15 +4,15 @@ import { RootState } from '../../reducers';
 
 export default function MyPhotoNickName() {
   const state = useSelector((state: RootState) => state.reducer);
-  // const { nickName } = state.userInfo;
-  // return (
-  //   <div>
-  //     <h1>MyPhotoNickName</h1>
-  //     <div>
-  //       <img src={Sample_User_Icon} alt="" />
-  //     </div>
-  //     <div>{nickName}</div>
-  //     <button>수정하기</button>
-  //   </div>
-  // );
+
+  return (
+    <div>
+      <h1>MyPhotoNickName</h1>
+      <div>
+        <img src={Sample_User_Icon} alt="" />
+      </div>
+      <div>{state.userInfo.data && state.userInfo.data.nickName}</div>
+      <button>수정하기</button>
+    </div>
+  );
 }

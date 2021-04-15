@@ -23,6 +23,7 @@ import {
   postUploadFeedsAsync,
   postBringUserInfoAsync,
   getRankAsync,
+  postBringFeedsAsync,
 } from '../actions/actionTypes';
 
 export function postLogInThunk(authCode: AuthCode) {
@@ -98,6 +99,20 @@ export function postBringUserInfoThunk(userId: UUID, accessToken: string) {
     try {
       const userInfo = await postBringUserInfoT(userId, accessToken);
       dispatch(success(userInfo));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
+
+export function postBringFeedsThunk(feed: Feed) {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = postBringFeedsAsync;
+    dispatch(request());
+
+    try {
+      const feeds = await postBringFeedT(feed);
+      dispatch(success(feeds));
     } catch (e) {
       dispatch(failure(e));
     }

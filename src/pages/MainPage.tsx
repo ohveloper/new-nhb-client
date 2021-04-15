@@ -21,18 +21,9 @@ export default function MainPage() {
   console.log('state:', state);
 
   const handlePostUploadFeed = (content: Content) => {
-<<<<<<< HEAD
-    const _accessToken = '';
-    if (state.accessToken) {
-      const accessToken = _accessToken.concat(state.accessToken);
-      postUploadFeedT(content, accessToken)
-        .then((x) => console.log(x))
-        .catch((e) => console.log(e));
-=======
     const accessToken = '';
     if (state.accessToken) {
       // dispatch(postUploadFeedThunk(feed, accessToken));
->>>>>>> 7444aa31d854804119c0f6e986acfc53be1a337e
     }
   };
 

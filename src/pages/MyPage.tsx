@@ -5,7 +5,10 @@ import Homebutton from '../components/Homebutton';
 import Sidebar from '../components/sidebar';
 import { RootState } from '../reducers';
 import { useDispatch, useSelector } from 'react-redux';
-import { postBringUserInfoThunk } from '../actions/actions';
+import {
+  postBringUserInfoThunk,
+  postBringFeedsThunk,
+} from '../actions/actions';
 import { useEffect } from 'react';
 
 export default function MyPage() {
@@ -16,8 +19,9 @@ export default function MyPage() {
     if (state.accessToken) {
       const accessToken = _accessToken.concat(state.accessToken);
       dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
+
+      dispatch(postBringFeedsThunk({ topicId: 1, limit: 10 }));
     }
-    console.log(state.userInfo.data);
   }, []);
   return (
     <>
@@ -31,7 +35,9 @@ export default function MyPage() {
       <div>
         <MyAchievementContainer />
       </div>
-      <div>{/* <MyPhotoNickName /> */}</div>
+      <div>
+        <MyPhotoNickName />
+      </div>
     </>
   );
 }
