@@ -27,7 +27,7 @@ import {
   POST_GET_USER_FEEDS_API,
   POST_GET_USER_FEEDS_SUCCESS,
   POST_GET_USER_FEEDS_ERROR,
-} from '../actions/getInfoActions';
+} from '../actions/actions';
 import { UploadFeed } from '../api/postUploadFeed';
 export interface InitState {
   userInfo: {

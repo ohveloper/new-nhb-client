@@ -9,7 +9,7 @@ import {
   postBringCommentThunk,
   postSignUpThunk,
   postLogInThunk,
-} from '../actions/getInfoActions';
+} from '../actions/actions';
 import { delRemoveFeedT } from '../api/delRemoveFeed';
 import { postLikeCommentT } from '../api/postLikeComment';
 import { postUploadCommentT } from '../api/postUploadComment';

@@ -19,9 +19,13 @@ export default function MainPage() {
   console.log('state:', state);
 
   const handlePostUploadFeed = (content: Content) => {
-    postUploadFeedT(content)
-      .then((x) => console.log(x))
-      .catch((e) => console.log(e));
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      postUploadFeedT(content, accessToken)
+        .then((x) => console.log(x))
+        .catch((e) => console.log(e));
+    }
   };
 
   // TODO: postBringFeedT()파라미터 topicId를 api로 가져오기

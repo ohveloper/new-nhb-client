@@ -4,7 +4,7 @@ import {
   GET_RANK,
   GET_USER_FEEDS,
   GET_USER_INFO,
-} from '../actions/getInfoActions';
+} from '../actions/actions';
 import { initialState } from './initialState';
 import { Actions } from '../actions';
 
