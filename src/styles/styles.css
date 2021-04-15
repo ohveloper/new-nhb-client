@@ -1,0 +1,14 @@
+a:any-link {
+  text-decoration: none;
+  color: rgb(7, 71, 199);
+}
+
+a:hover {
+  color: rgb(128, 73, 255);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  text-decoration: none;
+}
