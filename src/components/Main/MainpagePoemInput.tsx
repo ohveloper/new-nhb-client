@@ -4,13 +4,17 @@ import { Content } from '../../api/postUploadFeed';
 import { RootState } from '../../reducers';
 
 type MainpagePoemInputProps = {
-  onPoemInsert: (feed: Content) => void;
+  handlePostUploadFeed: (content: Content) => void;
 };
 
-const MainpagePoemInput = ({ onPoemInsert }: MainpagePoemInputProps) => {
-  const state = useSelector((state: RootState) => state.poemReducer);
+const MainpagePoemInput = ({
+  handlePostUploadFeed,
+}: MainpagePoemInputProps) => {
+  const state = useSelector((state: RootState) => state.reducer);
   //? 오늘의 주제어 불러오기
-  const { todaysTopic } = state;
+  // const { todaysTopic } = state;
+  // const topic = todaysTopic.join('');
+  const todaysTopic = ['여', '행'];
   const topic = todaysTopic.join('');
 
   const [val, setVal] = useState<Content>({
@@ -30,7 +34,7 @@ const MainpagePoemInput = ({ onPoemInsert }: MainpagePoemInputProps) => {
   const onPoemSubmit = (event: FormEvent) => {
     event.preventDefault();
     console.log('val:', val);
-    onPoemInsert(val);
+    handlePostUploadFeed(val);
     setVal({
       content: [],
       word: topic,

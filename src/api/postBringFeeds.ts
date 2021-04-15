@@ -13,10 +13,11 @@ const apiClient = axios.create({
     'withCredentials': true,
   },
 });
+
 export interface Feed {
-  topic: string;
+  topicId: number;
   limit: number;
-  feedId: number | null;
+  feedId?: number | null;
   userId?: number;
   isMakLike?: boolean;
 }

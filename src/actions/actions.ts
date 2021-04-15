@@ -20,41 +20,47 @@ import {
   UserFeed,
 } from '../reducers/initialState';
 import { getRankT } from '../api/getRank';
-import { BringComment, Welcome } from '../reducers/reducer';
+import { BringComment, PrivateFeedT, Welcome } from '../reducers/reducer';
 import { UserInfoT } from '../reducers/reducer';
 import { FeedLike } from '../api/postLikeFeed';
 import { Content, postUploadFeedT, UploadFeed } from '../api/postUploadFeed';
 import { postBringCommentT } from '../api/postBringComment';
 import { AuthCode, postSignUpT, SignUp } from '../api/postSignUp';
 import { AccessToken, postLoginT } from '../api/postLogin';
+import { FeedIdLimitUserId, postGetUserFeedsT } from '../api/postGetUserFeeds';
 
-export const GET_USER_INFO_API = 'GET_USER_INFO_API' as const;
-export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS' as const;
-export const GET_USER_INFO_ERROR = 'GET_USER_INFO_ERROR' as const;
-export const GET_RANK_API = 'GET_RANK_API' as const;
-export const GET_RANK_SUCCESS = 'GET_RANK_SUCCES' as const;
-export const GET_RANK_ERROR = 'GET_RANK_ERROR' as const;
-export const GET_PRIVATE_FEEDS_API = 'GET_PRIVATE_FEEDS_API' as const;
-export const GET_PRIVATE_FEEDS_SUCCESS = 'GET_PRIVATE_FEEDS_SUCCES' as const;
-export const GET_PRIVATE_FEEDS_ERROR = 'GET_PRIVATE_FEEDS_ERROR' as const;
-export const POST_BRING_FEEDS_API = 'POST_BRING_FEEDS_API' as const;
-export const POST_BRING_FEEDS_SUCCESS = 'POST_BRING_FEEDS_SUCCESS' as const;
-export const POST_BRING_FEEDS_ERROR = 'POST_BRING_FEEDS_ERROR' as const;
-export const POST_LIKE_FEED_API = 'POST_LIKE_FEED_API' as const;
-export const POST_LIKE_FEED_SUCCESS = 'POST_LIKE_FEED_SUCCESS' as const;
-export const POST_LIKE_FEED_ERROR = 'POST_LIKE_FEED_ERROR' as const;
-export const POST_UPLOAD_FEED_API = 'POST_UPLOAD_FEED_API' as const;
-export const POST_UPLOAD_FEED_SUCCESS = 'POST_UPLOAD_FEED_SUCCESS' as const;
-export const POST_UPLOAD_FEED_ERROR = 'POST_UPLOAD_FEED_ERROR' as const;
-export const POST_BRING_COMMENT_API = 'POST_BRING_COMMENT_API' as const;
-export const POST_BRING_COMMENT_SUCCESS = 'POST_BRING_COMMENT_SUCCESS' as const;
-export const POST_BRING_COMMENT_ERROR = 'POST_BRING_COMMENT_ERROR' as const;
-export const POST_SIGN_UP_API = 'POST_SIGN_UP_API' as const;
-export const POST_SIGN_UP_SUCCESS = 'POST_SIGN_UP_SUCCESS' as const;
-export const POST_SIGN_UP_ERROR = 'POST_SIGN_UP_ERROR' as const;
-export const POST_LOG_IN_API = 'POST_LOG_IN_API' as const;
-export const POST_LOG_IN_SUCCESS = 'POST_LOG_IN_SUCCESS' as const;
-export const POST_LOG_IN_ERROR = 'POST_LOG_IN_ERROR' as const;
+import {
+  POST_LOG_IN_API,
+  POST_LOG_IN_ERROR,
+  POST_LOG_IN_SUCCESS,
+  POST_SIGN_UP_API,
+  POST_SIGN_UP_ERROR,
+  POST_SIGN_UP_SUCCESS,
+  POST_BRING_USER_INFO_API,
+  POST_BRING_USER_INFO_ERROR,
+  POST_BRING_USER_INFO_SUCCESS,
+  POST_UPLOAD_FEED_SUCCESS,
+  POST_UPLOAD_FEED_API,
+  POST_UPLOAD_FEED_ERROR,
+  POST_BRING_FEEDS_API,
+  POST_BRING_FEEDS_SUCCESS,
+  POST_BRING_FEEDS_ERROR,
+  PATCH_EDIT_FEED_API,
+  PATCH_EDIT_FEED_ERROR,
+  PATCH_EDIT_FEED_SUCCESS,
+  DELETE_REMOVE_FEED_API,
+  DELETE_REMOVE_FEED_SUCCESS,
+  DELETE_REMOVE_FEED_ERROR,
+  GET_RANK_API,
+  GET_RANK_ERROR,
+  GET_RANK_SUCCESS,
+  POST_LIKE_FEED_API,
+  POST_LIKE_FEED_ERROR,
+  POST_LIKE_FEED_SUCCESS,
+  POST_BRING_COMMENT_API,
+  POST_BRING_COMMENT_SUCCESS,
+  POST_BRING_COMMENT_ERROR,
+} from '../actions/actionTypes';
 
 export const postLogInAsync = createAsyncAction(
   POST_LOG_IN_API,
@@ -87,16 +93,10 @@ export const postUploadFeedsAsync = createAsyncAction(
 )<undefined, UploadFeed, AxiosError>();
 
 export const postBringUserInfoAsync = createAsyncAction(
-  GET_USER_INFO_API,
-  GET_USER_INFO_SUCCESS,
-  GET_USER_INFO_ERROR
+  POST_BRING_USER_INFO_API,
+  POST_BRING_USER_INFO_SUCCESS,
+  POST_BRING_USER_INFO_ERROR
 )<undefined, UserInfoT, AxiosError>();
-
-export const getPrivateFeedsAsync = createAsyncAction(
-  GET_PRIVATE_FEEDS_API,
-  GET_PRIVATE_FEEDS_SUCCESS,
-  GET_PRIVATE_FEEDS_ERROR
-)<undefined, PrivateFeed, AxiosError>();
 
 export const getRankAsync = createAsyncAction(
   GET_RANK_API,
@@ -122,6 +122,7 @@ export function postLogInThunk(authCode: AuthCode) {
     }
   };
 }
+
 export function postBringCommentThunk(feedId: FeedId) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = postBringCommentAsync;
@@ -148,12 +149,12 @@ export function postSignUpThunk(authCode: AuthCode) {
   };
 }
 
-export function postLikeFeedThunk(feedId: FeedId) {
+export function postLikeFeedThunk(feedId: FeedId, accessToken: string) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = postLikeFeedAsync;
     dispatch(request());
     try {
-      const likeFeed = await postLikeFeedT(feedId);
+      const likeFeed = await postLikeFeedT(feedId, accessToken);
       dispatch(success(likeFeed));
     } catch (e) {
       dispatch(failure(e));
@@ -161,12 +162,12 @@ export function postLikeFeedThunk(feedId: FeedId) {
   };
 }
 
-export function postUploadFeedThunk(content: Content) {
+export function postUploadFeedThunk(content: Content, accessToken: string) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = postUploadFeedsAsync;
     dispatch(request());
     try {
-      const uploadFeed = await postUploadFeedT(content);
+      const uploadFeed = await postUploadFeedT(content, accessToken);
       dispatch(success(uploadFeed));
     } catch (e) {
       dispatch(failure(e));
@@ -187,13 +188,13 @@ export function postBringFeedsThunk(feed: Feed) {
   };
 }
 
-export function postBringUserInfoThunk(userId: UUID) {
+export function postBringUserInfoThunk(userId: UUID, accessToken: string) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = postBringUserInfoAsync;
     dispatch(request());
 
     try {
-      const userInfo = await postBringUserInfoT(userId);
+      const userInfo = await postBringUserInfoT(userId, accessToken);
       dispatch(success(userInfo));
     } catch (e) {
       dispatch(failure(e));

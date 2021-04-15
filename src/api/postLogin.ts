@@ -18,7 +18,9 @@ export interface AuthCode {
 }
 
 export interface AccessToken {
-  accessToken: string;
+  data: {
+    accessToken: string;
+  };
 }
 
 export async function postLoginT(authCode: AuthCode) {

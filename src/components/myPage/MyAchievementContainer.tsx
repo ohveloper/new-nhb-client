@@ -8,7 +8,7 @@ export default function MyAchievementContainer() {
     <div>
       <h1>MyAchievementContainer</h1>
       <div>
-        <MyAchievementBadges />
+        {/* <MyAchievementBadges /> */}
         <MyAchievementLight />
         <MyAchievementStars />
       </div>
