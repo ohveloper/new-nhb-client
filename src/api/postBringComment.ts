@@ -4,7 +4,6 @@ import { BringComment } from '../reducers/reducer';
 dotenv.config();
 
 const api = process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
-const accessToken = process.env.AccessToken || 'hello';
 
 const apiClient = axios.create({
   baseURL: api,
@@ -12,7 +11,6 @@ const apiClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
     'withCredentials': true,
-    'authorization': `Bearer ${accessToken}`,
   },
 });
 
