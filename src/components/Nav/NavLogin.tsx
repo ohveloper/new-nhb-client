@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
 
-// const handleInputvalue = () => (e) => {
-//   console.log(e.target.value);
-// };
+import { RootState } from '../../reducers';
+import { useDispatch, useSelector } from 'react-redux';
+import { postLogInThunk } from '../../actions/getInfoActions';
 
 function NavLogin() {
+  const state = useSelector((state: RootState) => state.reducer);
   const [inputValue, setInputValue] = useState('');
+
+  const dispatch = useDispatch();
+
+  const postLoginHandler = () => {
+    console.log(state);
+    dispatch(postLogInThunk({ authCode: '' }));
+  };
+
   return (
     <div>
       <div>로그인</div>
@@ -17,7 +26,7 @@ function NavLogin() {
         placeholder="이메일을 입력하세요"
         onChange={(e) => setInputValue(e.currentTarget.value)}
       />
-      {/* <button onClick={() => handleLogin()}>로그인</button> */}
+      <button onClick={postLoginHandler}>로그인</button>
     </div>
   );
 }

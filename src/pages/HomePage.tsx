@@ -11,14 +11,17 @@ export default function HomePage() {
   return (
     <div>
       <Homebutton />
+      <br />
       <Sidebar />
+      <br />
       <Link to="/main">
-        <p> MAIN - this is main page</p>
+        <p> MAIN</p>
       </Link>
+      <br />
       <Link to="/mypage">
         <p> Mypage</p>
       </Link>
-      <div>deploy Testing</div>
+      <br />
       <div className="App">:sunglasses: </div>
     </div>
   );
