@@ -21,7 +21,6 @@ import {
   postSignUpAsync,
   postLikeFeedAsync,
   postUploadFeedsAsync,
-  postBringFeedsAsync,
   postBringUserInfoAsync,
   getRankAsync,
 } from '../actions/actionTypes';
