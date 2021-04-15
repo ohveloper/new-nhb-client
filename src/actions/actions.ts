@@ -1,12 +1,9 @@
-<<<<<<< HEAD
-=======
 export const GET_USER_INFO = 'GET_USER_INFO' as const;
 export const GET_PRIVATE_FEEDS = 'GET_PRIVATE_FEEDS' as const;
 export const GET_RANK = 'GET_RANK' as const;
 export const GET_COMMENTS = 'GET_COMMENTS' as const;
 export const GET_USER_FEEDS = 'GET_USER_FEEDS' as const;
 
->>>>>>> 45dc1182dc0c1625d3ff3f1231f7ed66accd96c9
 import { Dispatch } from 'redux';
 import { postBringUserInfoT, UUID } from '../api/postBringUserInfo';
 import { postBringFeedT } from '../api/postBringFeeds';
@@ -17,17 +14,6 @@ import { Content, postUploadFeedT } from '../api/postUploadFeed';
 import { postBringCommentT } from '../api/postBringComment';
 import { AuthCode, postSignUpT } from '../api/postSignUp';
 import { postLoginT } from '../api/postLogin';
-<<<<<<< HEAD
-import {
-  getRankAsync,
-  postBringCommentAsync,
-  postBringUserInfoAsync,
-  postLikeFeedAsync,
-  postLogInAsync,
-  postSignUpAsync,
-  postUploadFeedsAsync,
-} from './actionTypes';
-=======
 
 import {
   postLogInAsync,
@@ -39,7 +25,6 @@ import {
   postBringUserInfoAsync,
   getRankAsync,
 } from '../actions/actionTypes';
->>>>>>> 45dc1182dc0c1625d3ff3f1231f7ed66accd96c9
 
 export function postLogInThunk(authCode: AuthCode) {
   return async (dispatch: Dispatch) => {
