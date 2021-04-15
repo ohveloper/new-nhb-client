@@ -1,33 +1,45 @@
-import { Actions } from '../actions';
+import { Actions } from '../actions/index';
 import {
-  GET_RANK_API,
-  GET_RANK_ERROR,
-  GET_RANK_SUCCESS,
-  GET_USER_INFO_API,
-  GET_USER_INFO_ERROR,
-  GET_USER_INFO_SUCCESS,
-  POST_BRING_COMMENT_API,
-  POST_BRING_COMMENT_ERROR,
-  POST_BRING_COMMENT_SUCCESS,
-  POST_BRING_FEEDS_API,
-  POST_BRING_FEEDS_ERROR,
-  POST_BRING_FEEDS_SUCCESS,
-  POST_LIKE_FEED_API,
-  POST_LIKE_FEED_ERROR,
-  POST_LIKE_FEED_SUCCESS,
   POST_LOG_IN_API,
-  POST_LOG_IN_SUCCESS,
   POST_LOG_IN_ERROR,
+  POST_LOG_IN_SUCCESS,
   POST_SIGN_UP_API,
   POST_SIGN_UP_ERROR,
   POST_SIGN_UP_SUCCESS,
+  POST_BRING_USER_INFO_API,
+  POST_BRING_USER_INFO_ERROR,
+  POST_BRING_USER_INFO_SUCCESS,
+  POST_UPLOAD_FEED_SUCCESS,
   POST_UPLOAD_FEED_API,
   POST_UPLOAD_FEED_ERROR,
+<<<<<<< HEAD
   POST_UPLOAD_FEED_SUCCESS,
   POST_GET_USER_FEEDS_API,
   POST_GET_USER_FEEDS_SUCCESS,
   POST_GET_USER_FEEDS_ERROR,
 } from '../actions/actions';
+=======
+  POST_BRING_FEEDS_API,
+  POST_BRING_FEEDS_SUCCESS,
+  POST_BRING_FEEDS_ERROR,
+  PATCH_EDIT_FEED_API,
+  PATCH_EDIT_FEED_ERROR,
+  PATCH_EDIT_FEED_SUCCESS,
+  DELETE_REMOVE_FEED_API,
+  DELETE_REMOVE_FEED_SUCCESS,
+  DELETE_REMOVE_FEED_ERROR,
+  GET_RANK_API,
+  GET_RANK_ERROR,
+  GET_RANK_SUCCESS,
+  POST_LIKE_FEED_API,
+  POST_LIKE_FEED_ERROR,
+  POST_LIKE_FEED_SUCCESS,
+  POST_BRING_COMMENT_API,
+  POST_BRING_COMMENT_SUCCESS,
+  POST_BRING_COMMENT_ERROR,
+} from '../actions/actionTypes';
+
+>>>>>>> 7444aa31d854804119c0f6e986acfc53be1a337e
 import { UploadFeed } from '../api/postUploadFeed';
 export interface InitState {
   userInfo: {
@@ -233,7 +245,7 @@ export function reducer(
   action: Actions
 ): InitState {
   switch (action.type) {
-    case GET_USER_INFO_API:
+    case POST_BRING_USER_INFO_API:
       return {
         ...state,
         userInfo: {
@@ -242,7 +254,7 @@ export function reducer(
           data: null,
         },
       };
-    case GET_USER_INFO_SUCCESS:
+    case POST_BRING_USER_INFO_SUCCESS:
       return {
         ...state,
         userInfo: {
@@ -251,7 +263,7 @@ export function reducer(
           data: action.payload,
         },
       };
-    case GET_USER_INFO_ERROR:
+    case POST_BRING_USER_INFO_ERROR:
       return {
         ...state,
         userInfo: {
@@ -446,33 +458,6 @@ export function reducer(
       return {
         ...state,
         login: {
-          loading: false,
-          error: action.payload,
-          data: null,
-        },
-      };
-    case POST_GET_USER_FEEDS_API:
-      return {
-        ...state,
-        privateFeeds: {
-          loading: true,
-          error: null,
-          data: null,
-        },
-      };
-    case POST_GET_USER_FEEDS_SUCCESS:
-      return {
-        ...state,
-        privateFeeds: {
-          loading: false,
-          error: null,
-          data: action.payload,
-        },
-      };
-    case POST_GET_USER_FEEDS_ERROR:
-      return {
-        ...state,
-        privateFeeds: {
           loading: false,
           error: action.payload,
           data: null,

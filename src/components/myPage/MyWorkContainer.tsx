@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+<<<<<<< HEAD
 import { postGetUserFeedsThunk } from '../../actions/actions';
+=======
+>>>>>>> 7444aa31d854804119c0f6e986acfc53be1a337e
 import { RootState } from '../../reducers';
 import MyWork from './MyWork';
 
