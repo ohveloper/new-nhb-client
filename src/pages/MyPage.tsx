@@ -23,6 +23,7 @@ export default function MyPage() {
       dispatch(postBringFeedsThunk({ topicId: 1, limit: 10 }));
     }
   }, []);
+  console.log(state.userInfo.data);
   return (
     <>
       <Homebutton />
