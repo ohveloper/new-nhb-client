@@ -1,13 +1,16 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 import MyWork from './MyWork';
 
 export default function MyWorkContainer() {
-  const state = useSelector((state: RootState) => state);
-  const { privateFeeds } = state.reducer;
+  const state = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
+  useEffect(() => {
+    console.log(state);
+  }, []);
   return (
-    <div>console.log(privateFeeds)</div>
+    <div>??</div>
     // <div>
     //   <h1>MyWorkContainer</h1>
     //   <button>더보기</button>

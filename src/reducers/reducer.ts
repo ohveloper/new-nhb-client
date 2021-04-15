@@ -30,9 +30,10 @@ import {
   POST_BRING_COMMENT_API,
   POST_BRING_COMMENT_SUCCESS,
   POST_BRING_COMMENT_ERROR,
+  GET_TOPICS_API,
+  GET_TOPICS_SUCCESS,
+  GET_TOPICS_ERROR,
 } from '../actions/actionTypes';
-
-import { UploadFeed } from '../api/postUploadFeed';
 export interface InitState {
   userInfo: {
     loading: boolean;
@@ -80,6 +81,21 @@ export interface InitState {
     error: Error | null;
     data: PrivateFeedT | null;
   };
+  topics: {
+    loading: boolean;
+    error: Error | null;
+    data: Topics | null;
+  };
+}
+
+export interface Topics {
+  id: number;
+  word: string;
+  expiration: string;
+}
+
+export interface UploadFeed {
+  message: string;
 }
 
 export interface PrivateFeedT {
@@ -171,8 +187,8 @@ export interface UserFeeds {
   user: User;
   topic: string;
   content: string[];
-  likes: string;
-  comments: string;
+  likeNum: string;
+  commentNum: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -226,6 +242,11 @@ const initState: InitState = {
     data: null,
   },
   privateFeeds: {
+    loading: false,
+    error: null,
+    data: null,
+  },
+  topics: {
     loading: false,
     error: null,
     data: null,
@@ -450,6 +471,33 @@ export function reducer(
       return {
         ...state,
         login: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+    case GET_TOPICS_API:
+      return {
+        ...state,
+        topics: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case GET_TOPICS_SUCCESS:
+      return {
+        ...state,
+        topics: {
+          loading: false,
+          error: null,
+          data: action.payload,
+        },
+      };
+    case GET_TOPICS_ERROR:
+      return {
+        ...state,
+        topics: {
           loading: false,
           error: action.payload,
           data: null,

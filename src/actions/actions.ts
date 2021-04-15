@@ -8,15 +8,7 @@ import { Dispatch } from 'redux';
 import { postBringUserInfoT, UUID } from '../api/postBringUserInfo';
 import { postBringFeedT } from '../api/postBringFeeds';
 import { FeedId, postLikeFeedT } from '../api/postLikeFeed';
-
 import { Feed } from '../api/postBringFeeds';
-import {
-  PrivateFeed,
-  UserInfo,
-  Rank,
-  Comment,
-  UserFeed,
-} from '../reducers/initialState';
 import { getRankT } from '../api/getRank';
 import { Content, postUploadFeedT } from '../api/postUploadFeed';
 import { postBringCommentT } from '../api/postBringComment';
@@ -29,9 +21,9 @@ import {
   postSignUpAsync,
   postLikeFeedAsync,
   postUploadFeedsAsync,
-  postBringFeedsAsync,
   postBringUserInfoAsync,
   getRankAsync,
+  postBringFeedsAsync,
 } from '../actions/actionTypes';
 
 export function postLogInThunk(authCode: AuthCode) {
@@ -99,19 +91,6 @@ export function postUploadFeedThunk(content: Content, accessToken: string) {
   };
 }
 
-export function postBringFeedsThunk(feed: Feed) {
-  return async (dispatch: Dispatch) => {
-    const { request, success, failure } = postBringFeedsAsync;
-    dispatch(request());
-    try {
-      const userFeeds = await postBringFeedT(feed);
-      dispatch(success(userFeeds));
-    } catch (e) {
-      dispatch(failure(e));
-    }
-  };
-}
-
 export function postBringUserInfoThunk(userId: UUID, accessToken: string) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = postBringUserInfoAsync;
@@ -120,6 +99,20 @@ export function postBringUserInfoThunk(userId: UUID, accessToken: string) {
     try {
       const userInfo = await postBringUserInfoT(userId, accessToken);
       dispatch(success(userInfo));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
+
+export function postBringFeedsThunk(feed: Feed) {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = postBringFeedsAsync;
+    dispatch(request());
+
+    try {
+      const feeds = await postBringFeedT(feed);
+      dispatch(success(feeds));
     } catch (e) {
       dispatch(failure(e));
     }
@@ -138,40 +131,3 @@ export function getRankThunk() {
     }
   };
 }
-
-export const getUserInfo = (userInfo: UserInfo) => {
-  return {
-    type: GET_USER_INFO,
-    payload: {
-      userInfo,
-    },
-  };
-};
-
-export const getPrivateFeeds = (privateFeeds: PrivateFeed[]) => ({
-  type: GET_PRIVATE_FEEDS,
-  payload: {
-    privateFeeds,
-  },
-});
-
-export const getRank = (rank: Rank[]) => ({
-  type: GET_RANK,
-  payload: {
-    rank,
-  },
-});
-
-export const getComments = (comments: Comment[]) => ({
-  type: GET_COMMENTS,
-  payload: {
-    comments,
-  },
-});
-
-export const getUserFeeds = (userFeeds: UserFeed[]) => ({
-  type: GET_USER_FEEDS,
-  payload: {
-    userFeeds,
-  },
-});
