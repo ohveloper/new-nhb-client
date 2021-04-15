@@ -1,29 +1,48 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { postCreatePoemThunk } from '../actions/poemActions';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { postBringFeedT, Feed } from '../api/postBringFeeds';
+import { postUploadFeedT, Content } from '../api/postUploadFeed';
+import { UserFeeds, Welcome } from '../reducers/reducer';
 import { RootState } from '../reducers';
 import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
 import Homebutton from '../components/Homebutton';
 import Sidebar from '../components/sidebar';
-import { Content } from '../api/postUploadFeed';
 
 export default function MainPage() {
-  const userFeeds = useSelector((state: RootState) => state.reducer);
-  const dispatch = useDispatch();
-  console.log('userFeeds:', userFeeds);
+  const state = useSelector((state: RootState) => state.reducer);
+  const feeds = state.userFeeds.data?.userFeeds;
 
-  const onPoemInsert = (feed: Content) => {
-    dispatch(postCreatePoemThunk(feed));
-    console.log('feed:', feed);
+  const [loading, setLoading] = useState(true);
+  const [poem, setPoem] = useState<Welcome>({ userFeeds: [] });
+  const [error, setError] = useState(null);
+  console.log('state:', state);
+
+  const handlePostUploadFeed = (content: Content) => {
+    postUploadFeedT(content)
+      .then((x) => console.log(x))
+      .catch((e) => console.log(e));
   };
 
+  // TODO: postBringFeedT()파라미터 topicId를 api로 가져오기
+  const topicId = 1;
+  useEffect(() => {
+    postBringFeedT({ topicId: topicId, limit: 5 })
+      .then((feed: any) => {
+        // console.log(feed.data.userFeeds);
+        setPoem({
+          userFeeds: [...feed.data.userFeeds],
+        });
+      })
+      .catch((e) => console.log(e));
+  }, []);
+  console.log('poem:', poem);
   return (
     <>
       <Homebutton />
       <Sidebar />
       <div>[MainPage]</div>
-      <MainpagePoemInput onPoemInsert={onPoemInsert} />
+      <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
       <MainpagePoemList />
     </>
   );
