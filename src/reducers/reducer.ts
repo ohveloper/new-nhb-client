@@ -12,13 +12,6 @@ import {
   POST_UPLOAD_FEED_SUCCESS,
   POST_UPLOAD_FEED_API,
   POST_UPLOAD_FEED_ERROR,
-<<<<<<< HEAD
-  POST_UPLOAD_FEED_SUCCESS,
-  POST_GET_USER_FEEDS_API,
-  POST_GET_USER_FEEDS_SUCCESS,
-  POST_GET_USER_FEEDS_ERROR,
-} from '../actions/actions';
-=======
   POST_BRING_FEEDS_API,
   POST_BRING_FEEDS_SUCCESS,
   POST_BRING_FEEDS_ERROR,
@@ -39,7 +32,6 @@ import {
   POST_BRING_COMMENT_ERROR,
 } from '../actions/actionTypes';
 
->>>>>>> 7444aa31d854804119c0f6e986acfc53be1a337e
 import { UploadFeed } from '../api/postUploadFeed';
 export interface InitState {
   userInfo: {
