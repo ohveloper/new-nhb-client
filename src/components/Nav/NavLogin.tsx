@@ -1,8 +1,25 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 import { RootState } from '../../reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { postLogInThunk } from '../../actions/getInfoActions';
+const handleLogin = () => {
+  return axios
+    .post(
+      'https://localhost:5000/main/login',
+      {
+        authCode: 123,
+      },
+      { headers: { 'Content-Type': 'application/json' }, withCredentials: true }
+    )
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
 
 function NavLogin() {
   const state = useSelector((state: RootState) => state.reducer);
