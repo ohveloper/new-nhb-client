@@ -20,7 +20,12 @@ import {
   UserFeed,
 } from '../reducers/initialState';
 import { getRankT } from '../api/getRank';
-import { BringComment, PrivateFeedT, Welcome } from '../reducers/reducer';
+import {
+  BringComment,
+  PrivateFeedT,
+  Topics,
+  Welcome,
+} from '../reducers/reducer';
 import { UserInfoT } from '../reducers/reducer';
 import { FeedLike } from '../api/postLikeFeed';
 import { Content, postUploadFeedT, UploadFeed } from '../api/postUploadFeed';
@@ -28,7 +33,7 @@ import { postBringCommentT } from '../api/postBringComment';
 import { AuthCode, postSignUpT, SignUp } from '../api/postSignUp';
 import { AccessToken, postLoginT } from '../api/postLogin';
 import { FeedIdLimitUserId, postGetUserFeedsT } from '../api/postGetUserFeeds';
-import { access } from 'node:fs';
+import { getTopicsT } from '../api/getTopics';
 
 export const GET_USER_INFO_API = 'GET_USER_INFO_API' as const;
 export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS' as const;
@@ -60,6 +65,15 @@ export const POST_LOG_IN_ERROR = 'POST_LOG_IN_ERROR' as const;
 export const POST_GET_USER_FEEDS_API = 'POST_GET_USER_FEEDS_API' as const;
 export const POST_GET_USER_FEEDS_SUCCESS = 'POST_GET_USER_FEEDS_SUCCESS' as const;
 export const POST_GET_USER_FEEDS_ERROR = 'POST_GET_USER_FEEDS_ERROR' as const;
+export const GET_TOPICS_API = 'GET_TOPICS_API' as const;
+export const GET_TOPICS_SUCCESS = 'GET_TOPICS_SUCCESS' as const;
+export const GET_TOPICS_ERROR = 'GET_TOPICS_ERROR' as const;
+
+export const getTopicsAsync = createAsyncAction(
+  GET_TOPICS_API,
+  GET_TOPICS_SUCCESS,
+  GET_TOPICS_ERROR
+)<undefined, Topics, AxiosError>();
 
 export const postGetUserFeedsAsync = createAsyncAction(
   POST_GET_USER_FEEDS_API,
@@ -121,6 +135,18 @@ export const postLikeFeedAsync = createAsyncAction(
   POST_LIKE_FEED_ERROR
 )<undefined, FeedLike, AxiosError>();
 
+export function getTopicsThunk() {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = getTopicsAsync;
+    dispatch(request());
+    try {
+      const topics = await getTopicsT();
+      dispatch(success(topics));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
 export function postLogInThunk(authCode: AuthCode) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = postLogInAsync;

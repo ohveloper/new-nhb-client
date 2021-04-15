@@ -9,7 +9,7 @@ export default function PoemButtonGroup() {
     <>
       {data?.userFeeds.map((feed) => {
         <div key={feed.feedId}>
-          [likes] {feed.likes} &nbsp; [comments] {feed.comments} &nbsp; [share]
+          {/* [likes] {feed.likes} &nbsp; [comments] {feed.comments} &nbsp; [share] */}
         </div>;
       })}
     </>

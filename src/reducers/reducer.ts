@@ -27,6 +27,9 @@ import {
   POST_GET_USER_FEEDS_API,
   POST_GET_USER_FEEDS_SUCCESS,
   POST_GET_USER_FEEDS_ERROR,
+  GET_TOPICS_API,
+  GET_TOPICS_SUCCESS,
+  GET_TOPICS_ERROR,
 } from '../actions/actions';
 import { UploadFeed } from '../api/postUploadFeed';
 export interface InitState {
@@ -76,6 +79,17 @@ export interface InitState {
     error: Error | null;
     data: PrivateFeedT | null;
   };
+  topics: {
+    loading: boolean;
+    error: Error | null;
+    data: Topics | null;
+  };
+}
+
+export interface Topics {
+  id: number;
+  word: string;
+  expiration: string;
 }
 
 export interface PrivateFeedT {
@@ -167,8 +181,8 @@ export interface UserFeeds {
   user: User;
   topic: string;
   content: string[];
-  likes: string;
-  comments: string;
+  likeNum: string;
+  commentNum: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -222,6 +236,11 @@ const initState: InitState = {
     data: null,
   },
   privateFeeds: {
+    loading: false,
+    error: null,
+    data: null,
+  },
+  topics: {
     loading: false,
     error: null,
     data: null,
@@ -473,6 +492,33 @@ export function reducer(
       return {
         ...state,
         privateFeeds: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+    case GET_TOPICS_API:
+      return {
+        ...state,
+        topics: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case GET_TOPICS_SUCCESS:
+      return {
+        ...state,
+        topics: {
+          loading: false,
+          error: null,
+          data: action.payload,
+        },
+      };
+    case GET_TOPICS_ERROR:
+      return {
+        ...state,
+        topics: {
           loading: false,
           error: action.payload,
           data: null,
