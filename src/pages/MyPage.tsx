@@ -20,9 +20,7 @@ export default function MyPage() {
       <div>
         <MyAchievementContainer />
       </div>
-      <div>
-        <MyPhotoNickName />
-      </div>
+      <div>{/* <MyPhotoNickName /> */}</div>
     </>
   );
 }

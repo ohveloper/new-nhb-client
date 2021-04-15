@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { postGetUserFeedsThunk } from '../../actions/getInfoActions';
 import { RootState } from '../../reducers';
 import MyWork from './MyWork';
 
