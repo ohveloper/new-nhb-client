@@ -1,22 +1,35 @@
 import { RootState } from '../../reducers';
 import { useSelector } from 'react-redux';
 
-export default function PoemView() {
+type poemViewProps = {
+  poem: any;
+};
+
+export default function PoemView({ poem }: poemViewProps) {
   const state = useSelector((state: RootState) => state.reducer);
-  const { data } = state.userFeeds;
+  const userFeeds = state.userFeeds.data?.data.userFeeds;
+  console.log('poemView:', poem);
+
   return (
     <>
-      {data?.data.userFeeds.map((feed) => {
-        feed.content.map((line, idx) => {
-          const head = line.slice(0, 1);
-          const tail = line.slice(1);
-          const key = String(idx) + String(feed.feedId);
-          return (
-            <div key={key}>
-              {head} : {tail}
+      {poem.data.userFeeds.map((feed: any) => {
+        return (
+          <div key={feed.feedId}>
+            <div>{feed.feedId}</div>
+            <div>
+              {feed.content.map((word: string, idx: number) => {
+                const head = word.slice(0, 1);
+                // const tail = word.slice(1);
+                const key = String(idx) + String(feed.feedId);
+                return (
+                  <div key={key}>
+                    [{head}]{word}
+                  </div>
+                );
+              })}
             </div>
-          );
-        });
+          </div>
+        );
       })}
     </>
   );
