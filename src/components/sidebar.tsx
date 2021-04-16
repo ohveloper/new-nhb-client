@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../reducers';
 import SlidingPanel from 'react-sliding-side-panel';

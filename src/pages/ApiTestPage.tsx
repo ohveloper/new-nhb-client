@@ -23,7 +23,6 @@ import { getLogoutT } from '../api/getLogout';
 import Homebutton from '../components/Homebutton';
 import Sidebar from '../components/sidebar';
 
-
 export interface FeedId {
   feedId: number;
 }
@@ -81,7 +80,6 @@ export default function ApiTestPage() {
   };
 
   const postLoginHandler = () => {
-
     dispatch(postLogInThunk({ authCode: '956idytl8j' }));
   };
 
