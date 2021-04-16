@@ -8,13 +8,13 @@ export default function MainpagePoemContainer() {
   const state = useSelector((state: RootState) => state.reducer);
   const { data } = state.userFeeds;
 
-  if (data?.userFeeds.length === 0) {
+  if (data?.data.userFeeds.length === 0) {
     return <div>오늘 첫 글의 주인공이 되어 볼까요?😉</div>;
   }
   return (
     <>
       <h2>PoemContainer</h2>
-      {data?.userFeeds.map((feed, idx) => {
+      {data?.data.userFeeds.map((feed, idx) => {
         const key = String(feed.feedId) + String(idx);
         return (
           <div key={key}>

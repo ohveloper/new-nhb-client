@@ -6,10 +6,12 @@ import Sidebar from '../components/sidebar';
 import { RootState } from '../reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  getAllTagsThunk,
   postBringUserInfoThunk,
-  postBringFeedsThunk,
+  postGetFrivateFeedsThunk,
 } from '../actions/actions';
 import { useEffect } from 'react';
+import MyIntroduction from '../components/myPage/MyIntroduction';
 
 export default function MyPage() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -20,11 +22,19 @@ export default function MyPage() {
       const accessToken = _accessToken.concat(state.accessToken);
       dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
 
-      dispatch(postBringFeedsThunk({ topicId: 1, limit: 10 }));
+      dispatch(
+        postGetFrivateFeedsThunk({
+          topicId: 1,
+          limit: 10,
+          userId: 2,
+          isMaxLike: null,
+          feedId: null,
+        })
+      );
+      dispatch(getAllTagsThunk());
     }
   }, []);
   console.log(state);
-
   return (
     <>
       <Homebutton />
@@ -43,6 +53,11 @@ export default function MyPage() {
         {state.userInfo.loading && 'now loading...'}
         {state.userInfo.error && 'sorry now Error'}
         {state.userInfo.data && <MyPhotoNickName />}
+      </div>
+      <div>
+        {state.userInfo.loading && 'now loading...'}
+        {state.userInfo.error && 'sorry now Error'}
+        {state.userInfo.data && <MyIntroduction />}
       </div>
     </>
   );

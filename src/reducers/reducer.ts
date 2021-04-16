@@ -27,12 +27,18 @@ import {
   GET_TOPICS_API,
   GET_TOPICS_SUCCESS,
   GET_TOPICS_ERROR,
+  POST_GET_PRIVATEFEEDS_API,
+  POST_GET_PRIVATEFEEDS_SUCCESS,
+  POST_GET_PRIVATEFEEDS_ERROR,
+  GET_ALL_TAGS_ERROR,
+  GET_ALL_TAGS_SUCCESS,
+  GET_ALL_TAGS_API,
 } from '../actions/actionTypes';
 export interface InitState {
   userInfo: {
     loading: boolean;
     error: Error | null;
-    data: UserInfoT | null;
+    data: UserInfo | null;
   };
   userFeeds: {
     loading: boolean;
@@ -73,13 +79,30 @@ export interface InitState {
   privateFeeds: {
     loading: boolean;
     error: Error | null;
-    data: PrivateFeedT | null;
+    data: PrivateFeeds | null;
   };
   topics: {
     loading: boolean;
     error: Error | null;
     data: Topics | null;
   };
+  tags: {
+    loading: boolean;
+    error: Error | null;
+    data: AllTags | null;
+  };
+}
+
+export interface AllTags {
+  data: {
+    tags: AllTag[];
+  };
+}
+export interface AllTag {
+  id: number;
+  tagName: string;
+  description: string;
+  tagUrl: string | null;
 }
 
 export interface Topics {
@@ -92,13 +115,18 @@ export interface UploadFeed {
   message: string;
 }
 
+export interface PrivateFeeds {
+  data: {
+    userFeeds: PrivateFeedT[];
+  };
+}
 export interface PrivateFeedT {
   feedId: number;
   user: PrivateFeedUserT;
   topic: string;
   content: string[];
-  likes: number;
-  comments: number;
+  likeNum: number;
+  commentNum: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -106,7 +134,7 @@ export interface PrivateFeedT {
 export interface PrivateFeedUserT {
   userId: number;
   nickName: string;
-  tag: string;
+  tag: number;
 }
 
 export interface AccessToken {
@@ -147,6 +175,13 @@ export interface Rank {
 export interface LikeFeed {
   message: string;
 }
+
+export interface UserInfo {
+  data: {
+    userInfo: UserInfoT;
+  };
+}
+
 export interface UserInfoT {
   userId: number;
   nickName: string;
@@ -154,15 +189,8 @@ export interface UserInfoT {
   tags: Tags[];
   avatarUrl: string;
   userLikeNum: number;
-  myActivity: MyActivity;
   createdAt: string;
   updatedAt: string;
-}
-
-export interface MyActivity {
-  likedFeed: number[];
-  commentFeed: number[];
-  likeCommnet: number[];
 }
 
 export interface Tags {
@@ -173,11 +201,13 @@ export interface Tags {
 }
 
 export interface Welcome {
-  userFeeds: UserFeeds[];
+  data: {
+    userFeeds: UserFeeds[];
+  };
 }
 
 export interface UserFeeds {
-  feedId: string;
+  feedId: number;
   user: User;
   topic: string;
   content: string[];
@@ -241,6 +271,11 @@ const initState: InitState = {
     data: null,
   },
   topics: {
+    loading: false,
+    error: null,
+    data: null,
+  },
+  tags: {
     loading: false,
     error: null,
     data: null,
@@ -492,6 +527,60 @@ export function reducer(
       return {
         ...state,
         topics: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+    case GET_ALL_TAGS_API:
+      return {
+        ...state,
+        tags: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case GET_ALL_TAGS_SUCCESS:
+      return {
+        ...state,
+        tags: {
+          loading: false,
+          error: null,
+          data: action.payload,
+        },
+      };
+    case GET_ALL_TAGS_ERROR:
+      return {
+        ...state,
+        tags: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+    case POST_GET_PRIVATEFEEDS_API:
+      return {
+        ...state,
+        privateFeeds: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case POST_GET_PRIVATEFEEDS_SUCCESS:
+      return {
+        ...state,
+        privateFeeds: {
+          loading: false,
+          error: null,
+          data: action.payload,
+        },
+      };
+    case POST_GET_PRIVATEFEEDS_ERROR:
+      return {
+        ...state,
+        privateFeeds: {
           loading: false,
           error: action.payload,
           data: null,
