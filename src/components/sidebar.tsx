@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../reducers';
 import SlidingPanel from 'react-sliding-side-panel';
 import 'react-sliding-side-panel/lib/index.css';
 import NavMyPage from './Nav/NavMypage';
@@ -10,32 +12,21 @@ import dotenv from 'dotenv';
 
 dotenv.config;
 
-type sidebarProps = {
-  isLoggedIn: boolean;
-};
-
-function NavLoginSection({ isLoggedIn }: sidebarProps): JSX.Element {
-  if (isLoggedIn) {
-    return <NavMyPage />;
-  }
-  return <NavLogin />;
-}
-
-function NavLogSection({ isLoggedIn }: sidebarProps): JSX.Element {
-  if (isLoggedIn) {
-    return <MyLog />;
-  }
-  return <Induce />;
-}
+// type sidebarProps = {
+//   isLoggedIn: boolean;
+// };
 
 const Sidebar = () => {
-  const [openPanel, setOpenPanel] = useState(false);
-  const [isLoggedIn, setLogin] = useState(false);
+  const state = useSelector((state: RootState) => state.reducer);
+  const accessToken = state.accessToken;
+  let openPanel = state.openPanel;
+
+  [openPanel, setOpenPanel] = useState(false);
+  // onClick={() =>
   return (
     <div>
       <div>
-        <p onClick={() => setOpenPanel(true)}>NHB 파헤치기</p>
-        <p onClick={() => setLogin(true)}>Login test</p>
+        <p>NHB 파헤치기</p>
       </div>
       <SlidingPanel
         type={'right'}
@@ -44,13 +35,11 @@ const Sidebar = () => {
         noBackdrop={true}
       >
         <div>
-          <NavLoginSection isLoggedIn={isLoggedIn} />
+          {accessToken ? <NavMyPage /> : <NavLogin />}
           <br />
-          <NavLogSection isLoggedIn={isLoggedIn} />
+          {accessToken ? <MyLog /> : <Induce />}
           <br />
-          <div onClick={() => setOpenPanel(false)}>
-            Click here to Close Sidebar
-          </div>
+          <div>Click here to Close Sidebar </div>
         </div>
       </SlidingPanel>
       <Link to="/mypage">Mypage</Link>

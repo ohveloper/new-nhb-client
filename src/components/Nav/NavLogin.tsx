@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
+import { postSendAuthEmailT } from '../../api/postSendAuthEmail';
 
 function NavLogin() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -8,12 +9,12 @@ function NavLogin() {
 
   const [inputValue, setInputValue] = useState('');
 
-  const loginHandler = () => {
-    // await postSendAuthEmailT({ email: inputValue }).then((data) => {
-    //   if (data.message === '회원가입') {
-    //     alert('아직 회원이 아니시군요 회원가입 부탁드립니다 : )');
-    //   }
-    // });
+  const loginHandler = async () => {
+    await postSendAuthEmailT({ email: inputValue }).then((data) => {
+      if (data.message === '회원가입') {
+        setInputValue('회원가입 링크가 이메일로 전송되었습니다.');
+      }
+    });
   };
 
   return (

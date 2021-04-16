@@ -86,6 +86,7 @@ export interface InitState {
     error: Error | null;
     data: Topics | null;
   };
+  openPanel: boolean;
 }
 
 export interface Topics {
@@ -251,6 +252,7 @@ const initState: InitState = {
     error: null,
     data: null,
   },
+  openPanel: false,
 };
 
 export function reducer(
