@@ -1,28 +1,53 @@
-import { PrivateFeed } from '../../reducers/initialState';
+import { RootState } from '../../reducers';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-type privateFeedProps = {
-  privateFeed: PrivateFeed;
-};
+interface UserFeeds {
+  userFeeds: Feeds[];
+}
+interface Feeds {
+  feedId: number;
+  user: User;
+  topic: string;
+  content: string[];
+  likeNum: string;
+  commentNum: number;
+  createdAt: string;
+  updatedAt: string;
+}
 
-export default function MyWork({ privateFeed }: privateFeedProps) {
-  const topics = privateFeed.topic.split('');
-  const { content } = privateFeed;
+export interface User {
+  userId: string;
+  nickName: string;
+  tag: string;
+}
+
+export default function MyWork() {
+  const state = useSelector((state: RootState) => state.reducer);
+  const userFeeds = state.privateFeeds.data?.data.userFeeds.slice(0, 3);
+
   return (
     <>
       <h1>MyWork</h1>
-      //! 유저네임 필요한가??
-      <div>유저 네임 : {privateFeed.user.nickName}</div>
-      //! 필요한가?? 뱃지이름이??
-      <div>착용중인 뱃지 이름 : {privateFeed.user.tag}</div>
       <div>
-        {content.map((x, idx) => (
-          <p key={idx}>
-            {topics[idx]}: {x}
-          </p>
-        ))}
+        {userFeeds?.length &&
+          userFeeds?.map((x, idx) => (
+            <div>
+              <div key={idx}>
+                {x.content.map((x) => {
+                  const head = x.split('')[0];
+                  return (
+                    <div>
+                      {head}: {x}
+                    </div>
+                  );
+                })}
+              </div>
+              <div>댓글 수 : {x.commentNum}</div>
+              <div>좋아요 수 : {x.likeNum}</div>
+            </div>
+          ))}
       </div>
-      <div>댓글 수 : {privateFeed.comments}</div>
-      <div>좋아요 수 : {privateFeed.likes}</div>
     </>
   );
 }

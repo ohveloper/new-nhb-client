@@ -11,7 +11,7 @@ export default function PoemButtonGroup() {
         <div key={feed.feedId}>
           [likes] {feed.likes} &nbsp; [comments] {feed.comments} &nbsp; [share]
         </div>;
-      })}
+      })} 
     </>
   );
 }

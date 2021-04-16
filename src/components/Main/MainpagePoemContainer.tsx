@@ -15,6 +15,7 @@ export default function MainpagePoemContainer({
   const userFeeds = state.userFeeds.data?.data.userFeeds;
 
   if (userFeeds?.length === 0) {
+
     return <div>오늘 첫 글의 주인공이 되어 볼까요?😉</div>;
   }
   return (

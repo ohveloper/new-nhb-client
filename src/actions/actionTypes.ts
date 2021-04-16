@@ -1,8 +1,13 @@
 import { createAsyncAction } from 'typesafe-actions';
 import { AxiosError } from 'axios';
-import { Rank } from '../reducers/reducer';
+import {
+  AllTags,
+  PrivateFeeds,
+  Rank,
+  Topics,
+  UserInfo,
+} from '../reducers/reducer';
 import { BringComment, Welcome } from '../reducers/reducer';
-import { UserInfoT } from '../reducers/reducer';
 import { FeedLike } from '../api/postLikeFeed';
 import { UploadFeed } from '../api/postUploadFeed';
 import { SignUp } from '../api/postSignUp';
@@ -89,6 +94,10 @@ export const GET_USER_COMMENT_LIKE_LOG_API = 'GET_USER_COMMENT_LIKE_LOG_API' as 
 export const GET_USER_COMMENT_LIKE_LOG_SUCCESS = 'GET_USER_COMMENT_LIKE_LOG_SUCCESS' as const;
 export const GET_USER_COMMENT_LIKE_LOG_ERROR = 'GET_USER_COMMENT_LIKE_LOG_ERROR' as const;
 
+//? get all tags
+export const GET_ALL_TAGS_API = 'GET_ALL_TAGS_API' as const;
+export const GET_ALL_TAGS_SUCCESS = 'GET_ALL_TAGS_SUCCESS' as const;
+export const GET_ALL_TAGS_ERROR = 'GET_ALL_TAGS_ERROR' as const;
 //? =============================FEED============================= //
 //? upload feed
 export const POST_UPLOAD_FEED_API = 'POST_UPLOAD_FEED_API' as const;
@@ -147,10 +156,32 @@ export const PATCH_EDIT_COMMENTS_SUCCESS = 'PATCH_EDIT_COMMENTS_SUCCESS' as cons
 export const PATCH_EDIT_COMMENTS_ERROR = 'PATCH_EDIT_COMMENTS_ERROR' as const;
 
 //? get topics
-// TODO: api만들기
 export const GET_TOPICS_API = 'GET_TOPICS_API' as const;
 export const GET_TOPICS_SUCCESS = 'GET_TOPICS_SUCCESS' as const;
 export const GET_TOPICS_ERROR = 'GET_TOPICS_ERROR' as const;
+
+//? post get privateFeeds
+export const POST_GET_PRIVATEFEEDS_API = 'POST_GET_PRIVATEFEEDS_API' as const;
+export const POST_GET_PRIVATEFEEDS_SUCCESS = 'POST_GET_PRIVATEFEEDS_SUCCESS' as const;
+export const POST_GET_PRIVATEFEEDS_ERROR = 'POST_GET_PRIVATEFEEDS_ERROR' as const;
+
+export const postGetPrivateFeedsAsync = createAsyncAction(
+  POST_GET_PRIVATEFEEDS_API,
+  POST_GET_PRIVATEFEEDS_SUCCESS,
+  POST_GET_PRIVATEFEEDS_ERROR
+)<undefined, PrivateFeeds, AxiosError>();
+
+export const getTopicsAsync = createAsyncAction(
+  GET_TOPICS_API,
+  GET_TOPICS_SUCCESS,
+  GET_TOPICS_ERROR
+)<undefined, Topics, AxiosError>();
+
+export const getAllTagsAsync = createAsyncAction(
+  GET_ALL_TAGS_API,
+  GET_ALL_TAGS_SUCCESS,
+  GET_ALL_TAGS_ERROR
+)<undefined, AllTags, AxiosError>();
 
 export const postLogInAsync = createAsyncAction(
   POST_LOG_IN_API,
@@ -186,7 +217,7 @@ export const postBringUserInfoAsync = createAsyncAction(
   POST_BRING_USER_INFO_API,
   POST_BRING_USER_INFO_SUCCESS,
   POST_BRING_USER_INFO_ERROR
-)<undefined, UserInfoT, AxiosError>();
+)<undefined, UserInfo, AxiosError>();
 
 export const getRankAsync = createAsyncAction(
   GET_RANK_API,

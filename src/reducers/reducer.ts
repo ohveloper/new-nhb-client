@@ -15,12 +15,6 @@ import {
   POST_BRING_FEEDS_API,
   POST_BRING_FEEDS_SUCCESS,
   POST_BRING_FEEDS_ERROR,
-  PATCH_EDIT_FEED_API,
-  PATCH_EDIT_FEED_ERROR,
-  PATCH_EDIT_FEED_SUCCESS,
-  DELETE_REMOVE_FEED_API,
-  DELETE_REMOVE_FEED_SUCCESS,
-  DELETE_REMOVE_FEED_ERROR,
   GET_RANK_API,
   GET_RANK_ERROR,
   GET_RANK_SUCCESS,
@@ -30,14 +24,21 @@ import {
   POST_BRING_COMMENT_API,
   POST_BRING_COMMENT_SUCCESS,
   POST_BRING_COMMENT_ERROR,
+  GET_TOPICS_API,
+  GET_TOPICS_SUCCESS,
+  GET_TOPICS_ERROR,
+  POST_GET_PRIVATEFEEDS_API,
+  POST_GET_PRIVATEFEEDS_SUCCESS,
+  POST_GET_PRIVATEFEEDS_ERROR,
+  GET_ALL_TAGS_ERROR,
+  GET_ALL_TAGS_SUCCESS,
+  GET_ALL_TAGS_API,
 } from '../actions/actionTypes';
-
-import { UploadFeed } from '../api/postUploadFeed';
 export interface InitState {
   userInfo: {
     loading: boolean;
     error: Error | null;
-    data: UserInfoT | null;
+    data: UserInfo | null;
   };
   userFeeds: {
     loading: boolean;
@@ -78,17 +79,55 @@ export interface InitState {
   privateFeeds: {
     loading: boolean;
     error: Error | null;
-    data: PrivateFeedT | null;
+    data: PrivateFeeds | null;
+  };
+  topics: {
+    loading: boolean;
+    error: Error | null;
+    data: Topics | null;
+  };
+  openPanel: boolean;
+  tags: {
+    loading: boolean;
+    error: Error | null;
+    data: AllTags | null;
   };
 }
 
+export interface AllTags {
+  data: {
+    tags: AllTag[];
+  };
+}
+export interface AllTag {
+  id: number;
+  tagName: string;
+  description: string;
+  tagUrl: string | null;
+}
+
+export interface Topics {
+  id: number;
+  word: string;
+  expiration: string;
+}
+
+export interface UploadFeed {
+  message: string;
+}
+
+export interface PrivateFeeds {
+  data: {
+    userFeeds: PrivateFeedT[];
+  };
+}
 export interface PrivateFeedT {
   feedId: number;
   user: PrivateFeedUserT;
   topic: string;
   content: string[];
-  likes: number;
-  comments: number;
+  likeNum: number;
+  commentNum: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -96,7 +135,7 @@ export interface PrivateFeedT {
 export interface PrivateFeedUserT {
   userId: number;
   nickName: string;
-  tag: string;
+  tag: number;
 }
 
 export interface AccessToken {
@@ -137,6 +176,13 @@ export interface Rank {
 export interface LikeFeed {
   message: string;
 }
+
+export interface UserInfo {
+  data: {
+    userInfo: UserInfoT;
+  };
+}
+
 export interface UserInfoT {
   userId: number;
   nickName: string;
@@ -144,15 +190,8 @@ export interface UserInfoT {
   tags: Tags[];
   avatarUrl: string;
   userLikeNum: number;
-  myActivity: MyActivity;
   createdAt: string;
   updatedAt: string;
-}
-
-export interface MyActivity {
-  likedFeed: number[];
-  commentFeed: number[];
-  likeCommnet: number[];
 }
 
 export interface Tags {
@@ -169,12 +208,12 @@ export interface Welcome {
 }
 
 export interface UserFeeds {
-  feedId: string;
+  feedId: number;
   user: User;
   topic: string;
   content: string[];
-  likes: string;
-  comments: string;
+  likeNum: string;
+  commentNum: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -228,6 +267,17 @@ const initState: InitState = {
     data: null,
   },
   privateFeeds: {
+    loading: false,
+    error: null,
+    data: null,
+  },
+  topics: {
+    loading: false,
+    error: null,
+    data: null,
+  },
+  openPanel: false,
+  tags: {
     loading: false,
     error: null,
     data: null,
@@ -452,6 +502,87 @@ export function reducer(
       return {
         ...state,
         login: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+    case GET_TOPICS_API:
+      return {
+        ...state,
+        topics: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case GET_TOPICS_SUCCESS:
+      return {
+        ...state,
+        topics: {
+          loading: false,
+          error: null,
+          data: action.payload,
+        },
+      };
+    case GET_TOPICS_ERROR:
+      return {
+        ...state,
+        topics: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+    case GET_ALL_TAGS_API:
+      return {
+        ...state,
+        tags: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case GET_ALL_TAGS_SUCCESS:
+      return {
+        ...state,
+        tags: {
+          loading: false,
+          error: null,
+          data: action.payload,
+        },
+      };
+    case GET_ALL_TAGS_ERROR:
+      return {
+        ...state,
+        tags: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+    case POST_GET_PRIVATEFEEDS_API:
+      return {
+        ...state,
+        privateFeeds: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case POST_GET_PRIVATEFEEDS_SUCCESS:
+      return {
+        ...state,
+        privateFeeds: {
+          loading: false,
+          error: null,
+          data: action.payload,
+        },
+      };
+    case POST_GET_PRIVATEFEEDS_ERROR:
+      return {
+        ...state,
+        privateFeeds: {
           loading: false,
           error: action.payload,
           data: null,

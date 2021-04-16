@@ -17,6 +17,7 @@ export default function MainPage() {
 
   const [loading, setLoading] = useState(true);
   const [poem, setPoem] = useState<Welcome>({ data: { userFeeds: [] } });
+
   const [error, setError] = useState(null);
   console.log('state:', state);
 
