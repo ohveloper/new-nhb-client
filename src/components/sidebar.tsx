@@ -19,14 +19,13 @@ dotenv.config;
 const Sidebar = () => {
   const state = useSelector((state: RootState) => state.reducer);
   const accessToken = state.accessToken;
-  let openPanel = state.openPanel;
 
-  [openPanel, setOpenPanel] = useState(false);
+  const [openPanel, setOpenPanel] = useState(false);
   // onClick={() =>
   return (
     <div>
       <div>
-        <p>NHB 파헤치기</p>
+        <p onClick={() => setOpenPanel(true)}>NHB 파헤치기</p>
       </div>
       <SlidingPanel
         type={'right'}
@@ -39,7 +38,9 @@ const Sidebar = () => {
           <br />
           {accessToken ? <MyLog /> : <Induce />}
           <br />
-          <div>Click here to Close Sidebar </div>
+          <div onClick={() => setOpenPanel(false)}>
+            Click here to Close Sidebar
+          </div>
         </div>
       </SlidingPanel>
       <Link to="/mypage">Mypage</Link>
