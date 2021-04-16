@@ -4,18 +4,34 @@ import MyWorkContainer from '../components/myPage/MyWorkContainer';
 import Homebutton from '../components/Homebutton';
 import Sidebar from '../components/sidebar';
 import { RootState } from '../reducers';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  postBringUserInfoThunk,
+  postBringFeedsThunk,
+} from '../actions/actions';
+import { useEffect } from 'react';
 
 export default function MyPage() {
   const state = useSelector((state: RootState) => state.reducer);
-  if (state.accessToken) console.log(state.accessToken);
-  console.log(state.accessToken);
+  const dispatch = useDispatch();
+  const _accessToken = '';
+  useEffect(() => {
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
+
+      dispatch(postBringFeedsThunk({ topicId: 1, limit: 10 }));
+    }
+  }, []);
+  console.log(state.userInfo.data);
   return (
     <>
       <Homebutton />
       <Sidebar />
       <div>
-        <MyWorkContainer />
+        {state.userInfo.loading && 'now loading...'}
+        {state.userInfo.error && 'sorry now Error'}
+        {state.userInfo.data && <MyWorkContainer />}
       </div>
       <div>
         <MyAchievementContainer />

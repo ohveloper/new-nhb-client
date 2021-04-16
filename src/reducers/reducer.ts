@@ -1,34 +1,39 @@
-import { Actions } from '../actions';
+import { Actions } from '../actions/index';
 import {
-  GET_RANK_API,
-  GET_RANK_ERROR,
-  GET_RANK_SUCCESS,
-  GET_USER_INFO_API,
-  GET_USER_INFO_ERROR,
-  GET_USER_INFO_SUCCESS,
-  POST_BRING_COMMENT_API,
-  POST_BRING_COMMENT_ERROR,
-  POST_BRING_COMMENT_SUCCESS,
-  POST_BRING_FEEDS_API,
-  POST_BRING_FEEDS_ERROR,
-  POST_BRING_FEEDS_SUCCESS,
-  POST_LIKE_FEED_API,
-  POST_LIKE_FEED_ERROR,
-  POST_LIKE_FEED_SUCCESS,
   POST_LOG_IN_API,
-  POST_LOG_IN_SUCCESS,
   POST_LOG_IN_ERROR,
+  POST_LOG_IN_SUCCESS,
   POST_SIGN_UP_API,
   POST_SIGN_UP_ERROR,
   POST_SIGN_UP_SUCCESS,
+  POST_BRING_USER_INFO_API,
+  POST_BRING_USER_INFO_ERROR,
+  POST_BRING_USER_INFO_SUCCESS,
+  POST_UPLOAD_FEED_SUCCESS,
   POST_UPLOAD_FEED_API,
   POST_UPLOAD_FEED_ERROR,
-  POST_UPLOAD_FEED_SUCCESS,
-  POST_GET_USER_FEEDS_API,
-  POST_GET_USER_FEEDS_SUCCESS,
-  POST_GET_USER_FEEDS_ERROR,
-} from '../actions/getInfoActions';
-import { UploadFeed } from '../api/postUploadFeed';
+  POST_BRING_FEEDS_API,
+  POST_BRING_FEEDS_SUCCESS,
+  POST_BRING_FEEDS_ERROR,
+  PATCH_EDIT_FEED_API,
+  PATCH_EDIT_FEED_ERROR,
+  PATCH_EDIT_FEED_SUCCESS,
+  DELETE_REMOVE_FEED_API,
+  DELETE_REMOVE_FEED_SUCCESS,
+  DELETE_REMOVE_FEED_ERROR,
+  GET_RANK_API,
+  GET_RANK_ERROR,
+  GET_RANK_SUCCESS,
+  POST_LIKE_FEED_API,
+  POST_LIKE_FEED_ERROR,
+  POST_LIKE_FEED_SUCCESS,
+  POST_BRING_COMMENT_API,
+  POST_BRING_COMMENT_SUCCESS,
+  POST_BRING_COMMENT_ERROR,
+  GET_TOPICS_API,
+  GET_TOPICS_SUCCESS,
+  GET_TOPICS_ERROR,
+} from '../actions/actionTypes';
 export interface InitState {
   userInfo: {
     loading: boolean;
@@ -76,6 +81,21 @@ export interface InitState {
     error: Error | null;
     data: PrivateFeedT | null;
   };
+  topics: {
+    loading: boolean;
+    error: Error | null;
+    data: Topics | null;
+  };
+}
+
+export interface Topics {
+  id: number;
+  word: string;
+  expiration: string;
+}
+
+export interface UploadFeed {
+  message: string;
 }
 
 export interface PrivateFeedT {
@@ -167,8 +187,8 @@ export interface UserFeeds {
   user: User;
   topic: string;
   content: string[];
-  likes: string;
-  comments: string;
+  likeNum: string;
+  commentNum: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -226,6 +246,11 @@ const initState: InitState = {
     error: null,
     data: null,
   },
+  topics: {
+    loading: false,
+    error: null,
+    data: null,
+  },
 };
 
 export function reducer(
@@ -233,7 +258,7 @@ export function reducer(
   action: Actions
 ): InitState {
   switch (action.type) {
-    case GET_USER_INFO_API:
+    case POST_BRING_USER_INFO_API:
       return {
         ...state,
         userInfo: {
@@ -242,7 +267,7 @@ export function reducer(
           data: null,
         },
       };
-    case GET_USER_INFO_SUCCESS:
+    case POST_BRING_USER_INFO_SUCCESS:
       return {
         ...state,
         userInfo: {
@@ -251,7 +276,7 @@ export function reducer(
           data: action.payload,
         },
       };
-    case GET_USER_INFO_ERROR:
+    case POST_BRING_USER_INFO_ERROR:
       return {
         ...state,
         userInfo: {
@@ -451,28 +476,28 @@ export function reducer(
           data: null,
         },
       };
-    case POST_GET_USER_FEEDS_API:
+    case GET_TOPICS_API:
       return {
         ...state,
-        privateFeeds: {
+        topics: {
           loading: true,
           error: null,
           data: null,
         },
       };
-    case POST_GET_USER_FEEDS_SUCCESS:
+    case GET_TOPICS_SUCCESS:
       return {
         ...state,
-        privateFeeds: {
+        topics: {
           loading: false,
           error: null,
           data: action.payload,
         },
       };
-    case POST_GET_USER_FEEDS_ERROR:
+    case GET_TOPICS_ERROR:
       return {
         ...state,
-        privateFeeds: {
+        topics: {
           loading: false,
           error: action.payload,
           data: null,

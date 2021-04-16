@@ -37,7 +37,12 @@ const Sidebar = () => {
         <p onClick={() => setOpenPanel(true)}>NHB 파헤치기</p>
         <p onClick={() => setLogin(true)}>Login test</p>
       </div>
-      <SlidingPanel type={'right'} isOpen={openPanel} size={30}>
+      <SlidingPanel
+        type={'right'}
+        isOpen={openPanel}
+        size={30}
+        noBackdrop={true}
+      >
         <div>
           <NavLoginSection isLoggedIn={isLoggedIn} />
           <br />

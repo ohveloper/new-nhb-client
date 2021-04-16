@@ -3,15 +3,15 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 
 export default function MyPhotoNickName() {
-  const state = useSelector((state: RootState) => state.getInfoReducer);
-  const { nickName } = state.userInfo;
+  const state = useSelector((state: RootState) => state.reducer);
+
   return (
     <div>
       <h1>MyPhotoNickName</h1>
       <div>
         <img src={Sample_User_Icon} alt="" />
       </div>
-      <div>{nickName}</div>
+      <div>{state.userInfo.data && state.userInfo.data.nickName}</div>
       <button>수정하기</button>
     </div>
   );

@@ -9,7 +9,7 @@ import {
   postBringCommentThunk,
   postSignUpThunk,
   postLogInThunk,
-} from '../actions/getInfoActions';
+} from '../actions/actions';
 import { delRemoveFeedT } from '../api/delRemoveFeed';
 import { postLikeCommentT } from '../api/postLikeComment';
 import { postUploadCommentT } from '../api/postUploadComment';
@@ -19,6 +19,8 @@ import { postSendAuthEmailT } from '../api/postSendAuthEmail';
 import { patchEditUserInfoT } from '../api/patchEditUserInfo';
 import { patchEditTagsT } from '../api/patchEditTag';
 import { delUserWithdrawalT } from '../api/delUserWithdrawal';
+import Homebutton from '../components/Homebutton';
+import Sidebar from '../components/sidebar';
 
 export interface FeedId {
   feedId: number;
@@ -73,11 +75,11 @@ export default function ApiTestPage() {
   };
 
   const postSignUpHandler = () => {
-    dispatch(postSignUpThunk({ authCode: 'a7u8ou6rmu8' }));
+    dispatch(postSignUpThunk({ authCode: 'pc8x368aaqp' }));
   };
 
   const postLoginHandler = () => {
-    dispatch(postLogInThunk({ authCode: 'krqte62ce38' }));
+    dispatch(postLogInThunk({ authCode: 'bbwdkzenrlv' }));
   };
 
   const delRemoveFeedHandler = () => {
@@ -131,7 +133,7 @@ export default function ApiTestPage() {
   };
 
   const postSendAuthEmailHandler = () => {
-    postSendAuthEmailT({ email: 'ohveloper@gmail.com' })
+    postSendAuthEmailT({ email: 'duck.moon9392@gmail.com' })
       .then((x) => console.log(x))
       .catch((e) => console.log(e));
   };
@@ -174,6 +176,8 @@ export default function ApiTestPage() {
   };
   return (
     <div>
+      <Homebutton />
+      <Sidebar />
       <div>
         <h1>ApiTestPage</h1>
       </div>

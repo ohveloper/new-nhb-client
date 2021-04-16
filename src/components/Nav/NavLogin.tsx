@@ -1,49 +1,33 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-
+import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
-import { useDispatch, useSelector } from 'react-redux';
-import { postLogInThunk } from '../../actions/getInfoActions';
-const handleLogin = () => {
-  return axios
-    .post(
-      'https://localhost:5000/main/login',
-      {
-        authCode: 123,
-      },
-      { headers: { 'Content-Type': 'application/json' }, withCredentials: true }
-    )
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-};
 
 function NavLogin() {
   const state = useSelector((state: RootState) => state.reducer);
+  const accessToken = state.accessToken;
+
   const [inputValue, setInputValue] = useState('');
 
-  const dispatch = useDispatch();
-
-  const postLoginHandler = () => {
-    console.log(state);
-    dispatch(postLogInThunk({ authCode: '' }));
+  const loginHandler = () => {
+    // await postSendAuthEmailT({ email: inputValue }).then((data) => {
+    //   if (data.message === '회원가입') {
+    //     alert('아직 회원이 아니시군요 회원가입 부탁드립니다 : )');
+    //   }
+    // });
   };
 
   return (
     <div>
-      <div>로그인</div>
+      <div className="loginContent">{accessToken ? '로그인' : '회원가입'}</div>
       <div>이메일로 로그인 </div>
       <input
         className="inputId"
         type="text"
-        value={inputValue}
+        value={inputValue || ''}
         placeholder="이메일을 입력하세요"
         onChange={(e) => setInputValue(e.currentTarget.value)}
       />
-      <button onClick={postLoginHandler}>로그인</button>
+      <button onClick={() => loginHandler()}>로그인</button>
     </div>
   );
 }
