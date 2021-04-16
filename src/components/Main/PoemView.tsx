@@ -3,13 +3,17 @@ import { useSelector } from 'react-redux';
 
 type poemViewProps = {
   poem: any;
+  isLoading: boolean;
 };
 
-export default function PoemView({ poem }: poemViewProps) {
+export default function PoemView({ poem, isLoading }: poemViewProps) {
   const state = useSelector((state: RootState) => state.reducer);
   const userFeeds = state.userFeeds.data?.data.userFeeds;
   console.log('poemView:', poem);
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       {poem.data.userFeeds.map((feed: any) => {
