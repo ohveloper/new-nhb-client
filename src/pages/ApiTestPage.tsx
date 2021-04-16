@@ -19,21 +19,22 @@ import { postSendAuthEmailT } from '../api/postSendAuthEmail';
 import { patchEditUserInfoT } from '../api/patchEditUserInfo';
 import { patchEditTagsT } from '../api/patchEditTag';
 import { delUserWithdrawalT } from '../api/delUserWithdrawal';
+import { getLogoutT } from '../api/getLogout';
 
 export interface FeedId {
   feedId: number;
 }
 export default function ApiTestPage() {
   const state = useSelector((state: RootState) => state.reducer);
-
+  console.log(state);
   const dispatch = useDispatch();
   const postBringUserInfoHandler = () => {
     const _accessToken = '';
     if (state.accessToken) {
       const accessToken = _accessToken.concat(state.accessToken);
-      dispatch(postBringUserInfoThunk({ userId: 1 }, accessToken));
+      dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
     }
-    console.log(state.userInfo.data);
+    console.log(state.userInfo);
   };
 
   const postBringFeedsHandler = () => {
@@ -73,11 +74,11 @@ export default function ApiTestPage() {
   };
 
   const postSignUpHandler = () => {
-    dispatch(postSignUpThunk({ authCode: 'a7u8ou6rmu8' }));
+    dispatch(postSignUpThunk({ authCode: 'jcozmk5siad' }));
   };
 
   const postLoginHandler = () => {
-    dispatch(postLogInThunk({ authCode: 'bbwdkzenrlv' }));
+    dispatch(postLogInThunk({ authCode: 'gizhjt5rwqv' }));
   };
 
   const delRemoveFeedHandler = () => {
@@ -131,7 +132,7 @@ export default function ApiTestPage() {
   };
 
   const postSendAuthEmailHandler = () => {
-    postSendAuthEmailT({ email: 'ohveloper@gmail.com' })
+    postSendAuthEmailT({ email: 'minkyoaus@gmail.com' })
       .then((x) => console.log(x))
       .catch((e) => console.log(e));
   };
@@ -171,6 +172,11 @@ export default function ApiTestPage() {
         .then((x) => console.log(x))
         .catch((e) => console.log(e));
     }
+  };
+  const getLogoutHandler = () => {
+    getLogoutT()
+      .then((x) => console.log(x))
+      .catch((e) => console.log(e));
   };
   return (
     <div>
@@ -271,6 +277,10 @@ export default function ApiTestPage() {
         <div>
           del UserWithdrawalT 완료
           <button onClick={delUserWithdrawalHandler}>요청</button>
+        </div>
+        <div>
+          get getLogoutT 완료
+          <button onClick={getLogoutHandler}>요청</button>
         </div>
       </div>
     </div>

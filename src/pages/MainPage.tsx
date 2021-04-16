@@ -13,10 +13,10 @@ import Sidebar from '../components/sidebar';
 export default function MainPage() {
   const state = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
-  const feeds = state.userFeeds.data?.userFeeds;
+  const feeds = state.userFeeds.data?.data.userFeeds;
 
   const [loading, setLoading] = useState(true);
-  const [poem, setPoem] = useState<Welcome>({ userFeeds: [] });
+  const [poem, setPoem] = useState<any>({ userFeeds: [] });
   const [error, setError] = useState(null);
   console.log('state:', state);
 

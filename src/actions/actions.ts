@@ -24,7 +24,11 @@ import {
   postBringUserInfoAsync,
   getRankAsync,
   postBringFeedsAsync,
+  postGetPrivateFeedsAsync,
+  getAllTagsAsync,
 } from '../actions/actionTypes';
+import { postGetPrivateFeedsT, UserId } from '../api/postGetprivateFeeds';
+import { getAllTagsT } from '../api/getAllTags';
 
 export function postLogInThunk(authCode: AuthCode) {
   return async (dispatch: Dispatch) => {
@@ -118,6 +122,19 @@ export function postBringFeedsThunk(feed: Feed) {
     }
   };
 }
+export function postGetFrivateFeedsThunk(userId: UserId) {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = postGetPrivateFeedsAsync;
+    dispatch(request());
+
+    try {
+      const feed = await postGetPrivateFeedsT(userId);
+      dispatch(success(feed));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
 
 export function getRankThunk() {
   return async (dispatch: Dispatch) => {
@@ -126,6 +143,19 @@ export function getRankThunk() {
     try {
       const rank = await getRankT();
       dispatch(success(rank));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
+
+export function getAllTagsThunk() {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = getAllTagsAsync;
+    dispatch(request());
+    try {
+      const tags = await getAllTagsT();
+      dispatch(success(tags));
     } catch (e) {
       dispatch(failure(e));
     }

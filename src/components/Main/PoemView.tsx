@@ -6,7 +6,7 @@ export default function PoemView() {
   const { data } = state.userFeeds;
   return (
     <>
-      {data?.userFeeds.map((feed) => {
+      {data?.data.userFeeds.map((feed) => {
         feed.content.map((line, idx) => {
           const head = line.slice(0, 1);
           const tail = line.slice(1);
