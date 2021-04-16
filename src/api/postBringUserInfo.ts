@@ -1,6 +1,6 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-import { UserInfoT } from '../reducers/reducer';
+import { UserInfo } from '../reducers/reducer';
 dotenv.config();
 
 const api = process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
@@ -19,6 +19,6 @@ export async function postBringUserInfoT(userId: UUID, accessToken: string) {
       'authorization': `Bearer ${accessToken}`,
     },
   });
-  const response = await apiClient.post<UserInfoT>('/user', userId);
+  const response = await apiClient.post<UserInfo>('/user', userId);
   return response.data;
 }

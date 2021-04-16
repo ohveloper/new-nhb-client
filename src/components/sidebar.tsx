@@ -43,7 +43,6 @@ const Sidebar = () => {
           </div>
         </div>
       </SlidingPanel>
-      <Link to="/mypage">Mypage</Link>
     </div>
   );
 };

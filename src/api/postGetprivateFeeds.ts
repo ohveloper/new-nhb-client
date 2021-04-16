@@ -1,6 +1,6 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-import { PrivateFeedT } from '../reducers/reducer';
+import { PrivateFeeds } from '../reducers/reducer';
 dotenv.config();
 
 const api = process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
@@ -16,13 +16,15 @@ const apiClient = axios.create({
   },
 });
 
-export interface FeedIdLimitUserId {
+export interface UserId {
+  topicId: number;
+  userId: number;
+  isMaxLike?: boolean | null;
+  limit: number;
   feedId?: number | null;
-  limit?: number | null;
-  userId?: number | null;
 }
 
-export async function postGetUserFeedsT(userId: FeedIdLimitUserId) {
-  const response = await apiClient.post<PrivateFeedT>('/user', userId);
+export async function postGetPrivateFeedsT(userId: UserId) {
+  const response = await apiClient.post<PrivateFeeds>('/feed/lookup', userId);
   return response.data;
 }

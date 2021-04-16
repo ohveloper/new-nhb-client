@@ -4,6 +4,7 @@ import { RootState } from '../../reducers';
 
 export default function MyPhotoNickName() {
   const state = useSelector((state: RootState) => state.reducer);
+  const nickName = state.userInfo.data?.data.userInfo.nickName;
 
   return (
     <div>
@@ -11,7 +12,7 @@ export default function MyPhotoNickName() {
       <div>
         <img src={Sample_User_Icon} alt="" />
       </div>
-      <div>{state.userInfo.data && state.userInfo.data.nickName}</div>
+      <div>{state.userInfo.data && nickName}</div>
       <button>수정하기</button>
     </div>
   );
