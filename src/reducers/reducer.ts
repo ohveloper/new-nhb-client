@@ -86,6 +86,7 @@ export interface InitState {
     error: Error | null;
     data: Topics | null;
   };
+  openPanel: boolean;
   tags: {
     loading: boolean;
     error: Error | null;
@@ -275,6 +276,7 @@ const initState: InitState = {
     error: null,
     data: null,
   },
+  openPanel: false,
   tags: {
     loading: false,
     error: null,

@@ -21,6 +21,8 @@ import { patchEditTagsT } from '../api/patchEditTag';
 import { delUserWithdrawalT } from '../api/delUserWithdrawal';
 import { getLogoutT } from '../api/getLogout';
 import Homebutton from '../components/Homebutton';
+import Sidebar from '../components/sidebar';
+
 
 export interface FeedId {
   feedId: number;
@@ -75,11 +77,11 @@ export default function ApiTestPage() {
   };
 
   const postSignUpHandler = () => {
-    dispatch(postSignUpThunk({ authCode: 'jcozmk5siad' }));
+    dispatch(postSignUpThunk({ authCode: '956idytl8j' }));
   };
 
   const postLoginHandler = () => {
-    dispatch(postLogInThunk({ authCode: 'm7rf0tttv19' }));
+    dispatch(postLogInThunk({ authCode: '956idytl8j' }));
   };
 
   const delRemoveFeedHandler = () => {
@@ -133,7 +135,7 @@ export default function ApiTestPage() {
   };
 
   const postSendAuthEmailHandler = () => {
-    postSendAuthEmailT({ email: 'minkyoaus@gmail.com' })
+    postSendAuthEmailT({ email: 'duck.moon9392@gmail.com' })
       .then((x) => console.log(x))
       .catch((e) => console.log(e));
   };
@@ -181,6 +183,8 @@ export default function ApiTestPage() {
   };
   return (
     <div>
+      <Homebutton />
+      <Sidebar />
       <div>
         <h1>ApiTestPage</h1>
         <Homebutton />
