@@ -18,7 +18,9 @@ export default function HomePage() {
       <Link to="/mypage">
         <p> Mypage</p>
       </Link>
-      <div>deploy Testing</div>
+      <Link to="/apitest">
+        <p> apitest</p>
+      </Link>
       <div className="App">:sunglasses: </div>
     </div>
   );
