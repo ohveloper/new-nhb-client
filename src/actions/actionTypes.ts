@@ -1,6 +1,6 @@
 import { createAsyncAction } from 'typesafe-actions';
 import { AxiosError } from 'axios';
-import { Rank } from '../reducers/reducer';
+import { Rank, Topics } from '../reducers/reducer';
 import { BringComment, Welcome } from '../reducers/reducer';
 import { UserInfoT } from '../reducers/reducer';
 import { FeedLike } from '../api/postLikeFeed';
@@ -147,10 +147,15 @@ export const PATCH_EDIT_COMMENTS_SUCCESS = 'PATCH_EDIT_COMMENTS_SUCCESS' as cons
 export const PATCH_EDIT_COMMENTS_ERROR = 'PATCH_EDIT_COMMENTS_ERROR' as const;
 
 //? get topics
-// TODO: api만들기
 export const GET_TOPICS_API = 'GET_TOPICS_API' as const;
 export const GET_TOPICS_SUCCESS = 'GET_TOPICS_SUCCESS' as const;
 export const GET_TOPICS_ERROR = 'GET_TOPICS_ERROR' as const;
+
+export const getTopicsAsync = createAsyncAction(
+  GET_TOPICS_API,
+  GET_TOPICS_SUCCESS,
+  GET_TOPICS_ERROR
+)<undefined, Topics, AxiosError>();
 
 export const postLogInAsync = createAsyncAction(
   POST_LOG_IN_API,
