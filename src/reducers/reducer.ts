@@ -163,7 +163,9 @@ export interface Tags {
 }
 
 export interface Welcome {
-  userFeeds: UserFeeds[];
+  data: {
+    userFeeds: UserFeeds[];
+  };
 }
 
 export interface UserFeeds {

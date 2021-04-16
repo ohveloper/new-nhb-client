@@ -4,9 +4,9 @@ import { RootState } from '../../reducers';
 export default function PoemInfo() {
   const state = useSelector((state: RootState) => state.reducer);
   const { data } = state.userFeeds;
-  const users = data?.userFeeds.map((feed) => feed.user);
+  const users = data?.data.userFeeds.map((feed) => feed.user);
   // const users = userFeeds.map((feed) => feed.user);
-  const createdAt = data?.userFeeds.map((feed) => feed.createdAt);
+  const createdAt = data?.data.userFeeds.map((feed) => feed.createdAt);
   return (
     <>
       {users?.map((user) => {
