@@ -5,6 +5,7 @@ import PoemView from './PoemView';
 import PoemButtonGroup from './PoemButtonGroup';
 
 type MainpagePoemContainerProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   poem: any;
 };
 
@@ -15,7 +16,6 @@ export default function MainpagePoemContainer({
   const userFeeds = state.userFeeds.data?.data.userFeeds;
 
   if (userFeeds?.length === 0) {
-
     return <div>오늘 첫 글의 주인공이 되어 볼까요?😉</div>;
   }
   return (
