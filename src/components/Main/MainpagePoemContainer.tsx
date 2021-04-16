@@ -7,10 +7,12 @@ import PoemButtonGroup from './PoemButtonGroup';
 type MainpagePoemContainerProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   poem: any;
+  isLoading: boolean;
 };
 
 export default function MainpagePoemContainer({
   poem,
+  isLoading,
 }: MainpagePoemContainerProps) {
   const state = useSelector((state: RootState) => state.reducer);
   const userFeeds = state.userFeeds.data?.data.userFeeds;
@@ -22,7 +24,7 @@ export default function MainpagePoemContainer({
     <>
       <h2>PoemContainer</h2>
       <PoemInfo />
-      <PoemView poem={poem} />
+      <PoemView poem={poem} isLoading={isLoading} />
       <PoemButtonGroup />
     </>
   );
