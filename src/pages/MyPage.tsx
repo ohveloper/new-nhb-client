@@ -23,7 +23,8 @@ export default function MyPage() {
       dispatch(postBringFeedsThunk({ topicId: 1, limit: 10 }));
     }
   }, []);
-  console.log(state.userInfo.data);
+  console.log(state);
+
   return (
     <>
       <Homebutton />
@@ -34,10 +35,14 @@ export default function MyPage() {
         {state.userInfo.data && <MyWorkContainer />}
       </div>
       <div>
-        <MyAchievementContainer />
+        {state.userInfo.loading && 'now loading...'}
+        {state.userInfo.error && 'sorry now Error'}
+        {state.userInfo.data && <MyAchievementContainer />}
       </div>
       <div>
-        <MyPhotoNickName />
+        {state.userInfo.loading && 'now loading...'}
+        {state.userInfo.error && 'sorry now Error'}
+        {state.userInfo.data && <MyPhotoNickName />}
       </div>
     </>
   );

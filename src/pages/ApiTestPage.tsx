@@ -25,15 +25,15 @@ export interface FeedId {
 }
 export default function ApiTestPage() {
   const state = useSelector((state: RootState) => state.reducer);
-
+  console.log(state);
   const dispatch = useDispatch();
   const postBringUserInfoHandler = () => {
     const _accessToken = '';
     if (state.accessToken) {
       const accessToken = _accessToken.concat(state.accessToken);
-      dispatch(postBringUserInfoThunk({ userId: 1 }, accessToken));
+      dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
     }
-    console.log(state.userInfo.data);
+    console.log(state.userInfo);
   };
 
   const postBringFeedsHandler = () => {
@@ -73,11 +73,11 @@ export default function ApiTestPage() {
   };
 
   const postSignUpHandler = () => {
-    dispatch(postSignUpThunk({ authCode: 'a7u8ou6rmu8' }));
+    dispatch(postSignUpThunk({ authCode: '5c6r0u5umfl' }));
   };
 
   const postLoginHandler = () => {
-    dispatch(postLogInThunk({ authCode: 'bbwdkzenrlv' }));
+    dispatch(postLogInThunk({ authCode: 'w6zj25nmln' }));
   };
 
   const delRemoveFeedHandler = () => {
