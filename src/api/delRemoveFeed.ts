@@ -16,9 +16,9 @@ export async function delRemoveFeedT(feedId: FeedId, accessToken: string) {
     responseType: 'json',
     headers: {
       'Content-Type': 'application/json',
-      'withCredentials': true,
       'authorization': `Bearer ${accessToken}`,
     },
+    withCredentials: true,
   });
   const response = await apiClient.delete('/feed', feedId);
   return response.data;

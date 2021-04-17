@@ -18,9 +18,9 @@ export async function postLikeFeedT(feedId: FeedId, accessToken: string) {
     responseType: 'json',
     headers: {
       'Content-Type': 'application/json',
-      'withCredentials': true,
       'authorization': `Bearer ${accessToken}`,
     },
+    withCredentials: true,
   });
   const response = await apiClient.post<FeedLike>('/feed/like', feedId);
   return response.data;

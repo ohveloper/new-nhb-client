@@ -79,7 +79,7 @@ export default function ApiTestPage() {
   };
 
   const postLoginHandler = () => {
-    dispatch(postLogInThunk({ authCode: 'm7rf0tttv19' }));
+    dispatch(postLogInThunk({ authCode: 'woscc0f8dv' }));
   };
 
   const delRemoveFeedHandler = () => {
@@ -159,7 +159,7 @@ export default function ApiTestPage() {
     const _accessToken = '';
     if (state.accessToken) {
       const accessToken = _accessToken.concat(state.accessToken);
-      patchEditTagsT({ tagName: 'newbie' }, accessToken)
+      patchEditTagsT({ tagId: 1 }, accessToken)
         .then((x) => console.log(x))
         .catch((e) => console.log(e));
     }

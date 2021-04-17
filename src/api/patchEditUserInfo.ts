@@ -19,9 +19,9 @@ export async function patchEditUserInfoT(
     responseType: 'json',
     headers: {
       'Content-Type': 'application/json',
-      'withCredentials': true,
       'authorization': `Bearer ${accessToken}`,
     },
+    withCredentials: true,
   });
   const response = await apiClient.patch('/user', editUserInfoParameter);
   return response.data;

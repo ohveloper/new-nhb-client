@@ -11,9 +11,9 @@ const apiClient = axios.create({
   responseType: 'json',
   headers: {
     'Content-Type': 'application/json',
-    'withCredentials': true,
     'authorization': `Bearer ${accessToken}`,
   },
+  withCredentials: true,
 });
 
 export interface UserId {
