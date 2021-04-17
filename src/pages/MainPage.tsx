@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Content } from '../api/postUploadFeed';
+import { Content, postUploadFeedT } from '../api/postUploadFeed';
 import { Welcome } from '../reducers/reducer';
 import { RootState } from '../reducers';
 import { postUploadFeedThunk, postBringFeedsThunk } from '../actions/actions';
@@ -16,6 +16,19 @@ export default function MainPage() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [poem, setPoem] = useState<Welcome>({ data: { userFeeds: [] } });
+  const topicId = 1;
+  const limit = 20;
+
+  const fetchData = async () => {
+    // dispatch(postBringFeedsThunk({ topicId: topicId, limit: 20 }));
+    await postBringFeedT({ topicId: topicId, limit: limit }).then((res) => {
+      const response = res.data;
+      setPoem({
+        data: { userFeeds: response.userFeeds },
+      });
+    });
+    setIsLoading(false);
+  };
 
   //? 게시글 업로드 함수
   //? PoemInput 컴포넌트에 전달된다
@@ -23,13 +36,25 @@ export default function MainPage() {
     const _accessToken = '';
     if (state.accessToken) {
       const accessToken = _accessToken.concat(state.accessToken);
-      dispatch(postUploadFeedThunk(content, accessToken));
+      postUploadFeedT(content, accessToken)
+        .then((res) => {
+          //? 게시글 작성 후 전체 리스트를 새로 불러온다
+          //! 비동기를 적용하기 위해 프로미스 체인 안에서 데이터요청
+          fetchData().catch((e) => console.log(e));
+        })
+        .catch((e) => console.log(e));
     }
   };
+  // const handlePostUploadFeed = async (content: Content) => {
+  //   const _accessToken = '';
+  //   if (state.accessToken) {
+  //     const accessToken = _accessToken.concat(state.accessToken);
+  //     await postUploadFeedT(content, accessToken).catch((e) => console.log(e));
+  //     await fetchData().catch((e) => console.log(e));
+  //   }
+  // };
 
   // TODO: postBringFeedT()파라미터 topicId를 api로 가져오기
-  const topicId = 1;
-  const limit = 20;
 
   //? 첫 렌더 이후 사용될 데이터 호출 함수
   const fetchMoreData = async () => {
@@ -83,16 +108,7 @@ export default function MainPage() {
 
   //? 첫 렌더. deps = []
   useEffect(() => {
-    dispatch(postBringFeedsThunk({ topicId: topicId, limit: 20 }));
-    if (state.userFeeds.data?.data.userFeeds) {
-      setPoem({
-        data: { userFeeds: [...state.userFeeds.data?.data.userFeeds] },
-      });
-    }
-    setIsLoading(false);
-    // const interval = setInterval(() => {
-    //   dispatch(postBringFeedsThunk({ topicId: topicId, limit: 30 }));
-    // }, 600000);
+    fetchData().catch((e) => console.log(e));
   }, []);
 
   useEffect(() => {
