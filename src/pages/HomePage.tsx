@@ -1,12 +1,11 @@
-import Homebutton from '../components/Homebutton';
-import Sidebar from '../components/sidebar';
+import Homebutton from '../components/Home/Homebutton';
+import Sidebar from '../components/Home/Sidebar';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { postLogInThunk } from '../actions/actions';
 
 export default function HomePage() {
   const dispatch = useDispatch();
-
   const url: string = document.location.href;
   const userAuthCode: string = url.slice(url.indexOf('=') + 1);
 
@@ -28,7 +27,7 @@ export default function HomePage() {
       <Sidebar />
       <br />
       <Link to="/main">
-        <p> MAIN</p>
+        <p>N행시 작성하러 가기</p>
       </Link>
       <br />
       <Link to="/mypage">

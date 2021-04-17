@@ -7,8 +7,8 @@ import { postBringFeedT } from '../api/postBringFeeds';
 import { delRemoveFeedT, FeedId } from '../api/delRemoveFeed';
 import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
-import Homebutton from '../components/Homebutton';
-import Sidebar from '../components/sidebar';
+import Homebutton from '../components/Home/Homebutton';
+import Sidebar from '../components/Home/Sidebar';
 
 export default function MainPage() {
   const state = useSelector((state: RootState) => state.reducer);

@@ -1,8 +1,8 @@
 import MyAchievementContainer from '../components/myPage/MyAchievementContainer';
 import MyPhotoNickName from '../components/myPage/MyPhotoNickName';
 import MyWorkContainer from '../components/myPage/MyWorkContainer';
-import Homebutton from '../components/Homebutton';
-import Sidebar from '../components/sidebar';
+import Homebutton from '../components/Home/Homebutton';
+import Sidebar from '../components/Home/Sidebar';
 import { RootState } from '../reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import {
