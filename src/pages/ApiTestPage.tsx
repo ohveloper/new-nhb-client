@@ -20,9 +20,8 @@ import { patchEditUserInfoT } from '../api/patchEditUserInfo';
 import { patchEditTagsT } from '../api/patchEditTag';
 import { delUserWithdrawalT } from '../api/delUserWithdrawal';
 import { getLogoutT } from '../api/getLogout';
-import Homebutton from '../components/Homebutton';
-import Sidebar from '../components/sidebar';
-
+import Homebutton from '../components/Home/Homebutton';
+import Sidebar from '../components/Home/Sidebar';
 export interface FeedId {
   feedId: number;
 }
@@ -186,7 +185,6 @@ export default function ApiTestPage() {
       <Sidebar />
       <div>
         <h1>ApiTestPage</h1>
-        <Homebutton />
       </div>
       <h1>redux</h1>
       <div>
