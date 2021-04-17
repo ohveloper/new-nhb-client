@@ -30,13 +30,10 @@ export default function Badges_Modal({
   const myTagsInfo = state.userInfo.data?.data.userInfo.tags;
   const _myTagsId = myTagsInfo?.map((x) => x.tagId);
 
-  //! 내가 없는 테그 목록 필터
-  const exceptMyTags = allTags?.tags.filter((x) => !_myTagsId?.includes(x.id));
-
   //! 내가 선택한 테그 정보 (아직 요청 보내기 전)
   const pickHandler = (e: any) => {
     setValue(e.target.textContent);
-    // console.log('value: ', value);
+
     e.target.previousSibling.checked = !e.target.previousSibling.checked;
     console.log(e.target.previousSibling.checked);
   };
