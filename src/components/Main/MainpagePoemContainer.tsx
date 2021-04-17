@@ -1,18 +1,21 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
-import PoemInfo from './PoemInfo';
+import { Welcome } from '../../reducers/reducer';
+import { FeedId } from '../../api/delRemoveFeed';
 import PoemView from './PoemView';
-import PoemButtonGroup from './PoemButtonGroup';
 
 type MainpagePoemContainerProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  poem: any;
+  poem: Welcome;
   isLoading: boolean;
+  handleEdit: () => void;
+  handleDelete: (feedId: FeedId) => void;
 };
 
 export default function MainpagePoemContainer({
   poem,
   isLoading,
+  handleEdit,
+  handleDelete,
 }: MainpagePoemContainerProps) {
   const state = useSelector((state: RootState) => state.reducer);
   const userFeeds = state.userFeeds.data?.data.userFeeds;
@@ -23,9 +26,12 @@ export default function MainpagePoemContainer({
   return (
     <>
       <h2>PoemContainer</h2>
-      <PoemInfo />
-      <PoemView poem={poem} isLoading={isLoading} />
-      <PoemButtonGroup />
+      <PoemView
+        poem={poem}
+        isLoading={isLoading}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
     </>
   );
 }
