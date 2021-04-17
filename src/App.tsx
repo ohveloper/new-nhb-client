@@ -5,6 +5,7 @@ import Homepage from './pages/HomePage';
 import MainPage from './pages/MainPage';
 import './styles/styles.css';
 import ApiTestPage from './pages/ApiTestPage';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
@@ -22,6 +23,12 @@ function App() {
           </Route>
           <Route path="/apitest">
             <ApiTestPage />
+          </Route>
+          <Route path="/login">
+            <HomePage />
+          </Route>
+          <Route path="/singup">
+            <HomePage />
           </Route>
         </Switch>
       </Router>
