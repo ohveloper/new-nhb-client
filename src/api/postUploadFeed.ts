@@ -19,9 +19,9 @@ export async function postUploadFeedT(content: Content, accessToken: string) {
     responseType: 'json',
     headers: {
       'Content-Type': 'application/json',
-      'withCredentials': true,
       'authorization': `Bearer ${accessToken}`,
     },
+    withCredentials: true,
   });
   const response = await apiClient.post<UploadFeed>('/feed', content);
   return response.data;

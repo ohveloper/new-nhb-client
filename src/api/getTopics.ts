@@ -11,8 +11,8 @@ export async function getTopicsT() {
     responseType: 'json',
     headers: {
       'Content-Type': 'application/json',
-      'withCredentials': true,
     },
+    withCredentials: true,
   });
 
   const response = await apiClient.get<Topics>('/feed/topic');

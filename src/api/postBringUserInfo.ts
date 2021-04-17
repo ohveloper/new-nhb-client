@@ -15,9 +15,9 @@ export async function postBringUserInfoT(userId: UUID, accessToken: string) {
     responseType: 'json',
     headers: {
       'Content-Type': 'application/json',
-      'withCredentials': true,
       'authorization': `Bearer ${accessToken}`,
     },
+    withCredentials: true,
   });
   const response = await apiClient.post<UserInfo>('/user', userId);
   return response.data;

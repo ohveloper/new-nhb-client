@@ -160,7 +160,7 @@ export default function ApiTestPage() {
     const _accessToken = '';
     if (state.accessToken) {
       const accessToken = _accessToken.concat(state.accessToken);
-      patchEditTagsT({ tagName: 'newbie' }, accessToken)
+      patchEditTagsT({ tagId: 1 }, accessToken)
         .then((x) => console.log(x))
         .catch((e) => console.log(e));
     }

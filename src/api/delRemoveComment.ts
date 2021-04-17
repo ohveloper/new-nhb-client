@@ -20,9 +20,9 @@ export async function delRemoveCommentT(
     responseType: 'json',
     headers: {
       'Content-Type': 'application/json',
-      'withCredentials': true,
       'authorization': `Bearer ${accessToken}`,
     },
+    withCredentials: true,
   });
   const response = await apiClient.delete('/feed/comment', feedIdCommentId);
   return response.data;
