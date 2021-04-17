@@ -4,6 +4,7 @@ import { Content, postUploadFeedT } from '../api/postUploadFeed';
 import { Welcome } from '../reducers/reducer';
 import { RootState } from '../reducers';
 import { postBringFeedT } from '../api/postBringFeeds';
+import { delRemoveFeedT, FeedId } from '../api/delRemoveFeed';
 import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
 import Homebutton from '../components/Homebutton';
@@ -50,10 +51,30 @@ export default function MainPage() {
   //   const _accessToken = '';
   //   if (state.accessToken) {
   //     const accessToken = _accessToken.concat(state.accessToken);
-  //     await postUploadFeedT(content, accessToken).catch((e) => console.log(e));
-  //     await fetchData().catch((e) => console.log(e));
+  //     await postUploadFeedT(content, accessToken)
+  //     await fetchData()
   //   }
   // };
+
+  //? 게시글 삭제 함수
+  const handleDelete = async (feedId: FeedId) => {
+    console.log(feedId);
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      await delRemoveFeedT(feedId, accessToken);
+      await fetchData();
+    }
+  };
+
+  //? 게시글 수정 함수
+  const handleEdit = () => {
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      console.log('Edit!');
+    }
+  };
 
   //? 첫 렌더 이후 사용될 데이터 호출 함수
   const fetchMoreData = async () => {
@@ -120,7 +141,12 @@ export default function MainPage() {
       <Sidebar />
       <div>[MainPage]</div>
       <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
-      <MainpagePoemList poem={poem} isLoading={isLoading} />
+      <MainpagePoemList
+        poem={poem}
+        isLoading={isLoading}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
     </>
   );
 }

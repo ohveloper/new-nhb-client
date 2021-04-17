@@ -1,16 +1,21 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 import { Welcome } from '../../reducers/reducer';
+import { FeedId } from '../../api/delRemoveFeed';
 import PoemView from './PoemView';
 
 type MainpagePoemContainerProps = {
   poem: Welcome;
   isLoading: boolean;
+  handleEdit: () => void;
+  handleDelete: (feedId: FeedId) => void;
 };
 
 export default function MainpagePoemContainer({
   poem,
   isLoading,
+  handleEdit,
+  handleDelete,
 }: MainpagePoemContainerProps) {
   const state = useSelector((state: RootState) => state.reducer);
   const userFeeds = state.userFeeds.data?.data.userFeeds;
@@ -21,7 +26,12 @@ export default function MainpagePoemContainer({
   return (
     <>
       <h2>PoemContainer</h2>
-      <PoemView poem={poem} isLoading={isLoading} />
+      <PoemView
+        poem={poem}
+        isLoading={isLoading}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
     </>
   );
 }

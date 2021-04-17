@@ -1,14 +1,28 @@
+import { useSelector } from 'react-redux';
 import { Welcome } from '../../reducers/reducer';
+import { FeedId } from '../../api/delRemoveFeed';
 import PoemInfo from './PoemInfo';
 import PoemButtonGroup from './PoemButtonGroup';
+import PoemEditButton from './PoemEditButton';
+import PoemDeleteButton from './PoemDeleteButton';
+import { RootState } from '../../reducers';
 
 type poemViewProps = {
   poem: Welcome;
   isLoading: boolean;
+  handleEdit: () => void;
+  handleDelete: (feedId: FeedId) => void;
 };
 
-export default function PoemView({ poem, isLoading }: poemViewProps) {
+export default function PoemView({
+  poem,
+  isLoading,
+  handleEdit,
+  handleDelete,
+}: poemViewProps) {
+  const state = useSelector((state: RootState) => state.reducer);
   const { userFeeds } = poem.data;
+  const userId = state.userInfo.data?.data.userInfo.userId;
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -16,8 +30,23 @@ export default function PoemView({ poem, isLoading }: poemViewProps) {
   return (
     <>
       {userFeeds.map((feed) => {
+        const delFeedId = {
+          data: { feedId: feed.feedId },
+        };
         return (
           <div key={feed.feedId}>
+            {userId === Number(feed.user.userId) ? (
+              <>
+                <PoemEditButton handleEdit={handleEdit} />
+                <PoemDeleteButton
+                  handleDelete={handleDelete}
+                  feedId={delFeedId}
+                />
+              </>
+            ) : (
+              <div></div>
+            )}
+
             <div>{feed.feedId}</div>
             <PoemInfo
               userTag={feed.user.tag}
