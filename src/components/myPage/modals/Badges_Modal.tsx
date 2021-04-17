@@ -32,9 +32,6 @@ export default function Badges_Modal({
 
   //! 내가 없는 테그 목록 필터
   const exceptMyTags = allTags?.tags.filter((x) => !_myTagsId?.includes(x.id));
-  // console.log('myTagsInfo: ', myTagsInfo);
-  // console.log('_myTagsId: ', _myTagsId);
-  // console.log('exceptMyTagsId: ', exceptMyTags);
 
   //! 내가 선택한 테그 정보 (아직 요청 보내기 전)
   const pickHandler = (e: any) => {
