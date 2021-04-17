@@ -1,44 +1,41 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../reducers';
 import SlidingPanel from 'react-sliding-side-panel';
 import 'react-sliding-side-panel/lib/index.css';
 import NavMyPage from './Nav/NavMypage';
 import NavLogin from './Nav/NavLogin';
 import MyLog from './Nav/Mylog';
 import Induce from './Nav/Induce';
+import dotenv from 'dotenv';
 
-type sidebarProps = {
-  isLoggedIn: boolean;
-};
+dotenv.config;
 
-function NavLoginSection({ isLoggedIn }: sidebarProps): JSX.Element {
-  if (isLoggedIn) {
-    return <NavMyPage />;
-  }
-  return <NavLogin />;
-}
-
-function NavLogSection({ isLoggedIn }: sidebarProps): JSX.Element {
-  if (isLoggedIn) {
-    return <MyLog />;
-  }
-  return <Induce />;
-}
+// type sidebarProps = {
+//   isLoggedIn: boolean;
+// };
 
 const Sidebar = () => {
+  const state = useSelector((state: RootState) => state.reducer);
+  const accessToken = state.accessToken;
+
   const [openPanel, setOpenPanel] = useState(false);
-  const [isLoggedIn, setLogin] = useState(false);
+  // onClick={() =>
   return (
     <div>
       <div>
         <p onClick={() => setOpenPanel(true)}>NHB 파헤치기</p>
-        <p onClick={() => setLogin(true)}>Login test</p>
       </div>
-      <SlidingPanel type={'right'} isOpen={openPanel} size={30}>
+      <SlidingPanel
+        type={'right'}
+        isOpen={openPanel}
+        size={30}
+        noBackdrop={true}
+      >
         <div>
-          <NavLoginSection isLoggedIn={isLoggedIn} />
+          {accessToken ? <NavMyPage /> : <NavLogin />}
           <br />
-          <NavLogSection isLoggedIn={isLoggedIn} />
+          {accessToken ? <MyLog /> : <Induce />}
           <br />
           <div onClick={() => setOpenPanel(false)}>
             Click here to Close Sidebar
