@@ -1,9 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Content, postUploadFeedT } from '../api/postUploadFeed';
 import { Welcome } from '../reducers/reducer';
 import { RootState } from '../reducers';
-import { postUploadFeedThunk, postBringFeedsThunk } from '../actions/actions';
 import { postBringFeedT } from '../api/postBringFeeds';
 import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
@@ -12,10 +11,12 @@ import Sidebar from '../components/sidebar';
 
 export default function MainPage() {
   const state = useSelector((state: RootState) => state.reducer);
-  const dispatch = useDispatch();
+  console.log(state);
 
   const [isLoading, setIsLoading] = useState(true);
   const [poem, setPoem] = useState<Welcome>({ data: { userFeeds: [] } });
+
+  // TODO: topicId를 api로 가져오기
   const topicId = 1;
   const limit = 20;
 
@@ -53,8 +54,6 @@ export default function MainPage() {
   //     await fetchData().catch((e) => console.log(e));
   //   }
   // };
-
-  // TODO: postBringFeedT()파라미터 topicId를 api로 가져오기
 
   //? 첫 렌더 이후 사용될 데이터 호출 함수
   const fetchMoreData = async () => {

@@ -1,27 +1,31 @@
-import { RootState } from '../../reducers';
-import { useSelector } from 'react-redux';
+import { Welcome } from '../../reducers/reducer';
+import PoemInfo from './PoemInfo';
+import PoemButtonGroup from './PoemButtonGroup';
 
 type poemViewProps = {
-  poem: any;
+  poem: Welcome;
   isLoading: boolean;
 };
 
 export default function PoemView({ poem, isLoading }: poemViewProps) {
-  const state = useSelector((state: RootState) => state.reducer);
-  const userFeeds = state.userFeeds.data?.data.userFeeds;
-  console.log('poemView:', poem);
+  const { userFeeds } = poem.data;
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
   return (
     <>
-      {poem.data.userFeeds.map((feed: any) => {
+      {userFeeds.map((feed) => {
         return (
           <div key={feed.feedId}>
             <div>{feed.feedId}</div>
+            <PoemInfo
+              userTag={feed.user.tag}
+              nickName={feed.user.nickName}
+              createdAt={feed.createdAt}
+            />
             <div>
-              {feed.content.map((word: string, idx: number) => {
+              {feed.content.map((word, idx) => {
                 const head = word.slice(0, 1);
                 // const tail = word.slice(1);
                 const key = String(idx) + String(feed.feedId);
@@ -32,6 +36,10 @@ export default function PoemView({ poem, isLoading }: poemViewProps) {
                 );
               })}
             </div>
+            <PoemButtonGroup
+              likeNum={feed.likeNum}
+              commentNum={feed.commentNum}
+            />
           </div>
         );
       })}

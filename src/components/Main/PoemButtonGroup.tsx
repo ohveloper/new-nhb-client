@@ -1,18 +1,17 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../reducers';
+import { Welcome } from '../../reducers/reducer';
 
-export default function PoemButtonGroup() {
-  const state = useSelector((state: RootState) => state.reducer);
-  const { data } = state.userFeeds;
+type PoemButtonGroupProps = {
+  likeNum: string;
+  commentNum: number;
+};
 
+export default function PoemButtonGroup({
+  likeNum,
+  commentNum,
+}: PoemButtonGroupProps) {
   return (
-    <>
-      {data?.data.userFeeds.map((feed) => {
-        <div key={feed.feedId}>
-          [likes] {feed.likeNum} &nbsp; [comments] {feed.commentNum} &nbsp;
-          [share]
-        </div>;
-      })}
-    </>
+    <div>
+      [likes] {likeNum} &nbsp; [comments] {commentNum} &nbsp; [share]
+    </div>
   );
 }

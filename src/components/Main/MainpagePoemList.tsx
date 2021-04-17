@@ -1,7 +1,8 @@
 import MainpagePoemContainer from './MainpagePoemContainer';
+import { Welcome } from '../../reducers/reducer';
 
 type MainpagePoemListProps = {
-  poem: any;
+  poem: Welcome;
   isLoading: boolean;
 };
 
