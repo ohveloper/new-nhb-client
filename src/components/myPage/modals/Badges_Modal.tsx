@@ -30,16 +30,10 @@ export default function Badges_Modal({
   const myTagsInfo = state.userInfo.data?.data.userInfo.tags;
   const _myTagsId = myTagsInfo?.map((x) => x.tagId);
 
-  //! 내가 없는 테그 목록 필터
-  const exceptMyTags = allTags?.tags.filter((x) => !_myTagsId?.includes(x.id));
-  // console.log('myTagsInfo: ', myTagsInfo);
-  // console.log('_myTagsId: ', _myTagsId);
-  // console.log('exceptMyTagsId: ', exceptMyTags);
-
   //! 내가 선택한 테그 정보 (아직 요청 보내기 전)
   const pickHandler = (e: any) => {
     setValue(e.target.textContent);
-    // console.log('value: ', value);
+
     e.target.previousSibling.checked = !e.target.previousSibling.checked;
     console.log(e.target.previousSibling.checked);
   };
@@ -69,79 +63,86 @@ export default function Badges_Modal({
         <button onClick={modalHandler}>닫기</button>
         <div>
           <div>
-          <h3>내가 가지고있는 테그들</h3>
-          <div style={{ color: 'orange' }}>
-            {
-              //? 가지고 있는 테그들 렌더
-              myTagsInfo?.map((badge) =>
-                //? 선택했는지 확인
-                !badge.isUsed ? (
-                  //? false일 확률이 더 높으니까 앞에
-                  //? 내가 선택하지 않은 테그 : 빨강테두리
-                  <>
+            <h3>내가 가지고있는 테그들</h3>
+            <div style={{ color: 'orange' }}>
+              {
+                //? 가지고 있는 테그들 렌더
+                myTagsInfo?.map((badge) =>
+                  //? 선택했는지 확인
+                  !badge.isUsed ? (
+                    //? false일 확률이 더 높으니까 앞에
+                    //? 내가 선택하지 않은 테그 : 빨강테두리
+                    <>
+                      <div
+                        key={badge.tagId}
+                        style={{ border: '2px red solid', cursor: 'pointer' }}
+                      >
+                        <input type="radio" name="chk_badge" />
+                        <div onClick={pickHandler}>
+                          {badge.tagId},{badge.tagName}
+                        </div>
+                        <div style={{ display: 'none' }}>
+                          {badge.description}
+                        </div>
+                      </div>
+                      <div
+                        key={badge.tagId}
+                        style={{ border: '2px red solid', cursor: 'pointer' }}
+                      >
+                        <input type="radio" name="chk_badge" />
+                        <div onClick={pickHandler}>
+                          {badge.tagId},{badge.tagName}
+                        </div>
+                        <div style={{ display: 'none' }}>
+                          {badge.description}
+                        </div>
+                      </div>
+                      <div
+                        key={badge.tagId}
+                        style={{ border: '2px red solid', cursor: 'pointer' }}
+                      >
+                        <input type="radio" name="chk_badge" />
+                        <div onClick={pickHandler}>
+                          {badge.tagId},{badge.tagName}
+                        </div>
+                        <div style={{ display: 'none' }}>
+                          {badge.description}
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    //? 내가 선택한 테그 : 파랑테두리
                     <div
                       key={badge.tagId}
-                      style={{ border: '2px red solid', cursor: 'pointer' }}
+                      style={{ border: '2px blue solid', cursor: 'pointer' }}
                     >
-                      <input type="radio" name="chk_badge" />
                       <div onClick={pickHandler}>
                         {badge.tagId},{badge.tagName}
                       </div>
                       <div style={{ display: 'none' }}>{badge.description}</div>
                     </div>
-                    <div
-                      key={badge.tagId}
-                      style={{ border: '2px red solid', cursor: 'pointer' }}
-                    >
-                      <input type="radio" name="chk_badge" />
-                      <div onClick={pickHandler}>
-                        {badge.tagId},{badge.tagName}
-                      </div>
-                      <div style={{ display: 'none' }}>{badge.description}</div>
-                    </div>
-                    <div
-                      key={badge.tagId}
-                      style={{ border: '2px red solid', cursor: 'pointer' }}
-                    >
-                      <input type="radio" name="chk_badge" />
-                      <div onClick={pickHandler}>
-                        {badge.tagId},{badge.tagName}
-                      </div>
-                      <div style={{ display: 'none' }}>{badge.description}</div>
-                    </div>
-                  </>
-                ) : (
-                  //? 내가 선택한 테그 : 파랑테두리
-                  <div
-                    key={badge.tagId}
-                    style={{ border: '2px blue solid', cursor: 'pointer' }}
-                  >
-                    <div onClick={pickHandler}>
-                      {badge.tagId},{badge.tagName}
-                    </div>
-                    <div style={{ display: 'none' }}>{badge.description}</div>
-                  </div>
+                  )
                 )
+              }
+            </div>
+          </div>
+          <div>
+            <h3>내가 없는 테그들</h3>
+            {
+              //? 가지지 못한 테그들 렌더
+              allTags?.tags.map(
+                (badge) =>
+                  !_myTagsId?.includes(badge.id) && (
+                    <div>
+                      <div>
+                        {badge.id},{badge.tagName}
+                      </div>
+                      <div>{badge.description}</div>
+                    </div>
+                  )
               )
             }
           </div>
-        </div>
-        <div>
-          <h3>내가 없는 테그들</h3>
-          {
-            //? 가지지 못한 테그들 렌더
-            allTags?.tags.map(
-              (badge) =>
-                !_myTagsId?.includes(badge.id) && (
-                  <div>
-                    <div>
-                      {badge.id},{badge.tagName}
-                    </div>
-                    <div>{badge.description}</div>
-                  </div>
-                )
-            )
-          }
         </div>
       </div>
     </div>
