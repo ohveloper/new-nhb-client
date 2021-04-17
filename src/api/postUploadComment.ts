@@ -18,9 +18,9 @@ export async function postUploadCommentT(
     responseType: 'json',
     headers: {
       'Content-Type': 'application/json',
-      'withCredentials': true,
       'authorization': `Bearer ${accessToken}`,
     },
+    withCredentials: true,
   });
   const response = await apiClient.post('/feed/comment', commentFeedId);
   return response.data;

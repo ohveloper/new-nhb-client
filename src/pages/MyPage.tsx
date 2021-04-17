@@ -10,8 +10,9 @@ import {
   postBringUserInfoThunk,
   postGetFrivateFeedsThunk,
 } from '../actions/actions';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import MyIntroduction from '../components/myPage/MyIntroduction';
+import Badges_Modal from '../components/myPage/modals/Badges_Modal';
 
 export default function MyPage() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -34,11 +35,26 @@ export default function MyPage() {
       dispatch(getAllTagsThunk());
     }
   }, []);
+  const [modal, setModal] = useState(false);
+  const onClickHandler = () => {
+    setModal(!modal);
+  };
   console.log(state);
   return (
-    <>
+    <div id="myPage">
       <Homebutton />
       <Sidebar />
+      <div>
+        {modal && (
+          <Badges_Modal
+            modal={modal}
+            setModal={setModal}
+            modalHandler={onClickHandler}
+          />
+        )}
+        {console.log(modal)}
+      </div>
+
       <div>
         {state.userInfo.loading && 'now loading...'}
         {state.userInfo.error && 'sorry now Error'}
@@ -47,7 +63,9 @@ export default function MyPage() {
       <div>
         {state.userInfo.loading && 'now loading...'}
         {state.userInfo.error && 'sorry now Error'}
-        {state.userInfo.data && <MyAchievementContainer />}
+        {state.userInfo.data && (
+          <MyAchievementContainer modalHandler={onClickHandler} />
+        )}
       </div>
       <div>
         {state.userInfo.loading && 'now loading...'}
@@ -59,6 +77,6 @@ export default function MyPage() {
         {state.userInfo.error && 'sorry now Error'}
         {state.userInfo.data && <MyIntroduction />}
       </div>
-    </>
+    </div>
   );
 }

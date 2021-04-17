@@ -18,9 +18,9 @@ export async function patchEditCommentT(
     responseType: 'json',
     headers: {
       'Content-Type': 'application/json',
-      'withCredentials': true,
       'authorization': `Bearer ${accessToken}`,
     },
+    withCredentials: true,
   });
   const response = await apiClient.patch('/feed/comment', commentCommnetId);
   return response.data;

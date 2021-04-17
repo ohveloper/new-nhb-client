@@ -1,17 +1,24 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 
-export default function MyAchievementBadges() {
+interface PropsType {
+  modalHandler: () => void;
+}
+
+export default function MyAchievementBadges({ modalHandler }: PropsType) {
   const state = useSelector((state: RootState) => state.reducer);
   const allTags = state.tags.data?.data;
   const myInfo = state.userInfo.data?.data.userInfo;
-  console.log(myInfo?.tags);
   const myTagsId = myInfo?.tags.map((x) => x.tagId);
-  console.log(myTagsId);
 
   return (
     <div>
       <h1>MyAchievementBadges</h1>
+      <div>
+        <h3>모달 테스트</h3>
+        <button onClick={modalHandler}>뱃지선택</button>
+      </div>
       <div>
         {
           //? 시작: 모든 테그를 렌더한다
@@ -47,7 +54,6 @@ export default function MyAchievementBadges() {
           )
         }
       </div>
-      <button>뱃지선택</button>
     </div>
   );
 }

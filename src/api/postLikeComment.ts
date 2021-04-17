@@ -18,9 +18,9 @@ export async function postLikeCommentT(
     responseType: 'json',
     headers: {
       'Content-Type': 'application/json',
-      'withCredentials': true,
       'authorization': `Bearer ${accessToken}`,
     },
+    withCredentials: true,
   });
   console.log(accessToken);
   const response = await apiClient.post('/feed/comment/like', commentId);
