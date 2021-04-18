@@ -10,7 +10,7 @@ import {
   postGetFrivateFeedsThunk,
   postGetUserAptInfoThunk,
 } from '../actions/actions';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Badges_Modal from '../components/myPage/modals/Badges_Modal';
 import MyInfoContainer from '../components/myPage/MyInfoContainer';
 import MyInfo_Modal from '../components/myPage/modals/MyInfo_Modal';
@@ -63,11 +63,7 @@ export default function MyPage() {
       <div>
         {badgeModal && <Badges_Modal badgeModalHandler={badgeModalHandler} />}
         {myInfoModal && (
-          <MyInfo_Modal
-            modal={myInfoModal}
-            setModal={setMyInfoModal}
-            myInfoModalHandler={myInfoModalHandler}
-          />
+          <MyInfo_Modal myInfoModalHandler={myInfoModalHandler} />
         )}
       </div>
 
