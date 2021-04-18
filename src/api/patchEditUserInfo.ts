@@ -5,9 +5,9 @@ dotenv.config();
 const api = process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
 
 export interface EditUserInfoParameter {
-  avatarUrl: string;
-  nickName: string;
-  introduction: string;
+  avatarUrl: string | null;
+  nickName: string | null;
+  introduction: string | null;
 }
 
 export async function patchEditUserInfoT(

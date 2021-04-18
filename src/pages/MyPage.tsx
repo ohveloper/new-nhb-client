@@ -1,5 +1,4 @@
 import MyAchievementContainer from '../components/myPage/MyAchievementContainer';
-import MyPhotoNickName from '../components/myPage/MyPhotoNickName';
 import MyWorkContainer from '../components/myPage/MyWorkContainer';
 import Homebutton from '../components/Home/Homebutton';
 import Sidebar from '../components/Home/Sidebar';
@@ -11,8 +10,9 @@ import {
   postGetFrivateFeedsThunk,
 } from '../actions/actions';
 import { useEffect, useState } from 'react';
-import MyIntroduction from '../components/myPage/MyIntroduction';
 import Badges_Modal from '../components/myPage/modals/Badges_Modal';
+import MyInfoContainer from '../components/myPage/MyInfoContainer';
+import MyInfo_Modal from '../components/myPage/modals/MyInfo_Modal';
 
 export default function MyPage() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -35,24 +35,38 @@ export default function MyPage() {
       dispatch(getAllTagsThunk());
     }
   }, []);
-  const [modal, setModal] = useState(false);
-  const onClickHandler = () => {
-    setModal(!modal);
+
+  //! 뱃지 모달 핸들러 구역
+  const [badgeModal, setBadgeModal] = useState(false);
+  const badgeModalHandler = () => {
+    setBadgeModal(!badgeModal);
   };
-  console.log(state);
+
+  //! 자기소개 모달 핸들러 구역
+  const [myInfoModal, setMyInfoModal] = useState(false);
+  const myInfoModalHandler = () => {
+    setMyInfoModal(!myInfoModal);
+  };
+
   return (
     <div id="myPage">
       <Homebutton />
       <Sidebar />
       <div>
-        {modal && (
+        {badgeModal && (
           <Badges_Modal
-            modal={modal}
-            setModal={setModal}
-            modalHandler={onClickHandler}
+            modal={badgeModal}
+            setModal={setBadgeModal}
+            badgeModalHandler={badgeModalHandler}
           />
         )}
-        {console.log(modal)}
+        {myInfoModal && (
+          <MyInfo_Modal
+            modal={myInfoModal}
+            setModal={setMyInfoModal}
+            myInfoModalHandler={myInfoModalHandler}
+          />
+        )}
       </div>
 
       <div>
@@ -64,18 +78,15 @@ export default function MyPage() {
         {state.userInfo.loading && 'now loading...'}
         {state.userInfo.error && 'sorry now Error'}
         {state.userInfo.data && (
-          <MyAchievementContainer modalHandler={onClickHandler} />
+          <MyAchievementContainer badgeModalHandler={badgeModalHandler} />
         )}
       </div>
       <div>
         {state.userInfo.loading && 'now loading...'}
         {state.userInfo.error && 'sorry now Error'}
-        {state.userInfo.data && <MyPhotoNickName />}
-      </div>
-      <div>
-        {state.userInfo.loading && 'now loading...'}
-        {state.userInfo.error && 'sorry now Error'}
-        {state.userInfo.data && <MyIntroduction />}
+        {state.userInfo.data && (
+          <MyInfoContainer myInfoModalHandler={myInfoModalHandler} />
+        )}
       </div>
     </div>
   );

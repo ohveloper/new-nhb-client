@@ -9,13 +9,13 @@ import { postBringUserInfoThunk } from '../../../actions/actions';
 interface Badges_ModalType {
   modal: boolean;
   setModal: any;
-  modalHandler: () => void;
+  badgeModalHandler: () => void;
 }
 
 export default function Badges_Modal({
   modal,
   setModal,
-  modalHandler,
+  badgeModalHandler,
 }: Badges_ModalType) {
   const state = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
@@ -71,7 +71,7 @@ export default function Badges_Modal({
         <h3 id="badges">Badges_Modal</h3>
         <div>선택할 뱃지 : {value}</div>
         <button onClick={setUpBadgeHandler}>설정완료</button>
-        <button onClick={modalHandler}>닫기</button>
+        <button onClick={badgeModalHandler}>닫기</button>
         <div>
           <div>
             <h3>내가 가지고있는 테그들</h3>

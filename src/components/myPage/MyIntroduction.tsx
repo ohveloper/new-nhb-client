@@ -9,7 +9,6 @@ export default function MyIntroduction() {
     <div>
       <h1>MyIntroduction</h1>
       <div>{myIntroduction ? myIntroduction : '소개글이 없습니다'}</div>
-      <button>소개글 작성</button>
     </div>
   );
 }
