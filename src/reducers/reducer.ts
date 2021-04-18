@@ -33,6 +33,9 @@ import {
   GET_ALL_TAGS_ERROR,
   GET_ALL_TAGS_SUCCESS,
   GET_ALL_TAGS_API,
+  POST_GET_USER_APT_INFO_API,
+  POST_GET_USER_APT_INFO_SUCCESS,
+  POST_GET_USER_APT_INFO_ERROR,
 } from '../actions/actionTypes';
 export interface InitState {
   userInfo: {
@@ -92,6 +95,21 @@ export interface InitState {
     error: Error | null;
     data: AllTags | null;
   };
+  apartment: {
+    loading: boolean;
+    error: Error | null;
+    data: Apt | null;
+  };
+}
+export interface Apt {
+  data: {
+    apartment: [Apart[]];
+  };
+}
+
+export interface Apart {
+  date: string;
+  feedNum: null | number;
 }
 
 export interface AllTags {
@@ -107,6 +125,11 @@ export interface AllTag {
 }
 
 export interface Topics {
+  data: {
+    topics: Topic[];
+  };
+}
+export interface Topic {
   id: number;
   word: string;
   expiration: string;
@@ -278,6 +301,11 @@ const initState: InitState = {
   },
   openPanel: false,
   tags: {
+    loading: false,
+    error: null,
+    data: null,
+  },
+  apartment: {
     loading: false,
     error: null,
     data: null,
@@ -583,6 +611,33 @@ export function reducer(
       return {
         ...state,
         privateFeeds: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+    case POST_GET_USER_APT_INFO_API:
+      return {
+        ...state,
+        apartment: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case POST_GET_USER_APT_INFO_SUCCESS:
+      return {
+        ...state,
+        apartment: {
+          loading: false,
+          error: null,
+          data: action.payload,
+        },
+      };
+    case POST_GET_USER_APT_INFO_ERROR:
+      return {
+        ...state,
+        apartment: {
           loading: false,
           error: action.payload,
           data: null,
