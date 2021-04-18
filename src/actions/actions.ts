@@ -26,9 +26,14 @@ import {
   postBringFeedsAsync,
   postGetPrivateFeedsAsync,
   getAllTagsAsync,
+  postGetUserAptInfoAsync,
 } from '../actions/actionTypes';
 import { postGetPrivateFeedsT, UserId } from '../api/postGetprivateFeeds';
 import { getAllTagsT } from '../api/getAllTags';
+import {
+  postGetUserAptInfoT,
+  postGetUserAptInfoTProps,
+} from '../api/postGetUserAptInfo';
 
 export function postLogInThunk(authCode: AuthCode) {
   return async (dispatch: Dispatch) => {
@@ -156,6 +161,19 @@ export function getAllTagsThunk() {
     try {
       const tags = await getAllTagsT();
       dispatch(success(tags));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
+
+export function postGetUserAptInfoThunk(userId: postGetUserAptInfoTProps) {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = postGetUserAptInfoAsync;
+    dispatch(request());
+    try {
+      const apt = await postGetUserAptInfoT(userId);
+      dispatch(success(apt));
     } catch (e) {
       dispatch(failure(e));
     }

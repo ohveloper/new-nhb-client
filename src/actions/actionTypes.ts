@@ -2,6 +2,7 @@ import { createAsyncAction } from 'typesafe-actions';
 import { AxiosError } from 'axios';
 import {
   AllTags,
+  Apt,
   PrivateFeeds,
   Rank,
   Topics,
@@ -93,6 +94,11 @@ export const GET_USER_COMMENT_LOG_ERROR = 'GET_USER_COMMENT_LOG_ERROR' as const;
 export const GET_USER_COMMENT_LIKE_LOG_API = 'GET_USER_COMMENT_LIKE_LOG_API' as const;
 export const GET_USER_COMMENT_LIKE_LOG_SUCCESS = 'GET_USER_COMMENT_LIKE_LOG_SUCCESS' as const;
 export const GET_USER_COMMENT_LIKE_LOG_ERROR = 'GET_USER_COMMENT_LIKE_LOG_ERROR' as const;
+
+//? post get user apt info
+export const POST_GET_USER_APT_INFO_API = 'POST_GET_USER_APT_INFO_API' as const;
+export const POST_GET_USER_APT_INFO_SUCCESS = 'POST_GET_USER_APT_INFO_SUCCESS' as const;
+export const POST_GET_USER_APT_INFO_ERROR = 'POST_GET_USER_APT_INFO_ERROR' as const;
 
 //? get all tags
 export const GET_ALL_TAGS_API = 'GET_ALL_TAGS_API' as const;
@@ -230,3 +236,9 @@ export const postLikeFeedAsync = createAsyncAction(
   POST_LIKE_FEED_SUCCESS,
   POST_LIKE_FEED_ERROR
 )<undefined, FeedLike, AxiosError>();
+
+export const postGetUserAptInfoAsync = createAsyncAction(
+  POST_GET_USER_APT_INFO_API,
+  POST_GET_USER_APT_INFO_SUCCESS,
+  POST_GET_USER_APT_INFO_ERROR
+)<undefined, Apt, AxiosError>();

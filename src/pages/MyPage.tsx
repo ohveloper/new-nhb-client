@@ -8,31 +8,38 @@ import {
   getAllTagsThunk,
   postBringUserInfoThunk,
   postGetFrivateFeedsThunk,
+  postGetUserAptInfoThunk,
 } from '../actions/actions';
 import { useEffect, useState } from 'react';
 import Badges_Modal from '../components/myPage/modals/Badges_Modal';
 import MyInfoContainer from '../components/myPage/MyInfoContainer';
 import MyInfo_Modal from '../components/myPage/modals/MyInfo_Modal';
+import { getTopicsT } from '../api/getTopics';
 
 export default function MyPage() {
   const state = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
   const _accessToken = '';
+  const userId = state.userInfo.data?.data.userInfo.userId;
   useEffect(() => {
-    if (state.accessToken) {
+    if (state.accessToken && userId) {
       const accessToken = _accessToken.concat(state.accessToken);
       dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
-
-      dispatch(
-        postGetFrivateFeedsThunk({
-          topicId: 1,
-          limit: 10,
-          userId: 2,
-          isMaxLike: null,
-          feedId: null,
+      getTopicsT()
+        .then((x) => {
+          const topicId = dispatch(x.data.topics[0].id);
+          postGetFrivateFeedsThunk({
+            topicId,
+            limit: 10,
+            userId,
+            isMaxLike: null,
+            feedId: null,
+          });
         })
-      );
+        .catch((e) => console.log(e));
+
       dispatch(getAllTagsThunk());
+      dispatch(postGetUserAptInfoThunk({ userId: userId }));
     }
   }, []);
 
@@ -70,9 +77,9 @@ export default function MyPage() {
       </div>
 
       <div>
-        {state.userInfo.loading && 'now loading...'}
-        {state.userInfo.error && 'sorry now Error'}
-        {state.userInfo.data && <MyWorkContainer />}
+        {state.privateFeeds.loading && 'now loading...'}
+        {state.privateFeeds.error && 'sorry now Error'}
+        {state.privateFeeds.data && <MyWorkContainer />}
       </div>
       <div>
         {state.userInfo.loading && 'now loading...'}
