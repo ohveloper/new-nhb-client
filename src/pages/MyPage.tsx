@@ -63,11 +63,7 @@ export default function MyPage() {
       <div>
         {badgeModal && <Badges_Modal badgeModalHandler={badgeModalHandler} />}
         {myInfoModal && (
-          <MyInfo_Modal
-            modal={myInfoModal}
-            setModal={setMyInfoModal}
-            myInfoModalHandler={myInfoModalHandler}
-          />
+          <MyInfo_Modal myInfoModalHandler={myInfoModalHandler} />
         )}
       </div>
 

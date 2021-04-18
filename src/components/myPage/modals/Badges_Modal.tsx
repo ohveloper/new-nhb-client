@@ -7,16 +7,10 @@ import { patchEditTagsT } from '../../../api/patchEditTag';
 import { postBringUserInfoThunk } from '../../../actions/actions';
 
 interface Badges_ModalType {
-  modal: boolean;
-  setModal: any;
   badgeModalHandler: () => void;
 }
 
-export default function Badges_Modal({
-  modal,
-  setModal,
-  badgeModalHandler,
-}: Badges_ModalType) {
+export default function Badges_Modal({ badgeModalHandler }: Badges_ModalType) {
   const state = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
 

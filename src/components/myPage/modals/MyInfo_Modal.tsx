@@ -9,14 +9,10 @@ import './MyInfo_Modal.css';
 import Withdrawal_Modal from './Withdrawal_Modal';
 
 interface MyIntroduction_ModalProps {
-  modal: boolean;
-  setModal: any;
   myInfoModalHandler: () => void;
 }
 
 export default function MyInfo_Modal({
-  modal,
-  setModal,
   myInfoModalHandler,
 }: MyIntroduction_ModalProps) {
   const state = useSelector((state: RootState) => state.reducer);
@@ -54,12 +50,13 @@ export default function MyInfo_Modal({
         .catch((e) => console.log(e));
     }
   };
-  console.log(state);
+
   //? input 2개로 관리하는 변경하고 싶은 닉네임과 자기소개
   const [editMyInfo, setEditMyInfo] = useState({
     _nickName: '',
     _introduction: '',
   });
+  console.log(editMyInfo);
   //? 임의 변경점 구조분해할당
   const { _nickName, _introduction } = editMyInfo;
 
@@ -75,7 +72,7 @@ export default function MyInfo_Modal({
   //? 자기소개 부분 submut 함수
   const onSubmitEditIntroduction = async (e: any) => {
     //? 아무것도 입력 안되어 있을떄 요청보내기 방지
-    if (!_nickName) return;
+    if (!_introduction) return;
     e.preventDefault();
     const _accessToken = '';
     if (state.accessToken) {
@@ -105,7 +102,6 @@ export default function MyInfo_Modal({
   const onSubmitEditNickName = async (e: any) => {
     //? 아무것도 입력안되어 있을때 쓸대없는 요청 방지
     if (!_nickName) return;
-
     e.preventDefault();
     const _accessToken = '';
     if (state.accessToken) {
