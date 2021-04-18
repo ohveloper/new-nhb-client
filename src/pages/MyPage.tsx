@@ -10,7 +10,7 @@ import {
   postGetFrivateFeedsThunk,
   postGetUserAptInfoThunk,
 } from '../actions/actions';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Badges_Modal from '../components/myPage/modals/Badges_Modal';
 import MyInfoContainer from '../components/myPage/MyInfoContainer';
 import MyInfo_Modal from '../components/myPage/modals/MyInfo_Modal';

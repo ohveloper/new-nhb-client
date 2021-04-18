@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postBringUserInfoThunk } from '../../../actions/actions';
 import { delUserWithdrawalT } from '../../../api/delUserWithdrawal';
@@ -15,6 +15,8 @@ interface MyIntroduction_ModalProps {
 }
 
 export default function MyInfo_Modal({
+  modal,
+  setModal,
   myInfoModalHandler,
 }: MyIntroduction_ModalProps) {
   const state = useSelector((state: RootState) => state.reducer);
@@ -41,7 +43,6 @@ export default function MyInfo_Modal({
     if (accessToken) {
       delUserWithdrawalT(accessToken)
         .then((x) => {
-          console.log(x);
           getLogoutT()
             .then((x) => {
               console.log(x);
