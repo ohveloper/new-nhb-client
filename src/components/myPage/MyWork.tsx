@@ -29,23 +29,24 @@ export default function MyWork() {
     <>
       <h1>MyWork</h1>
       <div>
-        {userFeeds?.length &&
-          userFeeds?.map((x, idx) => (
-            <div>
-              <div key={idx}>
-                {x.content.map((x) => {
-                  const head = x.split('')[0];
-                  return (
-                    <div>
-                      {head}: {x}
-                    </div>
-                  );
-                })}
+        {userFeeds?.length === 0
+          ? '작성한글이 없습니다'
+          : userFeeds?.map((x, idx) => (
+              <div>
+                <div key={idx}>
+                  {x.content.map((x) => {
+                    const head = x.split('')[0];
+                    return (
+                      <div>
+                        {head}: {x}
+                      </div>
+                    );
+                  })}
+                </div>
+                <div>댓글 수 : {x.commentNum}</div>
+                <div>좋아요 수 : {x.likeNum}</div>
               </div>
-              <div>댓글 수 : {x.commentNum}</div>
-              <div>좋아요 수 : {x.likeNum}</div>
-            </div>
-          ))}
+            ))}
       </div>
     </>
   );

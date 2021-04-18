@@ -9,11 +9,12 @@ export default function MyWorkContainer() {
   const state = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
   const privateFeeds = state.privateFeeds.data?.data;
+  console.log(privateFeeds);
 
   return (
     <div>
       <h1>MyWorkContainer</h1>
-      {!privateFeeds ? '데이터가 없습니다' : <MyWork />}
+      {privateFeeds ? <MyWork /> : '데이터가 없습니다'}
     </div>
   );
 }
