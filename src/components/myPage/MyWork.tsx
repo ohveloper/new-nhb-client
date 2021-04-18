@@ -1,26 +1,5 @@
 import { RootState } from '../../reducers';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-interface UserFeeds {
-  userFeeds: Feeds[];
-}
-interface Feeds {
-  feedId: number;
-  user: User;
-  topic: string;
-  content: string[];
-  likeNum: string;
-  commentNum: number;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface User {
-  userId: string;
-  nickName: string;
-  tag: string;
-}
+import { useSelector } from 'react-redux';
 
 export default function MyWork() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -31,18 +10,16 @@ export default function MyWork() {
       <div>
         {userFeeds?.length === 0
           ? '작성한글이 없습니다'
-          : userFeeds?.map((x, idx) => (
-              <div>
-                <div key={idx}>
-                  {x.content.map((x) => {
-                    const head = x.split('')[0];
-                    return (
-                      <div>
-                        {head}: {x}
-                      </div>
-                    );
-                  })}
-                </div>
+          : userFeeds?.map((x) => (
+              <div key={x.feedId}>
+                {x.content.map((x, idx) => {
+                  const head = x.split('')[0];
+                  return (
+                    <div key={idx}>
+                      {head}: {x}
+                    </div>
+                  );
+                })}
                 <div>댓글 수 : {x.commentNum}</div>
                 <div>좋아요 수 : {x.likeNum}</div>
               </div>
