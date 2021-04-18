@@ -3,7 +3,6 @@ import { RootState } from '../../reducers';
 
 export default function MyAchievementApt() {
   const state = useSelector((state: RootState) => state.reducer);
-  console.log('apt:', state);
   const aptLight = state.apartment.data?.data.apartment;
   return (
     <div>
@@ -13,12 +12,13 @@ export default function MyAchievementApt() {
         {state.apartment.error && 'sorry now error'}
         {state.apartment.data &&
           aptLight?.map((week) =>
-            week.map((day, idx) =>
-              day.feedNum === null ? (
+            week.map((day) =>
+              day.feedNum === null ? ( //? 작성횟수가 있으면 색칠하기
                 day.date === null ? ( //? date가 null이면 출력 출력안함
                   <></>
                 ) : (
                   <div
+                    key={day.date}
                     style={{
                       width: '10px',
                       height: '10px',
@@ -26,7 +26,7 @@ export default function MyAchievementApt() {
                       border: '2px solid pink',
                     }}
                   >
-                    <div key={day.date} style={{ display: 'none' }}>
+                    <div style={{ display: 'none' }}>
                       {day.feedNum}
                       {day.date}
                     </div>
@@ -34,6 +34,7 @@ export default function MyAchievementApt() {
                 )
               ) : (
                 <div
+                  key={day.date}
                   style={{
                     width: '10px',
                     height: '10px',
@@ -42,7 +43,7 @@ export default function MyAchievementApt() {
                     backgroundColor: 'red',
                   }}
                 >
-                  <div key={day.date} style={{ display: 'none' }}>
+                  <div style={{ display: 'none' }}>
                     {day.feedNum},{day.date}
                   </div>
                 </div>

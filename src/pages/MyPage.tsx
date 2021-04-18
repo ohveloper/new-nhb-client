@@ -19,22 +19,23 @@ import { getTopicsT } from '../api/getTopics';
 export default function MyPage() {
   const state = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
-  const _accessToken = '';
   const userId = state.userInfo.data?.data.userInfo.userId;
   useEffect(() => {
-    if (state.accessToken && userId) {
-      const accessToken = _accessToken.concat(state.accessToken);
+    const accessToken = state.accessToken;
+    if (accessToken && userId) {
       dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
       getTopicsT()
         .then((x) => {
-          const topicId = dispatch(x.data.topics[0].id);
-          postGetFrivateFeedsThunk({
-            topicId,
-            limit: 10,
-            userId,
-            isMaxLike: null,
-            feedId: null,
-          });
+          const topicId = x.data.topics[0].id;
+          dispatch(
+            postGetFrivateFeedsThunk({
+              topicId,
+              limit: 10,
+              userId,
+              isMaxLike: null,
+              feedId: null,
+            })
+          );
         })
         .catch((e) => console.log(e));
 
@@ -60,13 +61,7 @@ export default function MyPage() {
       <Homebutton />
       <Sidebar />
       <div>
-        {badgeModal && (
-          <Badges_Modal
-            modal={badgeModal}
-            setModal={setBadgeModal}
-            badgeModalHandler={badgeModalHandler}
-          />
-        )}
+        {badgeModal && <Badges_Modal badgeModalHandler={badgeModalHandler} />}
         {myInfoModal && (
           <MyInfo_Modal
             modal={myInfoModal}

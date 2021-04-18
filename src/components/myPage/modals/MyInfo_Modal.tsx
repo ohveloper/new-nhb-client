@@ -1,9 +1,12 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postBringUserInfoThunk } from '../../../actions/actions';
+import { delUserWithdrawalT } from '../../../api/delUserWithdrawal';
+import { getLogoutT } from '../../../api/getLogout';
 import { patchEditUserInfoT } from '../../../api/patchEditUserInfo';
 import { RootState } from '../../../reducers';
 import './MyInfo_Modal.css';
+import Withdrawal_Modal from './Withdrawal_Modal';
 
 interface MyIntroduction_ModalProps {
   modal: boolean;
@@ -12,8 +15,6 @@ interface MyIntroduction_ModalProps {
 }
 
 export default function MyInfo_Modal({
-  modal,
-  setModal,
   myInfoModalHandler,
 }: MyIntroduction_ModalProps) {
   const state = useSelector((state: RootState) => state.reducer);
@@ -29,6 +30,30 @@ export default function MyInfo_Modal({
     console.log(state);
   }, [state]);
 
+  //! 회원탈퇴 관리 상태
+  const [byeBye, setByeBye] = useState(false);
+  const byeByeHandler = () => {
+    setByeBye(!byeBye);
+    console.log(byeBye);
+  };
+  const withdrawalHandler = () => {
+    const accessToken = state.accessToken;
+    if (accessToken) {
+      delUserWithdrawalT(accessToken)
+        .then((x) => {
+          console.log(x);
+          getLogoutT()
+            .then((x) => {
+              console.log(x);
+              state.accessToken = '';
+            })
+
+            .catch((e) => console.log(e));
+        })
+        .catch((e) => console.log(e));
+    }
+  };
+  console.log(state);
   //? input 2개로 관리하는 변경하고 싶은 닉네임과 자기소개
   const [editMyInfo, setEditMyInfo] = useState({
     _nickName: '',
@@ -139,6 +164,13 @@ export default function MyInfo_Modal({
           </div>
         </div>
         <button onClick={myInfoModalHandler}>close</button>
+        <button onClick={byeByeHandler}>회원탈퇴</button>
+        {byeBye && (
+          <Withdrawal_Modal
+            withdrawalHandler={withdrawalHandler}
+            byeByeHandler={byeByeHandler}
+          />
+        )}
       </div>
     </div>
   );
