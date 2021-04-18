@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 
 interface PropsType {
-  modalHandler: () => void;
+  badgeModalHandler: () => void;
 }
 
-export default function MyAchievementBadges({ modalHandler }: PropsType) {
+export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
   const state = useSelector((state: RootState) => state.reducer);
   const allTags = state.tags.data?.data;
   const myInfo = state.userInfo.data?.data.userInfo;
@@ -17,7 +17,7 @@ export default function MyAchievementBadges({ modalHandler }: PropsType) {
       <h1>MyAchievementBadges</h1>
       <div>
         <h3>모달 테스트</h3>
-        <button onClick={modalHandler}>뱃지선택</button>
+        <button onClick={badgeModalHandler}>뱃지선택</button>
       </div>
       <div>
         {
