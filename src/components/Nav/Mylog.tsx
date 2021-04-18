@@ -11,7 +11,7 @@ function Mylog() {
     <div>
       <div>
         지금까지 작성한 N행시 : {state.userInfo.loading && '정보를 가져오는 중'}
-        {userState && userState}
+        {/* {userState && userState} */}
       </div>
       <div></div>
     </div>
