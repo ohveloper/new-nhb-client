@@ -3,6 +3,7 @@ import Sidebar from '../components/Home/Sidebar';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { postLogInThunk } from '../actions/actions';
+import HomepagePoemsRanking from '../components/Home/HomepagePoemsRanking';
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -30,12 +31,10 @@ export default function HomePage() {
         <p>N행시 작성하러 가기</p>
       </Link>
       <br />
-      <Link to="/mypage">
-        <p> Mypage</p>
-      </Link>
       <Link to="/apitest">
         <p> apitest</p>
       </Link>
+      <HomepagePoemsRanking />
       <div className="App">:sunglasses: </div>
     </div>
   );
