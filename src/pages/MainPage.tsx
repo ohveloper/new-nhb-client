@@ -76,15 +76,6 @@ export default function MainPage() {
     }
   };
 
-  //? 게시글 수정 함수
-  const handleEdit = () => {
-    const _accessToken = '';
-    if (state.accessToken) {
-      const accessToken = _accessToken.concat(state.accessToken);
-      console.log('Edit!');
-    }
-  };
-
   //? 첫 렌더 이후 사용될 데이터 호출 함수
   const fetchMoreData = async () => {
     //? 세 번째 인자로 게시글 번호(feedId)를 받는다
@@ -153,7 +144,6 @@ export default function MainPage() {
       <MainpagePoemList
         poem={poem}
         isLoading={isLoading}
-        handleEdit={handleEdit}
         handleDelete={handleDelete}
       />
     </>

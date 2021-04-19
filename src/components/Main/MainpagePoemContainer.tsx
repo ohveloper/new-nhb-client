@@ -7,14 +7,12 @@ import PoemView from './PoemView';
 type MainpagePoemContainerProps = {
   poem: Welcome;
   isLoading: boolean;
-  handleEdit: () => void;
   handleDelete: (feedId: FeedId) => void;
 };
 
 export default function MainpagePoemContainer({
   poem,
   isLoading,
-  handleEdit,
   handleDelete,
 }: MainpagePoemContainerProps) {
   const state = useSelector((state: RootState) => state.reducer);
@@ -26,12 +24,7 @@ export default function MainpagePoemContainer({
   return (
     <>
       <h2>PoemContainer</h2>
-      <PoemView
-        poem={poem}
-        isLoading={isLoading}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />
+      <PoemView poem={poem} isLoading={isLoading} handleDelete={handleDelete} />
     </>
   );
 }
