@@ -6,11 +6,10 @@ import { RootState } from '../reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getAllTagsThunk,
-  postBringUserInfoThunk,
   postGetFrivateFeedsThunk,
   postGetUserAptInfoThunk,
 } from '../actions/actions';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Badges_Modal from '../components/myPage/modals/Badges_Modal';
 import MyInfoContainer from '../components/myPage/MyInfoContainer';
 import MyInfo_Modal from '../components/myPage/modals/MyInfo_Modal';
