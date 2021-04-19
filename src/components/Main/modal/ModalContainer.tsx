@@ -32,24 +32,12 @@ export default function PoemDetails() {
   const topicId = 1;
   const limit = 20;
 
-  //? 현재 글 정보 불러오기
-  useEffect(() => {
-    postBringFeedT({
-      topicId: topicId,
-      limit: limit,
-      feedId: Number(feed_id) + 1,
-    })
-      .then((res) => {
-        setEditVal(res.data.userFeeds[0]);
-      })
-      .catch((e) => console.log(e));
-  }, []);
-  console.log(editVal);
-
-  //? 게시글 삭제 함수
+  //? 파라미터로 들어갈 FeedId 형식
   const delFeedId = {
     data: { feedId: Number(feed_id) },
   };
+
+  //? 게시글 삭제 함수
   const handleDelete = async (feedId: FeedId) => {
     console.log(feedId);
     const _accessToken = '';
@@ -70,11 +58,27 @@ export default function PoemDetails() {
     }
   };
 
+  //? 댓글 조회 함수
   const fetchCommentData = async (feedId: Feed_Id) => {
     await postBringCommentT(feedId).then((res) => {
       setComments({ comments: [...res.comments] });
     });
   };
+
+  //? 현재 글 정보 불러오기
+  useEffect(() => {
+    postBringFeedT({
+      topicId: topicId,
+      limit: limit,
+      feedId: Number(feed_id) + 1,
+    })
+      .then((res) => {
+        setEditVal(res.data.userFeeds[0]);
+      })
+      .catch((e) => console.log(e));
+    fetchCommentData({ feedId: Number(feed_id) }).catch((e) => console.log(e));
+  }, []);
+  console.log(editVal);
 
   return (
     <>
