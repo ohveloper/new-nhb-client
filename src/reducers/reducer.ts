@@ -172,7 +172,7 @@ export interface SignUp {
 }
 
 export interface BringComment {
-  comments: Comment[];
+  data: { comments: Comment[] };
 }
 
 export interface Comment {

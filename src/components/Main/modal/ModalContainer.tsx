@@ -6,11 +6,16 @@ import { postBringFeedT } from '../../../api/postBringFeeds';
 import { UserFeeds, BringComment } from '../../../reducers/reducer';
 import { delRemoveFeedT, FeedId } from '../../../api/delRemoveFeed';
 import { postBringCommentT, Feed_Id } from '../../../api/postBringComment';
+import {
+  postUploadCommentT,
+  CommentFeedId,
+} from '../../../api/postUploadComment';
 import PoemEditButton from '../PoemEditButton';
 import PoemDeleteButton from '../PoemDeleteButton';
 import PoemInfo from '../PoemInfo';
 import PoemButtonGroup from '../PoemButtonGroup';
 import ModalCommentsView from './ModalCommentsView';
+import ModalCommentsInput from './ModalCommentsInput';
 
 export default function PoemDetails() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -27,29 +32,19 @@ export default function PoemDetails() {
     createdAt: '',
     updatedAt: '',
   });
-  const [comments, setComments] = useState<BringComment>({ comments: [] });
+  const [comments, setComments] = useState<BringComment>({
+    data: { comments: [] },
+  });
 
   const topicId = 1;
   const limit = 20;
 
-  //? 현재 글 정보 불러오기
-  useEffect(() => {
-    postBringFeedT({
-      topicId: topicId,
-      limit: limit,
-      feedId: Number(feed_id) + 1,
-    })
-      .then((res) => {
-        setEditVal(res.data.userFeeds[0]);
-      })
-      .catch((e) => console.log(e));
-  }, []);
-  console.log(editVal);
-
-  //? 게시글 삭제 함수
+  //? 파라미터로 들어갈 FeedId 형식
   const delFeedId = {
     data: { feedId: Number(feed_id) },
   };
+
+  //? 게시글 삭제 함수
   const handleDelete = async (feedId: FeedId) => {
     console.log(feedId);
     const _accessToken = '';
@@ -70,11 +65,40 @@ export default function PoemDetails() {
     }
   };
 
+  //? 댓글 등록 함수
+  const handlePostUploadComment = async (comment: CommentFeedId) => {
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      await postUploadCommentT(comment, accessToken);
+      await fetchCommentData({ feedId: Number(feed_id) });
+    }
+  };
+
+  //? 댓글 조회 함수
   const fetchCommentData = async (feedId: Feed_Id) => {
     await postBringCommentT(feedId).then((res) => {
-      setComments({ comments: [...res.comments] });
+      const response = res.data;
+      console.log(response.comments);
+
+      setComments({ data: { comments: [...response.comments] } });
     });
   };
+
+  //? 현재 글 정보 불러오기
+  useEffect(() => {
+    postBringFeedT({
+      topicId: topicId,
+      limit: limit,
+      feedId: Number(feed_id) + 1,
+    })
+      .then((res) => {
+        setEditVal(res.data.userFeeds[0]);
+      })
+      .catch((e) => console.log(e));
+    fetchCommentData({ feedId: Number(feed_id) }).catch((e) => console.log(e));
+  }, []);
+  console.log(editVal);
 
   return (
     <>
@@ -97,8 +121,11 @@ export default function PoemDetails() {
       />
       <div>
         {editVal.content.map((word, idx) => {
-          const head = word.slice(0, 1);
-          // const tail = word.slice(1);
+          let head;
+          if (word !== null) {
+            head = word.slice(0, 1);
+            // const tail = word.slice(1);
+          }
           const key = String(idx) + String(editVal.feedId);
           return (
             <div key={key}>
@@ -110,6 +137,11 @@ export default function PoemDetails() {
       <PoemButtonGroup
         likeNum={editVal.likeNum}
         commentNum={editVal.commentNum}
+      />
+      <ModalCommentsInput
+        feedId={Number(feed_id)}
+        comments={comments}
+        handlePostUploadComment={handlePostUploadComment}
       />
       <ModalCommentsView comments={comments} />
     </>
