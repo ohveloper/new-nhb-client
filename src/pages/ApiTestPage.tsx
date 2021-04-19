@@ -75,7 +75,7 @@ export default function ApiTestPage() {
   };
 
   const postSignUpHandler = () => {
-    dispatch(postSignUpThunk({ authCode: '956idytl8j' }));
+    dispatch(postSignUpThunk({ authCode: 'vt7cgin3b7' }));
   };
 
   const postLoginHandler = () => {

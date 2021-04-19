@@ -8,22 +8,46 @@ export default function MyWork() {
     <>
       <h1>MyWork</h1>
       <div>
-        {userFeeds?.length === 0
-          ? '작성한글이 없습니다'
-          : userFeeds?.map((x) => (
-              <div key={x.feedId}>
-                {x.content.map((x, idx) => {
-                  const head = x.split('')[0];
+        {state.privateFeeds.loading && 'now loading..'}
+        {state.privateFeeds.error && 'now error..'}
+        {state.privateFeeds.data &&
+          state.privateFeeds.data.data.userFeeds.slice(0, 3).map((x) => {
+            console.log(x.likeNum);
+            return (
+              <div>
+                {x.content.map((word) => {
+                  const head = word.split('')[0];
+                  console.log(head);
+                  console.log(word);
                   return (
-                    <div key={idx}>
-                      {head}: {x}
+                    <div>
+                      [{head}: {word}]
                     </div>
                   );
                 })}
-                <div>댓글 수 : {x.commentNum}</div>
-                <div>좋아요 수 : {x.likeNum}</div>
+                <div>[좋아요: {x.likeNum}]</div>
+                <div>[댓글수: {x.commentNum}]</div>
               </div>
-            ))}
+            );
+          })}
+
+        {/* // ? '데이터가 없습니다'
+          // : userFeeds?.length === 0
+          // ? '작성한글이 없습니다'
+          // : userFeeds?.map((x) => (
+          //     <div key={x.feedId}>
+          //       {x.content.map((x, idx) => {
+          //         const head = x.split('')[0];
+          //         return (
+          //           <div key={idx}>
+          //             {head}: {x}
+          //           </div>
+          //         );
+          //       })}
+          //       <div>댓글 수 : {x.commentNum}</div>
+          //       <div>좋아요 수 : {x.likeNum}</div>
+          //     </div>
+          //   ))} */}
       </div>
     </>
   );

@@ -12,13 +12,13 @@ export default function MyAchievementApt() {
         {state.apartment.error && 'sorry now error'}
         {state.apartment.data &&
           aptLight?.map((week) =>
-            week.map((day) =>
+            week.map((day, idx) =>
               day.feedNum === null ? ( //? 작성횟수가 있으면 색칠하기
                 day.date === null ? ( //? date가 null이면 출력 출력안함
                   <></>
                 ) : (
                   <div
-                    key={day.date}
+                    key={idx}
                     style={{
                       width: '10px',
                       height: '10px',
@@ -34,7 +34,7 @@ export default function MyAchievementApt() {
                 )
               ) : (
                 <div
-                  key={day.date}
+                  key={idx}
                   style={{
                     width: '10px',
                     height: '10px',
