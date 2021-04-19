@@ -9,14 +9,16 @@ function NavLogin() {
 
   const [inputValue, setInputValue] = useState('');
 
-  const loginHandler = async () => {
-    await postSendAuthEmailT({ email: inputValue }).then((data) => {
-      if (data.message === '회원가입') {
-        setInputValue('회원가입 링크가 이메일로 전송되었습니다.');
-      } else if (data.message === '로그인') {
-        setInputValue('로그인 링크가 이메일로 전송되었습니다.');
-      }
-    });
+  const loginHandler = () => {
+    postSendAuthEmailT({ email: inputValue })
+      .then((data) => {
+        if (data.message === '회원가입') {
+          setInputValue('회원가입 링크가 이메일로 전송되었습니다.');
+        } else if (data.message === '로그인') {
+          setInputValue('로그인 링크가 이메일로 전송되었습니다.');
+        }
+      })
+      .catch((e) => console.log(e));
   };
 
   return (

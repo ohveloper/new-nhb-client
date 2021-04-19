@@ -2,7 +2,8 @@ import Homebutton from '../components/Home/Homebutton';
 import Sidebar from '../components/Home/Sidebar';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { postLogInThunk } from '../actions/actions';
+import { postLogInThunk, postSignUpThunk } from '../actions/actions';
+import HomepagePoemsRanking from '../components/Home/HomepagePoemsRanking';
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -12,9 +13,14 @@ export default function HomePage() {
   //? 링크를 통해 들어온 client 구분하기 위한 함수
   function checkClient() {
     // //? 회원가입한 유저
-    console.log('here');
+    console.log('url : ', url);
     if (url.includes('login')) {
+      console.log('logiinT');
       dispatch(postLogInThunk({ authCode: userAuthCode }));
+    } else if (url.includes('signup')) {
+      console.log('signup');
+      dispatch(postSignUpThunk({ authCode: userAuthCode }));
+      console.log('true');
     }
   }
 
@@ -30,12 +36,10 @@ export default function HomePage() {
         <p>N행시 작성하러 가기</p>
       </Link>
       <br />
-      <Link to="/mypage">
-        <p> Mypage</p>
-      </Link>
       <Link to="/apitest">
         <p> apitest</p>
       </Link>
+      <HomepagePoemsRanking />
       <div className="App">:sunglasses: </div>
     </div>
   );

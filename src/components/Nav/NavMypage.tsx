@@ -12,6 +12,7 @@ function NavMyPage() {
     if (accessToken)
       dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
   }, []);
+
   return (
     <div>
       <Link to="/mypage">My Page</Link>
