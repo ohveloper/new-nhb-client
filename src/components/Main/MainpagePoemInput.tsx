@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Content } from '../../api/postUploadFeed';
 import { RootState } from '../../reducers';
@@ -21,6 +21,7 @@ const MainpagePoemInput = ({
     content: [],
     word: topic,
   });
+  const [error, setError] = useState(false);
 
   const onPoemChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -28,16 +29,27 @@ const MainpagePoemInput = ({
       const { content } = state;
       const text: any = content.slice();
       text[name] = value;
-      return { content: text, word: topic };
+      return { ...val, content: text };
     });
   };
   const onPoemSubmit = (event: FormEvent) => {
     event.preventDefault();
-    console.log('val:', val);
-    handlePostUploadFeed(val);
-    setVal({
-      content: [],
-      word: topic,
+    let isValidate = false;
+    for (let i = 0; i < todaysTopic.length; i++) {
+      if (todaysTopic[i] === val.content[i][0]) {
+        isValidate = true;
+      }
+    }
+    if (isValidate) {
+      handlePostUploadFeed(val);
+      setError(false);
+    } else {
+      console.log('error!');
+      setError(true);
+    }
+    setVal((): any => {
+      const emptyArr = todaysTopic.fill('', 0, todaysTopic.length);
+      return { ...val, content: emptyArr };
     });
   };
 
@@ -61,6 +73,11 @@ const MainpagePoemInput = ({
         })}
         <button type="submit">작성하기</button>
       </form>
+      {error ? (
+        <div>오늘의 주제에 맞는 작품을 작성해 주세요!</div>
+      ) : (
+        <div></div>
+      )}
     </>
   );
 };

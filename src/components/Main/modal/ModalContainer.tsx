@@ -10,18 +10,22 @@ import {
   postUploadCommentT,
   CommentFeedId,
 } from '../../../api/postUploadComment';
+import { patchEditFeedT, EditFeedParameter } from '../../../api/patchEditFeed';
 import PoemEditButton from '../PoemEditButton';
 import PoemDeleteButton from '../PoemDeleteButton';
 import PoemInfo from '../PoemInfo';
 import PoemButtonGroup from '../PoemButtonGroup';
 import ModalCommentsView from './ModalCommentsView';
 import ModalCommentsInput from './ModalCommentsInput';
+import ModalContainerEditInput from './ModalContainerEditInput';
+import axios from 'axios';
 
 export default function PoemDetails() {
   const state = useSelector((state: RootState) => state.reducer);
   const userId = state.userInfo.data?.data.userInfo.userId;
   const { feed_id } = useParams<{ feed_id: string }>();
   const history = useHistory();
+  const [edit, setEdit] = useState(false);
   const [editVal, setEditVal] = useState<UserFeeds>({
     feedId: 0,
     user: { nickName: '', tag: '', userId: '' },
@@ -38,10 +42,11 @@ export default function PoemDetails() {
 
   const topicId = 1;
   const limit = 20;
+  const numFeedId = Number(feed_id);
 
   //? 파라미터로 들어갈 FeedId 형식
   const delFeedId = {
-    data: { feedId: Number(feed_id) },
+    data: { feedId: numFeedId },
   };
 
   //? 게시글 삭제 함수
@@ -56,12 +61,20 @@ export default function PoemDetails() {
     }
   };
 
-  //? 게시글 수정 함수
+  //? 수정 버튼 클릭
   const handleEdit = () => {
+    if (state.accessToken) {
+      setEdit(true);
+    }
+  };
+  //? 게시글 수정 적용버튼
+  const handlePatchEditFeed = async (editFeedParameter: EditFeedParameter) => {
     const _accessToken = '';
     if (state.accessToken) {
       const accessToken = _accessToken.concat(state.accessToken);
-      console.log('Edit!!!');
+      await patchEditFeedT(editFeedParameter, accessToken);
+      setEdit(false);
+      await fetchData(topicId, limit, numFeedId + 1);
     }
   };
 
@@ -71,10 +84,20 @@ export default function PoemDetails() {
     if (state.accessToken) {
       const accessToken = _accessToken.concat(state.accessToken);
       await postUploadCommentT(comment, accessToken);
-      await fetchCommentData({ feedId: Number(feed_id) });
+      await fetchCommentData({ feedId: numFeedId });
     }
   };
 
+  //? 클릭한 글 조회
+  const fetchData = async (topicId: number, limit: number, feedId: number) => {
+    await postBringFeedT({
+      topicId,
+      limit,
+      feedId,
+    }).then((res) => {
+      setEditVal(res.data.userFeeds[0]);
+    });
+  };
   //? 댓글 조회 함수
   const fetchCommentData = async (feedId: Feed_Id) => {
     await postBringCommentT(feedId).then((res) => {
@@ -87,63 +110,71 @@ export default function PoemDetails() {
 
   //? 현재 글 정보 불러오기
   useEffect(() => {
-    postBringFeedT({
-      topicId: topicId,
-      limit: limit,
-      feedId: Number(feed_id) + 1,
-    })
-      .then((res) => {
-        setEditVal(res.data.userFeeds[0]);
-      })
-      .catch((e) => console.log(e));
-    fetchCommentData({ feedId: Number(feed_id) }).catch((e) => console.log(e));
+    fetchData(topicId, limit, numFeedId + 1).catch((e) => console.log(e));
+    fetchCommentData({ feedId: numFeedId }).catch((e) => console.log(e));
   }, []);
   console.log(editVal);
+  console.log(edit);
 
   return (
     <>
       <h2 onClick={() => history.push('/main')}>돌아가기</h2>
       <h1>PoemDetailsPage</h1>
-      <div>{editVal.feedId}</div>
-      {userId === Number(editVal.user.userId) ? (
+      {edit ? (
         <>
-          <PoemEditButton handleEdit={handleEdit} />
-          <PoemDeleteButton handleDelete={handleDelete} feedId={delFeedId} />
+          <div>true</div>
+          <ModalContainerEditInput
+            handlePatchEditFeed={handlePatchEditFeed}
+            editVal={editVal}
+          />
         </>
       ) : (
-        <div></div>
-      )}
+        <>
+          <div>false</div>
+          {userId === Number(editVal.user.userId) ? (
+            <>
+              <PoemEditButton handleEdit={handleEdit} />
+              <PoemDeleteButton
+                handleDelete={handleDelete}
+                feedId={delFeedId}
+              />
+            </>
+          ) : (
+            <div></div>
+          )}
 
-      <PoemInfo
-        userTag={editVal.user.tag}
-        nickName={editVal.user.nickName}
-        createdAt={editVal.createdAt}
-      />
-      <div>
-        {editVal.content.map((word, idx) => {
-          let head;
-          if (word !== null) {
-            head = word.slice(0, 1);
-            // const tail = word.slice(1);
-          }
-          const key = String(idx) + String(editVal.feedId);
-          return (
-            <div key={key}>
-              [{head}]{word}
-            </div>
-          );
-        })}
-      </div>
-      <PoemButtonGroup
-        likeNum={editVal.likeNum}
-        commentNum={editVal.commentNum}
-      />
-      <ModalCommentsInput
-        feedId={Number(feed_id)}
-        comments={comments}
-        handlePostUploadComment={handlePostUploadComment}
-      />
-      <ModalCommentsView comments={comments} />
+          <PoemInfo
+            userTag={editVal.user.tag}
+            nickName={editVal.user.nickName}
+            createdAt={editVal.createdAt}
+          />
+          <div>
+            {editVal.content.map((word, idx) => {
+              let head;
+              if (word !== null) {
+                head = word.slice(0, 1);
+                // const tail = word.slice(1);
+              }
+              const key = String(idx) + String(editVal.feedId);
+              return (
+                <div key={key}>
+                  [{head}]{word}
+                </div>
+              );
+            })}
+          </div>
+          <PoemButtonGroup
+            likeNum={editVal.likeNum}
+            commentNum={editVal.commentNum}
+          />
+          <ModalCommentsInput
+            feedId={Number(feed_id)}
+            comments={comments}
+            handlePostUploadComment={handlePostUploadComment}
+          />
+          <ModalCommentsView comments={comments} />
+        </>
+      )}
     </>
   );
 }
