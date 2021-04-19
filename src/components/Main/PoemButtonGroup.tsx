@@ -11,7 +11,8 @@ export default function PoemButtonGroup({
 }: PoemButtonGroupProps) {
   return (
     <div>
-      [likes] {likeNum} &nbsp; [comments] {commentNum} &nbsp; [share]
+      [likes] {likeNum} &nbsp; [comments] {commentNum} &nbsp; [share] &nbsp;
+      [report]
     </div>
   );
 }

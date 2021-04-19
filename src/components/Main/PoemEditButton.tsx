@@ -7,5 +7,5 @@ export default function PoemEditButton({ handleEdit }: PoemEditButtonProps) {
     handleEdit();
   };
 
-  return <div onClick={onClickEdit}>(E)</div>;
+  return <button onClick={onClickEdit}>EDIT</button>;
 }

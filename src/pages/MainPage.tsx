@@ -1,10 +1,14 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Content, postUploadFeedT } from '../api/postUploadFeed';
 import { Welcome } from '../reducers/reducer';
 import { RootState } from '../reducers';
 import { postBringFeedT } from '../api/postBringFeeds';
 import { delRemoveFeedT, FeedId } from '../api/delRemoveFeed';
+import {
+  postBringFeedsThunk,
+  postBringUserInfoThunk,
+} from '../actions/actions';
 import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
 import Homebutton from '../components/Home/Homebutton';
@@ -12,6 +16,7 @@ import Sidebar from '../components/Home/Sidebar';
 
 export default function MainPage() {
   const state = useSelector((state: RootState) => state.reducer);
+  const dispatch = useDispatch();
   console.log(state);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +27,11 @@ export default function MainPage() {
   const limit = 20;
 
   const fetchData = async () => {
-    // dispatch(postBringFeedsThunk({ topicId: topicId, limit: 20 }));
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
+    }
     await postBringFeedT({ topicId: topicId, limit: limit }).then((res) => {
       const response = res.data;
       setPoem({
