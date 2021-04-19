@@ -4,13 +4,9 @@ dotenv.config();
 
 const api = process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
 
-export interface Content {
+export interface EditFeedParameter {
   content: string[];
-}
-export interface FeedId {
-  data: {
-    feedId: number;
-  };
+  feedId: number;
 }
 
 export interface EditFeed {
@@ -18,8 +14,7 @@ export interface EditFeed {
 }
 
 export async function patchEditFeedT(
-  content: Content,
-  feedId: FeedId,
+  editFeedParameter: EditFeedParameter,
   accessToken: string
 ) {
   const apiClient = axios.create({
@@ -31,6 +26,6 @@ export async function patchEditFeedT(
     },
     withCredentials: true,
   });
-  const response = await apiClient.patch<EditFeed>('/feed', content, feedId);
+  const response = await apiClient.patch<EditFeed>('/feed', editFeedParameter);
   return response.data;
 }
