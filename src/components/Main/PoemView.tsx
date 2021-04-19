@@ -1,24 +1,21 @@
 import { useSelector } from 'react-redux';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Welcome } from '../../reducers/reducer';
 import { FeedId } from '../../api/delRemoveFeed';
 import PoemInfo from './PoemInfo';
 import PoemButtonGroup from './PoemButtonGroup';
-import PoemEditButton from './PoemEditButton';
 import PoemDeleteButton from './PoemDeleteButton';
 import { RootState } from '../../reducers';
 
 type poemViewProps = {
   poem: Welcome;
   isLoading: boolean;
-  handleEdit: () => void;
   handleDelete: (feedId: FeedId) => void;
 };
 
 export default function PoemView({
   poem,
   isLoading,
-  handleEdit,
   handleDelete,
 }: poemViewProps) {
   const state = useSelector((state: RootState) => state.reducer);
@@ -39,7 +36,6 @@ export default function PoemView({
             <div>{feed.feedId}</div>
             {userId === Number(feed.user.userId) ? (
               <>
-                <PoemEditButton handleEdit={handleEdit} />
                 <PoemDeleteButton
                   handleDelete={handleDelete}
                   feedId={delFeedId}
