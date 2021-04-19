@@ -14,11 +14,11 @@ const apiClient = axios.create({
   withCredentials: true,
 });
 
-export interface FeedId {
+export interface Feed_Id {
   feedId: number;
 }
 
-export async function postBringCommentT(feedId: FeedId) {
+export async function postBringCommentT(feedId: Feed_Id) {
   const response = await apiClient.post<BringComment>(
     '/feed/comment/lookup',
     feedId

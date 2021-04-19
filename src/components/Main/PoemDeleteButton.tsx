@@ -13,5 +13,5 @@ export default function PoemDeleteButton({
     handleDelete(feedId);
   };
 
-  return <div onClick={onClickDelete}>(X)</div>;
+  return <button onClick={onClickDelete}>DELETE</button>;
 }

@@ -1,9 +1,3 @@
-export const GET_USER_INFO = 'GET_USER_INFO' as const;
-export const GET_PRIVATE_FEEDS = 'GET_PRIVATE_FEEDS' as const;
-export const GET_RANK = 'GET_RANK' as const;
-export const GET_COMMENTS = 'GET_COMMENTS' as const;
-export const GET_USER_FEEDS = 'GET_USER_FEEDS' as const;
-
 import { Dispatch } from 'redux';
 import { postBringUserInfoT, UUID } from '../api/postBringUserInfo';
 import { postBringFeedT } from '../api/postBringFeeds';

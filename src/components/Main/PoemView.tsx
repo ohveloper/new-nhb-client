@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { Link, Route } from 'react-router-dom';
 import { Welcome } from '../../reducers/reducer';
 import { FeedId } from '../../api/delRemoveFeed';
 import PoemInfo from './PoemInfo';
@@ -34,42 +35,44 @@ export default function PoemView({
           data: { feedId: feed.feedId },
         };
         return (
-          <div key={feed.feedId}>
-            {userId === Number(feed.user.userId) ? (
-              <>
-                <PoemEditButton handleEdit={handleEdit} />
-                <PoemDeleteButton
-                  handleDelete={handleDelete}
-                  feedId={delFeedId}
-                />
-              </>
-            ) : (
-              <div></div>
-            )}
+          <Link to={`/main/${feed.feedId}`}>
+            <div key={feed.feedId}>
+              <div>{feed.feedId}</div>
+              {userId === Number(feed.user.userId) ? (
+                <>
+                  <PoemEditButton handleEdit={handleEdit} />
+                  <PoemDeleteButton
+                    handleDelete={handleDelete}
+                    feedId={delFeedId}
+                  />
+                </>
+              ) : (
+                <div></div>
+              )}
 
-            <div>{feed.feedId}</div>
-            <PoemInfo
-              userTag={feed.user.tag}
-              nickName={feed.user.nickName}
-              createdAt={feed.createdAt}
-            />
-            <div>
-              {feed.content.map((word, idx) => {
-                const head = word.slice(0, 1);
-                // const tail = word.slice(1);
-                const key = String(idx) + String(feed.feedId);
-                return (
-                  <div key={key}>
-                    [{head}]{word}
-                  </div>
-                );
-              })}
+              <PoemInfo
+                userTag={feed.user.tag}
+                nickName={feed.user.nickName}
+                createdAt={feed.createdAt}
+              />
+              <div>
+                {feed.content.map((word, idx) => {
+                  const head = word.slice(0, 1);
+                  // const tail = word.slice(1);
+                  const key = String(idx) + String(feed.feedId);
+                  return (
+                    <div key={key}>
+                      [{head}]{word}
+                    </div>
+                  );
+                })}
+              </div>
+              <PoemButtonGroup
+                likeNum={feed.likeNum}
+                commentNum={feed.commentNum}
+              />
             </div>
-            <PoemButtonGroup
-              likeNum={feed.likeNum}
-              commentNum={feed.commentNum}
-            />
-          </div>
+          </Link>
         );
       })}
     </>
