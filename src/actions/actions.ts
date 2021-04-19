@@ -21,6 +21,7 @@ import {
   postGetPrivateFeedsAsync,
   getAllTagsAsync,
   postGetUserAptInfoAsync,
+  getAllTopicsAdminAsync,
 } from '../actions/actionTypes';
 import { postGetPrivateFeedsT, UserId } from '../api/postGetprivateFeeds';
 import { getAllTagsT } from '../api/getAllTags';
@@ -28,6 +29,7 @@ import {
   postGetUserAptInfoT,
   postGetUserAptInfoTProps,
 } from '../api/postGetUserAptInfo';
+import { getAllTopicsAdminT } from '../api/getAllTopicsAdmin';
 
 export function postLogInThunk(authCode: AuthCode) {
   return async (dispatch: Dispatch) => {
@@ -168,6 +170,18 @@ export function postGetUserAptInfoThunk(userId: postGetUserAptInfoTProps) {
     try {
       const apt = await postGetUserAptInfoT(userId);
       dispatch(success(apt));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
+export function getAllTopicsAdminThunk(accessToken: string) {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = getAllTopicsAdminAsync;
+    dispatch(request());
+    try {
+      const topicsAdmin = await getAllTopicsAdminT(accessToken);
+      dispatch(success(topicsAdmin));
     } catch (e) {
       dispatch(failure(e));
     }

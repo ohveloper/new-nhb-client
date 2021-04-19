@@ -39,6 +39,9 @@ export default function HomePage() {
       <Link to="/apitest">
         <p> apitest</p>
       </Link>
+      <Link to="/admin">
+        <p>admin</p>
+      </Link>
       <HomepagePoemsRanking />
       <div className="App">:sunglasses: </div>
     </div>
