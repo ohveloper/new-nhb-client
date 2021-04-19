@@ -35,30 +35,33 @@ export default function PoemView({
           data: { feedId: feed.feedId },
         };
         return (
-          <Link to={`/main/${feed.feedId}`}>
-            <div key={feed.feedId}>
-              <div>{feed.feedId}</div>
-              {userId === Number(feed.user.userId) ? (
-                <>
-                  <PoemEditButton handleEdit={handleEdit} />
-                  <PoemDeleteButton
-                    handleDelete={handleDelete}
-                    feedId={delFeedId}
-                  />
-                </>
-              ) : (
-                <div></div>
-              )}
+          <div key={feed.feedId}>
+            <div>{feed.feedId}</div>
+            {userId === Number(feed.user.userId) ? (
+              <>
+                <PoemEditButton handleEdit={handleEdit} />
+                <PoemDeleteButton
+                  handleDelete={handleDelete}
+                  feedId={delFeedId}
+                />
+              </>
+            ) : (
+              <div></div>
+            )}
 
-              <PoemInfo
-                userTag={feed.user.tag}
-                nickName={feed.user.nickName}
-                createdAt={feed.createdAt}
-              />
+            <PoemInfo
+              userTag={feed.user.tag}
+              nickName={feed.user.nickName}
+              createdAt={feed.createdAt}
+            />
+            <Link to={`/main/${feed.feedId}`}>
               <div>
                 {feed.content.map((word, idx) => {
-                  const head = word.slice(0, 1);
-                  // const tail = word.slice(1);
+                  let head;
+                  if (word !== null) {
+                    head = word.slice(0, 1);
+                    // const tail = word.slice(1);
+                  }
                   const key = String(idx) + String(feed.feedId);
                   return (
                     <div key={key}>
@@ -67,12 +70,12 @@ export default function PoemView({
                   );
                 })}
               </div>
-              <PoemButtonGroup
-                likeNum={feed.likeNum}
-                commentNum={feed.commentNum}
-              />
-            </div>
-          </Link>
+            </Link>
+            <PoemButtonGroup
+              likeNum={feed.likeNum}
+              commentNum={feed.commentNum}
+            />
+          </div>
         );
       })}
     </>
