@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { postLogInThunk, postSignUpThunk } from '../actions/actions';
 import HomepagePoemsRanking from '../components/Home/HomepagePoemsRanking';
+import axios from 'axios';
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -12,15 +13,40 @@ export default function HomePage() {
 
   //? 링크를 통해 들어온 client 구분하기 위한 함수
   function checkClient() {
-    // //? 회원가입한 유저
-    console.log('url : ', url);
+    //? 회원가입한 유저
     if (url.includes('login')) {
-      console.log('logiinT');
+      console.log('loginT');
       dispatch(postLogInThunk({ authCode: userAuthCode }));
-    } else if (url.includes('signup')) {
+    }
+    //? 회원가입 유저
+    else if (url.includes('signup')) {
       console.log('signup');
       dispatch(postSignUpThunk({ authCode: userAuthCode }));
-      console.log('true');
+    }
+
+    //? googleOAuth용
+    else if (url.includes('access_token')) {
+      const url = new URL(window.location.href);
+      const first = url.hash.indexOf('n=');
+      const last = url.hash.indexOf('&t');
+
+      const accessToken = url.hash.slice(first + 2, last);
+      const api =
+        process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
+
+      const apiClient = axios.create({
+        baseURL: api,
+        responseType: 'json',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `${accessToken}`,
+        },
+        withCredentials: true,
+      });
+      apiClient
+        .get(`${api}main/oauth`)
+        .then((data) => console.log(data.data))
+        .catch((e) => console.log(e));
     }
   }
 
