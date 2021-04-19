@@ -1,0 +1,58 @@
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducers';
+import AdminGetAllTopics from './AdminGetAllTopics';
+import './AdminGetAllTopicsContainer.scss';
+
+export default function AdminGetAllTopicsContainer() {
+  const state = useSelector((state: RootState) => state.reducer);
+  const adminAllTopics = state.topicsAdmin.data?.data.topics;
+
+  const [findTopic, setFindTopic] = useState('');
+  const canNotUseTopic = document.getElementById('canNotUseTopic');
+  const canUseTopic = document.getElementById('canUseTopic');
+
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    if (findTopic === '') {
+      canNotUseTopic?.classList.add('hide_div');
+      canUseTopic?.classList.add('hide_div');
+    }
+    setFindTopic(value);
+  };
+
+  const onClickHandler = (e: any) => {
+    e.preventDefault();
+    if (!findTopic) return;
+    const bool =
+      state.topicsAdmin.data?.data.topics.filter((x) => x.word === findTopic) ||
+      [];
+    if (bool.length === 0) {
+      canNotUseTopic?.classList.remove('hide_div');
+    } else {
+      canUseTopic?.classList.remove('hide_div');
+    }
+    setFindTopic('');
+  };
+  return (
+    <div>
+      <h1>AdminGetAllTopicsContainer</h1>
+      {adminAllTopics?.map((x) => (
+        <AdminGetAllTopics id={x.id} word={x.word} expiration={x.expiration} />
+      ))}
+      <input
+        type="text"
+        placeholder="모든 토픽스 검색"
+        onChange={onChangeHandler}
+        value={findTopic}
+      />
+      <button onClick={onClickHandler}>검색</button>
+      <div id="canUseTopic" className="hide_div">
+        사용 가능합니다
+      </div>
+      <div id="canNotUseTopic" className="hide_div">
+        이미 사용하였습니다
+      </div>
+    </div>
+  );
+}

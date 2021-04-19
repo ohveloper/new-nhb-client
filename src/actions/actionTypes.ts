@@ -6,6 +6,7 @@ import {
   PrivateFeeds,
   Rank,
   Topics,
+  TopicsAdmin,
   UserInfo,
 } from '../reducers/reducer';
 import { BringComment, Welcome } from '../reducers/reducer';
@@ -170,6 +171,21 @@ export const GET_TOPICS_ERROR = 'GET_TOPICS_ERROR' as const;
 export const POST_GET_PRIVATEFEEDS_API = 'POST_GET_PRIVATEFEEDS_API' as const;
 export const POST_GET_PRIVATEFEEDS_SUCCESS = 'POST_GET_PRIVATEFEEDS_SUCCESS' as const;
 export const POST_GET_PRIVATEFEEDS_ERROR = 'POST_GET_PRIVATEFEEDS_ERROR' as const;
+
+//? =================== Admin ========================
+
+//? get get all topics
+export const GET_ALL_TOPICS_ADMIN_API = 'GET_ALL_TOPICS_ADMIN_API' as const;
+export const GET_ALL_TOPICS_ADMIN_SUCCESS = 'GET_ALL_TOPICS_ADMIN_SUCCESS' as const;
+export const GET_ALL_TOPICS_ADMIN_ERROR = 'GET_ALL_TOPICS_ADMIN_ERROR' as const;
+
+//?===================================================
+
+export const getAllTopicsAdminAsync = createAsyncAction(
+  GET_ALL_TOPICS_ADMIN_API,
+  GET_ALL_TOPICS_ADMIN_SUCCESS,
+  GET_ALL_TOPICS_ADMIN_ERROR
+)<undefined, TopicsAdmin, AxiosError>();
 
 export const postGetPrivateFeedsAsync = createAsyncAction(
   POST_GET_PRIVATEFEEDS_API,

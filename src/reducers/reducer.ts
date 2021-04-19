@@ -36,6 +36,9 @@ import {
   POST_GET_USER_APT_INFO_API,
   POST_GET_USER_APT_INFO_SUCCESS,
   POST_GET_USER_APT_INFO_ERROR,
+  GET_ALL_TOPICS_ADMIN_API,
+  GET_ALL_TOPICS_ADMIN_SUCCESS,
+  GET_ALL_TOPICS_ADMIN_ERROR,
 } from '../actions/actionTypes';
 export interface InitState {
   userInfo: {
@@ -100,7 +103,23 @@ export interface InitState {
     error: Error | null;
     data: Apt | null;
   };
+  topicsAdmin: {
+    loading: boolean;
+    error: Error | null;
+    data: TopicsAdmin | null;
+  };
 }
+export interface TopicsAdmin {
+  data: {
+    topics: AdminTocis[];
+  };
+}
+export interface AdminTocis {
+  id: number;
+  word: string;
+  expiration: string;
+}
+
 export interface Apt {
   data: {
     apartment: [Apart[]];
@@ -306,6 +325,11 @@ const initState: InitState = {
     data: null,
   },
   apartment: {
+    loading: false,
+    error: null,
+    data: null,
+  },
+  topicsAdmin: {
     loading: false,
     error: null,
     data: null,
@@ -611,6 +635,33 @@ export function reducer(
       return {
         ...state,
         privateFeeds: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+    case GET_ALL_TOPICS_ADMIN_API:
+      return {
+        ...state,
+        topicsAdmin: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case GET_ALL_TOPICS_ADMIN_SUCCESS:
+      return {
+        ...state,
+        topicsAdmin: {
+          loading: false,
+          error: null,
+          data: action.payload,
+        },
+      };
+    case GET_ALL_TOPICS_ADMIN_ERROR:
+      return {
+        ...state,
+        topicsAdmin: {
           loading: false,
           error: action.payload,
           data: null,
