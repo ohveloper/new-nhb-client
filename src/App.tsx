@@ -7,6 +7,7 @@ import PoemDetails from './components/Main/modal/ModalContainer';
 import './styles/styles.css';
 import ApiTestPage from './pages/ApiTestPage';
 import HomePage from './pages/HomePage';
+import AdminPageApp from './pages/AdminPageApp';
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route path="/apitest">
             <ApiTestPage />
+          </Route>
+          <Route path="/admin">
+            <AdminPageApp />
           </Route>
           <Route path="/login">
             <HomePage />

@@ -1,12 +1,12 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postBringUserInfoThunk } from '../../../actions/actions';
 import { delUserWithdrawalT } from '../../../api/delUserWithdrawal';
 import { getLogoutT } from '../../../api/getLogout';
 import { patchEditUserInfoT } from '../../../api/patchEditUserInfo';
 import { RootState } from '../../../reducers';
-import './MyInfo_Modal.css';
 import Withdrawal_Modal from './Withdrawal_Modal';
+import './MyInfo_Modal.scss';
 
 interface MyIntroduction_ModalProps {
   myInfoModalHandler: () => void;

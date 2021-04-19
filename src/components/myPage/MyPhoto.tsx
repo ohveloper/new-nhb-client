@@ -1,12 +1,11 @@
-import Sample_User_Icon from '../../img/Sample_User_Icon.png';
+import './MyPhoto.scss';
 
 export default function MyPhoto() {
   return (
-    <div>
+    <div id="my_photo">
       <h1>MyPhoto</h1>
       <div>
-        {/* <img src={Sample_User_Icon} alt="" /> */}
-        <div>사진자리</div>
+        <div className="photo"></div>
       </div>
     </div>
   );
