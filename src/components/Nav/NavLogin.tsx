@@ -21,19 +21,33 @@ function NavLogin() {
       .catch((e) => console.log(e));
   };
 
+  const googleOAuthHandler = () => {
+    const googleLoginUrl =
+      'https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.profile&response_type=token&redirect_uri=https://localhost:3000/&client_id=362611946205-6l2dnifmmd9e13crdhkh9n1t7qofnjpk.apps.googleusercontent.com';
+
+    window.location.assign(googleLoginUrl);
+  };
+
   return (
-    <div>
-      <div className="loginContent">{accessToken ? '로그인' : '회원가입'}</div>
-      <div>이메일로 로그인 </div>
-      <input
-        className="inputId"
-        type="text"
-        value={inputValue || ''}
-        placeholder="이메일을 입력하세요"
-        onChange={(e) => setInputValue(e.currentTarget.value)}
-      />
-      <button onClick={() => loginHandler()}>로그인</button>
-    </div>
+    <>
+      <div>
+        <div className="loginContent">
+          {accessToken ? '로그인' : '회원가입'}
+        </div>
+        <div>이메일로 로그인 </div>
+        <input
+          className="inputId"
+          type="text"
+          value={inputValue || ''}
+          placeholder="이메일을 입력하세요"
+          onChange={(e) => setInputValue(e.currentTarget.value)}
+        />
+        <button onClick={() => loginHandler()}>로그인</button>
+      </div>
+      <div>
+        <p onClick={() => googleOAuthHandler()}>google OAuth</p>
+      </div>
+    </>
   );
 }
 
