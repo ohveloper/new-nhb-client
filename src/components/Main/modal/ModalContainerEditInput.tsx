@@ -12,6 +12,7 @@ export default function ModalContainerEditInput({
   editVal,
 }: ModalContainerEditInputProps) {
   const [editText, setEditText] = useState<UserFeeds>(editVal);
+  const [error, setError] = useState(false);
   const topic = editText.topic.split('');
 
   const onEditChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +39,22 @@ export default function ModalContainerEditInput({
   };
   const onEditSubmit = (event: FormEvent) => {
     event.preventDefault();
-    handlePatchEditFeed({ content: editText.content, feedId: editText.feedId });
+    let isValidate = false;
+    for (let i = 0; i < topic.length; i++) {
+      if (topic[i] === editText.content[i][0]) {
+        isValidate = true;
+      }
+    }
+    if (isValidate) {
+      handlePatchEditFeed({
+        content: editText.content,
+        feedId: editText.feedId,
+      });
+      setError(false);
+    } else {
+      console.log('error!');
+      setError(true);
+    }
   };
 
   return (
@@ -59,6 +75,11 @@ export default function ModalContainerEditInput({
         })}
         <button type="submit">수정하기</button>
       </form>
+      {error ? (
+        <div>오늘의 주제에 맞는 작품을 작성해 주세요!</div>
+      ) : (
+        <div></div>
+      )}
     </>
   );
 }
