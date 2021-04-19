@@ -6,7 +6,6 @@ const api = process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
 
 export interface Content {
   content: string[];
-  word: string;
 }
 export interface FeedId {
   data: {
