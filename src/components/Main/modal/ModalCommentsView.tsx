@@ -7,9 +7,11 @@ type ModalCommentsViewProps = {
 export default function ModalCommentsView({
   comments,
 }: ModalCommentsViewProps) {
+  const comment = comments.data.comments;
   return (
     <>
-      {comments.comments.map((comment) => {
+      <h2>CommentView</h2>
+      {comment.map((comment) => {
         return (
           <div key={comment.commentId}>
             <div>
