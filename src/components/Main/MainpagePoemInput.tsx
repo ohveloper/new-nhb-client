@@ -54,6 +54,7 @@ const MainpagePoemInput = ({
                 name={String(idx)}
                 value={val.content[idx]}
                 onChange={onPoemChange}
+                required={true}
               />
             </div>
           );
