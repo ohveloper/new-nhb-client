@@ -18,7 +18,7 @@ const apiClient = axios.create({
 
 export interface UserId {
   topicId: number;
-  userId: number;
+  userId: number | null;
   isMaxLike?: boolean | null;
   limit: number;
   feedId?: number | null;

@@ -73,6 +73,7 @@ export default function MyInfo_Modal({
   const onSubmitEditIntroduction = async (e: any) => {
     //? 아무것도 입력 안되어 있을떄 요청보내기 방지
     if (!_introduction) return;
+    if (_introduction.length > 30) return alert('30자 이내로 작성해 주세요');
     e.preventDefault();
     const _accessToken = '';
     if (state.accessToken) {
@@ -102,6 +103,7 @@ export default function MyInfo_Modal({
   const onSubmitEditNickName = async (e: any) => {
     //? 아무것도 입력안되어 있을때 쓸대없는 요청 방지
     if (!_nickName) return;
+    if (_nickName.length > 10) return alert('10글자 이하로 입력해주세요');
     e.preventDefault();
     const _accessToken = '';
     if (state.accessToken) {
@@ -133,7 +135,7 @@ export default function MyInfo_Modal({
             {introduction ? introduction : '정보가 없습니다'}
             <input
               type="text"
-              placeholder="자기소개 20글자"
+              placeholder="자기소개 30글자 이내"
               name="_introduction"
               value={_introduction}
               onChange={onChangeEditMyInfo}
@@ -146,7 +148,7 @@ export default function MyInfo_Modal({
             {nickName ? nickName : '정보가 없습니다'}
             <input
               type="text"
-              placeholder="사용할 닉네임을 입력하세요 8글자"
+              placeholder="10글자 이하"
               name="_nickName"
               value={_nickName}
               onChange={onChangeEditMyInfo}

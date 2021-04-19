@@ -23,27 +23,29 @@ export default function MyPage() {
   useEffect(() => {
     const accessToken = state.accessToken;
     if (accessToken && userId) {
-      dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
       getTopicsT()
         .then((x) => {
+          console.log(x);
           const topicId = x.data.topics[0].id;
+          console.log(topicId);
+          console.log(userId);
           dispatch(
             postGetFrivateFeedsThunk({
-              topicId,
+              topicId: 1,
               limit: 10,
-              userId,
-              isMaxLike: null,
+              userId: null,
+              isMaxLike: true,
               feedId: null,
             })
           );
         })
         .catch((e) => console.log(e));
-
+      console.log(state);
       dispatch(getAllTagsThunk());
       dispatch(postGetUserAptInfoThunk({ userId: userId }));
     }
   }, []);
-
+  console.log(state);
   //! 뱃지 모달 핸들러 구역
   const [badgeModal, setBadgeModal] = useState(false);
   const badgeModalHandler = () => {
