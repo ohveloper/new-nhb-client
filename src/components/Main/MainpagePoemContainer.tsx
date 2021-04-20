@@ -3,6 +3,7 @@ import { RootState } from '../../reducers';
 import { Welcome } from '../../reducers/reducer';
 import { FeedId } from '../../api/delRemoveFeed';
 import PoemView from './PoemView';
+import '../../styles/mainPage.css';
 
 type MainpagePoemContainerProps = {
   poem: Welcome;
@@ -22,9 +23,9 @@ export default function MainpagePoemContainer({
     return <div>오늘 첫 글의 주인공이 되어 볼까요?😉</div>;
   }
   return (
-    <>
+    <div id="main-page-poem-container">
       <h2>PoemContainer</h2>
       <PoemView poem={poem} isLoading={isLoading} handleDelete={handleDelete} />
-    </>
+    </div>
   );
 }

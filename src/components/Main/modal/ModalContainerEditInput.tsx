@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { UserFeeds } from '../../../reducers/reducer';
 import { EditFeedParameter } from '../../../api/patchEditFeed';
+import '../../../styles/mainPage.css';
 
 type ModalContainerEditInputProps = {
   editVal: UserFeeds;

@@ -1,4 +1,5 @@
 import { FeedId } from '../../api/delRemoveFeed';
+import '../../styles/mainPage.css';
 
 type PoemDeleteButtonProps = {
   feedId: FeedId;
@@ -13,5 +14,9 @@ export default function PoemDeleteButton({
     handleDelete(feedId);
   };
 
-  return <button onClick={onClickDelete}>DELETE</button>;
+  return (
+    <button className="poem-delete-button" onClick={onClickDelete}>
+      DELETE
+    </button>
+  );
 }

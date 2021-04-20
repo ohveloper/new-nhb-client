@@ -1,4 +1,4 @@
-import { Welcome } from '../../reducers/reducer';
+import '../../styles/mainPage.css';
 
 type PoemButtonGroupProps = {
   likeNum: string;
@@ -10,7 +10,7 @@ export default function PoemButtonGroup({
   commentNum,
 }: PoemButtonGroupProps) {
   return (
-    <div>
+    <div className="poem-button-group">
       [likes] {likeNum} &nbsp; [comments] {commentNum} &nbsp; [share] &nbsp;
       [report]
     </div>

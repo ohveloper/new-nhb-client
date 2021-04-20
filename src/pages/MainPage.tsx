@@ -5,14 +5,12 @@ import { Welcome } from '../reducers/reducer';
 import { RootState } from '../reducers';
 import { postBringFeedT } from '../api/postBringFeeds';
 import { delRemoveFeedT, FeedId } from '../api/delRemoveFeed';
-import {
-  postBringFeedsThunk,
-  postBringUserInfoThunk,
-} from '../actions/actions';
+import { postBringUserInfoThunk } from '../actions/actions';
 import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
 import Homebutton from '../components/Home/Homebutton';
 import Sidebar from '../components/Home/Sidebar';
+import '../styles/mainPage.css';
 
 export default function MainPage() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -136,7 +134,7 @@ export default function MainPage() {
   }, [infiniteScroll]);
 
   return (
-    <>
+    <div id="main-page">
       <Homebutton />
       <Sidebar />
       <div>[MainPage]</div>
@@ -146,6 +144,6 @@ export default function MainPage() {
         isLoading={isLoading}
         handleDelete={handleDelete}
       />
-    </>
+    </div>
   );
 }
