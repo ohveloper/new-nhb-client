@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 import SlidingPanel from 'react-sliding-side-panel';
 import 'react-sliding-side-panel/lib/index.css';
-import NavMyPage from '../Nav/NavMypage';
-import NavLogin from '../Nav/NavLogin';
-import MyLog from '../Nav/Mylog';
-import Induce from '../Nav/Induce';
+import NavMyPage from './NavMypage';
+import NavLogin from './NavLogin';
+import MyLog from './Mylog';
+import Induce from './Induce';
 import dotenv from 'dotenv';
 import './Sidebar.scss';
 
