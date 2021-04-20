@@ -1,10 +1,20 @@
 #main-page {
   height: 100vh;
-  /* display: flex; */
+  display: flex;
+  align-items: flex-start;
+}
+
+#main-page-poem-input {
+  border: 3px black solid;
+  margin-top: 2rem;
 }
 
 #main-page-poem-list {
   border: 3px solid skyblue;
+}
+
+#main-page-user-ranking {
+  border: 3px purple solid;
 }
 
 #main-page-poem-container {
@@ -23,9 +33,6 @@
   border: 3px rgb(169, 255, 56) solid;
 }
 
-#main-page-poem-input {
-  border: 3px black solid;
-}
 .poem-delete-button {
   border: 3px palevioletred solid;
 }

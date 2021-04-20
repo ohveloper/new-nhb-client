@@ -11,6 +11,7 @@ import MainpagePoemList from '../components/Main/MainpagePoemList';
 import Homebutton from '../components/Home/Homebutton';
 import Sidebar from '../components/Home/Sidebar';
 import '../styles/mainPage.css';
+import MainpageUserRanking from '../components/Main/MainpageUserRanking';
 
 export default function MainPage() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -137,13 +138,15 @@ export default function MainPage() {
     <div id="main-page">
       <Homebutton />
       <Sidebar />
-      <div>[MainPage]</div>
-      <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
-      <MainpagePoemList
-        poem={poem}
-        isLoading={isLoading}
-        handleDelete={handleDelete}
-      />
+      <MainpageUserRanking />
+      <div>
+        <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
+        <MainpagePoemList
+          poem={poem}
+          isLoading={isLoading}
+          handleDelete={handleDelete}
+        />
+      </div>
     </div>
   );
 }
