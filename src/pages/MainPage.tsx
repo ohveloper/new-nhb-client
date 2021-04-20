@@ -11,6 +11,8 @@ import MainpagePoemList from '../components/Main/MainpagePoemList';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
 import MainpageUserRanking from '../components/Main/MainpageUserRanking';
 
+import { Mobile, Tablet, PC } from '../lib/MediaQuery';
+
 export default function MainPage() {
   const state = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
@@ -134,16 +136,41 @@ export default function MainPage() {
 
   return (
     <div id="main-page">
-      <NavSidebarContainer />
-      <MainpageUserRanking />
-      <div>
-        <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
-        <MainpagePoemList
-          poem={poem}
-          isLoading={isLoading}
-          handleDelete={handleDelete}
-        />
-      </div>
+      <Mobile>
+        <NavSidebarContainer />
+        <div>
+          <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
+          <MainpagePoemList
+            poem={poem}
+            isLoading={isLoading}
+            handleDelete={handleDelete}
+          />
+        </div>
+      </Mobile>
+      <Tablet>
+        <NavSidebarContainer />
+        <MainpageUserRanking />
+        <div>
+          <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
+          <MainpagePoemList
+            poem={poem}
+            isLoading={isLoading}
+            handleDelete={handleDelete}
+          />
+        </div>
+      </Tablet>
+      <PC>
+        <NavSidebarContainer />
+        <MainpageUserRanking />
+        <div>
+          <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
+          <MainpagePoemList
+            poem={poem}
+            isLoading={isLoading}
+            handleDelete={handleDelete}
+          />
+        </div>
+      </PC>
     </div>
   );
 }
