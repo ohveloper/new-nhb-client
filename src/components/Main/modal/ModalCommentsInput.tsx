@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { CommentFeedId } from '../../../api/postUploadComment';
 import { BringComment } from '../../../reducers/reducer';
+import '../../../styles/mainPage.css';
 
 type ModalCommentsInputProps = {
   comments: BringComment;
@@ -37,7 +38,7 @@ export default function ModalCommentsInput({
   };
 
   return (
-    <>
+    <div id="modal-comments-input">
       <h2>CommentInput</h2>
       <form onSubmit={onCommentSubmit}>
         <input
@@ -48,6 +49,6 @@ export default function ModalCommentsInput({
         />
         <button type="submit">작성하기</button>
       </form>
-    </>
+    </div>
   );
 }

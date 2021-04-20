@@ -2,6 +2,7 @@ import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Content } from '../../api/postUploadFeed';
 import { RootState } from '../../reducers';
+import '../../styles/mainPage.css';
 
 type MainpagePoemInputProps = {
   handlePostUploadFeed: (content: Content) => void;
@@ -54,7 +55,7 @@ const MainpagePoemInput = ({
   };
 
   return (
-    <>
+    <div id="main-page-poem-input">
       <h1>PoemInput</h1>
       <form onSubmit={onPoemSubmit}>
         {todaysTopic.map((letter, idx) => {
@@ -78,7 +79,7 @@ const MainpagePoemInput = ({
       ) : (
         <div></div>
       )}
-    </>
+    </div>
   );
 };
 

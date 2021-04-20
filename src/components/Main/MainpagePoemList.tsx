@@ -1,6 +1,7 @@
-import MainpagePoemContainer from './MainpagePoemContainer';
 import { Welcome } from '../../reducers/reducer';
 import { FeedId } from '../../api/delRemoveFeed';
+import MainpagePoemContainer from './MainpagePoemContainer';
+import '../../styles/mainPage.css';
 
 type MainpagePoemListProps = {
   poem: Welcome;
@@ -14,13 +15,13 @@ export default function MainpagePoemList({
   handleDelete,
 }: MainpagePoemListProps) {
   return (
-    <>
+    <div id="main-page-poem-list">
       <h1>MainpagePoemList</h1>
       <MainpagePoemContainer
         poem={poem}
         isLoading={isLoading}
         handleDelete={handleDelete}
       />
-    </>
+    </div>
   );
 }

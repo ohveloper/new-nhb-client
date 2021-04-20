@@ -2,10 +2,11 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Welcome } from '../../reducers/reducer';
 import { FeedId } from '../../api/delRemoveFeed';
+import { RootState } from '../../reducers';
 import PoemInfo from './PoemInfo';
 import PoemButtonGroup from './PoemButtonGroup';
 import PoemDeleteButton from './PoemDeleteButton';
-import { RootState } from '../../reducers';
+import '../../styles/mainPage.css';
 
 type poemViewProps = {
   poem: Welcome;
@@ -51,7 +52,7 @@ export default function PoemView({
               createdAt={feed.createdAt}
             />
             <Link to={`/main/${feed.feedId}`}>
-              <div>
+              <div className="poem-view">
                 {feed.content.map((word, idx) => {
                   let head;
                   if (word !== null) {

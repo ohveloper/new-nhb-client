@@ -15,10 +15,9 @@ import PoemEditButton from '../PoemEditButton';
 import PoemDeleteButton from '../PoemDeleteButton';
 import PoemInfo from '../PoemInfo';
 import PoemButtonGroup from '../PoemButtonGroup';
-import ModalCommentsView from './ModalCommentsView';
-import ModalCommentsInput from './ModalCommentsInput';
 import ModalContainerEditInput from './ModalContainerEditInput';
-import axios from 'axios';
+import ModalCommentsContainer from './ModalCommentsContainer';
+import '../../../styles/mainPage.css';
 
 export default function PoemDetails() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -117,20 +116,18 @@ export default function PoemDetails() {
   console.log(edit);
 
   return (
-    <>
+    <div id="modal-container">
       <h2 onClick={() => history.push('/main')}>돌아가기</h2>
       <h1>PoemDetailsPage</h1>
       {edit ? (
         <>
-          <div>true</div>
           <ModalContainerEditInput
             handlePatchEditFeed={handlePatchEditFeed}
             editVal={editVal}
           />
         </>
       ) : (
-        <>
-          <div>false</div>
+        <div id="modal-poem">
           {userId === Number(editVal.user.userId) ? (
             <>
               <PoemEditButton handleEdit={handleEdit} />
@@ -148,7 +145,7 @@ export default function PoemDetails() {
             nickName={editVal.user.nickName}
             createdAt={editVal.createdAt}
           />
-          <div>
+          <div className="poem-view">
             {editVal.content.map((word, idx) => {
               let head;
               if (word !== null) {
@@ -167,14 +164,14 @@ export default function PoemDetails() {
             likeNum={editVal.likeNum}
             commentNum={editVal.commentNum}
           />
-          <ModalCommentsInput
+
+          <ModalCommentsContainer
             feedId={Number(feed_id)}
             comments={comments}
             handlePostUploadComment={handlePostUploadComment}
           />
-          <ModalCommentsView comments={comments} />
-        </>
+        </div>
       )}
-    </>
+    </div>
   );
 }

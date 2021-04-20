@@ -1,3 +1,5 @@
+import '../../styles/mainPage.css';
+
 type PoemEditButtonProps = {
   handleEdit: () => void;
 };
@@ -7,5 +9,9 @@ export default function PoemEditButton({ handleEdit }: PoemEditButtonProps) {
     handleEdit();
   };
 
-  return <button onClick={onClickEdit}>EDIT</button>;
+  return (
+    <button className="poem-edit-button" onClick={onClickEdit}>
+      EDIT
+    </button>
+  );
 }

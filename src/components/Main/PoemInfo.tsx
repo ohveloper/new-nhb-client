@@ -1,4 +1,4 @@
-import { Welcome } from '../../reducers/reducer';
+import '../../styles/mainPage.css';
 
 type PoemInfoProps = {
   userTag: string;
@@ -12,10 +12,10 @@ export default function PoemInfo({
   createdAt,
 }: PoemInfoProps) {
   return (
-    <>
+    <div className="poem-info">
       <div>
         ({userTag}) {nickName}
       </div>
-    </>
+    </div>
   );
 }
