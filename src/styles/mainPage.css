@@ -1,7 +1,6 @@
 #main-page {
   height: 100vh;
   display: flex;
-  align-items: flex-start;
 }
 
 #main-page-poem-input {
