@@ -2,24 +2,32 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../reducers';
 import { getRankThunk } from '../../actions/actions';
-// import { PoemRank } from '../../reducers/reducer';
-
-// type poemRankProps = {
-//   poem: PoemRank;
-// };
 
 export default function HomepagePoemsRanking() {
   const state = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
 
-  const feedsRank = state.rank.data;
+  const { data } = state.rank;
+  const rank = data?.data;
+
+  console.log('rank :', rank?.rank);
+
   useEffect(() => {
     dispatch(getRankThunk());
   }, []);
 
-  // const { rank } = feedsRank;
-
-  console.log('feedRank : ', feedsRank);
-
-  return <div>실시간 인기글 </div>;
+  return (
+    <>
+      <div>실시간 인기작가 </div>
+      {rank?.rank.map((popular, idx) => {
+        return (
+          <div key={popular.userId}>
+            <div>
+              {idx + 1}위! {popular.nickName}님
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
 }
