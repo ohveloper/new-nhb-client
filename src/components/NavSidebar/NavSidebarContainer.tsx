@@ -4,9 +4,9 @@ import Homebutton from './Homebutton';
 
 export default function NavSidebarContainer() {
   return (
-    <>
+    <div>
       <Homebutton />
       <Sidebar />
-    </>
+    </div>
   );
 }

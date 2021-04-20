@@ -22,8 +22,14 @@ export default function MyAchievementApt() {
     <div id="MyAchievementApt">
       <h1>MyAchievementApt</h1>
       {/* //? day 맵을 돌릴때 2021-04-01 을 만나면 push를 한다 */}
-      <div>여긴가</div>
+      <div>여기는 월별 들어가야됨</div>
       <div className="apt-container">
+        <div>
+          <div>월</div>
+          <div>화</div>
+          <div>목</div>
+          <div>토</div>
+        </div>
         {state.apartment.loading && 'now loading...'}
         {state.apartment.error && 'sorry now error'}
         {state.apartment.data &&
