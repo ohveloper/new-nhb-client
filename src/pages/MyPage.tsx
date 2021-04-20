@@ -32,7 +32,7 @@ export default function MyPage() {
             postGetFrivateFeedsThunk({
               topicId: 1,
               limit: 10,
-              userId: null,
+              userId,
               isMaxLike: true,
               feedId: null,
             })
@@ -44,7 +44,6 @@ export default function MyPage() {
       dispatch(postGetUserAptInfoThunk({ userId: userId }));
     }
   }, []);
-  console.log(state);
   //! 뱃지 모달 핸들러 구역
   const [badgeModal, setBadgeModal] = useState(false);
   const badgeModalHandler = () => {

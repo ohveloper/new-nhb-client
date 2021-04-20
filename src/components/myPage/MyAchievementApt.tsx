@@ -1,9 +1,17 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { postGetUserAptInfoThunk } from '../../actions/actions';
 import { RootState } from '../../reducers';
 
 export default function MyAchievementApt() {
   const state = useSelector((state: RootState) => state.reducer);
   const aptLight = state.apartment.data?.data.apartment;
+  const userId = state.userInfo.data?.data.userInfo.userId;
+  useEffect(() => {
+    if (userId) {
+      postGetUserAptInfoThunk({ userId });
+    }
+  }, []);
   return (
     <div>
       <h1>MyAchievementApt</h1>
