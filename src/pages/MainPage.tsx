@@ -5,14 +5,10 @@ import { Welcome } from '../reducers/reducer';
 import { RootState } from '../reducers';
 import { postBringFeedT } from '../api/postBringFeeds';
 import { delRemoveFeedT, FeedId } from '../api/delRemoveFeed';
-import {
-  postBringFeedsThunk,
-  postBringUserInfoThunk,
-} from '../actions/actions';
+import { postBringUserInfoThunk } from '../actions/actions';
 import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
-import Homebutton from '../components/Home/Homebutton';
-import Sidebar from '../components/Home/Sidebar';
+import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
 
 export default function MainPage() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -48,7 +44,7 @@ export default function MainPage() {
     if (state.accessToken) {
       const accessToken = _accessToken.concat(state.accessToken);
       postUploadFeedT(content, accessToken)
-        .then((res) => {
+        .then(() => {
           //? 게시글 작성 후 전체 리스트를 새로 불러온다
           //! 비동기를 적용하기 위해 프로미스 체인 안에서 데이터요청
           fetchData().catch((e) => console.log(e));
@@ -137,8 +133,7 @@ export default function MainPage() {
 
   return (
     <>
-      <Homebutton />
-      <Sidebar />
+      <NavSidebarContainer />
       <div>[MainPage]</div>
       <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
       <MainpagePoemList

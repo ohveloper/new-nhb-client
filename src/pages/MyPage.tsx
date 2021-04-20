@@ -1,7 +1,7 @@
 import MyAchievementContainer from '../components/myPage/MyAchievementContainer';
 import MyWorkContainer from '../components/myPage/MyWorkContainer';
-import Homebutton from '../components/Home/Homebutton';
-import Sidebar from '../components/Home/Sidebar';
+import Homebutton from '../components/NavSidebar/Homebutton';
+import Sidebar from '../components/NavSidebar/Sidebar';
 import { RootState } from '../reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -14,6 +14,7 @@ import Badges_Modal from '../components/myPage/modals/Badges_Modal';
 import MyInfoContainer from '../components/myPage/MyInfoContainer';
 import MyInfo_Modal from '../components/myPage/modals/MyInfo_Modal';
 import { getTopicsT } from '../api/getTopics';
+import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
 
 export default function MyPage() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -58,8 +59,7 @@ export default function MyPage() {
 
   return (
     <div id="myPage">
-      <Homebutton />
-      <Sidebar />
+      <NavSidebarContainer />
       <div>
         {badgeModal && <Badges_Modal badgeModalHandler={badgeModalHandler} />}
         {myInfoModal && (

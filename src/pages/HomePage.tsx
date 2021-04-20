@@ -1,10 +1,9 @@
-import Homebutton from '../components/Home/Homebutton';
-import Sidebar from '../components/Home/Sidebar';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { postLogInThunk, postSignUpThunk } from '../actions/actions';
 import HomepageWritersRanking from '../components/Home/HomepageWritersRanking';
 import axios from 'axios';
+import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -54,10 +53,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <Homebutton />
-      <br />
-      <Sidebar />
-      <br />
+      <NavSidebarContainer />
       <Link to="/main">
         <p>N행시 작성하러 가기</p>
       </Link>
