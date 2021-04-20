@@ -15,8 +15,8 @@ export default function AdminGetAllTopicsContainer() {
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     if (findTopic === '') {
-      canNotUseTopic?.classList.add('hide_div');
-      canUseTopic?.classList.add('hide_div');
+      canNotUseTopic?.classList.add('hide-div');
+      canUseTopic?.classList.add('hide-div');
     }
     setFindTopic(value);
   };
@@ -28,9 +28,9 @@ export default function AdminGetAllTopicsContainer() {
       state.topicsAdmin.data?.data.topics.filter((x) => x.word === findTopic) ||
       [];
     if (bool.length === 0) {
-      canNotUseTopic?.classList.remove('hide_div');
+      canNotUseTopic?.classList.remove('hide-div');
     } else {
-      canUseTopic?.classList.remove('hide_div');
+      canUseTopic?.classList.remove('hide-div');
     }
     setFindTopic('');
   };
@@ -47,10 +47,10 @@ export default function AdminGetAllTopicsContainer() {
         value={findTopic}
       />
       <button onClick={onClickHandler}>검색</button>
-      <div id="canUseTopic" className="hide_div">
+      <div id="canUseTopic" className="hide-div">
         사용 가능합니다
       </div>
-      <div id="canNotUseTopic" className="hide_div">
+      <div id="canNotUseTopic" className="hide-div">
         이미 사용하였습니다
       </div>
     </div>

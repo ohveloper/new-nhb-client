@@ -8,6 +8,7 @@ import NavLogin from '../Nav/NavLogin';
 import MyLog from '../Nav/Mylog';
 import Induce from '../Nav/Induce';
 import dotenv from 'dotenv';
+import './Sidebar.scss';
 
 dotenv.config;
 
@@ -18,7 +19,7 @@ const Sidebar = () => {
   const [openPanel, setOpenPanel] = useState(false);
   // onClick={() =>
   return (
-    <div>
+    <div id="Sidebar">
       <div>
         <p onClick={() => setOpenPanel(true)}>NHB Nav - Click</p>
       </div>

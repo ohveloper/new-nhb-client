@@ -15,17 +15,21 @@ export default function MyWork() {
       {state.privateFeeds.data &&
         state.privateFeeds.data.data.userFeeds.slice(0, 3).map((x) => {
           return (
-            <div className="myword_content">
-              {x.content.map((word) => {
-                const head = word.split('')[0];
-                return (
-                  <div>
-                    [{head}: {word}]
-                  </div>
-                );
-              })}
-              <div>[좋아요: {x.likeNum}]</div>
-              <div>[댓글수: {x.commentNum}]</div>
+            <div className="myword-container">
+              <div className="myword">
+                {x.content.map((word) => {
+                  const head = word.split('')[0];
+                  return (
+                    <div>
+                      [{head}: {word}]
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="myword-like-comment">
+                <div>[좋아요: {x.likeNum}]</div>
+                <div>[댓글수: {x.commentNum}]</div>
+              </div>
             </div>
           );
         })}
