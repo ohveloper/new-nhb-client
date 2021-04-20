@@ -4,8 +4,7 @@ import { getAllTopicsAdminThunk } from '../actions/actions';
 import AdminGetAllTopicsContainer from '../components/Admin/AdminGetAllTopicsContainer';
 
 import UploadTopic from '../components/Admin/AdminUploadTopic';
-import Homebutton from '../components/Home/Homebutton';
-import Sidebar from '../components/Home/Sidebar';
+import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
 import { RootState } from '../reducers';
 
 export default function AdminPageApp() {
@@ -19,8 +18,7 @@ export default function AdminPageApp() {
   }, []);
   return (
     <div>
-      <Homebutton />
-      <Sidebar />
+      <NavSidebarContainer />
       <h1>AdminPageApp</h1>
       <UploadTopic />
       {console.log(state)}

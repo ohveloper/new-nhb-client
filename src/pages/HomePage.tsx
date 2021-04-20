@@ -1,17 +1,14 @@
-import Homebutton from '../components/Home/Homebutton';
-import Sidebar from '../components/Home/Sidebar';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { postLogInThunk, postSignUpThunk } from '../actions/actions';
 import HomepageWritersRanking from '../components/Home/HomepageWritersRanking';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
 
 export default function HomePage() {
   const dispatch = useDispatch();
   const url: string = document.location.href;
   const userAuthCode: string = url.slice(url.indexOf('=') + 1);
-  const history = useHistory();
 
   //? 링크를 통해 들어온 client 구분하기 위한 함수
   function checkClient() {
@@ -19,7 +16,6 @@ export default function HomePage() {
     if (url.includes('login')) {
       console.log('loginT');
       dispatch(postLogInThunk({ authCode: userAuthCode }));
-      history.push('/');
     }
     //? 회원가입 유저
     else if (url.includes('signup')) {
@@ -65,10 +61,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <Homebutton />
-      <br />
-      <Sidebar />
-      <br />
+      <NavSidebarContainer />
       <Link to="/main">
         <p>N행시 작성하러 가기</p>
       </Link>
