@@ -3,7 +3,7 @@ import Sidebar from '../components/Home/Sidebar';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { postLogInThunk, postSignUpThunk } from '../actions/actions';
-import HomepagePoemsRanking from '../components/Home/HomepagePoemsRanking';
+import HomepageWritersRanking from '../components/Home/HomepageWritersRanking';
 import axios from 'axios';
 
 export default function HomePage() {
@@ -68,7 +68,7 @@ export default function HomePage() {
       <Link to="/admin">
         <p>admin</p>
       </Link>
-      <HomepagePoemsRanking />
+      <HomepageWritersRanking />
       <div className="App">:sunglasses: </div>
     </div>
   );

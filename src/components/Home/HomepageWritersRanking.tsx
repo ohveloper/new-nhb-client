@@ -1,5 +1,4 @@
-import React from 'react';
-import { getUserLiveRankT } from '../../api/getUserLiveRanking';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../reducers';
 import { getRankThunk } from '../../actions/actions';
@@ -8,7 +7,27 @@ export default function HomepageWritersRanking() {
   const state = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
 
-  dispatch(getRankThunk());
+  const { data } = state.rank;
+  const rank = data?.data;
 
-  return;
+  console.log('rank :', rank?.rank);
+
+  useEffect(() => {
+    dispatch(getRankThunk());
+  }, []);
+
+  return (
+    <>
+      <div>실시간 인기작가 </div>
+      {rank?.rank.map((popular, idx) => {
+        return (
+          <div key={popular.userId}>
+            <div>
+              {idx + 1}위! {popular.nickName}님
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
 }
