@@ -174,11 +174,16 @@ export default function ApiTestPage() {
         .catch((e) => console.log(e));
     }
   };
+
   const getLogoutHandler = () => {
     getLogoutT()
-      .then((x) => console.log(x))
+      .then((x) => {
+        console.log(x);
+        state.accessToken = '';
+      })
       .catch((e) => console.log(e));
   };
+
   return (
     <div>
       <Homebutton />
