@@ -3,11 +3,13 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 import MyWork from './MyWork';
 
+import './MyWorkContainer.scss';
+
 export default function MyWorkContainer() {
   const state = useSelector((state: RootState) => state.reducer);
 
   return (
-    <div>
+    <div id="MyWorkContainer">
       <h1>MyWorkContainer</h1>
       {state.privateFeeds.loading && 'now loading..'}
       {state.privateFeeds.error && 'now ERROR'}

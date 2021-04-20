@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { postGetUserAptInfoThunk } from '../../actions/actions';
 import { RootState } from '../../reducers';
+import './MyAchievementApt.scss';
 
 export default function MyAchievementApt() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -13,7 +14,7 @@ export default function MyAchievementApt() {
     }
   }, []);
   return (
-    <div>
+    <div id="MyAchievementApt">
       <h1>MyAchievementApt</h1>
       <div>
         {state.apartment.loading && 'now loading...'}

@@ -1,0 +1,9 @@
+$red: red;
+$black: black;
+$orange: orange;
+$purple: purple;
+
+#MyWorkContainer {
+  border: 2px $orange solid;
+  margin-bottom: 10px;
+}

@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
+import './MyAchievementBadges.scss';
 
 interface PropsType {
   badgeModalHandler: () => void;
@@ -16,13 +17,13 @@ export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
   const allTags = state.tags.data?.data;
 
   return (
-    <div>
+    <div id="MyAchievementBadges">
       <h1>MyAchievementBadges</h1>
       <div>
-        <h3>모달 테스트</h3>
         <button onClick={badgeModalHandler}>뱃지선택</button>
       </div>
-      <div style={{ color: 'red' }}>
+      <div className="i_have_some_tags">
+        <h3>내가 있는 테그들</h3>
         {
           //? 가지고 있는 테그들 렌더
           myTagsInfo?.map((badge) =>
@@ -53,7 +54,7 @@ export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
           )
         }
       </div>
-      <div>
+      <div className="i_dont_have_this_badges">
         <h3>내가 없는 테그들</h3>
         {
           //? 가지지 못한 테그들 렌더
