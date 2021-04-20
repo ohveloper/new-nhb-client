@@ -16,9 +16,15 @@ $green: green;
   display: flex;
   overflow: auto;
   justify-content: end;
+  border: solid 2px $red;
 }
 
 .apt-weekly-container {
-  width: 15px;
+  // width: 1px;
   border: $black 2px solid;
+  margin-right: 2px;
+  :last-child {
+    margin-right: 0px;
+  }
+  padding: 2px;
 }

@@ -39,6 +39,9 @@ import {
   GET_ALL_TOPICS_ADMIN_API,
   GET_ALL_TOPICS_ADMIN_SUCCESS,
   GET_ALL_TOPICS_ADMIN_ERROR,
+  GET_ALL_TAGS_ADMIN_API,
+  GET_ALL_TAGS_ADMIN_SUCCESS,
+  GET_ALL_TAGS_ADMIN_ERROR,
 } from '../actions/actionTypes';
 export interface InitState {
   userInfo: {
@@ -108,7 +111,26 @@ export interface InitState {
     error: Error | null;
     data: TopicsAdmin | null;
   };
+  adminTags: {
+    loading: boolean;
+    error: Error | null;
+    data: AdminTags | null;
+  };
 }
+
+export interface AdminTags {
+  data: {
+    tags: AdminTagss[];
+  };
+}
+
+export interface AdminTagss {
+  id: number;
+  tagName: string;
+  description: string;
+  tagUrl: string | null;
+}
+
 export interface TopicsAdmin {
   data: {
     topics: AdminTocis[];
@@ -334,6 +356,11 @@ const initState: InitState = {
     data: null,
   },
   topicsAdmin: {
+    loading: false,
+    error: null,
+    data: null,
+  },
+  adminTags: {
     loading: false,
     error: null,
     data: null,
@@ -698,6 +725,34 @@ export function reducer(
           data: null,
         },
       };
+    case GET_ALL_TAGS_ADMIN_API:
+      return {
+        ...state,
+        adminTags: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case GET_ALL_TAGS_ADMIN_SUCCESS:
+      return {
+        ...state,
+        adminTags: {
+          loading: false,
+          error: null,
+          data: action.payload,
+        },
+      };
+    case GET_ALL_TAGS_ADMIN_ERROR:
+      return {
+        ...state,
+        adminTags: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+
     default:
       return state;
   }
