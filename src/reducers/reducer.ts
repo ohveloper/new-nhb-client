@@ -56,7 +56,7 @@ export interface InitState {
   rank: {
     loading: boolean;
     error: Error | null;
-    data: Rank | null | data;
+    data: Data | null;
   };
   uploadFeed: {
     loading: boolean;
@@ -189,8 +189,8 @@ export interface User {
   userId: string;
 }
 
-export interface data {
-  data: { data: Rank[] };
+export interface Data {
+  data: { rank: Rank[] };
 }
 
 export interface Rank {

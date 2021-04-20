@@ -7,6 +7,7 @@ import {
   Rank,
   Topics,
   UserInfo,
+  Data,
 } from '../reducers/reducer';
 import { BringComment, Welcome } from '../reducers/reducer';
 import { FeedLike } from '../api/postLikeFeed';
@@ -229,7 +230,7 @@ export const getRankAsync = createAsyncAction(
   GET_RANK_API,
   GET_RANK_SUCCESS,
   GET_RANK_ERROR
-)<undefined, Rank, AxiosError>();
+)<undefined, Data, AxiosError>();
 
 export const postLikeFeedAsync = createAsyncAction(
   POST_LIKE_FEED_API,

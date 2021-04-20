@@ -1,6 +1,6 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-import { Rank } from '../reducers/reducer';
+import { Data, Rank } from '../reducers/reducer';
 dotenv.config();
 
 const api = process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
@@ -15,6 +15,6 @@ const apiClient = axios.create({
 });
 
 export async function getRankT() {
-  const response = await apiClient.get<Rank>('/feed/rank');
+  const response = await apiClient.get<Data>('/feed/rank');
   return response.data;
 }
