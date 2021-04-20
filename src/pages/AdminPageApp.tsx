@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllTopicsAdminThunk } from '../actions/actions';
+import {
+  getAllTagsAdminThunk,
+  getAllTopicsAdminThunk,
+} from '../actions/actions';
+import AdminGetallTagContainer from '../components/Admin/AdminGetallTagContainer';
+
 import AdminGetAllTopicsContainer from '../components/Admin/AdminGetAllTopicsContainer';
+import AdminRemoveTag from '../components/Admin/AdminRemoveTag';
 import AdminUploadTag from '../components/Admin/AdminUploadTag';
 
 import UploadTopic from '../components/Admin/AdminUploadTopic';
@@ -15,6 +21,7 @@ export default function AdminPageApp() {
     const accessToken = state.accessToken;
     if (accessToken) {
       dispatch(getAllTopicsAdminThunk(accessToken));
+      dispatch(getAllTagsAdminThunk(accessToken));
     }
   }, []);
   return (
@@ -28,6 +35,8 @@ export default function AdminPageApp() {
       {state.topicsAdmin.data && <AdminGetAllTopicsContainer />} */}
       <AdminGetAllTopicsContainer />
       <AdminUploadTag />
+      <AdminGetallTagContainer />
+      <AdminRemoveTag />
     </div>
   );
 }

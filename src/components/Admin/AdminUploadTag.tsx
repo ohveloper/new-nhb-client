@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { AdminPostUploadTagT } from '../../api/AdminPostUploadTag';
 import { RootState } from '../../reducers';
 
 export default function AdminUploadTag() {
@@ -23,14 +24,22 @@ export default function AdminUploadTag() {
 
   const onClickHandler = (e: any) => {
     if (!tagUrl || !tagName || !description) return;
-    setUploadTag({
-      ...uploadTag,
-      tagUrl: '',
-      tagName: '',
-      description: '',
-    });
-    console.log('?');
+    e.preventDefault();
+    if (accessToken) {
+      AdminPostUploadTagT({ tagUrl, tagName, description }, accessToken)
+        .then((x) => {
+          setUploadTag({
+            ...uploadTag,
+            tagUrl: '',
+            tagName: '',
+            description: '',
+          });
+          console.log(x);
+        })
+        .catch((e) => console.log(e));
+    }
   };
+
   return (
     <div>
       <h1>AdminUploadTag</h1>
