@@ -11,10 +11,6 @@ import dotenv from 'dotenv';
 
 dotenv.config;
 
-// type sidebarProps = {
-//   isLoggedIn: boolean;
-// };
-
 const Sidebar = () => {
   const state = useSelector((state: RootState) => state.reducer);
   const accessToken = state.accessToken;
