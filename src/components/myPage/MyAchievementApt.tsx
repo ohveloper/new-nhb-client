@@ -12,7 +12,8 @@ export default function MyAchievementApt() {
     if (userId) {
       postGetUserAptInfoThunk({ userId });
     }
-  }, []);
+  }, [state]);
+  console.log(aptLight);
   return (
     <div id="MyAchievementApt">
       <h1>MyAchievementApt</h1>
@@ -22,25 +23,23 @@ export default function MyAchievementApt() {
         {state.apartment.data &&
           aptLight?.map((week) =>
             week.map((day, idx) =>
-              day.feedNum === null ? ( //? 작성횟수가 있으면 색칠하기
-                day.date === null ? ( //? date가 null이면 출력 출력안함
-                  <></>
-                ) : (
-                  <div
-                    key={idx}
-                    style={{
-                      width: '10px',
-                      height: '10px',
-                      display: 'inline-block',
-                      border: '2px solid pink',
-                    }}
-                  >
-                    <div style={{ display: 'none' }}>
-                      {day.feedNum}
-                      {day.date}
-                    </div>
+              day.date === null ? ( //? 작성횟수가 있으면 색칠하기
+                <></>
+              ) : day.feedNum === null ? (
+                <div
+                  key={idx}
+                  style={{
+                    width: '10px',
+                    height: '10px',
+                    display: 'inline-block',
+                    border: '2px solid pink',
+                  }}
+                >
+                  <div style={{ display: 'none' }}>
+                    {day.feedNum}
+                    {day.date}
                   </div>
-                )
+                </div>
               ) : (
                 <div
                   key={idx}
