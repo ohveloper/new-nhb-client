@@ -5,11 +5,13 @@ import { useDispatch } from 'react-redux';
 import { postLogInThunk, postSignUpThunk } from '../actions/actions';
 import HomepageWritersRanking from '../components/Home/HomepageWritersRanking';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 export default function HomePage() {
   const dispatch = useDispatch();
   const url: string = document.location.href;
   const userAuthCode: string = url.slice(url.indexOf('=') + 1);
+  const history = useHistory();
 
   //? 링크를 통해 들어온 client 구분하기 위한 함수
   function checkClient() {
@@ -17,6 +19,7 @@ export default function HomePage() {
     if (url.includes('login')) {
       console.log('loginT');
       dispatch(postLogInThunk({ authCode: userAuthCode }));
+      history.push('/');
     }
     //? 회원가입 유저
     else if (url.includes('signup')) {
@@ -26,11 +29,13 @@ export default function HomePage() {
 
     //? googleOAuth용
     else if (url.includes('access_token')) {
+      console.log('다뒤졌다 OAuth');
       const url = new URL(window.location.href);
       const first = url.hash.indexOf('n=');
       const last = url.hash.indexOf('&t');
 
       const accessToken = url.hash.slice(first + 2, last);
+      console.log('accessToken :', accessToken);
       const api =
         process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
 
@@ -43,9 +48,15 @@ export default function HomePage() {
         },
         withCredentials: true,
       });
+
       apiClient
-        .get(`${api}main/oauth`)
-        .then((data) => console.log(data.data))
+        .get(`${api}main/oauth`) //? Google OAuth
+        .then((res) => {
+          console.log(res.data);
+          if (res.data) {
+            window.location.assign('https://localhost:3000/');
+          }
+        })
         .catch((e) => console.log(e));
     }
   }
