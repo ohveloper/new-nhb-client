@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTopicsAdminThunk } from '../actions/actions';
 import AdminGetAllTopicsContainer from '../components/Admin/AdminGetAllTopicsContainer';
+import AdminUploadTag from '../components/Admin/AdminUploadTag';
 
 import UploadTopic from '../components/Admin/AdminUploadTopic';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
@@ -26,6 +27,7 @@ export default function AdminPageApp() {
       {state.topicsAdmin.error && 'sorry now error'}
       {state.topicsAdmin.data && <AdminGetAllTopicsContainer />} */}
       <AdminGetAllTopicsContainer />
+      <AdminUploadTag />
     </div>
   );
 }
