@@ -5,8 +5,23 @@ $purple: purple;
 $lightblue: lightblue;
 $springgreen: springgreen;
 $green: green;
+$hotpink: hotpink;
 
 #MyAchievementApt {
   border: solid 2px $purple;
-  margin-bottom: 10px;
+  margin: 0px 10px 10px 10px;
+}
+
+.i-didnt-get-feed {
+  width: '10px';
+  height: '10px';
+  display: 'inline-block';
+  border: '2px solid pink';
+}
+.i-got-feed {
+  width: '10px';
+  height: '10px';
+  display: 'inline-block';
+  border: '2px solid pink';
+  background-color: $hotpink;
 }

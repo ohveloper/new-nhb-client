@@ -12,7 +12,8 @@ export default function MyAchievementApt() {
     if (userId) {
       postGetUserAptInfoThunk({ userId });
     }
-  }, []);
+  }, [state]);
+  console.log(aptLight);
   return (
     <div id="MyAchievementApt">
       <h1>MyAchievementApt</h1>
@@ -20,45 +21,28 @@ export default function MyAchievementApt() {
         {state.apartment.loading && 'now loading...'}
         {state.apartment.error && 'sorry now error'}
         {state.apartment.data &&
-          aptLight?.map((week) =>
-            week.map((day, idx) =>
-              day.feedNum === null ? ( //? 작성횟수가 있으면 색칠하기
-                day.date === null ? ( //? date가 null이면 출력 출력안함
+          aptLight?.map((week) => (
+            <div>
+              {week.map((day, idx) =>
+                day.date === null ? (
                   <></>
-                ) : (
-                  <div
-                    key={idx}
-                    style={{
-                      width: '10px',
-                      height: '10px',
-                      display: 'inline-block',
-                      border: '2px solid pink',
-                    }}
-                  >
+                ) : day.feedNum === null ? (
+                  <div key={idx} className="i-didnt-get-feed">
                     <div style={{ display: 'none' }}>
                       {day.feedNum}
                       {day.date}
                     </div>
                   </div>
-                )
-              ) : (
-                <div
-                  key={idx}
-                  style={{
-                    width: '10px',
-                    height: '10px',
-                    display: 'inline-block',
-                    border: '2px solid pink',
-                    backgroundColor: 'red',
-                  }}
-                >
-                  <div style={{ display: 'none' }}>
-                    {day.feedNum},{day.date}
+                ) : (
+                  <div key={idx} className="i-got-feed">
+                    <div style={{ display: 'none' }}>
+                      {day.feedNum},{day.date}
+                    </div>
                   </div>
-                </div>
-              )
-            )
-          )}
+                )
+              )}
+            </div>
+          ))}
       </div>
     </div>
   );
