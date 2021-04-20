@@ -13,7 +13,6 @@ export default function MyAchievementApt() {
       postGetUserAptInfoThunk({ userId });
     }
   }, [state]);
-  console.log(aptLight);
   return (
     <div id="MyAchievementApt">
       <h1>MyAchievementApt</h1>
