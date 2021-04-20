@@ -132,15 +132,17 @@ export default function MainPage() {
   }, [infiniteScroll]);
 
   return (
-    <>
-      <NavSidebarContainer />
-      <div>[MainPage]</div>
-      <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
-      <MainpagePoemList
-        poem={poem}
-        isLoading={isLoading}
-        handleDelete={handleDelete}
-      />
-    </>
+    <div id="main-page">
+     <NavSidebarContainer />
+      <MainpageUserRanking />
+      <div>
+        <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
+        <MainpagePoemList
+          poem={poem}
+          isLoading={isLoading}
+          handleDelete={handleDelete}
+        />
+      </div>
+    </div>
   );
 }
