@@ -9,6 +9,7 @@ import { postBringUserInfoThunk } from '../actions/actions';
 import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
+import MainpageUserRanking from '../components/Main/MainpageUserRanking';
 
 export default function MainPage() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -133,7 +134,7 @@ export default function MainPage() {
 
   return (
     <div id="main-page">
-     <NavSidebarContainer />
+      <NavSidebarContainer />
       <MainpageUserRanking />
       <div>
         <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
