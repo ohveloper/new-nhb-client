@@ -18,11 +18,11 @@ export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
 
   return (
     <div id="MyAchievementBadges">
-      <h1>MyAchievementBadges</h1>
-      <div>
+      <div className="title-button">
+        <h3>MyAchievementBadges</h3>
         <button onClick={badgeModalHandler}>뱃지선택</button>
       </div>
-      <div className="i_have_some_tags">
+      <div className="i-have-some-tags">
         <h3>내가 있는 테그들</h3>
         {
           //? 가지고 있는 테그들 렌더
@@ -31,40 +31,32 @@ export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
             !badge.isUsed ? (
               //? false일 확률이 더 높으니까 앞에
               //? 내가 선택하지 않은 테그 : 빨강글씨 테두리 없음
-              <>
-                <div key={badge.tagId} style={{ cursor: 'pointer' }}>
-                  <div>
-                    {badge.tagId},{badge.isUsed},{badge.tagName}
-                  </div>
-                  <div style={{ display: 'none' }}>{badge.description}</div>
-                </div>
-              </>
+              <div key={badge.tagId} className="my-tags">
+                <div>{badge.tagId}</div>
+                <div>{badge.tagName}</div>
+                <div>{badge.description}</div>
+              </div>
             ) : (
-              //? 내가 선택한 테그 :테두리 파랑
-              <div
-                key={badge.tagId}
-                style={{ border: '2px solid blue', cursor: 'pointer' }}
-              >
-                <div>
-                  {badge.tagId},{badge.isUsed},{badge.tagName},
-                  {badge.description}
-                </div>
+              //? 내가 선택한 테그 :테두리 핫핑크
+              <div key={badge.tagId} className="pick-my-tag">
+                <div>{badge.tagId}</div>
+                <div>{badge.tagName}</div>
+                <div>{badge.description}</div>
               </div>
             )
           )
         }
       </div>
-      <div className="i_dont_have_this_badges">
-        <h3>내가 없는 테그들</h3>
+      <div className="i-dont-have-this-badges">
+        <h3 className="not-my-tags">내가 없는 테그들</h3>
         {
           //? 가지지 못한 테그들 렌더
           allTags?.tags.map(
             (badge) =>
               !_myTagsId?.includes(badge.id) && (
-                <div>
-                  <div>
-                    {badge.id},{badge.tagName}
-                  </div>
+                <div className="not-my-tags">
+                  <div>{badge.id}</div>
+                  <div>{badge.tagName}</div>
                   <div>{badge.description}</div>
                 </div>
               )

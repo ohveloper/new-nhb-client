@@ -3,12 +3,19 @@ $black: black;
 $orange: orange;
 $purple: purple;
 $lightblue: lightblue;
+$springgreen: springgreen;
+$green: green;
+$hotpink: hotpink;
 
 #MyWork {
   border: 2px $purple solid;
+  margin: 0px 10px 10px 10px;
 }
 
-.myword_content {
+.myword-container {
+  display: flex;
   border: 2px $lightblue solid;
-  margin-bottom: 10px;
+  margin: 0px 5px 5px 5px;
+  justify-content: space-between;
+  padding: 5px;
 }
