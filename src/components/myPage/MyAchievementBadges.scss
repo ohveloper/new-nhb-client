@@ -1,0 +1,22 @@
+$red: red;
+$black: black;
+$orange: orange;
+$purple: purple;
+$lightblue: lightblue;
+$springgreen: springgreen;
+$green: green;
+
+#MyAchievementBadges {
+  border: solid 2px $purple;
+  margin-bottom: 10px;
+}
+
+.i_have_some_tags {
+  border: $springgreen 2px solid;
+  margin-bottom: 10px;
+}
+
+.i_dont_have_this_badges {
+  border: $green 2px solid;
+  margin-bottom: 10px;
+}

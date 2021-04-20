@@ -1,0 +1,14 @@
+$red: red;
+$black: black;
+$orange: orange;
+$purple: purple;
+$lightblue: lightblue;
+
+#MyWork {
+  border: 2px $purple solid;
+}
+
+.myword_content {
+  border: 2px $lightblue solid;
+  margin-bottom: 10px;
+}
