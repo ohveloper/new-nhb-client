@@ -48,13 +48,12 @@ export default function HomePage() {
         },
         withCredentials: true,
       });
-
       apiClient
-        .get(`${api}main/oauth`) //? Google OAuth
+        .get(`${api}/main/oauth`) //? Google OAuth
         .then((res) => {
           console.log(res.data);
           if (res.data) {
-            window.location.assign('https://localhost:3000/');
+            // window.location.assign('https://localhost:3000/');
           }
         })
         .catch((e) => console.log(e));
