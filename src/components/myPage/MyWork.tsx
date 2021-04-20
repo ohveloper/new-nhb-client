@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 export default function MyWork() {
   const state = useSelector((state: RootState) => state.reducer);
   const userFeeds = state.privateFeeds.data?.data.userFeeds.slice(0, 2);
+
   return (
     <>
       <h1>MyWork</h1>
@@ -12,13 +13,10 @@ export default function MyWork() {
         {state.privateFeeds.error && 'now error..'}
         {state.privateFeeds.data &&
           state.privateFeeds.data.data.userFeeds.slice(0, 3).map((x) => {
-            console.log(x.likeNum);
             return (
               <div>
                 {x.content.map((word) => {
                   const head = word.split('')[0];
-                  console.log(head);
-                  console.log(word);
                   return (
                     <div>
                       [{head}: {word}]
