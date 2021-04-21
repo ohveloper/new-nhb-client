@@ -16,7 +16,6 @@ export default function MainpagePoemList({
 }: MainpagePoemListProps) {
   return (
     <div id="main-page-poem-list">
-      <h1>MainpagePoemList</h1>
       <MainpagePoemContainer
         poem={poem}
         isLoading={isLoading}

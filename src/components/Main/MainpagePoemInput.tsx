@@ -56,29 +56,47 @@ const MainpagePoemInput = ({
 
   return (
     <div id="main-page-poem-input">
-      <h1>PoemInput</h1>
-      <form onSubmit={onPoemSubmit}>
-        {todaysTopic.map((letter, idx) => {
-          const key = letter + String(idx);
-          return (
-            <div key={key}>
-              <input
-                type="text"
-                name={String(idx)}
-                value={val.content[idx]}
-                onChange={onPoemChange}
-                required={true}
-              />
+      <div className="my-pic-container">
+        <div className="my-pic"></div>
+      </div>
+      <div className="word-input-container">
+        <div className="todays-word">
+          <h3>오늘의 주제어</h3>
+          <h2>{topic}</h2>
+        </div>
+        <form onSubmit={onPoemSubmit}>
+          <div className="input-btn-container">
+            <div className="input-container">
+              {todaysTopic.map((letter, idx) => {
+                const key = letter + String(idx);
+                return (
+                  <div key={key}>
+                    <input
+                      className="poem-input"
+                      type="text"
+                      name={String(idx)}
+                      value={val.content[idx]}
+                      onChange={onPoemChange}
+                      required={true}
+                      placeholder={letter}
+                    />
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}
-        <button type="submit">작성하기</button>
-      </form>
-      {error ? (
-        <div>오늘의 주제에 맞는 작품을 작성해 주세요!</div>
-      ) : (
-        <div></div>
-      )}
+            <div className="btn-container">
+              <button type="submit" className="btn upload-btn mt5">
+                등록
+              </button>
+            </div>
+          </div>
+        </form>
+        {error ? (
+          <div>오늘의 주제에 맞는 작품을 작성해 주세요!</div>
+        ) : (
+          <div></div>
+        )}
+      </div>
     </div>
   );
 };
