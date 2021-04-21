@@ -13,11 +13,16 @@ export default function MyInfoContainer({
 }: MyInfoContainerProps) {
   return (
     <div id="MyInfoContainer">
-      <h1>MyInfoContainer</h1>
+      <div className="photo-nickname-intro-container">
+        <div>
+          <MyPhoto />
+        </div>
+        <div className="my-info-nickname-intro-container">
+          <MyNickName />
+          <MyIntroduction />
+        </div>
+      </div>
       <button onClick={myInfoModalHandler}>수정하기</button>
-      <MyPhoto />
-      <MyNickName />
-      <MyIntroduction />
     </div>
   );
 }

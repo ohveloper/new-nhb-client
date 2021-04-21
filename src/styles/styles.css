@@ -15,7 +15,9 @@ a:hover {
 }
 
 body {
-  background-color: #15202b;
+
+  background-color: rgb(21, 32, 43);
+  color: #cdd9e5;
 }
 
 @font-face {

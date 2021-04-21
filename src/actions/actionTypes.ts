@@ -9,6 +9,7 @@ import {
   TopicsAdmin,
   UserInfo,
   Data,
+  AdminTags,
 } from '../reducers/reducer';
 import { BringComment, Welcome } from '../reducers/reducer';
 import { FeedLike } from '../api/postLikeFeed';
@@ -180,7 +181,18 @@ export const GET_ALL_TOPICS_ADMIN_API = 'GET_ALL_TOPICS_ADMIN_API' as const;
 export const GET_ALL_TOPICS_ADMIN_SUCCESS = 'GET_ALL_TOPICS_ADMIN_SUCCESS' as const;
 export const GET_ALL_TOPICS_ADMIN_ERROR = 'GET_ALL_TOPICS_ADMIN_ERROR' as const;
 
+//? get all tags
+export const GET_ALL_TAGS_ADMIN_API = 'GET_ALL_TAGS_ADMIN_API' as const;
+export const GET_ALL_TAGS_ADMIN_SUCCESS = 'GET_ALL_TAGS_ADMIN_SUCCESS' as const;
+export const GET_ALL_TAGS_ADMIN_ERROR = 'GET_ALL_TAGS_ADMIN_ERROR' as const;
+
 //?===================================================
+
+export const getAllTagsAdminAsync = createAsyncAction(
+  GET_ALL_TAGS_ADMIN_API,
+  GET_ALL_TAGS_ADMIN_SUCCESS,
+  GET_ALL_TAGS_ADMIN_ERROR
+)<undefined, AdminTags, AxiosError>();
 
 export const getAllTopicsAdminAsync = createAsyncAction(
   GET_ALL_TOPICS_ADMIN_API,

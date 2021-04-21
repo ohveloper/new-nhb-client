@@ -1,15 +1,6 @@
-$red: red;
-$black: black;
-$orange: orange;
-$purple: purple;
-$lightblue: lightblue;
-$springgreen: springgreen;
-$green: green;
-
 #MyAchievementApt {
-  border: solid 2px $purple;
-  margin: 0px 10px 10px 10px;
-  padding: 5px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #38444d;
 }
 
 .apt-container {
@@ -17,8 +8,32 @@ $green: green;
   overflow: auto;
   justify-content: end;
 }
+::-webkit-scrollbar {
+  display: none;
+}
 
 .apt-weekly-container {
-  width: 15px;
-  border: $black 2px solid;
+  margin-right: 2px;
+  width: 100px;
+
+  :last-child {
+    margin-right: 0px;
+  }
+  padding: 2px;
+}
+
+.apt-light-none {
+  width: 12px;
+  height: 12px;
+  // border: 1px solid#f8ab20;
+  background-color: #2d333b;
+  border-radius: 2px;
+  .apt-light {
+    background-color: #f8ab20;
+  }
+  margin-bottom: 4px;
+}
+
+.apt-week {
+  display: none;
 }

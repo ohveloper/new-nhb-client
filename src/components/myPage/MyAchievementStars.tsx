@@ -8,7 +8,7 @@ export default function MyAchievementStars() {
 
   return (
     <div id="MyAchievementStars">
-      <h1>MyAchievementStars</h1>
+      <div>MyAchievementStars</div>
       <div>{stars}</div>
     </div>
   );

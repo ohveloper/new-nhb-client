@@ -2,8 +2,10 @@ $red: red;
 $black: black;
 $orange: orange;
 $purple: purple;
+$border_color: #39444d;
 
 #MyWorkContainer {
-  border: 2px $orange solid;
-  margin: 40px 10px 10px 10px;
+  // border: 2px $border_color solid;
+  // margin: 0px 10px 10px 10px;
+  // background-color: black;
 }

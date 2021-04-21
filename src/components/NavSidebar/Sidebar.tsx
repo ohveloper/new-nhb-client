@@ -19,7 +19,7 @@ const Sidebar = () => {
   const [openPanel, setOpenPanel] = useState(false);
   // onClick={() =>
   return (
-    <div id="Sidebar">
+    <div>
       <div>
         <p onClick={() => setOpenPanel(true)}>NHB Nav - Click</p>
       </div>
