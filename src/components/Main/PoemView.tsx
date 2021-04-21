@@ -33,44 +33,53 @@ export default function PoemView({
           data: { feedId: feed.feedId },
         };
         return (
-          <div key={feed.feedId} className="poem-view">
-            {userId === Number(feed.user.userId) ? (
-              <>
-                <PoemDeleteButton
-                  handleDelete={handleDelete}
-                  feedId={delFeedId}
-                />
-              </>
-            ) : (
-              <div></div>
-            )}
+          <div id="poem-view-container">
+            <div key={feed.feedId} className="poem-view">
+              {userId === Number(feed.user.userId) ? (
+                <div className="del-btn-container">
+                  <PoemDeleteButton
+                    handleDelete={handleDelete}
+                    feedId={delFeedId}
+                  />
+                </div>
+              ) : (
+                <div></div>
+              )}
 
-            <PoemInfo
-              userTag={feed.user.tag}
-              nickName={feed.user.nickName}
-              createdAt={feed.createdAt}
-            />
-            <Link to={`/main/${feed.feedId}`}>
-              <div className="poem-content">
-                {feed.content.map((word, idx) => {
-                  let head;
-                  if (word !== null) {
-                    head = word.slice(0, 1);
-                    // const tail = word.slice(1);
-                  }
-                  const key = String(idx) + String(feed.feedId);
-                  return (
-                    <div key={key}>
-                      [{head}]{word}
+              <div className="pic-info-content-container">
+                <div className="user-pic-container">
+                  <div className="user-pic"></div>
+                </div>
+                <div className="info-content-container">
+                  <PoemInfo
+                    userTag={feed.user.tag}
+                    nickName={feed.user.nickName}
+                    createdAt={feed.createdAt}
+                  />
+                  <Link to={`/main/${feed.feedId}`}>
+                    <div className="poem-content-container">
+                      {feed.content.map((word, idx) => {
+                        let head;
+                        if (word !== null) {
+                          head = word.slice(0, 1);
+                          // const tail = word.slice(1);
+                        }
+                        const key = String(idx) + String(feed.feedId);
+                        return (
+                          <div key={key} className="poem-content">
+                            [{head}]{word}
+                          </div>
+                        );
+                      })}
                     </div>
-                  );
-                })}
+                  </Link>
+                </div>
               </div>
-            </Link>
-            <PoemButtonGroup
-              likeNum={feed.likeNum}
-              commentNum={feed.commentNum}
-            />
+              <PoemButtonGroup
+                likeNum={feed.likeNum}
+                commentNum={feed.commentNum}
+              />
+            </div>
           </div>
         );
       })}
