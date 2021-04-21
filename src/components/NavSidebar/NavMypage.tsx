@@ -11,6 +11,7 @@ function NavMyPage() {
   useEffect(() => {
     if (accessToken)
       dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
+    return;
   }, []);
 
   return (
