@@ -7,33 +7,29 @@ import NavMyPage from './NavMypage';
 import NavLogin from './NavLogin';
 import MyLog from './Mylog';
 import Induce from './Induce';
-import dotenv from 'dotenv';
 import './NavSidebar.scss';
-
-dotenv.config;
 
 const Sidebar = () => {
   const state = useSelector((state: RootState) => state.reducer);
   const accessToken = state.accessToken;
-
+  const findName = state.userInfo.data?.data.userInfo.nickName;
   const [openPanel, setOpenPanel] = useState(false);
   // onClick={() =>
   return (
     <div id="Sidebar">
-      <p onClick={() => setOpenPanel(true)}>NHB Nav - Click</p>
+      <p onClick={() => setOpenPanel(true)}>NHB Nav</p>
       {/* SlidingPanel type = panel 방향 / isOpen = 열고 닫기 설정 / size = panel 크기 / noBackdrop = panel 뒤 클리 가능하도록 설정 */}
 
       <SlidingPanel
         type={'right'}
         isOpen={openPanel}
-        size={30}
+        size={40}
         noBackdrop={true}
       >
-        <div>
-          {accessToken ? <NavMyPage /> : <NavLogin />}
-          <br />
-          {accessToken ? <MyLog /> : <Induce />}
-          <br />
+        <div id="NavSidebar">
+          <div>{findName ? `Good Day ${findName}님` : `Good Day you`}</div>
+          <div>{accessToken ? <NavMyPage /> : <NavLogin />}</div>
+          <div>{accessToken ? <MyLog /> : <Induce />}</div>
           <div onClick={() => setOpenPanel(false)}>
             Click here to Close Sidebar
           </div>

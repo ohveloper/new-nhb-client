@@ -1,7 +1,9 @@
-import React from 'react';
 import { RootState } from '../../reducers';
-import { useDispatch, useSelector } from 'react-redux';
-import { postBringUserInfoThunk } from '../../actions/actions';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+// import { useDispatch, useSelector } from 'react-redux';
+// import { postBringUserInfoThunk } from '../../actions/actions';
 
 function Mylog() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -9,11 +11,12 @@ function Mylog() {
   console.log('userState : ', userState);
   return (
     <div>
+      <div>하루 끝 N행시</div>
       <div>
-        지금까지 작성한 N행시 : {state.userInfo.loading && '정보를 가져오는 중'}
-        {/* {userState && userState} */}
+        <Link to="/main">
+          <p>작성하러 가기</p>
+        </Link>
       </div>
-      <div></div>
     </div>
   );
 }

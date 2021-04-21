@@ -16,8 +16,10 @@ function NavMyPage() {
 
   return (
     <div>
-      <Link to="/mypage">My Page</Link>
       <div>Welcome back!</div>
+      <div>
+        <Link to="/mypage">Go to Mypage</Link>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,4 @@
 a:any-link {
-  text-decoration: none;
   color: rgb(7, 71, 199);
 }
 
@@ -15,7 +14,6 @@ a:hover {
 }
 
 body {
-
   background-color: rgb(21, 32, 43);
   color: #cdd9e5;
 }
