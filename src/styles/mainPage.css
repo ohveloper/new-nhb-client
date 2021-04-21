@@ -5,14 +5,24 @@
 }
 
 /* feed */
-@media only screen and (max-width: 767px) {
+@media only screen and (min-width: 480px) {
   .feed-container {
-    width: 300px;
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .feed-container {
+    max-width: 600px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .feed-container {
+    max-width: 600px;
   }
 }
 .feed-container {
   /* border: 3px teal solid; */
-  min-width: 375px;
+  /* min-width: 375px; */
   display: flex;
   flex-direction: column;
 }
@@ -27,13 +37,14 @@
   width: 50px;
   height: 50px;
   background-color: white;
-  border-radius: 25px;
+  border-radius: 5px;
   margin: 5px 10px 0 10px;
   opacity: 0.5;
 }
 
 #main-page-poem-input .word-input-container {
   margin: 13px 0 5px 0;
+  width: 80%;
 }
 
 #main-page-poem-input .word-input-container .todays-word {
@@ -55,7 +66,8 @@
 }
 
 #main-page-poem-input .word-input-container .input-container input {
-  min-width: 270px;
+  /* min-width: 270px; */
+  width: 100%;
   background-color: transparent;
   outline: none;
   border: none;
@@ -68,7 +80,6 @@
 }
 
 .btn-container {
-  margin: 0 0 3px 220px;
 }
 
 /* user rank */
@@ -77,6 +88,21 @@
 }
 
 /* poem view */
+@media only screen and (min-width: 480px) {
+  .poem-content-container {
+  }
+}
+@media only screen and (min-width: 768px) {
+  .poem-content-container {
+    max-width: 470px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .poem-content-container {
+    max-width: 470px;
+  }
+}
+
 #main-page-poem-list {
   /* border: 3px solid skyblue; */
 }
@@ -91,6 +117,7 @@
 
 .poem-view {
   margin: 5px 10px 10px 10px;
+  display: block;
 }
 .pic-info-content-container {
   display: flex;
@@ -98,7 +125,7 @@
 .user-pic-container .user-pic {
   width: 50px;
   height: 50px;
-  border-radius: 25px;
+  border-radius: 5px;
   margin: 0 10px 0 0;
   background-color: white;
   opacity: 0.5;
@@ -117,8 +144,12 @@
   color: white;
 }
 
+.del-btn-container {
+  float: right;
+}
+
 .poem-content-container {
-  width: 270px;
+  max-width: 470px;
   margin: 10px 0 15px 0;
 }
 .poem-content {
@@ -157,11 +188,6 @@
   padding-left: 10px;
 }
 
-.del-btn-container {
-  position: absolute;
-  right: 15px;
-}
-
 /* modal */
 
 #modal-container {
@@ -192,7 +218,7 @@
 .btn {
   background-color: #ffad1e;
   border: 1px rgba(0, 0, 0, 0) solid;
-  border-radius: 9999px;
+  border-radius: 5px;
   color: white;
 }
 
@@ -201,6 +227,7 @@
   height: 40px;
   font-size: 15px;
   font-weight: 700;
+  float: right;
 }
 
 .poem-delete-button {
