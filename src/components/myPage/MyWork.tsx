@@ -9,7 +9,6 @@ export default function MyWork() {
 
   return (
     <div id="MyWork">
-      <div>MyWork</div>
       {state.privateFeeds.loading && 'now loading..'}
       {state.privateFeeds.error && 'now error..'}
       {state.privateFeeds.data &&

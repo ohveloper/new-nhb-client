@@ -15,9 +15,24 @@ $border_color: #39444d;
 }
 
 .myword-container {
-  display: flex;
+  background-color: lighten($border_color, 7%);
   border: 2px $border_color solid;
   margin: 0px 5px 5px 5px;
+  display: flex;
   justify-content: space-between;
+  flex-direction: column;
   padding: 5px;
+  line-height: 20px;
+  border-radius: 6px;
+}
+
+.myword-like-comment {
+  display: flex;
+  justify-content: flex-end;
+  div {
+    margin-right: 10px;
+  }
+  :last-child {
+    margin-right: 0px;
+  }
 }

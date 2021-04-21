@@ -13,23 +13,25 @@ export default function MyAchievementApt() {
       postGetUserAptInfoThunk({ userId });
     }
   }, [state]);
-  console.log(aptLight);
+
   if (aptLight) {
     console.log(aptLight[0][0].date.split('-'));
   }
+
   const [weekList, setWeeklist] = useState([]);
+
+  const aptBox = document.getElementById('apt-container');
+
+  if (aptBox) {
+    // aptBox.scrollLeft = 10000;
+    aptBox.scrollLeft = aptBox.scrollWidth;
+  }
+
   return (
     <div id="MyAchievementApt">
-      <div>MyAchievementApt</div>
+      <div title="헬로">MyAchievementApt</div>
       {/* //? day 맵을 돌릴때 2021-04-01 을 만나면 push를 한다 */}
-      <div>여기는 월별 들어가야됨</div>
-      <div className="apt-container">
-        <div className="apt-week">
-          <div>월</div>
-          <div>화</div>
-          <div>목</div>
-          <div>토</div>
-        </div>
+      <div className="apt-container" id="apt-container">
         {state.apartment.loading && 'now loading...'}
         {state.apartment.error && 'sorry now error'}
         {state.apartment.data &&
@@ -40,14 +42,14 @@ export default function MyAchievementApt() {
                   <></>
                 ) : day.feedNum === null ? (
                   <div className="apt-light-none" key={idx}>
-                    <div style={{ display: 'none' }}>
+                    <div className="apt-hide-info">
                       {day.feedNum}
                       {day.date}
                     </div>
                   </div>
                 ) : (
-                  <div key={idx} className="apt-light">
-                    <div style={{ display: 'none' }}>
+                  <div title={day.date} key={idx} className="apt-light">
+                    <div className="apt-hide-info">
                       {day.feedNum},{day.date}
                     </div>
                   </div>
