@@ -1,0 +1,20 @@
+#NavSidebarContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0.3rem 0.5rem 0.3rem;
+}
+
+* {
+    border: 1px solid #39444D;
+}
+
+#Homebutton{
+    flex: 1 0 auto;
+    // margin-left: 0.5rem;
+}
+
+#Sidebar {
+    flex: 1 0 auto;
+    // margin-right: 0.5rem;
+    z-index: -1;
+}

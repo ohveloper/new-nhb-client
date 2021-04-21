@@ -4,6 +4,7 @@ import { postLogInThunk, postSignUpThunk } from '../actions/actions';
 import HomepageWritersRanking from '../components/Home/HomepageWritersRanking';
 import axios from 'axios';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
+import '../styles/Homepage.css';
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -60,12 +61,11 @@ export default function HomePage() {
   checkClient();
 
   return (
-    <div>
+    <div id="Homepage">
       <NavSidebarContainer />
       <Link to="/main">
         <p>N행시 작성하러 가기</p>
       </Link>
-      <br />
       <Link to="/apitest">
         <p> apitest</p>
       </Link>

@@ -8,7 +8,7 @@ import NavLogin from './NavLogin';
 import MyLog from './Mylog';
 import Induce from './Induce';
 import dotenv from 'dotenv';
-import './Sidebar.scss';
+import './NavSidebar.scss';
 
 dotenv.config;
 
@@ -19,10 +19,8 @@ const Sidebar = () => {
   const [openPanel, setOpenPanel] = useState(false);
   // onClick={() =>
   return (
-    <div>
-      <div>
-        <p onClick={() => setOpenPanel(true)}>NHB Nav - Click</p>
-      </div>
+    <div id="Sidebar">
+      <p onClick={() => setOpenPanel(true)}>NHB Nav - Click</p>
       {/* SlidingPanel type = panel 방향 / isOpen = 열고 닫기 설정 / size = panel 크기 / noBackdrop = panel 뒤 클리 가능하도록 설정 */}
 
       <SlidingPanel
