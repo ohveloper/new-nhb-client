@@ -19,11 +19,11 @@ export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
   return (
     <div id="MyAchievementBadges">
       <div className="title-button">
-        <h3>MyAchievementBadges</h3>
+        <div>MyAchievementBadges</div>
         <button onClick={badgeModalHandler}>뱃지선택</button>
       </div>
       <div className="i-have-some-tags">
-        <h3>내가 있는 테그들</h3>
+        <div>내가 있는 테그들</div>
         {
           //? 가지고 있는 테그들 렌더
           myTagsInfo?.map((badge) =>
@@ -32,7 +32,7 @@ export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
               //? false일 확률이 더 높으니까 앞에
               //? 내가 선택하지 않은 테그 : 빨강글씨 테두리 없음
               <div key={badge.tagId} className="my-tags">
-                <div>{badge.tagId}</div>
+                <div className="tag">{badge.tagId}</div>
                 <div>{badge.tagName}</div>
                 <div>{badge.description}</div>
               </div>
@@ -48,7 +48,7 @@ export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
         }
       </div>
       <div className="i-dont-have-this-badges">
-        <h3 className="not-my-tags">내가 없는 테그들</h3>
+        <div className="not-my-tags">내가 없는 테그들</div>
         {
           //? 가지지 못한 테그들 렌더
           allTags?.tags.map(

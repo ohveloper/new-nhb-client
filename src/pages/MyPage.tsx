@@ -15,6 +15,8 @@ import MyInfoContainer from '../components/myPage/MyInfoContainer';
 import MyInfo_Modal from '../components/myPage/modals/MyInfo_Modal';
 import { getTopicsT } from '../api/getTopics';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
+import SpaceBox from '../components/myPage/SpaceBox';
+import '../styles/Mypage.scss';
 
 export default function MyPage() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -58,7 +60,7 @@ export default function MyPage() {
   };
 
   return (
-    <div id="myPage">
+    <div id="MyPage">
       <NavSidebarContainer />
       <div>
         {badgeModal && <Badges_Modal badgeModalHandler={badgeModalHandler} />}
@@ -66,24 +68,25 @@ export default function MyPage() {
           <MyInfo_Modal myInfoModalHandler={myInfoModalHandler} />
         )}
       </div>
-
-      <div>
-        {state.privateFeeds.loading && 'now loading...'}
-        {state.privateFeeds.error && 'sorry now Error'}
-        {state.privateFeeds.data && <MyWorkContainer />}
-      </div>
-      <div>
-        {state.userInfo.loading && 'now loading...'}
-        {state.userInfo.error && 'sorry now Error'}
-        {state.userInfo.data && (
-          <MyAchievementContainer badgeModalHandler={badgeModalHandler} />
-        )}
-      </div>
       <div>
         {state.userInfo.loading && 'now loading...'}
         {state.userInfo.error && 'sorry now Error'}
         {state.userInfo.data && (
           <MyInfoContainer myInfoModalHandler={myInfoModalHandler} />
+        )}
+      </div>
+      <SpaceBox />
+      <div>
+        {state.privateFeeds.loading && 'now loading...'}
+        {state.privateFeeds.error && 'sorry now Error'}
+        {state.privateFeeds.data && <MyWorkContainer />}
+      </div>
+      <SpaceBox />
+      <div>
+        {state.userInfo.loading && 'now loading...'}
+        {state.userInfo.error && 'sorry now Error'}
+        {state.userInfo.data && (
+          <MyAchievementContainer badgeModalHandler={badgeModalHandler} />
         )}
       </div>
     </div>

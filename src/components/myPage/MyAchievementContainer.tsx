@@ -12,7 +12,7 @@ export default function MyAchievementContainer({
 }: PropsType) {
   return (
     <div id="MyAchievementContainer">
-      <h1>MyAchievementContainer</h1>
+      <div>MyAchievementContainer</div>
       <div>
         <MyAchievementBadges badgeModalHandler={badgeModalHandler} />
         <MyAchievementApt />

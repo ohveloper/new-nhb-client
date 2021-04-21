@@ -20,11 +20,11 @@ export default function MyAchievementApt() {
   const [weekList, setWeeklist] = useState([]);
   return (
     <div id="MyAchievementApt">
-      <h1>MyAchievementApt</h1>
+      <div>MyAchievementApt</div>
       {/* //? day 맵을 돌릴때 2021-04-01 을 만나면 push를 한다 */}
       <div>여기는 월별 들어가야됨</div>
       <div className="apt-container">
-        <div>
+        <div className="apt-week">
           <div>월</div>
           <div>화</div>
           <div>목</div>
@@ -39,29 +39,14 @@ export default function MyAchievementApt() {
                 day.date === null ? (
                   <></>
                 ) : day.feedNum === null ? (
-                  <div
-                    key={idx}
-                    style={{
-                      width: '10px',
-                      height: '10px',
-                      border: '2px solid pink',
-                    }}
-                  >
+                  <div className="apt-light-none" key={idx}>
                     <div style={{ display: 'none' }}>
                       {day.feedNum}
                       {day.date}
                     </div>
                   </div>
                 ) : (
-                  <div
-                    key={idx}
-                    style={{
-                      width: '10px',
-                      height: '10px',
-                      border: '2px solid pink',
-                      backgroundColor: 'red',
-                    }}
-                  >
+                  <div key={idx} className="apt-light">
                     <div style={{ display: 'none' }}>
                       {day.feedNum},{day.date}
                     </div>

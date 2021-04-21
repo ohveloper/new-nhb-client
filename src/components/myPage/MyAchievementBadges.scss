@@ -7,28 +7,33 @@ $springgreen: springgreen;
 $green: green;
 $hotpink: hotpink;
 $pink: pink;
+$border_color: #39444d;
 
 #MyAchievementBadges {
-  border: solid 2px $purple;
-  margin: 0px 10px 10px 10px;
+  // border: solid 2px $border_color;
+  // margin: 10px;
+  border-bottom: solid 2px $border_color;
 }
 
 .title-button {
   display: flex;
   justify-content: space-between;
-  margin: 5px 5px 5px 5px;
+  // margin: 5px 5px 5px 5px;
+  padding: 12px 16px;
 }
 
 .i-have-some-tags {
-  border: $springgreen 2px solid;
-  margin: 0px 5px 5px 5px;
-  padding: 5px;
+  // border: $border_color 2px solid;
+  // margin: 0px 5px 5px 5px;
+  // padding: 5px;
+  padding: 12px 16px;
 }
 
 .i-dont-have-this-badges {
-  border: $green 2px solid;
-  margin: 0px 5px 5px 5px;
-  padding: 5px;
+  padding: 12px 16px;
+  // border: $border_color 2px solid;
+  // margin: 0px 5px 5px 5px;
+  // padding: 5px;
 }
 
 .my-tags {
@@ -44,4 +49,8 @@ $pink: pink;
   color: gray;
   display: flex;
   justify-content: space-between;
+}
+
+.tag {
+  content: url('../../img/New_Piskel.png');
 }

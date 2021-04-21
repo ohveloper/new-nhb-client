@@ -8,7 +8,6 @@ export default function MyNickName() {
 
   return (
     <div id="MyNickName">
-      <h1>MyNickName</h1>
       <div>{state.userInfo.data && nickName}</div>
     </div>
   );
