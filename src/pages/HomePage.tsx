@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { postLogInThunk, postSignUpThunk } from '../actions/actions';
-import HomepageWritersRanking from '../components/Home/HomepageWritersRanking';
 import axios from 'axios';
+
+import HomepageWritersRanking from '../components/Home/HomepageWritersRanking';
+import Footer from '../components/Home/Footer';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
+import '../styles/Homepage.css';
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -25,7 +28,6 @@ export default function HomePage() {
 
     //? googleOAuth용
     else if (url.includes('access_token')) {
-      console.log('다뒤졌다 OAuth');
       const url = new URL(window.location.href);
       const first = url.hash.indexOf('n=');
       const last = url.hash.indexOf('&t');
@@ -60,20 +62,14 @@ export default function HomePage() {
   checkClient();
 
   return (
-    <div>
+    <div id="Homepage">
       <NavSidebarContainer />
       <Link to="/main">
         <p>N행시 작성하러 가기</p>
       </Link>
-      <br />
-      <Link to="/apitest">
-        <p> apitest</p>
-      </Link>
-      <Link to="/admin">
-        <p>admin</p>
-      </Link>
       <HomepageWritersRanking />
       <div className="App">:sunglasses: </div>
+      <Footer />
     </div>
   );
 }
