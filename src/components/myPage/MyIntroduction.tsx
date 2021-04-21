@@ -8,7 +8,7 @@ export default function MyIntroduction() {
   const myIntroduction = state.userInfo.data?.data.userInfo.introduction;
   return (
     <div id="MyIntroduction">
-      <h1>MyIntroduction</h1>
+      {/* <div className="my-introduction-title">MyIntroduction</div> */}
       <div>{myIntroduction ? myIntroduction : '소개글이 없습니다'}</div>
     </div>
   );

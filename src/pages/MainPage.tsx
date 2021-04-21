@@ -10,7 +10,6 @@ import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
 import MainpageUserRanking from '../components/Main/MainpageUserRanking';
-
 import { Mobile, Tablet, PC } from '../lib/MediaQuery';
 
 export default function MainPage() {
