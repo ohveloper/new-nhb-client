@@ -134,42 +134,42 @@ export default function MainPage() {
   }, [infiniteScroll]);
 
   return (
-    <div id="main-page">
-      <Mobile>
-        <NavSidebarContainer />
-        <div>
-          <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
-          <MainpagePoemList
-            poem={poem}
-            isLoading={isLoading}
-            handleDelete={handleDelete}
-          />
-        </div>
-      </Mobile>
-      <Tablet>
-        <NavSidebarContainer />
-        <MainpageUserRanking />
-        <div>
-          <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
-          <MainpagePoemList
-            poem={poem}
-            isLoading={isLoading}
-            handleDelete={handleDelete}
-          />
-        </div>
-      </Tablet>
-      <PC>
-        <NavSidebarContainer />
-        <MainpageUserRanking />
-        <div>
-          <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
-          <MainpagePoemList
-            poem={poem}
-            isLoading={isLoading}
-            handleDelete={handleDelete}
-          />
-        </div>
-      </PC>
-    </div>
+    <>
+      <NavSidebarContainer />
+      <div id="main-page">
+        <Mobile>
+          <div className="feed-container">
+            <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
+            <MainpagePoemList
+              poem={poem}
+              isLoading={isLoading}
+              handleDelete={handleDelete}
+            />
+          </div>
+        </Mobile>
+        <Tablet>
+          <MainpageUserRanking />
+          <div className="feed-container">
+            <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
+            <MainpagePoemList
+              poem={poem}
+              isLoading={isLoading}
+              handleDelete={handleDelete}
+            />
+          </div>
+        </Tablet>
+        <PC>
+          <MainpageUserRanking />
+          <div className="feed-container">
+            <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
+            <MainpagePoemList
+              poem={poem}
+              isLoading={isLoading}
+              handleDelete={handleDelete}
+            />
+          </div>
+        </PC>
+      </div>
+    </>
   );
 }

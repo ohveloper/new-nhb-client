@@ -33,8 +33,7 @@ export default function PoemView({
           data: { feedId: feed.feedId },
         };
         return (
-          <div key={feed.feedId}>
-            <div>{feed.feedId}</div>
+          <div key={feed.feedId} className="poem-view">
             {userId === Number(feed.user.userId) ? (
               <>
                 <PoemDeleteButton
@@ -52,7 +51,7 @@ export default function PoemView({
               createdAt={feed.createdAt}
             />
             <Link to={`/main/${feed.feedId}`}>
-              <div className="poem-view">
+              <div className="poem-content">
                 {feed.content.map((word, idx) => {
                   let head;
                   if (word !== null) {
