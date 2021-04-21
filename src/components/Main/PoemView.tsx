@@ -35,17 +35,14 @@ export default function PoemView({
         return (
           <div id="poem-view-container">
             <div key={feed.feedId} className="poem-view">
-              {userId === Number(feed.user.userId) ? (
+              {userId === Number(feed.user.userId) && (
                 <div className="del-btn-container">
                   <PoemDeleteButton
                     handleDelete={handleDelete}
                     feedId={delFeedId}
                   />
                 </div>
-              ) : (
-                <div></div>
               )}
-
               <div className="pic-info-content-container">
                 <div className="user-pic-container">
                   <div className="user-pic"></div>
@@ -56,6 +53,7 @@ export default function PoemView({
                     nickName={feed.user.nickName}
                     createdAt={feed.createdAt}
                   />
+
                   <Link to={`/main/${feed.feedId}`}>
                     <div className="poem-content-container">
                       {feed.content.map((word, idx) => {
