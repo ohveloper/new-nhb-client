@@ -24,7 +24,7 @@ export default function MainpagePoemContainer({
   }
   return (
     <div id="main-page-poem-container">
-      <h2>PoemContainer</h2>
+      <div className="gap"></div>
       <PoemView poem={poem} isLoading={isLoading} handleDelete={handleDelete} />
     </div>
   );

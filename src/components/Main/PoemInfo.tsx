@@ -14,7 +14,8 @@ export default function PoemInfo({
   return (
     <div className="poem-info">
       <div>
-        ({userTag}) {nickName}
+        <span className="tag">({userTag})</span>
+        <span className="nick-name">{nickName}</span>
       </div>
     </div>
   );
