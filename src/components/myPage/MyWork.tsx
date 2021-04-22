@@ -6,7 +6,7 @@ import './MyWork.scss';
 export default function MyWork() {
   const state = useSelector((state: RootState) => state.reducer);
   const userFeeds = state.privateFeeds.data?.data.userFeeds.slice(0, 2);
-
+  console.log(state, '??');
   return (
     <div id="MyWork">
       {state.privateFeeds.loading && 'now loading..'}

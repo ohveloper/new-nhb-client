@@ -25,6 +25,9 @@ $border_color: #39444d;
   line-height: 20px;
   border-radius: 6px;
 }
+.myword-container:hover {
+  background-color: lighten($border_color, 12%);
+}
 
 .myword-like-comment {
   display: flex;

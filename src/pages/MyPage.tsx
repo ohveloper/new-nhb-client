@@ -6,6 +6,7 @@ import { RootState } from '../reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getAllTagsThunk,
+  postBringUserInfoThunk,
   postGetFrivateFeedsThunk,
   postGetUserAptInfoThunk,
 } from '../actions/actions';
@@ -45,6 +46,7 @@ export default function MyPage() {
       console.log(state);
       dispatch(getAllTagsThunk());
       dispatch(postGetUserAptInfoThunk({ userId: userId }));
+      dispatch(postBringUserInfoThunk({ userId }, accessToken));
     }
   }, []);
   //! 뱃지 모달 핸들러 구역

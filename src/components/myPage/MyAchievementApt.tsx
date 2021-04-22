@@ -42,16 +42,11 @@ export default function MyAchievementApt() {
                   <></>
                 ) : day.feedNum === null ? (
                   <div className="apt-light-none" key={idx}>
-                    <div className="apt-hide-info">
-                      {day.feedNum}
-                      {day.date}
-                    </div>
+                    <div className="apt-hide-info">{day.date}</div>
                   </div>
                 ) : (
                   <div title={day.date} key={idx} className="apt-light">
-                    <div className="apt-hide-info">
-                      {day.feedNum},{day.date}
-                    </div>
+                    <div className="apt-hide-info">{day.date}</div>
                   </div>
                 )
               )}
