@@ -7,41 +7,158 @@ $springgreen: springgreen;
 $green: green;
 $hotpink: hotpink;
 $pink: pink;
-
-#MyAchievementBadges {
-  border: solid 2px $purple;
-  margin: 0px 10px 10px 10px;
-}
+$border_color: #39444d;
 
 .title-button {
   display: flex;
   justify-content: space-between;
-  margin: 5px 5px 5px 5px;
+  button {
+    margin-right: 16px;
+    cursor: pointer;
+  }
 }
 
+.title-button button:hover {
+  background-color: lighten($color: $border_color, $amount: 50%);
+  color: gold;
+}
 .i-have-some-tags {
-  border: $springgreen 2px solid;
-  margin: 0px 5px 5px 5px;
-  padding: 5px;
+  padding: 12px 16px;
 }
 
 .i-dont-have-this-badges {
-  border: $green 2px solid;
-  margin: 0px 5px 5px 5px;
-  padding: 5px;
+  padding: 12px 16px;
 }
 
 .my-tags {
   display: flex;
   justify-content: space-between;
+  border: $border_color 2px solid;
+  border-radius: 6px;
+  padding: 10px;
+  background-color: lighten($color: $border_color, $amount: 10%);
+  align-items: center;
+  margin-top: 5px;
+  :last-child {
+    display: flex;
+    flex-wrap: nowrap;
+    text-align: center;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.my-tags-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 140px;
+  :last-child {
+    text-align: center;
+    width: 80px;
+  }
+}
+
+.my-tags:hover {
+  cursor: default;
+  background-color: lighten($color: $border_color, $amount: 15%);
 }
 
 .pick-my-tag {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 6px;
+  padding: 10px;
+  background-color: lighten($color: $border_color, $amount: 10%);
+  align-items: center;
+  margin-top: 5px;
   border: 2px solid $hotpink;
+  :last-child {
+    display: flex;
+    flex-wrap: nowrap;
+    text-align: center;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.pick-my-tags-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 140px;
+  :last-child {
+    text-align: center;
+    width: 80px;
+  }
+}
+
+.pick-my-tag:hover {
+  cursor: default;
+  background-color: lighten($color: $border_color, $amount: 15%);
 }
 
 .not-my-tags {
   color: gray;
   display: flex;
   justify-content: space-between;
+  border: $border_color 2px solid;
+  border-radius: 6px;
+  padding: 10px;
+  background-color: lighten($color: $border_color, $amount: 10%);
+  align-items: center;
+  margin-top: 5px;
+  :last-child {
+    display: flex;
+    flex-wrap: nowrap;
+    text-align: center;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.not-my-tags:hover {
+  cursor: default;
+  background-color: lighten($color: $border_color, $amount: 15%);
+}
+
+.not-my-tag-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 140px;
+  // width: 120px;
+  :last-child {
+    text-align: center;
+    width: 80px;
+  }
+}
+
+// .tag {
+//   content: url('../../img/New_Piskel.png');
+// }
+
+#tag-id-1 {
+  content: url('../../img/tag-id-1.png');
+}
+#tag-id-2 {
+  content: url('../../img/tag-id-2.gif');
+}
+#tag-id-3 {
+  content: url('../../img/tag-id-3.gif');
+}
+#tag-id-4 {
+  content: url('../../img/tag-id-4.gif');
+}
+#tag-id-5 {
+  content: url('../../img/tag-id-5.png');
+}
+#tag-id-6 {
+  content: url('../../img/tag-id-6.gif');
+}
+#tag-id-7 {
+  content: url('../../img/tag-id-7.gif');
 }

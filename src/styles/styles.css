@@ -1,5 +1,4 @@
 a:any-link {
-  text-decoration: none;
   color: rgb(7, 71, 199);
 }
 
@@ -11,4 +10,18 @@ a:hover {
   box-sizing: border-box;
   margin: 0;
   text-decoration: none;
+  font-family: 'DungGeunMo';
+}
+
+body {
+  background-color: rgb(21, 32, 43);
+  color: #cdd9e5;
+}
+
+@font-face {
+  font-family: 'DungGeunMo';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
 }

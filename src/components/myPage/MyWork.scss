@@ -6,16 +6,36 @@ $lightblue: lightblue;
 $springgreen: springgreen;
 $green: green;
 $hotpink: hotpink;
+$border_color: #39444d;
 
 #MyWork {
-  border: 2px $purple solid;
-  margin: 0px 10px 10px 10px;
+  // border: 2px $border_color solid;
+  // margin: 10px;
+  padding: 12px 16px;
 }
 
 .myword-container {
-  display: flex;
-  border: 2px $lightblue solid;
+  background-color: lighten($border_color, 7%);
+  border: 2px $border_color solid;
   margin: 0px 5px 5px 5px;
+  display: flex;
   justify-content: space-between;
+  flex-direction: column;
   padding: 5px;
+  line-height: 20px;
+  border-radius: 6px;
+}
+.myword-container:hover {
+  background-color: lighten($border_color, 12%);
+}
+
+.myword-like-comment {
+  display: flex;
+  justify-content: flex-end;
+  div {
+    margin-right: 10px;
+  }
+  :last-child {
+    margin-right: 0px;
+  }
 }

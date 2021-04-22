@@ -11,12 +11,15 @@ function NavMyPage() {
   useEffect(() => {
     if (accessToken)
       dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
+    return;
   }, []);
 
   return (
     <div>
-      <Link to="/mypage">My Page</Link>
       <div>Welcome back!</div>
+      <div>
+        <Link to="/mypage">Go to Mypage</Link>
+      </div>
     </div>
   );
 }

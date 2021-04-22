@@ -3,8 +3,13 @@ $black: black;
 $orange: orange;
 $purple: purple;
 $lightblue: lightblue;
+$border_color: #39444d;
 
-#MyAchievementContainer {
-  border: solid 2px $orange;
-  margin: 0px 10px 10px 10px;
+#MyAchievementContainer button {
+  border: solid 2px hotpink;
+  // margin: 10px;
+  // padding: 5px;
+  border-radius: 6px;
+  line-height: 20px;
+  cursor: pointer;
 }

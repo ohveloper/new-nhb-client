@@ -5,17 +5,25 @@ $purple: purple;
 $lightblue: lightblue;
 $springgreen: springgreen;
 $green: green;
+$border_color: #39444d;
 
 #my_photo {
-  border: 2px solid $purple;
-  margin-bottom: 10px;
+  // border: 2px solid $border_color;
+  margin: 10px;
+  padding: 5px;
+  width: 57x;
+  height: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .photo {
-  content: url(../../img/Sample_User_Icon.png);
-  width: 30px;
-  height: 30px;
+  display: block;
+  font-size: 40px;
+  width: 57px;
+  height: 57px;
   border-radius: 50px;
-  border: 2px $purple solid;
-  margin-bottom: 10px;
+  border: 2px gold solid;
+  color: aquamarine;
 }

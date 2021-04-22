@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 import './MyAchievementStars.scss';
+import Star from './Star';
 
 export default function MyAchievementStars() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -8,8 +9,17 @@ export default function MyAchievementStars() {
 
   return (
     <div id="MyAchievementStars">
-      <h1>MyAchievementStars</h1>
-      <div>{stars}</div>
+      <div>MyAchievementStars</div>
+      <div className="star-title-container-flexbox">
+        <div className="star-title-container">
+          <div className="star">별</div>
+          <div> X </div>
+          <div>{stars}</div>
+        </div>
+        <div className="star-container">
+          <div>{stars && <Star />}</div>
+        </div>
+      </div>
     </div>
   );
 }

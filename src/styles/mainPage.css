@@ -1,37 +1,302 @@
+/* entire page */
 #main-page {
-  height: 100vh;
-  /* display: flex; */
+  height: 100%;
+  display: flex;
+}
+
+/* feed */
+@media only screen and (min-width: 769px) and(max-width:991px) {
+  .feed-container {
+    max-width: 600px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .feed-container {
+    max-width: 600px;
+  }
+}
+.feed-container {
+  /* border: 3px teal solid; */
+  /* min-width: 375px; */
+  display: flex;
+  flex-direction: column;
+}
+
+/* poem input */
+#main-page-poem-input {
+  border-right: 1px #39444d solid;
+  border-left: 1px #39444d solid;
+  display: flex;
+}
+
+#main-page-poem-input .my-pic-container .my-pic {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 5px;
+  margin: 5px 10px 0 10px;
+  opacity: 0.5;
+}
+
+#main-page-poem-input .word-input-container {
+  margin: 13px 0 5px 0;
+  width: 80%;
+}
+
+#main-page-poem-input .word-input-container .todays-word {
+  color: white;
+  font-weight: 300;
+  margin-bottom: 10px;
+  display: inline-flex;
+  align-items: baseline;
+}
+
+#main-page-poem-input .word-input-container .todays-word > h2 {
+  margin-left: 10px;
+  font-weight: 400;
+}
+
+#main-page-poem-input .word-input-container .input-btn-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#main-page-poem-input .word-input-container .input-container input {
+  /* min-width: 270px; */
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 4px #39444d dashed;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.btn-container {
+  margin-bottom: 5px;
+}
+
+/* user rank */
+@media only screen and (min-width: 769px) and(max-width:991px) {
+  #main-page-user-ranking {
+  }
+}
+@media only screen and (min-width: 1024px) {
+  #main-page-user-ranking {
+    min-width: 300px;
+  }
+}
+#main-page-user-ranking {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 20px 0 20px;
+  border: 1px #39444d solid;
+  border-radius: 20px;
+  background-color: #192734;
+  height: fit-content;
+}
+
+#main-page-user-ranking > h2 {
+  margin: 10px;
+}
+
+.rank-container {
+  background-color: rgba(0, 0, 0, 0);
+}
+.rank-container .rank-content {
+  margin: 20px 10px 20px 10px;
+}
+.rank-container .rank-content > span {
+  color: #ffad1e;
+}
+.more {
+  margin: 20px 10px 20px 10px;
+  font-size: 0.8rem;
+  color: #ffad1e;
+}
+
+/* poem view */
+@media only screen and (max-width: 768px) {
+  .poem-content-container {
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 991) {
+  .poem-content-container {
+    max-width: 470px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .poem-content-container {
+    max-width: 470px;
+  }
 }
 
 #main-page-poem-list {
-  border: 3px solid skyblue;
+  /* border: 3px solid skyblue; */
+}
+#main-page-poem-container {
+  /* border: 3px solid rgb(57, 74, 170); */
 }
 
-#main-page-poem-container {
-  border: 3px solid rgb(57, 74, 170);
+#poem-view-container {
+  /* border: 3px rgb(255, 208, 0) solid; */
+  border: 1px #39444d solid;
+}
+#poem-view-container:hover {
+  background-color: #192734;
 }
 
 .poem-view {
-  border: 3px rgb(255, 208, 0) solid;
+  margin: 5px 10px 10px 10px;
+  display: block;
+}
+
+.pic-info-content-container {
+  display: flex;
+}
+.user-pic-container .user-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  margin: 0 10px 0 0;
+  background-color: white;
+  opacity: 0.5;
 }
 
 .poem-info {
-  border: 3px rgb(255, 102, 0) solid;
+  /* border: 3px rgb(255, 102, 0) solid; */
+  color: #8899a6;
+  margin-top: 5px;
 }
 
+.poem-info .tag {
+}
+.poem-info .nick-name {
+  font-weight: 700;
+  color: white;
+}
+
+.del-btn-container {
+  float: right;
+  background-color: rgba(0, 0, 0, 0);
+}
+.del-btn-container:hover {
+  color: red;
+  background-color: rgba(129, 142, 185, 0.219);
+  box-shadow: 0px 0px 5px 5px rgba(129, 142, 185, 0.219);
+}
+
+.poem-content-container {
+  max-width: 470px;
+  margin: 10px 0 15px 0;
+}
+.poem-content {
+  width: inherit;
+  color: #cdd9e5;
+  font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+
+/* button group */
 .poem-button-group {
-  border: 3px rgb(169, 255, 56) solid;
+  /* border: 3px rgb(169, 255, 56) solid; */
+  width: 90%;
+  margin: auto;
+  color: #8899a6;
+  display: flex;
+  justify-content: space-around;
 }
 
-#main-page-poem-input {
-  border: 3px black solid;
+.poem-button-group .comment-container {
+  display: flex;
+  align-items: center;
 }
-.poem-delete-button {
-  border: 3px palevioletred solid;
+.poem-button-group .comment-container:hover {
+  color: royalblue;
+}
+.comment-icon {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0);
+  width: 2.2rem;
+  height: 2.2rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: background-color 0.5s, box-shadow 0.5s;
+}
+.comment-icon:hover {
+  background-color: rgba(129, 142, 185, 0.219);
+  box-shadow: 0px 0px 5px 5px rgba(129, 142, 185, 0.219);
+}
+.poem-button-group .comment-num {
+  padding-left: 10px;
+}
+.poem-button-group .like-container {
+  display: flex;
+  align-items: center;
+}
+.poem-button-group .like-container:hover {
+  color: #ffad1e;
+}
+.poem-button-group .like-icon {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0);
+  width: 2.2rem;
+  height: 2.2rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: background-color 0.5s, box-shadow 0.5s;
+}
+.poem-button-group .like-icon:hover {
+  background-color: rgba(185, 168, 131, 0.233);
+  box-shadow: 0px 0px 5px 5px rgba(185, 168, 131, 0.233);
 }
 
-.poem-edit-button {
-  border: 3px mediumaquamarine solid;
+.poem-button-group .like-num {
+  padding-left: 10px;
+}
+
+.poem-button-group .share-container:hover {
+  color: #00d6a1;
+}
+.poem-button-group .share-icon {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0);
+  width: 2.2rem;
+  height: 2.2rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: background-color 0.5s, box-shadow 0.5s;
+}
+.poem-button-group .share-icon:hover {
+  background-color: rgba(152, 197, 186, 0.185);
+  box-shadow: 0px 0px 5px 5px rgba(152, 197, 186, 0.185);
+}
+
+.poem-button-group .report-container:hover {
+  color: #b62052;
+}
+.poem-button-group .report-icon {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0);
+  width: 2.2rem;
+  height: 2.2rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: background-color 0.5s, box-shadow 0.5s;
+}
+.poem-button-group .report-icon:hover {
+  background-color: rgba(199, 155, 155, 0.178);
+  box-shadow: 0px 0px 5px 5px rgba(199, 155, 155, 0.178);
 }
 
 /* modal */
@@ -58,4 +323,49 @@
 
 .modal-comment-item {
   border: 3px aquamarine solid;
+}
+
+/* button */
+.btn {
+  border: 1px rgba(0, 0, 0, 0) solid;
+  border-radius: 5px;
+  color: white;
+}
+
+.upload-btn {
+  background-color: #ffad1e;
+  width: 63px;
+  height: 40px;
+  font-size: 15px;
+  font-weight: 700;
+  float: right;
+}
+.upload-btn:hover {
+  background-color: #e79c1c;
+}
+
+.poem-delete-button {
+  border: 3px palevioletred solid;
+}
+
+.poem-edit-button {
+  border: 3px mediumaquamarine solid;
+}
+
+/* utils */
+.mt5 {
+  margin-top: 5px;
+}
+.mt10 {
+  margin-top: 10px;
+}
+
+.gap {
+  border: 1px #39444d solid;
+  background-color: #192734;
+  height: 10px;
+}
+
+.divider {
+  border-bottom: 1px #39444d solid;
 }

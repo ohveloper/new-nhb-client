@@ -3,21 +3,32 @@ import MyIntroduction from './MyIntroduction';
 import MyNickName from './MyNickName';
 import MyPhoto from './MyPhoto';
 import './MyInfoContainer.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
 
 interface MyInfoContainerProps {
   myInfoModalHandler: () => void;
 }
+
+const setIcon = <FontAwesomeIcon icon={faCog} />;
 
 export default function MyInfoContainer({
   myInfoModalHandler,
 }: MyInfoContainerProps) {
   return (
     <div id="MyInfoContainer">
-      <h1>MyInfoContainer</h1>
-      <button onClick={myInfoModalHandler}>수정하기</button>
-      <MyPhoto />
-      <MyNickName />
-      <MyIntroduction />
+      <div className="photo-nickname-intro-container">
+        <div>
+          <MyPhoto />
+        </div>
+        <div className="my-info-nickname-intro-container">
+          <MyNickName />
+          <MyIntroduction />
+        </div>
+      </div>
+      <div className="set-button" onClick={myInfoModalHandler}>
+        {setIcon}
+      </div>
     </div>
   );
 }

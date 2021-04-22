@@ -8,9 +8,9 @@ import { delRemoveFeedT, FeedId } from '../api/delRemoveFeed';
 import { postBringUserInfoThunk } from '../actions/actions';
 import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
-import Homebutton from '../components/Home/Homebutton';
-import Sidebar from '../components/Home/Sidebar';
-import '../styles/mainPage.css';
+import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
+import MainpageUserRanking from '../components/Main/MainpageUserRanking';
+import { Mobile, Tablet, PC } from '../lib/MediaQuery';
 
 export default function MainPage() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -46,7 +46,7 @@ export default function MainPage() {
     if (state.accessToken) {
       const accessToken = _accessToken.concat(state.accessToken);
       postUploadFeedT(content, accessToken)
-        .then((res) => {
+        .then(() => {
           //? 게시글 작성 후 전체 리스트를 새로 불러온다
           //! 비동기를 적용하기 위해 프로미스 체인 안에서 데이터요청
           fetchData().catch((e) => console.log(e));
@@ -134,16 +134,42 @@ export default function MainPage() {
   }, [infiniteScroll]);
 
   return (
-    <div id="main-page">
-      <Homebutton />
-      <Sidebar />
-      <div>[MainPage]</div>
-      <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
-      <MainpagePoemList
-        poem={poem}
-        isLoading={isLoading}
-        handleDelete={handleDelete}
-      />
-    </div>
+    <>
+      <NavSidebarContainer />
+      <div id="main-page">
+        <Mobile>
+          <div className="feed-container">
+            <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
+            <MainpagePoemList
+              poem={poem}
+              isLoading={isLoading}
+              handleDelete={handleDelete}
+            />
+          </div>
+        </Mobile>
+        <Tablet>
+          <MainpageUserRanking />
+          <div className="feed-container">
+            <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
+            <MainpagePoemList
+              poem={poem}
+              isLoading={isLoading}
+              handleDelete={handleDelete}
+            />
+          </div>
+        </Tablet>
+        <PC>
+          <MainpageUserRanking />
+          <div className="feed-container">
+            <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
+            <MainpagePoemList
+              poem={poem}
+              isLoading={isLoading}
+              handleDelete={handleDelete}
+            />
+          </div>
+        </PC>
+      </div>
+    </>
   );
 }

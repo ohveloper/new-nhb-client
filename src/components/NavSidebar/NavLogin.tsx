@@ -7,7 +7,6 @@ function NavLogin() {
   const state = useSelector((state: RootState) => state.reducer);
   const accessToken = state.accessToken;
   const [inputValue, setInputValue] = useState('');
-
   const loginHandler = () => {
     postSendAuthEmailT({ email: inputValue })
       .then((data) => {
@@ -31,7 +30,7 @@ function NavLogin() {
 
     // ? 잘못 작성한 코드
     // const googleLoginUrl =
-    //   'https://accounts.google.com/o/oauth2/v2/auth?client_id=362611946205-6l2dnifmmd9e13crdhkh9n1t7qofnjpk.apps.googleusercontent.com&response_type=token&redirect_uri=https://localhost:3000&scope=email';
+    //   'https://accounts.google.com/o/oauth2/v2/auth?client_id=362611946205-6l2dnifmmd9e13crdhkh9n1t7qofnjpk.apps.googleusercontent.com&response_type=token&redirect_uri=https://localhost:3000/&scope=email';
 
     window.location.assign(googleLoginUrl);
   };

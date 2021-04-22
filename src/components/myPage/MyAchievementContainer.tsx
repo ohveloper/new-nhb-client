@@ -2,6 +2,7 @@ import MyAchievementBadges from './MyAchievementBadges';
 import MyAchievementStars from './MyAchievementStars';
 import MyAchievementApt from './MyAchievementApt';
 import './MyAchievementContainer.scss';
+import SpaceBox from './SpaceBox';
 
 interface PropsType {
   badgeModalHandler: () => void;
@@ -12,11 +13,14 @@ export default function MyAchievementContainer({
 }: PropsType) {
   return (
     <div id="MyAchievementContainer">
-      <h1>MyAchievementContainer</h1>
+      <div>MyAchievementContainer</div>
       <div>
         <MyAchievementBadges badgeModalHandler={badgeModalHandler} />
+        <SpaceBox />
         <MyAchievementApt />
+        <SpaceBox />
         <MyAchievementStars />
+        <SpaceBox />
       </div>
     </div>
   );

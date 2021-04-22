@@ -47,6 +47,7 @@ export default function AdminGetAllTopicsContainer() {
         value={findTopic}
       />
       <button onClick={onClickHandler}>검색</button>
+
       <div id="canUseTopic" className="hide-div">
         사용 가능합니다
       </div>

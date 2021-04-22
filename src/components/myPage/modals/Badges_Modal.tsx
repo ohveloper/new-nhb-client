@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import './Badges_Modal.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,24 +18,15 @@ export default function Badges_Modal({ badgeModalHandler }: Badges_ModalType) {
     console.log(state);
   }, [state]);
 
-  console.log('userInfo:', state.userInfo.data?.data.userInfo);
   //! 요청보낼 tagId 저장소
   const [value, setValue] = useState('');
 
-  //! 모든 테그의 정보
-  const allTags = state.tags.data?.data;
-
   //! 내가 가지고 있는 tag의 정보
   const myTagsInfo = state.userInfo.data?.data.userInfo.tags;
-  const _myTagsId = myTagsInfo?.map((x) => x.tagId);
-  console.log(myTagsInfo);
 
   //! 내가 선택한 테그 정보 (아직 요청 보내기 전)
   const pickHandler = (e: any) => {
     setValue(e.target.textContent);
-    console.log(e.target.textContent);
-    console.log('value:', value);
-    e.target.previousSibling.checked = !e.target.previousSibling.checked;
   };
 
   //! 내가 선택하거나, 선택한걸 뺴고싶은 요청
@@ -44,7 +35,6 @@ export default function Badges_Modal({ badgeModalHandler }: Badges_ModalType) {
       return;
     }
     const tagId = Number(value.split(',')[0]);
-    console.log('tagId:', tagId);
 
     const _accessToken = '';
     if (state.accessToken) {
@@ -79,7 +69,6 @@ export default function Badges_Modal({ badgeModalHandler }: Badges_ModalType) {
                     //? 내가 선택하지 않은 테그 : 빨강글씨 테두리 없음
                     <>
                       <div key={badge.tagId} style={{ cursor: 'pointer' }}>
-                        <input type="radio" name="chk_badge" />
                         <div onClick={pickHandler}>
                           {badge.tagId},{badge.isUsed},{badge.tagName}
                         </div>
@@ -95,7 +84,6 @@ export default function Badges_Modal({ badgeModalHandler }: Badges_ModalType) {
                       style={{ border: '2px solid blue', cursor: 'pointer' }}
                       onClick={pickHandler}
                     >
-                      <input type="radio" name="chk_badge" />
                       <div>
                         {badge.tagId},{badge.isUsed},{badge.tagName},
                         {badge.description}
@@ -105,23 +93,6 @@ export default function Badges_Modal({ badgeModalHandler }: Badges_ModalType) {
                 )
               }
             </div>
-          </div>
-          <div>
-            <h3>내가 없는 테그들</h3>
-            {
-              //? 가지지 못한 테그들 렌더
-              allTags?.tags.map(
-                (badge) =>
-                  !_myTagsId?.includes(badge.id) && (
-                    <div>
-                      <div>
-                        {badge.id},{badge.tagName}
-                      </div>
-                      <div>{badge.description}</div>
-                    </div>
-                  )
-              )
-            }
           </div>
         </div>
       </div>

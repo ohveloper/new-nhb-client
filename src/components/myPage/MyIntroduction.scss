@@ -5,8 +5,11 @@ $purple: purple;
 $lightblue: lightblue;
 $springgreen: springgreen;
 $green: green;
+$border_color: #39444d;
 
 #MyIntroduction {
-  border: solid 2px $purple;
-  margin-bottom: 10px;
+  // border: solid 1px $border_color;
+  font-size: 17px;
+  font-weight: 300;
+  color: #768390;
 }

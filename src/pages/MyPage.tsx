@@ -1,11 +1,10 @@
 import MyAchievementContainer from '../components/myPage/MyAchievementContainer';
 import MyWorkContainer from '../components/myPage/MyWorkContainer';
-import Homebutton from '../components/Home/Homebutton';
-import Sidebar from '../components/Home/Sidebar';
 import { RootState } from '../reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getAllTagsThunk,
+  postBringUserInfoThunk,
   postGetFrivateFeedsThunk,
   postGetUserAptInfoThunk,
 } from '../actions/actions';
@@ -14,6 +13,9 @@ import Badges_Modal from '../components/myPage/modals/Badges_Modal';
 import MyInfoContainer from '../components/myPage/MyInfoContainer';
 import MyInfo_Modal from '../components/myPage/modals/MyInfo_Modal';
 import { getTopicsT } from '../api/getTopics';
+import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
+import SpaceBox from '../components/myPage/SpaceBox';
+import '../styles/Mypage.scss';
 
 export default function MyPage() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -24,13 +26,10 @@ export default function MyPage() {
     if (accessToken && userId) {
       getTopicsT()
         .then((x) => {
-          console.log(x);
           const topicId = x.data.topics[0].id;
-          console.log(topicId);
-          console.log(userId);
           dispatch(
             postGetFrivateFeedsThunk({
-              topicId: 1,
+              topicId,
               limit: 10,
               userId,
               isMaxLike: true,
@@ -39,9 +38,9 @@ export default function MyPage() {
           );
         })
         .catch((e) => console.log(e));
-      console.log(state);
       dispatch(getAllTagsThunk());
       dispatch(postGetUserAptInfoThunk({ userId: userId }));
+      dispatch(postBringUserInfoThunk({ userId }, accessToken));
     }
   }, []);
   //! 뱃지 모달 핸들러 구역
@@ -57,26 +56,12 @@ export default function MyPage() {
   };
 
   return (
-    <div id="myPage">
-      <Homebutton />
-      <Sidebar />
+    <div id="MyPage">
+      <NavSidebarContainer />
       <div>
         {badgeModal && <Badges_Modal badgeModalHandler={badgeModalHandler} />}
         {myInfoModal && (
           <MyInfo_Modal myInfoModalHandler={myInfoModalHandler} />
-        )}
-      </div>
-
-      <div>
-        {state.privateFeeds.loading && 'now loading...'}
-        {state.privateFeeds.error && 'sorry now Error'}
-        {state.privateFeeds.data && <MyWorkContainer />}
-      </div>
-      <div>
-        {state.userInfo.loading && 'now loading...'}
-        {state.userInfo.error && 'sorry now Error'}
-        {state.userInfo.data && (
-          <MyAchievementContainer badgeModalHandler={badgeModalHandler} />
         )}
       </div>
       <div>
@@ -84,6 +69,20 @@ export default function MyPage() {
         {state.userInfo.error && 'sorry now Error'}
         {state.userInfo.data && (
           <MyInfoContainer myInfoModalHandler={myInfoModalHandler} />
+        )}
+      </div>
+      <SpaceBox />
+      <div>
+        {state.privateFeeds.loading && 'now loading...'}
+        {state.privateFeeds.error && 'sorry now Error'}
+        {state.privateFeeds.data && <MyWorkContainer />}
+      </div>
+      <SpaceBox />
+      <div>
+        {state.userInfo.loading && 'now loading...'}
+        {state.userInfo.error && 'sorry now Error'}
+        {state.userInfo.data && (
+          <MyAchievementContainer badgeModalHandler={badgeModalHandler} />
         )}
       </div>
     </div>
