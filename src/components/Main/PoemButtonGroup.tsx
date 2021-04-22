@@ -30,8 +30,12 @@ export default function PoemButtonGroup({
         <div className="like-icon">{starIcon}</div>
         <div className="like-num">{likeNum}</div>
       </div>
-      <div className="share-container">{shareIcon}</div>
-      <div className="report-container">{reportIcon}</div>
+      <div className="share-container">
+        <div className="share-icon">{shareIcon}</div>
+      </div>
+      <div className="report-container">
+        <div className="report-icon">{reportIcon}</div>
+      </div>
     </div>
   );
 }
