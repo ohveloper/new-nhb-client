@@ -1,5 +1,3 @@
-import { start } from 'node:repl';
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 import './Star.scss';
@@ -12,8 +10,8 @@ export default function Star() {
 
   return (
     <div className="star-box">
-      {starsArr.map((x) => (
-        <div className="star"></div>
+      {starsArr.map((x, idx) => (
+        <div key={idx} className="star"></div>
       ))}
     </div>
   );

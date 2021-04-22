@@ -24,7 +24,7 @@ export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
         <button onClick={badgeModalHandler}>뱃지선택</button>
       </div>
       <div className="i-have-some-tags">
-        <div>내가 있는 테그들</div>
+        <div>내가 있는 뱃지들</div>
         {
           //? 가지고 있는 테그들 렌더
           myTagsInfo?.map((badge) =>
@@ -33,19 +33,23 @@ export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
               //? false일 확률이 더 높으니까 앞에
               //? 내가 선택하지 않은 테그 : 빨강글씨 테두리 없음
               <div key={badge.tagId} className="my-tags">
-                <div id={'tagId-'.concat(String(badge.tagId))}>
-                  {badge.tagId}
+                <div className="my-tags-name">
+                  <div id={'tag-id-'.concat(String(badge.tagId))}>
+                    {badge.tagId}
+                  </div>
+                  <div>{badge.tagName}</div>
                 </div>
-                <div>{badge.tagName}</div>
                 <div>{badge.description}</div>
               </div>
             ) : (
               //? 내가 선택한 테그 :테두리 핫핑크
               <div key={badge.tagId} className="pick-my-tag">
-                <div id={'tagId-'.concat(String(badge.tagId))}>
-                  {badge.tagId}
+                <div className="pick-my-tags-name">
+                  <div id={'tag-id-'.concat(String(badge.tagId))}>
+                    {badge.tagId}
+                  </div>
+                  <div>{badge.tagName}</div>
                 </div>
-                <div>{badge.tagName}</div>
                 <div>{badge.description}</div>
               </div>
             )
@@ -53,16 +57,19 @@ export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
         }
       </div>
       <div className="i-dont-have-this-badges">
-        <div className="">내가 없는 테그들</div>
+        <div className="">내가 없는 뱃지들</div>
         {
           //? 가지지 못한 테그들 렌더
           allTags?.tags.map(
             (badge) =>
               !_myTagsId?.includes(badge.id) && (
                 <div className="not-my-tags">
-                  <div id={'tagId-'.concat(String(badge.id))}>{badge.id}</div>
-
-                  <div>{badge.tagName}</div>
+                  <div className="not-my-tag-name">
+                    <div id={'tag-id-'.concat(String(badge.id))}>
+                      {badge.id}
+                    </div>
+                    <div>{badge.tagName}</div>
+                  </div>
                   <div>{badge.description}</div>
                 </div>
               )
