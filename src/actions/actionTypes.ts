@@ -14,6 +14,7 @@ import { BringComment, Welcome } from '../reducers/reducer';
 import { FeedLike } from '../api/postLikeFeed';
 import { UploadFeed } from '../api/postUploadFeed';
 import { SignUp } from '../api/postSignUp';
+import { OAuth } from '../api/getOAuth';
 import { AccessToken } from '../api/postLogin';
 
 //? =============================MAIN============================= //
@@ -38,9 +39,9 @@ export const GET_ISSUE_ACCESS_TOKEN_SUCCESS = 'GET_ISSUE_ACCESS_TOKEN_SUCCESS' a
 export const GET_ISSUE_ACCESS_TOKEN_ERROR = 'GET_ISSUE_ACCESS_TOKEN_ERROR' as const;
 
 //? OAuth 2.0
-export const POST_OAUTH_API = 'GET_OAUTH_API' as const;
-export const POST_OAUTH_SUCCESS = 'GET_OAUTH_SUCCESS' as const;
-export const POST_OAUTH_ERROR = 'GET_OAUTH_ERROR' as const;
+export const GET_OAUTH_API = 'GET_OAUTH_API' as const;
+export const GET_OAUTH_SUCCESS = 'GET_OAUTH_SUCCESS' as const;
+export const GET_OAUTH_ERROR = 'GET_OAUTH_ERROR' as const;
 
 //? OAuth 2.0: refreshToken to issue accesstoken
 export const GET_OAUTH_ISSUE_ACCESS_TOKEN_API = 'GET_OAUTH_ISSUE_ACCESS_TOKEN_API' as const;
@@ -228,6 +229,12 @@ export const postSignUpAsync = createAsyncAction(
   POST_SIGN_UP_SUCCESS,
   POST_SIGN_UP_ERROR
 )<undefined, SignUp, AxiosError>();
+
+export const getOAuthAsync = createAsyncAction(
+  GET_OAUTH_API,
+  GET_OAUTH_SUCCESS,
+  GET_OAUTH_ERROR
+)<undefined, OAuth, AxiosError>();
 
 export const postBringCommentAsync = createAsyncAction(
   POST_BRING_COMMENT_API,

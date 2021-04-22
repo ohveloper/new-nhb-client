@@ -23,6 +23,7 @@ import {
   postGetUserAptInfoAsync,
   getAllTopicsAdminAsync,
   getAllTagsAdminAsync,
+  getOAuthAsync,
 } from '../actions/actionTypes';
 import { postGetPrivateFeedsT, UserId } from '../api/postGetprivateFeeds';
 import { getAllTagsT } from '../api/getAllTags';
@@ -32,6 +33,7 @@ import {
 } from '../api/postGetUserAptInfo';
 import { getAllTopicsAdminT } from '../api/getAllTopicsAdmin';
 import { getAllTagsAdminT } from '../api/getAllTagsAdmin';
+import { getOAuthT } from '../api/getOAuth';
 
 export function postLogInThunk(authCode: AuthCode) {
   return async (dispatch: Dispatch) => {
@@ -40,6 +42,19 @@ export function postLogInThunk(authCode: AuthCode) {
     try {
       const accessToken = await postLoginT(authCode);
       dispatch(success(accessToken));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
+
+export function getOAuthThunk(accessToken: string) {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = getOAuthAsync;
+    dispatch(request());
+    try {
+      const oauthAccessToken = await getOAuthT(accessToken);
+      dispatch(success(oauthAccessToken));
     } catch (e) {
       dispatch(failure(e));
     }
