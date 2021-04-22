@@ -10,35 +10,43 @@ $pink: pink;
 $border_color: #39444d;
 
 #MyAchievementBadges {
-  // border: solid 2px $border_color;
-  // margin: 10px;
   border-bottom: solid 2px $border_color;
 }
 
 .title-button {
   display: flex;
   justify-content: space-between;
-  // margin: 5px 5px 5px 5px;
-  padding: 12px 16px;
+  button {
+    margin-right: 16px;
+    cursor: pointer;
+  }
 }
 
+.title-button button:hover {
+  background-color: lighten($color: $border_color, $amount: 50%);
+  color: gold;
+}
 .i-have-some-tags {
-  // border: $border_color 2px solid;
-  // margin: 0px 5px 5px 5px;
-  // padding: 5px;
   padding: 12px 16px;
 }
 
 .i-dont-have-this-badges {
   padding: 12px 16px;
-  // border: $border_color 2px solid;
-  // margin: 0px 5px 5px 5px;
-  // padding: 5px;
 }
 
 .my-tags {
   display: flex;
   justify-content: space-between;
+  border: $border_color 2px solid;
+  border-radius: 6px;
+  padding: 5px;
+  background-color: lighten($color: $border_color, $amount: 10%);
+  align-items: center;
+  margin-top: 5px;
+}
+.my-tags:hover {
+  cursor: default;
+  background-color: lighten($color: $border_color, $amount: 15%);
 }
 
 .pick-my-tag {
@@ -49,8 +57,22 @@ $border_color: #39444d;
   color: gray;
   display: flex;
   justify-content: space-between;
+  border: $border_color 2px solid;
+  border-radius: 6px;
+  padding: 5px;
+  background-color: lighten($color: $border_color, $amount: 10%);
+  align-items: center;
+  margin-top: 5px;
 }
 
-.tag {
-  content: url('../../img/New_Piskel.png');
+// .tag {
+//   content: url('../../img/New_Piskel.png');
+// }
+
+#tagId-1 {
+  content: url('../../img/new-member.png');
+}
+
+#tagId-2 {
+  content: url('../../img/100stars.gif');
 }

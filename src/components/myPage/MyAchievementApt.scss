@@ -7,14 +7,17 @@ $border_color: #39444d;
 
 #apt-container {
   display: flex;
-  overflow: scroll;
+  overflow: auto;
   overflow-y: hidden;
   // justify-content: end;
   border: $border_color 1px solid;
   border-radius: 6px;
   padding: 10px;
-  // background-color: lighten($border_color, 7%);
+  :last-child {
+    margin-right: 0px;
+  }
 }
+
 ::-webkit-scrollbar {
   // display: none;
   background-color: $border_color;
@@ -38,9 +41,6 @@ $border_color: #39444d;
   margin-right: 2px;
   width: 100px;
 
-  :last-child {
-    margin-right: 0px;
-  }
   padding: 2px;
 }
 
@@ -55,8 +55,18 @@ $border_color: #39444d;
 .apt-light-none:hover {
   cursor: default;
   .apt-hide-info {
-    display: inline;
+    display: flex;
+    width: 110px;
+    height: 20px;
+    justify-content: flex-end;
+    flex-direction: row;
+    border: 1px hotpink solid;
+    position: relative;
+    z-index: 999;
+    padding-right: 5px;
   }
+  border-right: 1px solid hotpink;
+  border-bottom: 1px solid hotpink;
 }
 
 .apt-light {
@@ -70,8 +80,18 @@ $border_color: #39444d;
 .apt-light:hover {
   cursor: default;
   .apt-hide-info {
-    display: inline;
+    display: flex;
+    width: 110px;
+    height: 20px;
+    justify-content: flex-end;
+    flex-direction: row;
+    border: 1px hotpink solid;
+    position: relative;
+    z-index: 999;
+    padding-right: 5px;
   }
+  border-right: 1px solid hotpink;
+  border-bottom: 1px solid hotpink;
 }
 
 .apt-week {
