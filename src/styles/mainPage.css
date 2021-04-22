@@ -145,11 +145,15 @@
   /* border: 3px rgb(255, 208, 0) solid; */
   border: 1px #39444d solid;
 }
+#poem-view-container:hover {
+  background-color: #192734;
+}
 
 .poem-view {
   margin: 5px 10px 10px 10px;
   display: block;
 }
+
 .pic-info-content-container {
   display: flex;
 }
