@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { postLogInThunk, postSignUpThunk } from '../actions/actions';
 import { Dispatch } from 'redux';
-import { RootState } from '../reducers';
 import { postLogInAsync, postSignUpAsync } from '../actions/actionTypes';
 import axios from 'axios';
 import HomepageWritersRanking from '../components/Home/HomepageWritersRanking';
@@ -11,7 +10,6 @@ import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
 import '../styles/Homepage.css';
 
 export default function HomePage() {
-  const state = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
   const url: string = document.location.href;
   const userAuthCode: string = url.slice(url.indexOf('=') + 1);
@@ -36,7 +34,6 @@ export default function HomePage() {
       const last = url.hash.indexOf('&t');
 
       const accessToken = url.hash.slice(first + 2, last);
-      state.accessToken = accessToken;
       const api =
         process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
 
