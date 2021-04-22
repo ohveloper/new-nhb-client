@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 import './MyAchievementBadges.scss';
+import SpaceBox from './SpaceBox';
 
 interface PropsType {
   badgeModalHandler: () => void;
@@ -8,7 +9,6 @@ interface PropsType {
 
 export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
   const state = useSelector((state: RootState) => state.reducer);
-  console.log(state);
 
   //! 내가 가지고 있는 tag의 정보
   const myTagsInfo = state.userInfo.data?.data.userInfo.tags;

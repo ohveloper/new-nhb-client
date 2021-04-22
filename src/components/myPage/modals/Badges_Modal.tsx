@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import './Badges_Modal.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
