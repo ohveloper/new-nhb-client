@@ -1,7 +1,5 @@
 import MyAchievementContainer from '../components/myPage/MyAchievementContainer';
 import MyWorkContainer from '../components/myPage/MyWorkContainer';
-import Homebutton from '../components/NavSidebar/Homebutton';
-import Sidebar from '../components/NavSidebar/Sidebar';
 import { RootState } from '../reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -28,13 +26,10 @@ export default function MyPage() {
     if (accessToken && userId) {
       getTopicsT()
         .then((x) => {
-          console.log(x);
           const topicId = x.data.topics[0].id;
-          console.log(topicId);
-          console.log(userId);
           dispatch(
             postGetFrivateFeedsThunk({
-              topicId: 1,
+              topicId,
               limit: 10,
               userId,
               isMaxLike: true,
@@ -43,7 +38,6 @@ export default function MyPage() {
           );
         })
         .catch((e) => console.log(e));
-      console.log(state);
       dispatch(getAllTagsThunk());
       dispatch(postGetUserAptInfoThunk({ userId: userId }));
       dispatch(postBringUserInfoThunk({ userId }, accessToken));

@@ -14,10 +14,6 @@ export default function MyAchievementApt() {
     }
   }, [state]);
 
-  if (aptLight) {
-    console.log(aptLight[0][0].date.split('-'));
-  }
-
   const aptBox = document.getElementById('apt-container');
 
   if (aptBox) {
