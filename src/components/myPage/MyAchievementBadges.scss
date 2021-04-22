@@ -38,7 +38,8 @@ $border_color: #39444d;
   padding: 10px;
   background-color: lighten($color: $border_color, $amount: 10%);
   align-items: center;
-  margin-top: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   :last-child {
     display: flex;
     flex-wrap: nowrap;
@@ -61,7 +62,7 @@ $border_color: #39444d;
 }
 
 .my-tags:hover {
-  cursor: default;
+  cursor: pointer;
   background-color: lighten($color: $border_color, $amount: 15%);
 }
 
@@ -73,7 +74,9 @@ $border_color: #39444d;
   background-color: lighten($color: $border_color, $amount: 10%);
   align-items: center;
   margin-top: 5px;
+  color: burlywood;
   border: 2px solid $hotpink;
+  margin-bottom: 10px;
   :last-child {
     display: flex;
     flex-wrap: nowrap;
@@ -96,7 +99,7 @@ $border_color: #39444d;
 }
 
 .pick-my-tag:hover {
-  cursor: default;
+  cursor: pointer;
   background-color: lighten($color: $border_color, $amount: 15%);
 }
 
