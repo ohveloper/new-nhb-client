@@ -1,12 +1,12 @@
 import { useMediaQuery } from 'react-responsive';
 
 const Mobile = ({ children }: any) => {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isMobile = useMediaQuery({ maxWidth: 768 });
   return isMobile ? children : null;
 };
 
 const Tablet = ({ children }: any) => {
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 });
+  const isTablet = useMediaQuery({ minWidth: 769, maxWidth: 991 });
   return isTablet ? children : null;
 };
 
