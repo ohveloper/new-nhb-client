@@ -19,7 +19,11 @@ import ModalContainerEditInput from './ModalContainerEditInput';
 import ModalCommentsContainer from './ModalCommentsContainer';
 import '../../../styles/mainPage.css';
 
-export default function PoemDetails() {
+type ModalContainerProps = {
+  handleModal: () => void;
+};
+
+export default function ModalContainer({ handleModal }: ModalContainerProps) {
   const state = useSelector((state: RootState) => state.reducer);
   const userId = state.userInfo.data?.data.userInfo.userId;
   const { feed_id } = useParams<{ feed_id: string }>();
@@ -116,62 +120,76 @@ export default function PoemDetails() {
   console.log(edit);
 
   return (
-    <div id="modal-container">
-      <h2 onClick={() => history.push('/main')}>돌아가기</h2>
-      <h1>PoemDetailsPage</h1>
-      {edit ? (
-        <>
-          <ModalContainerEditInput
-            handlePatchEditFeed={handlePatchEditFeed}
-            editVal={editVal}
-          />
-        </>
-      ) : (
-        <div id="modal-poem">
-          {userId === Number(editVal.user.userId) ? (
-            <>
-              <PoemEditButton handleEdit={handleEdit} />
-              <PoemDeleteButton
-                handleDelete={handleDelete}
-                feedId={delFeedId}
-              />
-            </>
-          ) : (
-            <div></div>
-          )}
+    <div id="modal-container" onClick={() => handleModal()}>
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
+        {edit ? (
+          <>
+            <ModalContainerEditInput
+              handlePatchEditFeed={handlePatchEditFeed}
+              editVal={editVal}
+            />
+          </>
+        ) : (
+          <div id="modal-poem">
+            <div className="poem-view">
+              {userId === Number(editVal.user.userId) && (
+                <>
+                  <div className="edit-del-btn-container">
+                    <div className="poem-edit-btn">
+                      <PoemEditButton handleEdit={handleEdit} />
+                    </div>
+                    <div className="poem-del-btn">
+                      <PoemDeleteButton
+                        handleDelete={handleDelete}
+                        feedId={delFeedId}
+                      />
+                    </div>
+                  </div>
+                  <div className="divider mb20"></div>
+                </>
+              )}
 
-          <PoemInfo
-            userTag={editVal.user.tag}
-            nickName={editVal.user.nickName}
-            createdAt={editVal.createdAt}
-          />
-          <div className="poem-view">
-            {editVal.content.map((word, idx) => {
-              let head;
-              if (word !== null) {
-                head = word.slice(0, 1);
-                // const tail = word.slice(1);
-              }
-              const key = String(idx) + String(editVal.feedId);
-              return (
-                <div key={key}>
-                  [{head}]{word}
+              <div className="pic-info-content-container">
+                <div className="user-pic-container">
+                  <div className="user-pic"></div>
                 </div>
-              );
-            })}
-          </div>
-          <PoemButtonGroup
-            likeNum={editVal.likeNum}
-            commentNum={editVal.commentNum}
-          />
+                <div className="info-content-container">
+                  <PoemInfo
+                    userTag={editVal.user.tag}
+                    nickName={editVal.user.nickName}
+                    createdAt={editVal.createdAt}
+                  />
+                  <div className="poem-content-container">
+                    {editVal.content.map((word, idx) => {
+                      let head;
+                      if (word !== null) {
+                        head = word.slice(0, 1);
+                        // const tail = word.slice(1);
+                      }
+                      const key = String(idx) + String(editVal.feedId);
+                      return (
+                        <div key={key} className="poem-content">
+                          [{head}]{word}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+              <PoemButtonGroup
+                likeNum={editVal.likeNum}
+                commentNum={editVal.commentNum}
+              />
 
-          <ModalCommentsContainer
-            feedId={Number(feed_id)}
-            comments={comments}
-            handlePostUploadComment={handlePostUploadComment}
-          />
-        </div>
-      )}
+              <ModalCommentsContainer
+                feedId={Number(feed_id)}
+                comments={comments}
+                handlePostUploadComment={handlePostUploadComment}
+              />
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

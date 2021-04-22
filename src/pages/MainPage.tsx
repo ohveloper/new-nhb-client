@@ -10,6 +10,7 @@ import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
 import MainpageUserRanking from '../components/Main/MainpageUserRanking';
+import ModalContainer from '../components/Main/modal/ModalContainer';
 import { Mobile, Tablet, PC } from '../lib/MediaQuery';
 
 export default function MainPage() {
@@ -133,39 +134,52 @@ export default function MainPage() {
     window.addEventListener('scroll', infiniteScroll, true);
   }, [infiniteScroll]);
 
+  //? 모달 핸들러
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleModal = () => {
+    setIsModalOpen(!isModalOpen);
+    console.log(isModalOpen);
+  };
+
   return (
     <>
       <NavSidebarContainer />
       <div id="main-page">
         <Mobile>
           <div className="feed-container">
+            <>{isModalOpen && <ModalContainer handleModal={handleModal} />}</>
             <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
             <MainpagePoemList
               poem={poem}
               isLoading={isLoading}
               handleDelete={handleDelete}
+              handleModal={handleModal}
             />
           </div>
         </Mobile>
         <Tablet>
           <MainpageUserRanking />
           <div className="feed-container">
+            <>{isModalOpen && <ModalContainer handleModal={handleModal} />}</>
             <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
             <MainpagePoemList
               poem={poem}
               isLoading={isLoading}
               handleDelete={handleDelete}
+              handleModal={handleModal}
             />
           </div>
         </Tablet>
         <PC>
           <MainpageUserRanking />
           <div className="feed-container">
+            <>{isModalOpen && <ModalContainer handleModal={handleModal} />}</>
             <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
             <MainpagePoemList
               poem={poem}
               isLoading={isLoading}
               handleDelete={handleDelete}
+              handleModal={handleModal}
             />
           </div>
         </PC>

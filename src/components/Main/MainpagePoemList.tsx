@@ -7,12 +7,14 @@ type MainpagePoemListProps = {
   poem: Welcome;
   isLoading: boolean;
   handleDelete: (feedId: FeedId) => void;
+  handleModal: () => void;
 };
 
 export default function MainpagePoemList({
   poem,
   isLoading,
   handleDelete,
+  handleModal,
 }: MainpagePoemListProps) {
   return (
     <div id="main-page-poem-list">
@@ -20,6 +22,7 @@ export default function MainpagePoemList({
         poem={poem}
         isLoading={isLoading}
         handleDelete={handleDelete}
+        handleModal={handleModal}
       />
     </div>
   );
