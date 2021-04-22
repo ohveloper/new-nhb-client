@@ -8,7 +8,16 @@ $green: green;
 $border_color: #39444d;
 
 #MyAchievementStars {
-  border: solid 2px $border_color;
-  margin: 10px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.star-title-container-flexbox {
+  display: flex;
+}
+
+.star-title-container {
+  display: flex;
+  justify-content: flex-end;
   padding: 5px;
 }

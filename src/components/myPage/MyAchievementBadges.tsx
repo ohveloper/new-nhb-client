@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 import './MyAchievementBadges.scss';
+import SpaceBox from './SpaceBox';
 
 interface PropsType {
   badgeModalHandler: () => void;
