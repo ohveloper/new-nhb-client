@@ -21,8 +21,13 @@ function NavLogin() {
   };
 
   const googleOAuthHandler = () => {
+    //? 배포용
+    // const googleLoginUrl =
+    //   'https://accounts.google.com/o/oauth2/v2/auth?scope=email&response_type=token&redirect_uri=https://nhbomb.tk/&client_id=362611946205-6l2dnifmmd9e13crdhkh9n1t7qofnjpk.apps.googleusercontent.com';
+
+    // //? 테스트용 -> 로컬
     const googleLoginUrl =
-      'https://accounts.google.com/o/oauth2/v2/auth?scope=email&response_type=token&redirect_uri=https://nhbomb.tk/&client_id=362611946205-6l2dnifmmd9e13crdhkh9n1t7qofnjpk.apps.googleusercontent.com';
+      'https://accounts.google.com/o/oauth2/v2/auth?scope=email&response_type=token&redirect_uri=https://localhost:3000/&client_id=362611946205-6l2dnifmmd9e13crdhkh9n1t7qofnjpk.apps.googleusercontent.com';
 
     // const googleLoginUrl =
     //   'https://accounts.google.com/o/oauth2/v2/auth?client_id=362611946205-6l2dnifmmd9e13crdhkh9n1t7qofnjpk.apps.googleusercontent.com&response_type=token&redirect_uri=https://localhost:3000&scope=email';
