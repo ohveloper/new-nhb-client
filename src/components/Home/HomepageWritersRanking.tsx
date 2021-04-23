@@ -17,8 +17,8 @@ export default function HomepageWritersRanking() {
 
   return (
     <>
-      <div>실시간 인기작가 </div>
       <div>
+        실시간 인기 작가
         {loading
           ? `"N행시의 밤" 최고의 작가분들을 모셔오는 중`
           : rank?.rank.map((popular, idx) => {

@@ -9,7 +9,7 @@ import HomepageWritersRanking from '../components/Home/HomepageWritersRanking';
 import ThanksTo from '../components/Home/ThanksTo';
 import Footer from '../components/Home/Footer';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
-import '../styles/Homepage.css';
+import '../styles/Homepage.scss';
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ export default function HomePage() {
     <div id="Homepage">
       <NavSidebarContainer />
       <Link to="/main">
-        <p>N행시 작성하러 가기</p>
+        <div id="neon">N행시 작성하러 가기</div>
       </Link>
       <HomepageWritersRanking />
       <div className="App">:sunglasses: </div>

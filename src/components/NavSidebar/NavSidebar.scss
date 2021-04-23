@@ -1,4 +1,15 @@
 $border: #39444D;
+@keyframes flux {
+    0%,
+    100% {
+      text-shadow: 0 0 1rem #1041FF, 0 0 5rem #1041FF, 0 0 10vw #1041FF, 0 0 10vw #1041FF, 0 0 .4vw #8BFDFE, .1vw .1vw .1vw #147280;
+      color: #28D7FE;
+    }
+    50% {
+      text-shadow: 0 0 .5rem #082180, 0 0 1.5rem #082180, 0 0 5vw #082180, 0 0 5vw #082180, 0 0 .2vw #082180, .1vw .1vw .1vw #0A3940;
+      color: #146C80;
+    }
+  }
 
 #NavSidebarContainer {
     display: flex;
@@ -13,6 +24,17 @@ $border: #39444D;
         left: 0.5rem;   
         bottom: 0.5rem;
     }
+}
+
+#HomebuttonTxt,#SidebarTxt {
+    color: #426DFB;
+    font-size: 1.5rem;
+    line-height: 2vw;
+    text-shadow: 0 0 3vw #2356FF;
+    animation: flux 2s linear infinite;
+    -moz-animation: flux 5s linear infinite;
+    -webkit-animation: flux 5s linear infinite;
+    -o-animation: flux 5s linear infinite;
 }
 
 // * {
@@ -41,6 +63,9 @@ $border: #39444D;
     justify-content: space-between;
     margin-top: 0.7rem;
 
+    div {
+        border-radius: 20px;
+    }
 }
 
 #NavSidebar>div { 
@@ -51,7 +76,6 @@ $border: #39444D;
     height: 10vh;
     margin-bottom: 1rem;
     border: 2px solid #677280;
-    border-radius: 0.3rem;
 }
 
 #NavSidebar>div:last-of-type { 
@@ -77,13 +101,3 @@ $border: #39444D;
     }
 }
 
-#Footer {
-    background-color: #000000;
-    border: {
-      top: 2px solid $border;  
-      bottom: 2px solid $border;  
-    } 
-    justify-content: stretch;
-    display: flex;
-    justify-content: space-around;
-}
