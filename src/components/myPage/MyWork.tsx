@@ -14,7 +14,7 @@ export default function MyWork() {
           return (
             <div className="myword-container">
               <div className="myword">
-                {x.content.map((word) => {
+                {x.content.map((word, idx) => {
                   const head = word.split('')[0];
                   return (
                     <div>

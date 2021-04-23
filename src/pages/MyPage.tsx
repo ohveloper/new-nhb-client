@@ -29,7 +29,7 @@ export default function MyPage() {
           const topicId = x.data.topics[0].id;
           dispatch(
             postGetFrivateFeedsThunk({
-              topicId,
+              topicId: null,
               limit: 10,
               userId,
               isMaxLike: true,

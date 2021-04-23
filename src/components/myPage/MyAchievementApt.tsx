@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { postGetUserAptInfoThunk } from '../../actions/actions';
 import { RootState } from '../../reducers';
 import './MyAchievementApt.scss';
-import SpaceBox from './SpaceBox';
 
 export default function MyAchievementApt() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -13,13 +12,11 @@ export default function MyAchievementApt() {
     if (userId) {
       postGetUserAptInfoThunk({ userId });
     }
+    const aptBox = document.getElementById('apt-container');
+    if (aptBox) {
+      aptBox.scrollLeft = aptBox.scrollWidth;
+    }
   }, [state]);
-
-  const aptBox = document.getElementById('apt-container');
-
-  if (aptBox) {
-    aptBox.scrollLeft = aptBox.scrollWidth;
-  }
 
   return (
     <div id="MyAchievementApt">
