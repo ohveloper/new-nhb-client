@@ -56,7 +56,6 @@ export function getOAuthThunk(accessToken: string) {
     dispatch(request());
     try {
       const oauthAccessToken = await getOAuthT(accessToken);
-      console.log('oauthAccessToken : ', oauthAccessToken);
       dispatch(success(oauthAccessToken));
     } catch (e) {
       dispatch(failure(e));
