@@ -1,6 +1,6 @@
 import { FeedId } from '../../api/delRemoveFeed';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import '../../styles/mainPage.css';
 
 type PoemDeleteButtonProps = {
@@ -18,7 +18,7 @@ export default function PoemDeleteButton({
 
   return (
     <>
-      <FontAwesomeIcon icon={faTimes} onClick={onClickDelete} />
+      <FontAwesomeIcon icon={faTrashAlt} onClick={onClickDelete} />
     </>
   );
 }

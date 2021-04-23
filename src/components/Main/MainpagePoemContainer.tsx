@@ -9,12 +9,16 @@ type MainpagePoemContainerProps = {
   poem: Welcome;
   isLoading: boolean;
   handleDelete: (feedId: FeedId) => void;
+  handleModal: (feedId: number) => void;
+  itemId: number;
 };
 
 export default function MainpagePoemContainer({
   poem,
   isLoading,
   handleDelete,
+  handleModal,
+  itemId,
 }: MainpagePoemContainerProps) {
   const state = useSelector((state: RootState) => state.reducer);
   const userFeeds = state.userFeeds.data?.data.userFeeds;
@@ -25,7 +29,13 @@ export default function MainpagePoemContainer({
   return (
     <div id="main-page-poem-container">
       <div className="gap"></div>
-      <PoemView poem={poem} isLoading={isLoading} handleDelete={handleDelete} />
+      <PoemView
+        poem={poem}
+        isLoading={isLoading}
+        handleDelete={handleDelete}
+        handleModal={handleModal}
+        itemId={itemId}
+      />
     </div>
   );
 }

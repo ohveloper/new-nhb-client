@@ -13,10 +13,8 @@ export default function PoemInfo({
 }: PoemInfoProps) {
   return (
     <div className="poem-info">
-      <div>
-        <span className="tag">({userTag})</span>
-        <span className="nick-name">{nickName}</span>
-      </div>
+      <span className="tag">({userTag})</span>
+      <span className="nick-name">{nickName}</span>
     </div>
   );
 }

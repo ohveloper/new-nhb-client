@@ -167,12 +167,14 @@
 }
 
 .poem-info {
-  /* border: 3px rgb(255, 102, 0) solid; */
+  display: flex;
+  align-items: center;
   color: #8899a6;
   margin-top: 5px;
 }
 
 .poem-info .tag {
+  margin-right: 5px;
 }
 .poem-info .nick-name {
   font-weight: 700;
@@ -302,19 +304,53 @@
 /* modal */
 
 #modal-container {
-  border: 3px rgb(107, 0, 194) solid;
+  /* border: 3px rgb(107, 0, 194) solid; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(47, 71, 97, 0.534);
+  z-index: 999;
+  opacity: 1;
+}
+.modal {
+  position: absolute;
+  width: 600px;
+  height: 500px;
+  left: 20%;
+  top: 20%;
+  background-color: rgb(21, 32, 43);
+  border-radius: 20px;
 }
 
 #modal-poem {
-  border: 3px rgb(0, 217, 224) solid;
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-del-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 45px;
 }
 
 #modal-comments-container {
-  border: 3px yellow solid;
 }
 
-#modal-comments-input {
-  border: 3px rgb(212, 0, 142) solid;
+#modal-comments-textarea {
+  display: flex;
+  flex-direction: column;
+}
+#modal-comments-textarea .textarea-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+#modal-comments-container textarea {
+  width: 85%;
+  min-height: 70px;
 }
 
 #modal-comments-view {
@@ -344,12 +380,24 @@
   background-color: #e79c1c;
 }
 
-.poem-delete-button {
-  border: 3px palevioletred solid;
+.comment-btn {
+  background-color: #ffad1e;
+  width: 80px;
+  height: 70px;
 }
 
-.poem-edit-button {
-  border: 3px mediumaquamarine solid;
+.poem-del-btn {
+  margin-right: 10px;
+}
+.poem-del-btn:hover {
+  color: red;
+}
+
+.poem-edit-btn {
+  margin-right: 15px;
+}
+.poem-edit-btn:hover {
+  color: rgb(171, 82, 255);
 }
 
 /* utils */
@@ -358,6 +406,26 @@
 }
 .mt10 {
   margin-top: 10px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.mb5 {
+  margin-bottom: 5px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.ml10 {
+  margin-left: 10px;
 }
 
 .gap {

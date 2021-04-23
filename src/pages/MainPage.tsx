@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Content, postUploadFeedT } from '../api/postUploadFeed';
-import { Welcome } from '../reducers/reducer';
+import { UserFeeds, Welcome } from '../reducers/reducer';
 import { RootState } from '../reducers';
 import { postBringFeedT } from '../api/postBringFeeds';
 import { delRemoveFeedT, FeedId } from '../api/delRemoveFeed';
@@ -10,6 +10,7 @@ import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
 import MainpageUserRanking from '../components/Main/MainpageUserRanking';
+import ModalContainer from '../components/Main/modal/ModalContainer';
 import { Mobile, Tablet, PC } from '../lib/MediaQuery';
 
 export default function MainPage() {
@@ -133,39 +134,95 @@ export default function MainPage() {
     window.addEventListener('scroll', infiniteScroll, true);
   }, [infiniteScroll]);
 
+  //? 모달 핸들러
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [poemItem, setPoemItem] = useState<UserFeeds>({
+    feedId: 0,
+    user: { nickName: '', tag: '', userId: '' },
+    topic: '',
+    content: [],
+    likeNum: '',
+    commentNum: 0,
+    createdAt: '',
+    updatedAt: '',
+  });
+  //? 클릭한 글 조회
+  const fetchItem = async (topicId: number, limit: number, feedId: number) => {
+    await postBringFeedT({
+      topicId,
+      limit,
+      feedId,
+    })
+      .then((res) => {
+        setPoemItem(res.data.userFeeds[0]);
+      })
+      .then(() => {
+        setIsModalOpen(!isModalOpen);
+      });
+  };
+
+  const handleModal = (feedId: number) => {
+    const nextId = Number(feedId) + 1;
+    console.log('next:', nextId);
+
+    fetchItem(1, 20, nextId).catch((e) => console.log(e));
+    console.log(isModalOpen);
+  };
+
   return (
     <>
       <NavSidebarContainer />
       <div id="main-page">
         <Mobile>
           <div className="feed-container">
+            <>
+              {isModalOpen && (
+                <ModalContainer poemItem={poemItem} handleModal={handleModal} />
+              )}
+            </>
             <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
             <MainpagePoemList
               poem={poem}
               isLoading={isLoading}
               handleDelete={handleDelete}
+              handleModal={handleModal}
+              itemId={poemItem.feedId}
             />
           </div>
         </Mobile>
         <Tablet>
           <MainpageUserRanking />
           <div className="feed-container">
+            <>
+              {isModalOpen && (
+                <ModalContainer poemItem={poemItem} handleModal={handleModal} />
+              )}
+            </>
             <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
             <MainpagePoemList
               poem={poem}
               isLoading={isLoading}
               handleDelete={handleDelete}
+              handleModal={handleModal}
+              itemId={poemItem.feedId}
             />
           </div>
         </Tablet>
         <PC>
           <MainpageUserRanking />
           <div className="feed-container">
+            <>
+              {isModalOpen && (
+                <ModalContainer poemItem={poemItem} handleModal={handleModal} />
+              )}
+            </>
             <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
             <MainpagePoemList
               poem={poem}
               isLoading={isLoading}
               handleDelete={handleDelete}
+              handleModal={handleModal}
+              itemId={poemItem.feedId}
             />
           </div>
         </PC>
