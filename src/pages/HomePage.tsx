@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { postLogInThunk, postSignUpThunk } from '../actions/actions';
-import { Dispatch } from 'redux';
-import { postLogInAsync, postSignUpAsync } from '../actions/actionTypes';
-import axios from 'axios';
+import {
+  postLogInThunk,
+  postSignUpThunk,
+  getOAuthThunk,
+} from '../actions/actions';
 import HomepageWritersRanking from '../components/Home/HomepageWritersRanking';
 import Footer from '../components/Home/Footer';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
@@ -15,7 +16,7 @@ export default function HomePage() {
   const userAuthCode: string = url.slice(url.indexOf('=') + 1);
 
   //? 링크를 통해 들어온 client 구분하기 위한 함수
-  async function checkClient() {
+  function checkClient() {
     //? 회원가입한 유저
     if (url.includes('login')) {
       console.log('loginT');
@@ -34,51 +35,12 @@ export default function HomePage() {
       const last = url.hash.indexOf('&t');
 
       const accessToken = url.hash.slice(first + 2, last);
-      const api =
-        process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
 
-      const apiClient = axios.create({
-        baseURL: api,
-        responseType: 'json',
-        headers: {
-          'Content-Type': 'application/json',
-          'authorization': `${accessToken}`,
-        },
-        withCredentials: true,
-      });
-
-      await apiClient
-        .get(`${api}/main/oauth`) //? Google OAuth
-        .then((res) => {
-          if (res.data.message === 'Sign up') {
-            return (dispatch: Dispatch) => {
-              const { request, success, failure } = postSignUpAsync;
-              dispatch(request());
-              try {
-                const signup = res.data.accessToken;
-                return dispatch(success(signup));
-              } catch (e) {
-                dispatch(failure(e));
-              }
-            }; // window.location.assign('https://localhost:3000/');
-          } else if (res.data.message === 'Login') {
-            return (dispatch: Dispatch) => {
-              const { request, success, failure } = postLogInAsync;
-              dispatch(request());
-              try {
-                const accessToken = res.data.accessToken;
-                return dispatch(success(accessToken));
-              } catch (e) {
-                dispatch(failure(e));
-              }
-            }; // window.location.assign('https://localhost:3000/');
-          }
-        })
-        .catch((e) => console.log(e));
+      dispatch(getOAuthThunk(accessToken));
     }
   }
 
-  void checkClient();
+  checkClient();
 
   return (
     <div id="Homepage">
