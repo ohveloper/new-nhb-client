@@ -42,6 +42,7 @@ import {
   GET_ALL_TAGS_ADMIN_API,
   GET_ALL_TAGS_ADMIN_SUCCESS,
   GET_ALL_TAGS_ADMIN_ERROR,
+  PATCH_EDIT_TOPIC_ADMIN_API,
 } from '../actions/actionTypes';
 export interface InitState {
   userInfo: {
@@ -752,7 +753,6 @@ export function reducer(
           data: null,
         },
       };
-
     default:
       return state;
   }
