@@ -9,7 +9,6 @@ import {
   postGetUserAptInfoThunk,
 } from '../actions/actions';
 import { useEffect, useState } from 'react';
-import Badges_Modal from '../components/myPage/modals/Badges_Modal';
 import MyInfoContainer from '../components/myPage/MyInfoContainer';
 import MyInfo_Modal from '../components/myPage/modals/MyInfo_Modal';
 import { getTopicsT } from '../api/getTopics';
@@ -26,8 +25,7 @@ export default function MyPage() {
     const accessToken = state.accessToken;
     if (accessToken && userId) {
       getTopicsT()
-        .then((x) => {
-          const topicId = x.data.topics[0].id;
+        .then(() => {
           dispatch(
             postGetFrivateFeedsThunk({
               topicId: null,
