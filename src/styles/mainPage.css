@@ -337,11 +337,20 @@
 }
 
 #modal-comments-container {
-  border: 3px yellow solid;
 }
 
-#modal-comments-input {
-  border: 3px rgb(212, 0, 142) solid;
+#modal-comments-textarea {
+  display: flex;
+  flex-direction: column;
+}
+#modal-comments-textarea .textarea-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+#modal-comments-container textarea {
+  width: 85%;
+  min-height: 70px;
 }
 
 #modal-comments-view {
@@ -369,6 +378,12 @@
 }
 .upload-btn:hover {
   background-color: #e79c1c;
+}
+
+.comment-btn {
+  background-color: #ffad1e;
+  width: 80px;
+  height: 70px;
 }
 
 .poem-del-btn {
