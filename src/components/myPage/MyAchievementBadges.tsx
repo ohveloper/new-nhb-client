@@ -1,4 +1,4 @@
-import { MouseEvent, MouseEventHandler, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postBringUserInfoThunk } from '../../actions/actions';
 import { patchEditTagsT } from '../../api/patchEditTag';
@@ -9,7 +9,7 @@ interface PropsType {
   badgeModalHandler: () => void;
 }
 
-export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
+export default function MyAchievementBadges() {
   const state = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
 
@@ -46,7 +46,9 @@ export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
     <div id="MyAchievementBadges">
       <div className="title-button">
         <div>MyAchievementBadges</div>
-        <button onClick={onSubmitHandler}>뱃지선택</button>
+        <button onClick={onSubmitHandler} className="select-badge">
+          뱃지선택
+        </button>
       </div>
       <div className="i-have-some-tags">
         <div>내가 있는 뱃지들</div>
@@ -65,7 +67,7 @@ export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
                       <div id={'tag-id-'.concat(String(badge.tagId))}>
                         {badge.tagId}
                       </div>
-                      <div>{badge.tagName}</div>
+                      <div className="tag-name">{badge.tagName}</div>
                     </div>
                     <div>{badge.description}</div>
                   </div>
@@ -80,7 +82,7 @@ export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
                     <div id={'tag-id-'.concat(String(badge.tagId))}>
                       {badge.tagId}
                     </div>
-                    <div>{badge.tagName}</div>
+                    <div className="tag-name">{badge.tagName}</div>
                   </div>
                   <div style={{ pointerEvents: 'none' }}>
                     {badge.description}

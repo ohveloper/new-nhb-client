@@ -17,7 +17,7 @@ $border_color: #39444d;
 .myword-container {
   background-color: lighten($border_color, 7%);
   border: 2px $border_color solid;
-  margin: 0px 5px 5px 5px;
+  margin-bottom: 5px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;

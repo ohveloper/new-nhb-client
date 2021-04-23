@@ -8,14 +8,12 @@ interface PropsType {
   badgeModalHandler: () => void;
 }
 
-export default function MyAchievementContainer({
-  badgeModalHandler,
-}: PropsType) {
+export default function MyAchievementContainer() {
   return (
     <div id="MyAchievementContainer">
       <div>MyAchievementContainer</div>
       <div>
-        <MyAchievementBadges badgeModalHandler={badgeModalHandler} />
+        <MyAchievementBadges />
         <SpaceBox />
         <MyAchievementApt />
         <SpaceBox />
