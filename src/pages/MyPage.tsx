@@ -15,7 +15,6 @@ import { getTopicsT } from '../api/getTopics';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
 import SpaceBox from '../components/myPage/SpaceBox';
 import '../styles/Mypage.scss';
-import Loading from '../components/myPage/Loading';
 
 export default function MyPage() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -25,10 +24,11 @@ export default function MyPage() {
     const accessToken = state.accessToken;
     if (accessToken && userId) {
       getTopicsT()
-        .then(() => {
+        .then((x) => {
+          const topicId = x.data.topics[0].id;
           dispatch(
             postGetFrivateFeedsThunk({
-              topicId: null,
+              topicId,
               limit: 10,
               userId,
               isMaxLike: true,
@@ -58,7 +58,7 @@ export default function MyPage() {
         )}
       </div>
       <div>
-        {state.userInfo.loading && <Loading />}
+        {state.userInfo.loading && 'now loading...'}
         {state.userInfo.error && 'sorry now Error'}
         {state.userInfo.data && (
           <MyInfoContainer myInfoModalHandler={myInfoModalHandler} />
@@ -66,7 +66,7 @@ export default function MyPage() {
       </div>
       <SpaceBox />
       <div>
-        {state.privateFeeds.loading && <Loading />}
+        {state.privateFeeds.loading && 'now loading...'}
         {state.privateFeeds.error && 'sorry now Error'}
         {state.privateFeeds.data && <MyWorkContainer />}
       </div>
