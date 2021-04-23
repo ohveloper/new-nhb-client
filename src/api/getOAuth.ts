@@ -7,7 +7,6 @@ const api = process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
 export interface OAuth {
   data: {
     accessToken: string;
-    isAdmin?: boolean;
   };
 }
 
@@ -23,6 +22,5 @@ export async function getOAuthT(accessToken: string) {
   });
 
   const response = await apiClient.get<OAuth>('/main/oauth');
-  console.log(response.data);
   return response.data;
 }

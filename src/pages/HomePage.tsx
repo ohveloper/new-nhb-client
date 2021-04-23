@@ -6,6 +6,7 @@ import {
   getOAuthThunk,
 } from '../actions/actions';
 import HomepageWritersRanking from '../components/Home/HomepageWritersRanking';
+import ThanksTo from '../components/Home/ThanksTo';
 import Footer from '../components/Home/Footer';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
 import '../styles/Homepage.css';
@@ -50,6 +51,7 @@ export default function HomePage() {
       </Link>
       <HomepageWritersRanking />
       <div className="App">:sunglasses: </div>
+      <ThanksTo />
       <Footer />
     </div>
   );

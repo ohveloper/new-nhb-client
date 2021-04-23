@@ -99,7 +99,6 @@ export interface InitState {
     error: Error | null;
     data: Topics | null;
   };
-  openPanel: boolean;
   tags: {
     loading: boolean;
     error: Error | null;
@@ -208,6 +207,7 @@ export interface PrivateFeedUserT {
 
 export interface AccessToken {
   accessToken: string;
+  isAdmin?: boolean;
 }
 
 export interface SignUp {
@@ -348,7 +348,6 @@ const initState: InitState = {
     error: null,
     data: null,
   },
-  openPanel: false,
   tags: {
     loading: false,
     error: null,
@@ -597,16 +596,30 @@ export function reducer(
     case GET_OAUTH_API:
       return {
         ...state,
-        accessToken: null,
+        login: {
+          loading: true,
+          error: null,
+          data: null,
+        },
       };
     case GET_OAUTH_SUCCESS:
       return {
         ...state,
         accessToken: action.payload.data.accessToken,
+        login: {
+          loading: false,
+          error: null,
+          data: action.payload.data,
+        },
       };
     case GET_OAUTH_ERROR:
       return {
         ...state,
+        login: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
       };
     case GET_TOPICS_API:
       return {
