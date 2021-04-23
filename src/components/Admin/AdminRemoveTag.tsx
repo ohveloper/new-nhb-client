@@ -38,14 +38,14 @@ export default function AdminRemoveTag() {
   };
   return (
     <div>
-      <h1>AdminRemoveTag</h1>
+      {/* <h1>AdminRemoveTag</h1>
       <input
         type="text"
         value={tagId}
         onChange={onChangeHandler}
         placeholder="tagId를 입력하세요"
       />
-      <button onClick={onClickHandler}>지우기</button>
+      <button onClick={onClickHandler}>지우기</button> */}
       <div id="wrong" className="invisualble">
         잘못입력 하셨습니다
       </div>

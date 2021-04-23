@@ -1,25 +1,63 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus } from '@fortawesome/free-solid-svg-icons';
+import { delRemoveTagAdminT } from '../../api/delRemoveTagAdmin';
 
-export default function AdminGetAllTag() {
+interface AdminGetAllTagProps {
+  id: number;
+  tagName: string;
+  description: string | null;
+  tagUrl: string | null;
+}
+
+export default function AdminGetAllTag({
+  id,
+  tagName,
+  description,
+  tagUrl,
+}: AdminGetAllTagProps) {
   const state = useSelector((state: RootState) => state.reducer);
-  const adminAllTags = state.adminTags.data?.data.tags;
+  const remove = <FontAwesomeIcon icon={faMinus} />;
+  const wrong = document.querySelector('#wrong');
+  const correct = document.querySelector('#correct');
+  const removeButton: any = useRef();
+
+  const tagRemoveHandler = (e: any) => {
+    const tagId = removeButton.current.name;
+    if (!tagId) return;
+    e.preventDefault();
+    const accessToken = state.accessToken;
+    if (accessToken && tagId) {
+      delRemoveTagAdminT({ data: { tagId } }, accessToken)
+        .then((x) => {
+          correct?.classList.remove('invisualble');
+          window.location.reload();
+        })
+        .catch((e) => {
+          wrong?.classList.remove('invisualble');
+        });
+    }
+  };
   return (
     <div>
-      <h1>AdminGetAllTag</h1>
-      {adminAllTags
-        ? adminAllTags.map((tag) => {
-            return (
-              <div>
-                <div>{tag.id}</div>
-                <div>{tag.tagName}</div>
-                <div>{tag.description}</div>
-                <div>{tag.tagUrl}</div>
-              </div>
-            );
-          })
-        : '데이터가 없습니다'}
+      <div id="admin-tag-card">
+        <div>{id}</div>
+        <div>{tagName}</div>
+        <div>{description}</div>
+        <div>{tagUrl}</div>
+        <div>
+          <button
+            className="admin-tag-remove fa-icon-button"
+            onClick={tagRemoveHandler}
+            ref={removeButton}
+            name={String(id)}
+          >
+            {remove}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -186,7 +186,18 @@ export const GET_ALL_TAGS_ADMIN_API = 'GET_ALL_TAGS_ADMIN_API' as const;
 export const GET_ALL_TAGS_ADMIN_SUCCESS = 'GET_ALL_TAGS_ADMIN_SUCCESS' as const;
 export const GET_ALL_TAGS_ADMIN_ERROR = 'GET_ALL_TAGS_ADMIN_ERROR' as const;
 
+//? edit tag
+export const PATCH_EDIT_TOPIC_ADMIN_API = 'PATCH_EDIT_TOPIC_ADMIN_API' as const;
+export const PATCH_EDIT_TOPIC_ADMIN_SUCCESS = 'PATCH_EDIT_TOPIC_ADMIN_SUCCESS' as const;
+export const PATCH_EDIT_TOPIC_ADMIN_ERROR = 'PATCH_EDIT_TOPIC_ADMIN_ERROR' as const;
+
 //?===================================================
+
+export const patchEditTopicAdminAsync = createAsyncAction(
+  PATCH_EDIT_TOPIC_ADMIN_API,
+  PATCH_EDIT_TOPIC_ADMIN_SUCCESS,
+  PATCH_EDIT_TOPIC_ADMIN_ERROR
+)<undefined, TopicsAdmin, AxiosError>();
 
 export const getAllTagsAdminAsync = createAsyncAction(
   GET_ALL_TAGS_ADMIN_API,

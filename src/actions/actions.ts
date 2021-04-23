@@ -8,6 +8,7 @@ import { Content, postUploadFeedT } from '../api/postUploadFeed';
 import { postBringCommentT } from '../api/postBringComment';
 import { AuthCode, postSignUpT } from '../api/postSignUp';
 import { postLoginT } from '../api/postLogin';
+import { patchEditTopicT } from '../api/patchEditTopic';
 
 import {
   postLogInAsync,
@@ -23,6 +24,7 @@ import {
   postGetUserAptInfoAsync,
   getAllTopicsAdminAsync,
   getAllTagsAdminAsync,
+  patchEditTopicAdminAsync,
   getOAuthAsync,
 } from '../actions/actionTypes';
 import { postGetPrivateFeedsT, UserId } from '../api/postGetprivateFeeds';
@@ -211,6 +213,24 @@ export function getAllTagsAdminThunk(accessToken: string) {
     dispatch(request());
     try {
       const adminTags = await getAllTagsAdminT(accessToken);
+      dispatch(success(adminTags));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
+
+export function patchEditTopicAdminThunk(
+  topicId: number,
+  word: string,
+  accessToken: string
+) {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = patchEditTopicAdminAsync;
+    dispatch(request());
+    try {
+      const params = { topicId, word };
+      const adminTags = await patchEditTopicT(params, accessToken);
       dispatch(success(adminTags));
     } catch (e) {
       dispatch(failure(e));

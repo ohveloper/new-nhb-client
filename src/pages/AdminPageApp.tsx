@@ -4,6 +4,9 @@ import {
   getAllTagsAdminThunk,
   getAllTopicsAdminThunk,
 } from '../actions/actions';
+
+import '../styles/AdminPageApp.scss';
+
 import AdminGetallTagContainer from '../components/Admin/AdminGetallTagContainer';
 
 import AdminGetAllTopicsContainer from '../components/Admin/AdminGetAllTopicsContainer';
@@ -27,16 +30,23 @@ export default function AdminPageApp() {
   return (
     <div>
       <NavSidebarContainer />
-      <h1>AdminPageApp</h1>
-      <UploadTopic />
-      {console.log(state)}
-      {/* {state.topicsAdmin.loading && 'now loading..'}
-      {state.topicsAdmin.error && 'sorry now error'}
-      {state.topicsAdmin.data && <AdminGetAllTopicsContainer />} */}
-      <AdminGetAllTopicsContainer />
-      <AdminUploadTag />
-      <AdminGetallTagContainer />
-      <AdminRemoveTag />
+      <div id="admin-page-container">
+        <h1 id="admin-header">관리자 페이지</h1>
+        <div id="admin-element">
+          <div className="admin-topic ad-ele">
+            <UploadTopic />
+            {/* {state.topicsAdmin.loading && 'now loading..'}
+            {state.topicsAdmin.error && 'sorry now error'}
+            {state.topicsAdmin.data && <AdminGetAllTopicsContainer />} */}
+            <AdminGetAllTopicsContainer />
+          </div>
+          <div className="admin-tag ad-ele">
+            <AdminUploadTag />
+            <AdminGetallTagContainer />
+            <AdminRemoveTag />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

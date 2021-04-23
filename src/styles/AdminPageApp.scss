@@ -1,0 +1,174 @@
+#admin-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+}
+
+#admin-header {
+  margin-bottom: 20px;
+  font-size: 40px;
+}
+
+#admin-element h1 {
+  margin: 5px 0;
+  border-bottom: 1px solid #cdd9e5;
+}
+
+#admin-element input {
+  height: 24px;
+  font-size: 16px;
+  margin-right: 3px;
+}
+
+#admin-element button {
+  height: 24px;
+  cursor: pointer;
+}
+
+#admin-element {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ad-ele {
+  margin: 0 20px;
+  border: 1px solid #cdd9e5;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.fa-icon-button {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+}
+
+#admin-topic-card, #admin-tag-card {
+  position: relative;
+  width: 250px;
+  padding: 5px;
+  border-bottom: 1px dotted #cdd9e5;
+  line-height: 24px;
+}
+
+.fa-icon-button {
+  color: #cdd9e5;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.5s, box-shadow 0.5s;
+  border-radius: 50%;
+  outline: none;
+}
+
+.fa-icon-button:hover {
+  background-color: rgba(129, 142, 185, 0.219);
+  box-shadow: 0px 0px 5px 5px rgba(129, 142, 185, 0.219);
+}
+
+.admin-topic-edit, .admin-check-edit, .admin-tag-remove{
+  position: absolute;
+  right: 50px;
+  top: 25px;
+}
+
+.admin-tag-remove:hover {
+  color: #900020;
+}
+
+.admin-topic-edit:hover {
+  color: #ffad1e;
+}
+
+.admin-check-edit:hover {
+  color: #00d6a1;
+}
+
+.admin-topic-input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #cdd9e5;
+  padding: 0;
+}
+
+.admin-edit-none {
+  display: none;
+}
+
+#admin-topic-contaniner, #admin-tag-contaniner {
+  width: auto;
+  height: 300px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3.5px;
+    background-color: #ced4da;
+
+    &:hover {
+      background-color: #adb5bd;
+    }
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  #admin-page-container {
+    font-size: 8px;
+  }
+
+  #admin-header {
+    font-size: 20px;
+  }
+
+  #admin-element {
+    width: 593px;
+  }
+  .admin-topic {
+    width: 592.67px;
+  }
+
+  #admin-topic-card, #admin-tag-card {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #admin-element {
+    width: auto;
+    justify-content: center;
+  }
+  .admin-topic {
+    width: 469.67px;
+  }
+
+  .admin-tag {
+    width: auto
+  }
+
+  #admin-element input {
+    height: 16px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 511px) {
+  .admin-topic {
+    width: auto;
+  }
+
+  .admin-tag {
+    width: 334.67px
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .admin-tag {
+    width: auto;
+  }
+}
