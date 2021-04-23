@@ -36,37 +36,7 @@ export default function HomePage() {
 
       const accessToken = url.hash.slice(first + 2, last);
 
-      console.log(accessToken);
-      console.log(dispatch(getOAuthThunk(accessToken)));
-      //     await apiClient
-      //       .get(`${api}/main/oauth`) //? Google OAuth
-      //       .then((res) => {
-      //         if (res.data.message === 'Sign up') {
-      //           return (dispatch: Dispatch) => {
-      //             const { request, success, failure } = postSignUpAsync;
-      //             dispatch(request());
-      //             try {
-      //               const signup = res.data.accessToken;
-      //               return dispatch(success(signup));
-      //             } catch (e) {
-      //               dispatch(failure(e));
-      //             }
-      //           }; // window.location.assign('https://localhost:3000/');
-      //         } else if (res.data.message === 'Login') {
-      //           return (dispatch: Dispatch) => {
-      //             const { request, success, failure } = postLogInAsync;
-      //             dispatch(request());
-      //             try {
-      //               const accessToken = res.data.accessToken;
-      //               return dispatch(success(accessToken));
-      //             } catch (e) {
-      //               dispatch(failure(e));
-      //             }
-      //           }; // window.location.assign('https://localhost:3000/');
-      //         }
-      //       })
-      //       .catch((e) => console.log(e));
-      //
+      dispatch(getOAuthThunk(accessToken));
     }
   }
 

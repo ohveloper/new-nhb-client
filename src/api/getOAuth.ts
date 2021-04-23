@@ -17,11 +17,12 @@ export async function getOAuthT(accessToken: string) {
     responseType: 'json',
     headers: {
       'Content-Type': 'application/json',
-      'authrization': accessToken,
+      'authorization': accessToken,
     },
     withCredentials: true,
   });
 
   const response = await apiClient.get<OAuth>('/main/oauth');
+  console.log(response.data);
   return response.data;
 }
