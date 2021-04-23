@@ -9,7 +9,8 @@ type MainpagePoemContainerProps = {
   poem: Welcome;
   isLoading: boolean;
   handleDelete: (feedId: FeedId) => void;
-  handleModal: () => void;
+  handleModal: (feedId: number) => void;
+  itemId: number;
 };
 
 export default function MainpagePoemContainer({
@@ -17,6 +18,7 @@ export default function MainpagePoemContainer({
   isLoading,
   handleDelete,
   handleModal,
+  itemId,
 }: MainpagePoemContainerProps) {
   const state = useSelector((state: RootState) => state.reducer);
   const userFeeds = state.userFeeds.data?.data.userFeeds;
@@ -32,6 +34,7 @@ export default function MainpagePoemContainer({
         isLoading={isLoading}
         handleDelete={handleDelete}
         handleModal={handleModal}
+        itemId={itemId}
       />
     </div>
   );

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../reducers';
-import { useParams, useHistory } from 'react-router-dom';
 import { postBringFeedT } from '../../../api/postBringFeeds';
 import { UserFeeds, BringComment } from '../../../reducers/reducer';
 import { delRemoveFeedT, FeedId } from '../../../api/delRemoveFeed';
@@ -20,36 +19,34 @@ import ModalCommentsContainer from './ModalCommentsContainer';
 import '../../../styles/mainPage.css';
 
 type ModalContainerProps = {
-  handleModal: () => void;
+  poemItem: UserFeeds;
+  handleModal: (feedId: number) => void;
 };
 
-export default function ModalContainer({ handleModal }: ModalContainerProps) {
+export default function ModalContainer({
+  handleModal,
+  poemItem,
+}: ModalContainerProps) {
   const state = useSelector((state: RootState) => state.reducer);
   const userId = state.userInfo.data?.data.userInfo.userId;
-  const { feed_id } = useParams<{ feed_id: string }>();
-  const history = useHistory();
+  const itemId = poemItem.feedId;
   const [edit, setEdit] = useState(false);
-  const [editVal, setEditVal] = useState<UserFeeds>({
-    feedId: 0,
-    user: { nickName: '', tag: '', userId: '' },
-    topic: '',
-    content: [],
-    likeNum: '',
-    commentNum: 0,
-    createdAt: '',
-    updatedAt: '',
-  });
+  const [editVal, setEditVal] = useState<UserFeeds>(poemItem);
   const [comments, setComments] = useState<BringComment>({
     data: { comments: [] },
   });
 
+  const [a, setA] = useState(poemItem);
+  console.log('a', a);
+  console.log('editVal', editVal);
+  console.log('itemId:', itemId);
+
   const topicId = 1;
   const limit = 20;
-  const numFeedId = Number(feed_id);
 
   //? 파라미터로 들어갈 FeedId 형식
   const delFeedId = {
-    data: { feedId: numFeedId },
+    data: { feedId: itemId },
   };
 
   //? 게시글 삭제 함수
@@ -59,8 +56,7 @@ export default function ModalContainer({ handleModal }: ModalContainerProps) {
     if (state.accessToken) {
       const accessToken = _accessToken.concat(state.accessToken);
       await delRemoveFeedT(feedId, accessToken);
-      //? 삭제요청 후 /main으로 이동
-      history.push('/main');
+      //? 삭제요청 후 모달 종료
     }
   };
 
@@ -77,7 +73,7 @@ export default function ModalContainer({ handleModal }: ModalContainerProps) {
       const accessToken = _accessToken.concat(state.accessToken);
       await patchEditFeedT(editFeedParameter, accessToken);
       setEdit(false);
-      await fetchData(topicId, limit, numFeedId + 1);
+      await fetchData(topicId, limit, itemId + 1);
     }
   };
 
@@ -87,7 +83,7 @@ export default function ModalContainer({ handleModal }: ModalContainerProps) {
     if (state.accessToken) {
       const accessToken = _accessToken.concat(state.accessToken);
       await postUploadCommentT(comment, accessToken);
-      await fetchCommentData({ feedId: numFeedId });
+      await fetchCommentData({ feedId: itemId });
     }
   };
 
@@ -97,8 +93,6 @@ export default function ModalContainer({ handleModal }: ModalContainerProps) {
       topicId,
       limit,
       feedId,
-    }).then((res) => {
-      setEditVal(res.data.userFeeds[0]);
     });
   };
   //? 댓글 조회 함수
@@ -113,14 +107,17 @@ export default function ModalContainer({ handleModal }: ModalContainerProps) {
 
   //? 현재 글 정보 불러오기
   useEffect(() => {
-    fetchData(topicId, limit, numFeedId + 1).catch((e) => console.log(e));
-    fetchCommentData({ feedId: numFeedId }).catch((e) => console.log(e));
+    const nextId = itemId + 1;
+    postBringFeedT({ topicId, limit, feedId: nextId })
+      .then((res) => {
+        console.log('res', res.data);
+      })
+      .catch((e) => console.log(e));
+    fetchCommentData({ feedId: itemId }).catch((e) => console.log(e));
   }, []);
-  console.log(editVal);
-  console.log(edit);
 
   return (
-    <div id="modal-container" onClick={() => handleModal()}>
+    <div id="modal-container" onClick={() => handleModal(itemId)}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         {edit ? (
           <>
@@ -132,7 +129,7 @@ export default function ModalContainer({ handleModal }: ModalContainerProps) {
         ) : (
           <div id="modal-poem">
             <div className="poem-view">
-              {userId === Number(editVal.user.userId) && (
+              {userId === Number(poemItem.user.userId) && (
                 <>
                   <div className="edit-del-btn-container">
                     <div className="poem-edit-btn">
@@ -155,9 +152,9 @@ export default function ModalContainer({ handleModal }: ModalContainerProps) {
                 </div>
                 <div className="info-content-container">
                   <PoemInfo
-                    userTag={editVal.user.tag}
-                    nickName={editVal.user.nickName}
-                    createdAt={editVal.createdAt}
+                    userTag={poemItem.user.tag}
+                    nickName={poemItem.user.nickName}
+                    createdAt={poemItem.createdAt}
                   />
                   <div className="poem-content-container">
                     {editVal.content.map((word, idx) => {
@@ -182,7 +179,7 @@ export default function ModalContainer({ handleModal }: ModalContainerProps) {
               />
 
               <ModalCommentsContainer
-                feedId={Number(feed_id)}
+                feedId={itemId}
                 comments={comments}
                 handlePostUploadComment={handlePostUploadComment}
               />

@@ -1,19 +1,21 @@
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { Welcome } from '../../reducers/reducer';
+import { UserFeeds, Welcome } from '../../reducers/reducer';
 import { FeedId } from '../../api/delRemoveFeed';
 import { RootState } from '../../reducers';
 import PoemInfo from './PoemInfo';
 import PoemButtonGroup from './PoemButtonGroup';
 import PoemDeleteButton from './PoemDeleteButton';
+import PoemContent from './PoemContent';
 import '../../styles/mainPage.css';
+import { useState } from 'react';
+import { postBringFeedT } from '../../api/postBringFeeds';
 
 type poemViewProps = {
   poem: Welcome;
   isLoading: boolean;
   handleDelete: (feedId: FeedId) => void;
-  handleModal: () => void;
+  handleModal: (feedId: number) => void;
+  itemId: number;
 };
 
 export default function PoemView({
@@ -21,6 +23,7 @@ export default function PoemView({
   isLoading,
   handleDelete,
   handleModal,
+  itemId,
 }: poemViewProps) {
   const state = useSelector((state: RootState) => state.reducer);
   const { userFeeds } = poem.data;
@@ -37,6 +40,7 @@ export default function PoemView({
         };
         return (
           <div id="poem-view-container">
+            <div>{feed.feedId}</div>
             <div key={feed.feedId} className="poem-view">
               {userId === Number(feed.user.userId) && (
                 <div className="del-btn-container">
@@ -57,21 +61,11 @@ export default function PoemView({
                     createdAt={feed.createdAt}
                   />
 
-                  <div className="poem-content-container" onClick={handleModal}>
-                    {feed.content.map((word, idx) => {
-                      let head;
-                      if (word !== null) {
-                        head = word.slice(0, 1);
-                        // const tail = word.slice(1);
-                      }
-                      const key = String(idx) + String(feed.feedId);
-                      return (
-                        <div key={key} className="poem-content">
-                          [{head}]{word}
-                        </div>
-                      );
-                    })}
-                  </div>
+                  <PoemContent
+                    feed={feed}
+                    handleModal={handleModal}
+                    itemId={itemId}
+                  />
                 </div>
               </div>
               <PoemButtonGroup
