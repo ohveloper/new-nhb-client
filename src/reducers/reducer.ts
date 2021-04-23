@@ -43,6 +43,9 @@ import {
   GET_ALL_TAGS_ADMIN_SUCCESS,
   GET_ALL_TAGS_ADMIN_ERROR,
   PATCH_EDIT_TOPIC_ADMIN_API,
+  GET_OAUTH_API,
+  GET_OAUTH_SUCCESS,
+  GET_OAUTH_ERROR,
 } from '../actions/actionTypes';
 export interface InitState {
   userInfo: {
@@ -590,6 +593,20 @@ export function reducer(
           error: action.payload,
           data: null,
         },
+      };
+    case GET_OAUTH_API:
+      return {
+        ...state,
+        accessToken: null,
+      };
+    case GET_OAUTH_SUCCESS:
+      return {
+        ...state,
+        accessToken: action.payload.data.accessToken,
+      };
+    case GET_OAUTH_ERROR:
+      return {
+        ...state,
       };
     case GET_TOPICS_API:
       return {

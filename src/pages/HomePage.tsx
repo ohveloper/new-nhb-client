@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { postLogInThunk, postSignUpThunk } from '../actions/actions';
-import axios from 'axios';
-
+import { useDispatch } from 'react-redux';
+import {
+  postLogInThunk,
+  postSignUpThunk,
+  getOAuthThunk,
+} from '../actions/actions';
 import HomepageWritersRanking from '../components/Home/HomepageWritersRanking';
 import Footer from '../components/Home/Footer';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
@@ -33,31 +35,8 @@ export default function HomePage() {
       const last = url.hash.indexOf('&t');
 
       const accessToken = url.hash.slice(first + 2, last);
-      console.log('accessToken :', accessToken);
-      const api =
-        process.env.REACT_APP_SERVER_ADDRESS || 'https://localhost:5000';
 
-      const apiClient = axios.create({
-        baseURL: api,
-        responseType: 'json',
-        headers: {
-          'Content-Type': 'application/json',
-          'authorization': `${accessToken}`,
-        },
-        withCredentials: true,
-      });
-
-      console.log('here to gouth');
-
-      apiClient
-        .get(`${api}/main/oauth`) //? Google OAuth
-        .then((res) => {
-          console.log('res.data : ', res.data);
-          if (res.data) {
-            // window.location.assign('https://localhost:3000/');
-          }
-        })
-        .catch((e) => console.log(e));
+      dispatch(getOAuthThunk(accessToken));
     }
   }
 

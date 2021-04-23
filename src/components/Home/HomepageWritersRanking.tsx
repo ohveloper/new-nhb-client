@@ -8,9 +8,8 @@ export default function HomepageWritersRanking() {
   const dispatch = useDispatch();
 
   const { data } = state.rank;
+  const { loading } = state.rank;
   const rank = data?.data;
-
-  console.log('rank :', rank?.rank);
 
   useEffect(() => {
     dispatch(getRankThunk());
@@ -19,15 +18,19 @@ export default function HomepageWritersRanking() {
   return (
     <>
       <div>실시간 인기작가 </div>
-      {rank?.rank.map((popular, idx) => {
-        return (
-          <div key={popular.userId}>
-            <div>
-              {idx + 1}위! {popular.nickName}님
-            </div>
-          </div>
-        );
-      })}
+      <div>
+        {loading
+          ? `"N행시의 밤" 최고의 작가분들을 모셔오는 중`
+          : rank?.rank.map((popular, idx) => {
+              return (
+                <div key={popular.userId}>
+                  <div>
+                    {idx + 1}위! {popular.nickName}님
+                  </div>
+                </div>
+              );
+            })}
+      </div>
     </>
   );
 }

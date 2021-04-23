@@ -1,4 +1,7 @@
-import { useSelector } from 'react-redux';
+import { MouseEvent, MouseEventHandler, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { postBringUserInfoThunk } from '../../actions/actions';
+import { patchEditTagsT } from '../../api/patchEditTag';
 import { RootState } from '../../reducers';
 import './MyAchievementBadges.scss';
 
@@ -8,7 +11,7 @@ interface PropsType {
 
 export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
   const state = useSelector((state: RootState) => state.reducer);
-  console.log(state);
+  const dispatch = useDispatch();
 
   //! 내가 가지고 있는 tag의 정보
   const myTagsInfo = state.userInfo.data?.data.userInfo.tags;
@@ -17,14 +20,36 @@ export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
   //! 모든 테그의 정보
   const allTags = state.tags.data?.data;
 
+  const accessToken = state.accessToken;
+  const [tagId, setTagId] = useState('');
+
+  const onClickHandler = (e: any) => {
+    if (e.target.value) {
+      setTagId(e.target.value);
+    }
+  };
+
+  const onSubmitHandler = async () => {
+    if (!tagId) return;
+    if (accessToken) {
+      await patchEditTagsT({ tagId: Number(tagId) }, accessToken)
+        .then((x) => {
+          dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
+          setTagId('');
+          console.log(x);
+        })
+        .catch((e) => console.log(e));
+    }
+  };
+
   return (
     <div id="MyAchievementBadges">
       <div className="title-button">
         <div>MyAchievementBadges</div>
-        <button onClick={badgeModalHandler}>뱃지선택</button>
+        <button onClick={onSubmitHandler}>뱃지선택</button>
       </div>
       <div className="i-have-some-tags">
-        <div>내가 있는 테그들</div>
+        <div>내가 있는 뱃지들</div>
         {
           //? 가지고 있는 테그들 렌더
           myTagsInfo?.map((badge) =>
@@ -32,37 +57,54 @@ export default function MyAchievementBadges({ badgeModalHandler }: PropsType) {
             !badge.isUsed ? (
               //? false일 확률이 더 높으니까 앞에
               //? 내가 선택하지 않은 테그 : 빨강글씨 테두리 없음
-              <div key={badge.tagId} className="my-tags">
-                <div id={'tagId-'.concat(String(badge.tagId))}>
-                  {badge.tagId}
-                </div>
-                <div>{badge.tagName}</div>
-                <div>{badge.description}</div>
-              </div>
+              <>
+                <label form="my-tags" onClick={onClickHandler}>
+                  <input type="radio" name="chk_badge" value={badge.tagId} />
+                  <div key={badge.tagId} className="my-tags">
+                    <div className="my-tags-name">
+                      <div id={'tag-id-'.concat(String(badge.tagId))}>
+                        {badge.tagId}
+                      </div>
+                      <div>{badge.tagName}</div>
+                    </div>
+                    <div>{badge.description}</div>
+                  </div>
+                </label>
+              </>
             ) : (
               //? 내가 선택한 테그 :테두리 핫핑크
-              <div key={badge.tagId} className="pick-my-tag">
-                <div id={'tagId-'.concat(String(badge.tagId))}>
-                  {badge.tagId}
+              <label onClick={onClickHandler} defaultValue="1">
+                <input type="radio" name="chk_badge" value={badge.tagId} />
+                <div key={badge.tagId} className="pick-my-tag">
+                  <div className="pick-my-tags-name">
+                    <div id={'tag-id-'.concat(String(badge.tagId))}>
+                      {badge.tagId}
+                    </div>
+                    <div>{badge.tagName}</div>
+                  </div>
+                  <div style={{ pointerEvents: 'none' }}>
+                    {badge.description}
+                  </div>
                 </div>
-                <div>{badge.tagName}</div>
-                <div>{badge.description}</div>
-              </div>
+              </label>
             )
           )
         }
       </div>
       <div className="i-dont-have-this-badges">
-        <div className="">내가 없는 테그들</div>
+        <div className="">내가 없는 뱃지들</div>
         {
           //? 가지지 못한 테그들 렌더
           allTags?.tags.map(
             (badge) =>
               !_myTagsId?.includes(badge.id) && (
                 <div className="not-my-tags">
-                  <div id={'tagId-'.concat(String(badge.id))}>{badge.id}</div>
-
-                  <div>{badge.tagName}</div>
+                  <div className="not-my-tag-name">
+                    <div id={'tag-id-'.concat(String(badge.id))}>
+                      {badge.id}
+                    </div>
+                    <div>{badge.tagName}</div>
+                  </div>
                   <div>{badge.description}</div>
                 </div>
               )

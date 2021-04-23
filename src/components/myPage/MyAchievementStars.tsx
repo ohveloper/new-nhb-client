@@ -17,7 +17,6 @@ export default function MyAchievementStars() {
           <div>{stars}</div>
         </div>
         <div className="star-container">
-          <div>여기에 별 막들어감</div>
           <div>{stars && <Star />}</div>
         </div>
       </div>
