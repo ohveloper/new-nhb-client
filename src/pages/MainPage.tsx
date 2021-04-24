@@ -162,12 +162,12 @@ export default function MainPage() {
       <NavSidebarContainer />
       <div id="main-page">
         <Mobile>
-          <div className="feed-container">
-            <>
+          <div className="feed">
+            <div>
               {isModalOpen && (
                 <ModalContainer poemItem={poemItem} handleModal={handleModal} />
               )}
-            </>
+            </div>
             <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
             <MainpagePoemList
               poem={poem}
@@ -180,7 +180,7 @@ export default function MainPage() {
         </Mobile>
         <Tablet>
           <MainpageUserRanking />
-          <div className="feed-container">
+          <div className="feed">
             <>
               {isModalOpen && (
                 <ModalContainer poemItem={poemItem} handleModal={handleModal} />
@@ -195,10 +195,11 @@ export default function MainPage() {
               itemId={poemItem.feedId}
             />
           </div>
+          <div className="nav-open"></div>
         </Tablet>
         <PC>
           <MainpageUserRanking />
-          <div className="feed-container">
+          <div className="feed">
             <>
               {isModalOpen && (
                 <ModalContainer poemItem={poemItem} handleModal={handleModal} />
@@ -213,6 +214,7 @@ export default function MainPage() {
               itemId={poemItem.feedId}
             />
           </div>
+          <div className="nav-open"></div>
         </PC>
       </div>
     </>
