@@ -1,0 +1,21 @@
+@import '../index.scss';
+
+#HomepageWritersRanking {
+  width: auto;
+  min-width: 172px;
+  height: auto;
+  border: 2px solid $border;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+#HomepageWritersRanking > div {
+  align-items: center;
+  margin-bottom: 2vmin;
+}
+
+// #HomepageWritersRanking > div:first-child {
+//   margin-top: 2vmin;
+// }

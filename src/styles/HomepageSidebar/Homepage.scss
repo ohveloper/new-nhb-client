@@ -1,0 +1,32 @@
+#Homepage {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#neon {
+  color: #ffad1e;
+  font-size: 1.1rem;
+  line-height: 0;
+  text-shadow: 0 0 0.001vw #ffad1e;
+
+  animation: neon 5s ease infinite;
+  -moz-animation: neon 5s ease infinite;
+  -webkit-animation: neon 5s ease infinite;
+}
+
+@keyframes neon {
+  0%,
+  100% {
+    text-shadow: 0 0 1rem #fa1c16, 0 0 2rem #fa1c16, 0 0 2rem #fa1c16,
+      0 0 2rem #fa1c16, 0 0 0.4rem #fed128, 0.1rem 0.1rem 0.1rem #806914;
+    color: #fed128;
+  }
+  80% {
+    text-shadow: 0 0 0.1rem #800e0b, 0 0 1.5rem #800e0b, 0 0 2rem #800e0b,
+      0 0 2rem #800e0b, 0 0 0.2rem #800e0b, 0.1rem 0.1rem 0.1rem #40340a;
+    color: #806914;
+  }
+}

@@ -1,4 +1,4 @@
-import './Footer.scss';
+import '../../styles/HomepageSidebar/Footer.scss';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';

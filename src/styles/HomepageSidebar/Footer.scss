@@ -1,0 +1,14 @@
+@import '../index.scss';
+
+#Footer {
+  height: 4rem;
+  background-color: #000000;
+  border: {
+    top: 2px solid $border;
+    bottom: 2px solid $border;
+  }
+  justify-content: stretch;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

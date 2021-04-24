@@ -7,7 +7,7 @@ import NavMyPage from './NavMypage';
 import NavLogin from './NavLogin';
 import MyLog from './Mylog';
 import Induce from './Induce';
-import './NavSidebar.scss';
+import '../../styles/HomepageSidebar/NavSidebar.scss';
 
 const Sidebar = () => {
   const state = useSelector((state: RootState) => state.reducer);
@@ -25,7 +25,7 @@ const Sidebar = () => {
       <SlidingPanel
         type={'right'}
         isOpen={openPanel}
-        size={40}
+        size={30}
         noBackdrop={true}
       >
         <div id="NavSidebar">

@@ -1,7 +1,6 @@
-import React from 'react';
 import Sidebar from './Sidebar';
 import Homebutton from './Homebutton';
-import './NavSidebar.scss';
+import '../../styles/HomepageSidebar/NavSidebar.scss';
 
 export default function NavSidebarContainer() {
   return (
