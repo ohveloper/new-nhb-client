@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Content, postUploadFeedT } from '../api/postUploadFeed';
 import { UserFeeds, Welcome } from '../reducers/reducer';
@@ -56,14 +55,6 @@ export default function MainPage() {
         .catch((e) => console.log(e));
     }
   };
-  // const handlePostUploadFeed = async (content: Content) => {
-  //   const _accessToken = '';
-  //   if (state.accessToken) {
-  //     const accessToken = _accessToken.concat(state.accessToken);
-  //     await postUploadFeedT(content, accessToken)
-  //     await fetchData()
-  //   }
-  // };
 
   //? 게시글 삭제 함수
   const handleDelete = async (feedId: FeedId) => {
@@ -84,7 +75,6 @@ export default function MainPage() {
     const lastIdx = poem.data.userFeeds.length - 1;
     const lastItem = poem.data.userFeeds[lastIdx];
     const feedId = lastItem?.feedId;
-    // setIsLoading(true);
     //? 이전에 불러온 목록의 이전 글 20개를 가져온다
     //! state에 전달하지 않고 axios로 데이터 호출만 한다
     await postBringFeedT({
@@ -97,7 +87,6 @@ export default function MainPage() {
       setPoem({
         data: { userFeeds: poem.data.userFeeds.concat(response.userFeeds) },
       });
-      // setIsLoading(false);
     });
   };
 
@@ -164,7 +153,7 @@ export default function MainPage() {
     console.log(isModalOpen);
   };
 
-  //? 첫 렌더. deps = []
+  //? 첫 렌더
   useEffect(() => {
     fetchData().catch((e) => console.log(e));
   }, []);

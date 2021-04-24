@@ -36,9 +36,6 @@ export default function ModalContainer({
     data: { comments: [] },
   });
 
-  console.log('editVal', editVal);
-  console.log('itemId:', itemId);
-
   const topicId = 1;
   const limit = 20;
 
@@ -76,6 +73,7 @@ export default function ModalContainer({
   };
 
   //? 댓글 등록 함수
+  const [isUploaded, setIsUploaded] = useState(false);
   const handlePostUploadComment = async (comment: CommentFeedId) => {
     const _accessToken = '';
     if (state.accessToken) {
@@ -83,7 +81,10 @@ export default function ModalContainer({
       await postUploadCommentT(comment, accessToken);
       await fetchCommentData({ feedId: itemId });
     }
+    setIsUploaded(true);
+    setIsUploaded(false);
   };
+  console.log('upload', isUploaded);
 
   //? 클릭한 글 조회
   const fetchData = async (topicId: number, limit: number, feedId: number) => {
@@ -97,8 +98,6 @@ export default function ModalContainer({
   const fetchCommentData = async (feedId: Feed_Id) => {
     await postBringCommentT(feedId).then((res) => {
       const response = res.data;
-      console.log(response.comments);
-
       setComments({ data: { comments: [...response.comments] } });
     });
   };
@@ -112,7 +111,8 @@ export default function ModalContainer({
       })
       .catch((e) => console.log(e));
     fetchCommentData({ feedId: itemId }).catch((e) => console.log(e));
-  }, []);
+    console.log(1);
+  }, [isUploaded]);
 
   return (
     <div id="modal-container" onClick={() => handleModal(itemId)}>
@@ -175,7 +175,7 @@ export default function ModalContainer({
               </div>
               <PoemButtonGroup
                 likeNum={editVal.likeNum}
-                commentNum={editVal.commentNum}
+                commentNum={comments.data.comments.length}
               />
 
               <ModalCommentsContainer
