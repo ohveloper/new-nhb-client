@@ -13,7 +13,7 @@ import { patchEditFeedT, EditFeedParameter } from '../../../api/patchEditFeed';
 import PoemEditButton from '../PoemEditButton';
 import PoemDeleteButton from '../PoemDeleteButton';
 import PoemInfo from '../PoemInfo';
-import PoemButtonGroup from '../PoemButtonGroup';
+import ModalButtonGroup from './ModalButtonGroup';
 import ModalContainerEditInput from './ModalContainerEditInput';
 import ModalCommentsContainer from './ModalCommentsContainer';
 import '../../../styles/mainPage.css';
@@ -173,7 +173,7 @@ export default function ModalContainer({
                   </div>
                 </div>
               </div>
-              <PoemButtonGroup
+              <ModalButtonGroup
                 likeNum={editVal.likeNum}
                 commentNum={editVal.commentNum}
               />

@@ -1,44 +1,28 @@
-import { useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faStar } from '@fortawesome/free-regular-svg-icons';
 import {
   faExternalLinkAlt,
   faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
-import '../../styles/mainPage.css';
+import '../../../styles/mainPage.css';
 
-type PoemButtonGroupProps = {
-  feedId: number;
+type ModalButtonGroupProps = {
   likeNum: string;
   commentNum: number;
-  handleModal: (feedId: number) => void;
 };
 
-export default function PoemButtonGroup({
-  feedId,
+export default function ModalButtonGroup({
   likeNum,
   commentNum,
-  handleModal,
-}: PoemButtonGroupProps) {
-  const ref: any = useRef();
+}: ModalButtonGroupProps) {
   const commentIcon = <FontAwesomeIcon icon={faComment} />;
   const starIcon = <FontAwesomeIcon icon={faStar} />;
   const shareIcon = <FontAwesomeIcon icon={faExternalLinkAlt} />;
   const reportIcon = <FontAwesomeIcon icon={faExclamationTriangle} />;
 
-  const onCommentIconClick = () => {
-    const feedid = ref.current.dataset.feedid;
-    handleModal(feedid);
-  };
-
   return (
     <div className="poem-button-group">
-      <div
-        className="comment-container"
-        onClick={onCommentIconClick}
-        data-feedid={feedId}
-        ref={ref}
-      >
+      <div className="comment-container">
         <div className="comment-icon">{commentIcon}</div>
         <div className="comment-num">{commentNum}</div>
       </div>

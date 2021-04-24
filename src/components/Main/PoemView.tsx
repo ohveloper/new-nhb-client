@@ -68,8 +68,10 @@ export default function PoemView({
                 </div>
               </div>
               <PoemButtonGroup
+                feedId={feed.feedId}
                 likeNum={feed.likeNum}
                 commentNum={feed.commentNum}
+                handleModal={handleModal}
               />
             </div>
           </div>
