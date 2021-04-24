@@ -6,12 +6,29 @@
   justify-content: space-between;
 }
 
+#HomepageIntroduce {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  div {
+    margin: {
+      left: 3vmin;
+      right: 3vmin;
+    }
+  }
+}
+#neonContainer{
+  display: flex;
+  justify-content: center;
+}
+
+
 #neon {
   color: #ffad1e;
   font-size: 1.1rem;
-  line-height: 0;
+  line-height: 1;
   text-shadow: 0 0 0.001vw #ffad1e;
-
   animation: neon 5s ease infinite;
   -moz-animation: neon 5s ease infinite;
   -webkit-animation: neon 5s ease infinite;

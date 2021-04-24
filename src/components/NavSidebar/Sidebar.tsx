@@ -21,7 +21,9 @@ const Sidebar = () => {
     getLogoutT()
       .then((x) => {
         console.log(x);
-        state.accessToken = '';
+        useSelector((state: RootState) => state.reducer);
+
+        window.location.assign('https://localhost:3000');
       })
       .catch((e) => console.log(e));
   };

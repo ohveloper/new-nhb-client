@@ -26,7 +26,7 @@ export default function HomepageWritersRanking() {
               if (idx < 11) {
                 return (
                   <div key={popular.userId}>
-                    <div>
+                    <div className="value">
                       {idx + 1}위! {popular.nickName} 님
                     </div>
                   </div>

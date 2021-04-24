@@ -8,11 +8,7 @@ export default function Footer() {
   const isAdmin = state.login.data?.isAdmin;
   return (
     <div id="Footer">
-      <div>
-        <Link to="/apitest">
-          <p> apitest</p>
-        </Link>
-      </div>
+      <div>{isAdmin ? <Link to="/apitest">API TEST</Link> : <div></div>}</div>
       <div>TeamBBBA</div>
       <div>
         {isAdmin ? (
