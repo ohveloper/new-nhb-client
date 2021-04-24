@@ -119,7 +119,7 @@ export default function MainPage() {
     window.addEventListener('scroll', infiniteScroll, true);
   }, [infiniteScroll]);
 
-  //? =============================모달 핸들러==============================//
+  //? ===========================모달 핸들러=============================//
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [poemItem, setPoemItem] = useState<UserFeeds>({
     feedId: 0,
@@ -150,13 +150,12 @@ export default function MainPage() {
     const nextId = Number(feedId) + 1;
 
     fetchItem(1, 20, nextId).catch((e) => console.log(e));
-    console.log(isModalOpen);
   };
 
-  //? 첫 렌더
+  //? 모달 열고 닫을때 렌더
   useEffect(() => {
     fetchData().catch((e) => console.log(e));
-  }, []);
+  }, [isModalOpen]);
 
   return (
     <>
