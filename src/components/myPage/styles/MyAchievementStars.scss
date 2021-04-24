@@ -12,6 +12,10 @@ $border_color: #39444d;
   margin-bottom: 16px;
 }
 
+.my-starts-title {
+  margin-bottom: 5px;
+}
+
 .star-title-container-flexbox {
   display: flex;
 }
@@ -19,8 +23,7 @@ $border_color: #39444d;
 .star-title-container {
   display: flex;
   justify-content: flex-end;
-  padding: 5px;
-  border: 2px hotpink solid;
+  padding: 10px;
 }
 
 .star-container {

@@ -5,19 +5,21 @@ import './styles/MyWork.scss';
 
 export default function MyWork() {
   const state = useSelector((state: RootState) => state.reducer);
+
   return (
     <div id="MyWork">
       {state.privateFeeds.loading && 'now loading..'}
       {state.privateFeeds.error && 'now error..'}
       {state.privateFeeds.data &&
         state.privateFeeds.data.data.userFeeds.slice(0, 3).map((x) => {
+          const topic = x.topic;
           return (
             <div className="myword-container">
               <div className="myword">
                 {x.content.map((word, idx) => {
-                  const head = word.split('')[0];
+                  const head = topic.split('')[idx];
                   return (
-                    <div>
+                    <div key={idx}>
                       [{head}: {word}]
                     </div>
                   );

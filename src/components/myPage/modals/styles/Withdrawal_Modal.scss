@@ -2,3 +2,12 @@ $red: red;
 .test {
   color: $red;
 }
+
+.withdrawal_modal_cotainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 20px;
+  margin-left: 20px;
+}

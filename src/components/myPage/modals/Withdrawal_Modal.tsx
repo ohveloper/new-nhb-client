@@ -10,11 +10,12 @@ export default function Withdrawal_Modal({
   byeByeHandler,
 }: Withdrawal_Modal_Props) {
   return (
-    <div>
-      <h1>Withdrawal_Modal</h1>
+    <div className="withdrawal_modal_cotainer">
       <div className="test">정말 탈퇴 하시겠습니까?</div>
-      <button onClick={withdrawalHandler}>확인</button>
-      <button onClick={byeByeHandler}>취소</button>
+      <div className="withdrawal_modal_cotainer_button_group">
+        <button onClick={byeByeHandler}>취소</button>
+        <button onClick={withdrawalHandler}>확인</button>
+      </div>
     </div>
   );
 }

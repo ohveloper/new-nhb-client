@@ -41,13 +41,13 @@ export default function MyAchievementBadges() {
   return (
     <div id="MyAchievementBadges">
       <div className="title-button">
-        <div>MyAchievementBadges</div>
+        <div></div>
         <button onClick={onSubmitHandler} className="select-badge-button">
-          뱃지선택
+          뱃지선택완료
         </button>
       </div>
       <div className="i-have-some-tags">
-        <div>내가 있는 뱃지들</div>
+        <div>내 뱃지 : 사용할 뱃지를 선택하세요</div>
         {
           //? 가지고 있는 테그들 렌더
           myTagsInfo?.map((badge) =>
