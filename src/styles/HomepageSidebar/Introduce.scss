@@ -1,0 +1,30 @@
+@import '../index.scss';
+
+#introduce {
+    display: flex;
+    flex-direction: column;
+
+    div {
+        margin-bottom: 4vmin;
+    }
+}
+
+.ani1s {
+    animation: fadeIn 1s ease-in-out;
+}
+
+.ani2s {
+    animation: fadeIn 2s ease-in-out;
+}
+
+.ani3s {
+    animation: fadeIn 3s ease-in-out;
+}
+
+.ani4s {
+    animation: fadeIn 4s ease-in-out;
+}
+
+.ani5s {
+    animation: fadeIn 5s ease-in-out;
+}
