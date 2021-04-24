@@ -46,7 +46,7 @@ function NavLogin() {
         <button onClick={() => loginHandler()}>로그인</button>
       </div>
       <div>
-        <p onClick={() => googleOAuthHandler()}>Google 간편 로그인</p>
+        <p onClick={() => googleOAuthHandler()}>Google로 간편 로그인</p>
       </div>
     </>
   );

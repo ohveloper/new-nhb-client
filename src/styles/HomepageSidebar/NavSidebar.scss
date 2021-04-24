@@ -77,7 +77,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 0.7rem;
+  margin-top: 12vmax;
 
   div {
     border-radius: 20px;
@@ -90,21 +90,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 10vmin;
   margin-bottom: 1rem;
   z-index: 1;
 }
-
-// #NavSidebar > div:last-of-type {
-//   height: 4vh;
-//   width: 20vw;
-//   justify-content: center;
-//   align-content: center;
-//   align-items: center;
-//   margin-bottom: 1rem;
-//   border: 2px solid #677280;
-//   border-radius: 0.3rem;
-// }
 
 .panel {
   display: flex;
@@ -112,9 +100,9 @@
   flex-direction: column;
   height: auto;
   background-color: #3c4754;
-  border-radius: 1rem;
   opacity: 0.8;
   padding: 2vmin;
+  align-items: center;
   a:any-link {
     color: white;
   }
