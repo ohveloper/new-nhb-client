@@ -17,6 +17,10 @@ import ModalButtonGroup from './ModalButtonGroup';
 import ModalContainerEditInput from './ModalContainerEditInput';
 import ModalCommentsContainer from './ModalCommentsContainer';
 import '../../../styles/mainPage.css';
+import {
+  delRemoveCommentT,
+  FeedIdCommentId,
+} from '../../../api/delRemoveComment';
 
 type ModalContainerProps = {
   poemItem: UserFeeds;
@@ -85,6 +89,18 @@ export default function ModalContainer({
     setIsUploaded(false);
   };
   console.log('upload', isUploaded);
+
+  //? 댓글 삭제 함수
+  const handleDelRemoveComment = async (feedCommentId: FeedIdCommentId) => {
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      await delRemoveCommentT(feedCommentId, accessToken);
+      await fetchCommentData({ feedId: itemId });
+    }
+    setIsUploaded(true);
+    setIsUploaded(false);
+  };
 
   //? 클릭한 글 조회
   const fetchData = async (topicId: number, limit: number, feedId: number) => {
@@ -182,6 +198,7 @@ export default function ModalContainer({
                 feedId={itemId}
                 comments={comments}
                 handlePostUploadComment={handlePostUploadComment}
+                handleDelRemoveComment={handleDelRemoveComment}
               />
             </div>
           </div>
