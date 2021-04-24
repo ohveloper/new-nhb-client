@@ -36,8 +36,6 @@ export default function ModalContainer({
     data: { comments: [] },
   });
 
-  const [a, setA] = useState(poemItem);
-  console.log('a', a);
   console.log('editVal', editVal);
   console.log('itemId:', itemId);
 
@@ -129,7 +127,7 @@ export default function ModalContainer({
         ) : (
           <div id="modal-poem">
             <div className="poem-view">
-              {userId === Number(poemItem.user.userId) && (
+              {userId === Number(poemItem.user.userId) ? (
                 <>
                   <div className="edit-del-btn-container">
                     <div className="poem-edit-btn">
@@ -144,6 +142,8 @@ export default function ModalContainer({
                   </div>
                   <div className="divider mb20"></div>
                 </>
+              ) : (
+                <div className="edit-del-btn-container"></div>
               )}
 
               <div className="pic-info-content-container">

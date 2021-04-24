@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Content, postUploadFeedT } from '../api/postUploadFeed';
 import { UserFeeds, Welcome } from '../reducers/reducer';
@@ -134,7 +135,7 @@ export default function MainPage() {
     window.addEventListener('scroll', infiniteScroll, true);
   }, [infiniteScroll]);
 
-  //? 모달 핸들러
+  //? =============================모달 핸들러==============================//
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [poemItem, setPoemItem] = useState<UserFeeds>({
     feedId: 0,
@@ -163,7 +164,6 @@ export default function MainPage() {
 
   const handleModal = (feedId: number) => {
     const nextId = Number(feedId) + 1;
-    console.log('next:', nextId);
 
     fetchItem(1, 20, nextId).catch((e) => console.log(e));
     console.log(isModalOpen);

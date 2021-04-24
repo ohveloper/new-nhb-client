@@ -18,23 +18,13 @@ export default function ModalContainerEditInput({
 
   const onEditChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setEditText((prevState) => {
+    setEditText((prevState): any => {
       const { content } = prevState;
       const text: any = content.slice();
       text[name] = value;
+      const result = Object.assign(prevState, { comment: text });
       return {
-        feedId: prevState.feedId,
-        user: {
-          nickName: prevState.user.nickName,
-          tag: prevState.user.tag,
-          userId: prevState.user.userId,
-        },
-        topic: prevState.topic,
-        content: text,
-        likeNum: prevState.likeNum,
-        commentNum: prevState.commentNum,
-        createdAt: prevState.createdAt,
-        updatedAt: prevState.updatedAt,
+        result,
       };
     });
   };
@@ -59,28 +49,37 @@ export default function ModalContainerEditInput({
   };
 
   return (
-    <>
+    <div className="edit-poem-input">
       <form onSubmit={onEditSubmit}>
-        {topic.map((letter, idx) => {
-          const key = letter + String(idx);
-          return (
-            <div key={key}>
-              <input
-                type="text"
-                name={String(idx)}
-                onChange={onEditChange}
-                value={editText.content[idx]}
-              />
-            </div>
-          );
-        })}
-        <button type="submit">수정하기</button>
+        <div className="input-btn-container">
+          <div className="input-container">
+            {topic.map((letter, idx) => {
+              const key = letter + String(idx);
+              return (
+                <div key={key}>
+                  <input
+                    type="text"
+                    name={String(idx)}
+                    onChange={onEditChange}
+                    value={editText.content[idx]}
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="btn-container">
+            <button type="submit" className="btn upload-btn mt5">
+              수정
+            </button>
+          </div>
+        </div>
       </form>
       {error ? (
         <div>오늘의 주제에 맞는 작품을 작성해 주세요!</div>
       ) : (
         <div></div>
       )}
-    </>
+    </div>
   );
 }
