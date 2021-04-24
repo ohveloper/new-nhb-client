@@ -1,11 +1,16 @@
 @import '../index.scss';
 
+#HomepageIntroduce{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 #introduce {
     display: flex;
     flex-direction: column;
-
+    color: $mainYellow;
     div {
-        margin-bottom: 4vmin;
+        margin-bottom: 6vmin;
     }
 }
 

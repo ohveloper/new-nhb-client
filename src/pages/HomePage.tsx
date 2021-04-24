@@ -26,7 +26,11 @@ export default function HomePage() {
       // eslint-disable-next-line @typescript-eslint/await-thenable
       await dispatch(postLogInThunk({ authCode: userAuthCode }));
 
-      window.location.assign('https://localhost:3000/');
+      // ? 배포용 리다이렉트
+      window.location.assign('https://nhbomb.tk/');
+
+      // ? 테스트용 리다이렉트
+      // window.location.assign('https://localhost:3000/');
     }
     //? 회원가입 유저
     else if (url.includes('signup')) {
@@ -34,7 +38,11 @@ export default function HomePage() {
       // eslint-disable-next-line @typescript-eslint/await-thenable
       await dispatch(postSignUpThunk({ authCode: userAuthCode }));
 
-      window.location.assign('https://localhost:3000/');
+      // ? 배포용 리다이렉트
+      window.location.assign('https://nhbomb.tk/');
+
+      // ? 테스트용 리다이렉트
+      // window.location.assign('https://localhost:3000/');
     }
 
     //? googleOAuth용
@@ -48,7 +56,11 @@ export default function HomePage() {
       // eslint-disable-next-line @typescript-eslint/await-thenable
       await dispatch(getOAuthThunk(accessToken));
 
-      window.location.assign('https://localhost:3000/');
+      // ? 배포용 리다이렉트
+      window.location.assign('https://nhbomb.tk/');
+
+      // ? 테스트용 리다이렉트
+      // window.location.assign('https://localhost:3000/');
     }
   }
 
@@ -71,7 +83,7 @@ export default function HomePage() {
           <div id="neon">N행시 작성하러 가기</div>
         </Link>
       </div>
-      <div className="App">:sunglasses: </div>
+      {/* <div className="App">:sunglasses: </div> */}
       <ThanksTo />
       <Footer />
     </div>
