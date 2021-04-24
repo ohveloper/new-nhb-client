@@ -1,7 +1,7 @@
 import { RootState } from '../../reducers';
 import { useSelector } from 'react-redux';
 
-import './MyWork.scss';
+import './styles/MyWork.scss';
 
 export default function MyWork() {
   const state = useSelector((state: RootState) => state.reducer);

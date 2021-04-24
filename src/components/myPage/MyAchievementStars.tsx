@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
-import './MyAchievementStars.scss';
+import './styles/MyAchievementStars.scss';
 import Star from './Star';
 
 export default function MyAchievementStars() {

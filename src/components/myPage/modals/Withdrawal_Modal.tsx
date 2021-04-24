@@ -1,4 +1,4 @@
-import './Withdrawal_Modal.scss';
+import './styles/Withdrawal_Modal.scss';
 
 interface Withdrawal_Modal_Props {
   withdrawalHandler: () => void;

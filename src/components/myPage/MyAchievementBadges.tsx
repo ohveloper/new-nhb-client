@@ -3,11 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { postBringUserInfoThunk } from '../../actions/actions';
 import { patchEditTagsT } from '../../api/patchEditTag';
 import { RootState } from '../../reducers';
-import './MyAchievementBadges.scss';
-
-interface PropsType {
-  badgeModalHandler: () => void;
-}
+import './styles/MyAchievementBadges.scss';
 
 export default function MyAchievementBadges() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -46,7 +42,7 @@ export default function MyAchievementBadges() {
     <div id="MyAchievementBadges">
       <div className="title-button">
         <div>MyAchievementBadges</div>
-        <button onClick={onSubmitHandler} className="select-badge">
+        <button onClick={onSubmitHandler} className="select-badge-button">
           뱃지선택
         </button>
       </div>
@@ -63,13 +59,15 @@ export default function MyAchievementBadges() {
                 <label form="my-tags" onClick={onClickHandler}>
                   <input type="radio" name="chk_badge" value={badge.tagId} />
                   <div key={badge.tagId} className="my-tags">
-                    <div className="my-tags-name">
+                    <div className="my-tags-name-container">
                       <div id={'tag-id-'.concat(String(badge.tagId))}>
                         {badge.tagId}
                       </div>
-                      <div className="tag-name">{badge.tagName}</div>
+                      <div className="my-tags-name">{badge.tagName}</div>
                     </div>
-                    <div>{badge.description}</div>
+                    <div className="my-tags-description">
+                      {badge.description}
+                    </div>
                   </div>
                 </label>
               </>
@@ -78,13 +76,16 @@ export default function MyAchievementBadges() {
               <label onClick={onClickHandler} defaultValue="1">
                 <input type="radio" name="chk_badge" value={badge.tagId} />
                 <div key={badge.tagId} className="pick-my-tag">
-                  <div className="pick-my-tags-name">
+                  <div className="pick-my-tags-name-container">
                     <div id={'tag-id-'.concat(String(badge.tagId))}>
                       {badge.tagId}
                     </div>
-                    <div className="tag-name">{badge.tagName}</div>
+                    <div className="pick-my-tags-name">{badge.tagName}</div>
                   </div>
-                  <div style={{ pointerEvents: 'none' }}>
+                  <div
+                    style={{ pointerEvents: 'none' }}
+                    className="pick-my-tags-description"
+                  >
                     {badge.description}
                   </div>
                 </div>

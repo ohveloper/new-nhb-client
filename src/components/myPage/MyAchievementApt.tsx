@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { postGetUserAptInfoThunk } from '../../actions/actions';
 import { RootState } from '../../reducers';
-import './MyAchievementApt.scss';
+import './styles/MyAchievementApt.scss';
+import SpaceBox from './SpaceBox';
 
 export default function MyAchievementApt() {
   const state = useSelector((state: RootState) => state.reducer);

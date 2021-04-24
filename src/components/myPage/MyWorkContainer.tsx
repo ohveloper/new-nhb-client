@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 import MyWork from './MyWork';
 
-import './MyWorkContainer.scss';
+import './styles/MyWorkContainer.scss';
 
 export default function MyWorkContainer() {
   const state = useSelector((state: RootState) => state.reducer);

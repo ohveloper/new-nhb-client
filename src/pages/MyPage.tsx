@@ -58,7 +58,7 @@ export default function MyPage() {
         )}
       </div>
       <div>
-        {state.userInfo.loading && <Loading />}
+        {state.userInfo.loading && 'now loading..'}
         {state.userInfo.error && 'sorry now Error'}
         {state.userInfo.data && (
           <MyInfoContainer myInfoModalHandler={myInfoModalHandler} />
@@ -66,7 +66,7 @@ export default function MyPage() {
       </div>
       <SpaceBox />
       <div>
-        {state.privateFeeds.loading && <Loading />}
+        {state.privateFeeds.loading && 'now loading..'}
         {state.privateFeeds.error && 'sorry now Error'}
         {state.privateFeeds.data && <MyWorkContainer />}
       </div>

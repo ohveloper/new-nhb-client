@@ -14,11 +14,9 @@ $border_color: #39444d;
   justify-content: space-between;
 }
 
-.select-badge {
+.select-badge-button {
   margin-right: 16px;
   cursor: pointer;
-  width: 80px;
-  height: 30px;
 }
 .title-button button:hover {
   background-color: lighten($color: $border_color, $amount: 50%);
@@ -52,7 +50,7 @@ $border_color: #39444d;
   }
 }
 
-.my-tags-name {
+.my-tags-name-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -61,10 +59,6 @@ $border_color: #39444d;
     text-align: center;
     width: 80px;
   }
-}
-
-.tag-name {
-  width: 80px;
 }
 
 .my-tags:hover {
@@ -93,7 +87,7 @@ $border_color: #39444d;
   }
 }
 
-.pick-my-tags-name {
+.pick-my-tags-name-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -102,6 +96,13 @@ $border_color: #39444d;
     text-align: center;
     width: 80px;
   }
+}
+
+.pick-my-tags-name {
+  width: 100px;
+}
+.pick-my-tags-description {
+  width: 200px;
 }
 
 .pick-my-tag:hover {
@@ -146,28 +147,39 @@ $border_color: #39444d;
   }
 }
 
-// .tag {
-//   content: url('../../img/New_Piskel.png');
-// }
+[type='radio'] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+[type='radio'] + div {
+  cursor: pointer;
+}
+[type='radio']:checked + div {
+  // outline: 5px solid gold;
+  border: 5px solid gold;
+  border-radius: 7px;
+}
 
 #tag-id-1 {
-  content: url('../../img/tag-id-1.png');
+  content: url('../../../img/tag-id-1.png');
 }
 #tag-id-2 {
-  content: url('../../img/tag-id-2.gif');
+  content: url('../../../img/tag-id-2.gif');
 }
 #tag-id-3 {
-  content: url('../../img/tag-id-3.gif');
+  content: url('../../../img/tag-id-3.gif');
 }
 #tag-id-4 {
-  content: url('../../img/tag-id-4.gif');
+  content: url('../../../img/tag-id-4.gif');
 }
 #tag-id-5 {
-  content: url('../../img/tag-id-5.png');
+  content: url('../../../img/tag-id-5.png');
 }
 #tag-id-6 {
-  content: url('../../img/tag-id-6.gif');
+  content: url('../../../img/tag-id-6.gif');
 }
 #tag-id-7 {
-  content: url('../../img/tag-id-7.gif');
+  content: url('../../../img/tag-id-7.gif');
 }

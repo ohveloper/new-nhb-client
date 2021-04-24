@@ -2,7 +2,7 @@ import React from 'react';
 import MyIntroduction from './MyIntroduction';
 import MyNickName from './MyNickName';
 import MyPhoto from './MyPhoto';
-import './MyInfoContainer.scss';
+import './styles/MyInfoContainer.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 

@@ -6,7 +6,7 @@ import { getLogoutT } from '../../../api/getLogout';
 import { patchEditUserInfoT } from '../../../api/patchEditUserInfo';
 import { RootState } from '../../../reducers';
 import Withdrawal_Modal from './Withdrawal_Modal';
-import './MyInfo_Modal.scss';
+import './styles/MyInfo_Modal.scss';
 
 interface MyIntroduction_ModalProps {
   myInfoModalHandler: () => void;
