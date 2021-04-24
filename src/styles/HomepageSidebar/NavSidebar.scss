@@ -1,0 +1,107 @@
+$border: #39444d;
+@keyframes flux {
+  0%,
+  100% {
+    text-shadow: 0 0 1rem #1041ff, 0 0 5rem #1041ff, 0 0 10vw #1041ff,
+      0 0 10vw #1041ff, 0 0 0.4vw #8bfdfe, 0.1vw 0.1vw 0.1vw #147280;
+    color: #28d7fe;
+  }
+  50% {
+    text-shadow: 0 0 0.5rem #082180, 0 0 1.5rem #082180, 0 0 5vw #082180,
+      0 0 5vw #082180, 0 0 0.2vw #082180, 0.1vw 0.1vw 0.1vw #0a3940;
+    color: #146c80;
+  }
+}
+
+#NavSidebarContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid $border;
+  margin: {
+    top: 0.5rem;
+    bottom: 0.5rem;
+  }
+  padding: {
+    right: 0.5rem;
+    left: 0.5rem;
+    bottom: 0.5rem;
+  }
+}
+
+#HomebuttonTxt,
+#SidebarTxt {
+  color: #426dfb;
+  font-size: 5vmin;
+  line-height: 2vw;
+  text-shadow: 0 0 3vw #2356ff;
+  animation: flux 2s linear infinite;
+  -moz-animation: flux 5s linear infinite;
+  -webkit-animation: flux 5s linear infinite;
+  -o-animation: flux 5s linear infinite;
+}
+
+// * {
+//     // border: 1px solid #39444D;
+// }
+
+// #Homebutton{
+//     // flex: 1 0 auto;
+//     // margin-left: 0.5rem;
+// }
+
+#Sidebar {
+  margin-right: 1rem;
+  // flex: 1 0 auto;
+  // z-index: -1;
+  // padding: 0.3rem;
+  // word-break:normal;
+  // white-space: inherit;
+}
+
+#NavSidebar {
+  height: 60vh;
+  width: 38vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 0.7rem;
+
+  div {
+    border-radius: 20px;
+  }
+}
+
+#NavSidebar > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  margin-bottom: 1rem;
+  border: 2px solid #677280;
+}
+
+#NavSidebar > div:last-of-type {
+  height: 4vh;
+  width: 20vw;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  border: 2px solid #677280;
+  border-radius: 0.3rem;
+}
+
+.panel {
+  background-color: #3c4754;
+  opacity: 0.8;
+  a:any-link {
+    color: white;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    font-size: 1.1rem;
+  }
+}

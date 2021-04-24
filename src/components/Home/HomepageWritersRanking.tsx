@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../reducers';
 import { getRankThunk } from '../../actions/actions';
+import '../../styles/HomepageSidebar/HomepageWritersRanking.scss';
 
 export default function HomepageWritersRanking() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -17,7 +18,7 @@ export default function HomepageWritersRanking() {
 
   return (
     <>
-      <div>
+      <div id="HomepageWritersRanking">
         실시간 인기 작가
         {loading
           ? `"N행시의 밤" 최고의 작가분들을 모셔오는 중`
