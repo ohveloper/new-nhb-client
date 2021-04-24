@@ -40,7 +40,6 @@ export default function PoemView({
         };
         return (
           <div id="poem-view-container">
-            <div>{feed.feedId}</div>
             <div key={feed.feedId} className="poem-view">
               {userId === Number(feed.user.userId) && (
                 <div className="del-btn-container">
