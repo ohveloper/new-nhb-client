@@ -19,6 +19,9 @@ export default function UploadTopic() {
     if (accessToken) {
       postUploadTopicT({ word, expiration }, accessToken)
         .then((x) => console.log(x))
+        .then((x) => {
+          window.location.reload();
+        })
         .catch((e) => console.log(e));
       setUploadTopic({
         ...uploadTopic,
@@ -38,19 +41,19 @@ export default function UploadTopic() {
 
   return (
     <div>
-      <h1>UploadTopic</h1>
+      <h1>토픽 업로드</h1>
       <input
         name="expiration"
         type="text"
         value={uploadTopic.expiration}
-        placeholder="2021-04-15 00:00:00.000"
+        placeholder="ex)2021-04-15"
         onChange={onChangeHandler}
       />
       <input
         name="word"
         value={uploadTopic.word}
         type="text"
-        placeholder="주말"
+        placeholder="ex)주말"
         onChange={onChangeHandler}
       />
       <button onClick={onClickHandler}>전송</button>

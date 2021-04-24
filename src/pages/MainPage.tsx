@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Content, postUploadFeedT } from '../api/postUploadFeed';
-import { Welcome } from '../reducers/reducer';
+import { UserFeeds, Welcome } from '../reducers/reducer';
 import { RootState } from '../reducers';
 import { postBringFeedT } from '../api/postBringFeeds';
 import { delRemoveFeedT, FeedId } from '../api/delRemoveFeed';
@@ -10,6 +10,7 @@ import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
 import MainpageUserRanking from '../components/Main/MainpageUserRanking';
+import ModalContainer from '../components/Main/modal/ModalContainer';
 import { Mobile, Tablet, PC } from '../lib/MediaQuery';
 
 export default function MainPage() {
@@ -54,14 +55,6 @@ export default function MainPage() {
         .catch((e) => console.log(e));
     }
   };
-  // const handlePostUploadFeed = async (content: Content) => {
-  //   const _accessToken = '';
-  //   if (state.accessToken) {
-  //     const accessToken = _accessToken.concat(state.accessToken);
-  //     await postUploadFeedT(content, accessToken)
-  //     await fetchData()
-  //   }
-  // };
 
   //? 게시글 삭제 함수
   const handleDelete = async (feedId: FeedId) => {
@@ -82,7 +75,6 @@ export default function MainPage() {
     const lastIdx = poem.data.userFeeds.length - 1;
     const lastItem = poem.data.userFeeds[lastIdx];
     const feedId = lastItem?.feedId;
-    // setIsLoading(true);
     //? 이전에 불러온 목록의 이전 글 20개를 가져온다
     //! state에 전달하지 않고 axios로 데이터 호출만 한다
     await postBringFeedT({
@@ -95,7 +87,6 @@ export default function MainPage() {
       setPoem({
         data: { userFeeds: poem.data.userFeeds.concat(response.userFeeds) },
       });
-      // setIsLoading(false);
     });
   };
 
@@ -124,14 +115,47 @@ export default function MainPage() {
     }
   }, [isLoading]);
 
-  //? 첫 렌더. deps = []
-  useEffect(() => {
-    fetchData().catch((e) => console.log(e));
-  }, []);
-
   useEffect(() => {
     window.addEventListener('scroll', infiniteScroll, true);
   }, [infiniteScroll]);
+
+  //? ===========================모달 핸들러=============================//
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [poemItem, setPoemItem] = useState<UserFeeds>({
+    feedId: 0,
+    user: { nickName: '', tag: '', userId: '' },
+    topic: '',
+    content: [],
+    likeNum: '',
+    commentNum: 0,
+    createdAt: '',
+    updatedAt: '',
+  });
+  //? 클릭한 글 조회
+  const fetchItem = async (topicId: number, limit: number, feedId: number) => {
+    await postBringFeedT({
+      topicId,
+      limit,
+      feedId,
+    })
+      .then((res) => {
+        setPoemItem(res.data.userFeeds[0]);
+      })
+      .then(() => {
+        setIsModalOpen(!isModalOpen);
+      });
+  };
+
+  const handleModal = (feedId: number) => {
+    const nextId = Number(feedId) + 1;
+
+    fetchItem(1, 20, nextId).catch((e) => console.log(e));
+  };
+
+  //? 모달 열고 닫을때 렌더
+  useEffect(() => {
+    fetchData().catch((e) => console.log(e));
+  }, [isModalOpen]);
 
   return (
     <>
@@ -139,33 +163,54 @@ export default function MainPage() {
       <div id="main-page">
         <Mobile>
           <div className="feed-container">
+            <>
+              {isModalOpen && (
+                <ModalContainer poemItem={poemItem} handleModal={handleModal} />
+              )}
+            </>
             <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
             <MainpagePoemList
               poem={poem}
               isLoading={isLoading}
               handleDelete={handleDelete}
+              handleModal={handleModal}
+              itemId={poemItem.feedId}
             />
           </div>
         </Mobile>
         <Tablet>
           <MainpageUserRanking />
           <div className="feed-container">
+            <>
+              {isModalOpen && (
+                <ModalContainer poemItem={poemItem} handleModal={handleModal} />
+              )}
+            </>
             <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
             <MainpagePoemList
               poem={poem}
               isLoading={isLoading}
               handleDelete={handleDelete}
+              handleModal={handleModal}
+              itemId={poemItem.feedId}
             />
           </div>
         </Tablet>
         <PC>
           <MainpageUserRanking />
           <div className="feed-container">
+            <>
+              {isModalOpen && (
+                <ModalContainer poemItem={poemItem} handleModal={handleModal} />
+              )}
+            </>
             <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
             <MainpagePoemList
               poem={poem}
               isLoading={isLoading}
               handleDelete={handleDelete}
+              handleModal={handleModal}
+              itemId={poemItem.feedId}
             />
           </div>
         </PC>

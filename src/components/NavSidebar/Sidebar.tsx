@@ -17,7 +17,9 @@ const Sidebar = () => {
   // onClick={() =>
   return (
     <div id="Sidebar">
-      <p onClick={() => setOpenPanel(true)}>NHB Nav</p>
+      <div id="SidebarTxt" onClick={() => setOpenPanel(true)}>
+        NHB Nav
+      </div>
       {/* SlidingPanel type = panel 방향 / isOpen = 열고 닫기 설정 / size = panel 크기 / noBackdrop = panel 뒤 클리 가능하도록 설정 */}
 
       <SlidingPanel
@@ -30,9 +32,7 @@ const Sidebar = () => {
           <div>{findName ? `Good Day ${findName}님` : `Good Day you`}</div>
           <div>{accessToken ? <NavMyPage /> : <NavLogin />}</div>
           <div>{accessToken ? <MyLog /> : <Induce />}</div>
-          <div onClick={() => setOpenPanel(false)}>
-            Click here to Close Sidebar
-          </div>
+          <div onClick={() => setOpenPanel(false)}>Close</div>
         </div>
       </SlidingPanel>
     </div>

@@ -34,7 +34,9 @@ export default function AdminUploadTag() {
             tagName: '',
             description: '',
           });
-          console.log(x);
+        })
+        .then((x) => {
+          window.location.reload();
         })
         .catch((e) => console.log(e));
     }
@@ -42,7 +44,7 @@ export default function AdminUploadTag() {
 
   return (
     <div>
-      <h1>AdminUploadTag</h1>
+      <h1>뱃지 업로드</h1>
       <input
         type="text"
         name="tagUrl"

@@ -20,7 +20,7 @@ export default function ModalCommentsInput({
     comment: '',
   });
 
-  const onCommentChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const onCommentChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setCommentVal({
       feedId: feedId,
       comment: event.target.value,
@@ -38,16 +38,18 @@ export default function ModalCommentsInput({
   };
 
   return (
-    <div id="modal-comments-input">
-      <h2>CommentInput</h2>
+    <div id="modal-comments-textarea">
       <form onSubmit={onCommentSubmit}>
-        <input
-          type="text"
-          onChange={onCommentChange}
-          value={commentVal.comment}
-          required={true}
-        />
-        <button type="submit">작성하기</button>
+        <div className="textarea-btn-container">
+          <textarea
+            onChange={onCommentChange}
+            value={commentVal.comment}
+            required={true}
+          />
+          <button type="submit" className="btn comment-btn">
+            댓글
+          </button>
+        </div>
       </form>
     </div>
   );

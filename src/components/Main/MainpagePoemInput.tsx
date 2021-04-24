@@ -48,6 +48,8 @@ const MainpagePoemInput = ({
       console.log('error!');
       setError(true);
     }
+
+    //? input 초기화
     setVal((): any => {
       const emptyArr = todaysTopic.fill('', 0, todaysTopic.length);
       return { ...val, content: emptyArr };
@@ -72,7 +74,6 @@ const MainpagePoemInput = ({
                 return (
                   <div key={key}>
                     <input
-                      className="poem-input"
                       type="text"
                       name={String(idx)}
                       value={val.content[idx]}

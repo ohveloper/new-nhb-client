@@ -7,8 +7,10 @@ export default function Homebutton() {
   return (
     <div id="Homebutton">
       <Link to="/">
-        <img id="logo" src={moon} alt="Home" />
-        <span>N행시의 밤</span>
+        <div id="HomebuttonTxt">
+          <img id="logo" src={moon} alt="Home" />
+          N행시의 밤
+        </div>
       </Link>
     </div>
   );

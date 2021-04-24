@@ -13,13 +13,11 @@ export default function MyAchievementApt() {
     if (userId) {
       postGetUserAptInfoThunk({ userId });
     }
+    const aptBox = document.getElementById('apt-container');
+    if (aptBox) {
+      aptBox.scrollLeft = aptBox.scrollWidth;
+    }
   }, [state]);
-
-  const aptBox = document.getElementById('apt-container');
-
-  if (aptBox) {
-    aptBox.scrollLeft = aptBox.scrollWidth;
-  }
 
   return (
     <div id="MyAchievementApt">

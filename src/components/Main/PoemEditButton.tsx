@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import '../../styles/mainPage.css';
 
 type PoemEditButtonProps = {
@@ -10,8 +12,8 @@ export default function PoemEditButton({ handleEdit }: PoemEditButtonProps) {
   };
 
   return (
-    <button className="poem-edit-button" onClick={onClickEdit}>
-      EDIT
-    </button>
+    <>
+      <FontAwesomeIcon icon={faEdit} onClick={onClickEdit} />
+    </>
   );
 }

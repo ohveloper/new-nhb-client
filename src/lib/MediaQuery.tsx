@@ -6,7 +6,7 @@ const Mobile = ({ children }: any) => {
 };
 
 const Tablet = ({ children }: any) => {
-  const isTablet = useMediaQuery({ minWidth: 769, maxWidth: 991 });
+  const isTablet = useMediaQuery({ minWidth: 769, maxWidth: 1023 });
   return isTablet ? children : null;
 };
 

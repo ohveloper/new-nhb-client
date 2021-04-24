@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 import AdminGetAllTopics from './AdminGetAllTopics';
@@ -7,7 +7,6 @@ import './AdminGetAllTopicsContainer.scss';
 export default function AdminGetAllTopicsContainer() {
   const state = useSelector((state: RootState) => state.reducer);
   const adminAllTopics = state.topicsAdmin.data?.data.topics;
-
   const [findTopic, setFindTopic] = useState('');
   const canNotUseTopic = document.getElementById('canNotUseTopic');
   const canUseTopic = document.getElementById('canUseTopic');
@@ -34,15 +33,23 @@ export default function AdminGetAllTopicsContainer() {
     }
     setFindTopic('');
   };
+
   return (
     <div>
-      <h1>AdminGetAllTopicsContainer</h1>
-      {adminAllTopics?.map((x) => (
-        <AdminGetAllTopics id={x.id} word={x.word} expiration={x.expiration} />
-      ))}
-      <input
+      <h1>모든 토픽</h1>
+      <div id="admin-topic-contaniner">
+        {adminAllTopics?.map((x) => (
+          <AdminGetAllTopics
+            id={x.id}
+            word={x.word}
+            expiration={x.expiration}
+            key={x.id}
+          />
+        ))}
+      </div>
+      {/* <input
         type="text"
-        placeholder="모든 토픽스 검색"
+        placeholder="모든 토픽 검색"
         onChange={onChangeHandler}
         value={findTopic}
       />
@@ -53,7 +60,7 @@ export default function AdminGetAllTopicsContainer() {
       </div>
       <div id="canNotUseTopic" className="hide-div">
         이미 사용하였습니다
-      </div>
+      </div> */}
     </div>
   );
 }
