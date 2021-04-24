@@ -21,7 +21,7 @@ export default function MyAchievementApt() {
 
   return (
     <div id="MyAchievementApt">
-      <div title="헬로">MyAchievementApt</div>
+      <div className="my_apt_title">내 활동 기록</div>
       {/* //? day 맵을 돌릴때 2021-04-01 을 만나면 push를 한다 */}
       <div className="apt-container" id="apt-container">
         {state.apartment.loading && 'now loading...'}

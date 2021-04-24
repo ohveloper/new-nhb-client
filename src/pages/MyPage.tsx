@@ -4,6 +4,7 @@ import { RootState } from '../reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getAllTagsThunk,
+  getTopicsThunk,
   postBringUserInfoThunk,
   postGetFrivateFeedsThunk,
   postGetUserAptInfoThunk,
@@ -38,6 +39,7 @@ export default function MyPage() {
         })
         .catch((e) => console.log(e));
       dispatch(getAllTagsThunk());
+      dispatch(getTopicsThunk());
       dispatch(postGetUserAptInfoThunk({ userId: userId }));
       dispatch(postBringUserInfoThunk({ userId }, accessToken));
     }

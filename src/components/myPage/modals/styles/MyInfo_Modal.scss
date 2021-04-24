@@ -1,22 +1,104 @@
-#my_introduction_modal_container {
-  position: absolute;
-  background-color: rgba(4, 11, 36, 0.9);
-  width: 100%;
-  height: 100vh;
-  opacity: 1;
+$border_color: #39444d;
 
-  z-index: 2;
-  flex-direction: column;
+#my_introduction_modal_container {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-start;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(47, 71, 97, 0.7);
+  z-index: 999;
+  opacity: 1;
+  padding: 20px;
+}
+#my_introduction_modal_container button {
+  cursor: pointer;
+  border-radius: 6px;
+}
+#my_introduction_modal_container input {
+  padding-left: 7px;
+  border-radius: 6px;
 }
 
 .my_introduction_modal_container {
-  background-color: white;
-  padding: 20px;
-  margin: 20px;
+  background-color: $border_color;
+  border-radius: 6px;
+  // padding: 20px;
+  border: 2px solid orange;
+  height: 400px;
   -webkit-transition: opacity 400ms ease-in;
   -moz-transition: opacity 400ms ease-in;
   transition: all 400ms ease-in;
-  border: 2px solid hotpink;
+}
+
+.my_introduction_modal_title_close_button {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.my_introduction_modal_x {
+  font-size: 30px;
+  cursor: pointer;
+}
+.my_introduction_modal_x:hover {
+  color: lighten($color: $border_color, $amount: 90%);
+}
+
+.my_introduction_name {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 20px 20px 20px;
+  border-bottom: 1px solid lighten($color: $border_color, $amount: 50%);
+}
+
+.my_introduction_info_input {
+  display: flex;
+  justify-content: space-between;
+  height: 25px;
+}
+
+.my_nickname {
+  margin-bottom: 5px;
+}
+
+.my_introduction_intro_container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-bottom: 1px solid lighten($color: $border_color, $amount: 50%);
+}
+
+.my_introduction_intro {
+  display: flex;
+  line-height: 20px;
+  margin-bottom: 5px;
+}
+
+.my_introduction_input {
+  height: 25px;
+  margin-bottom: 5px;
+}
+
+.my_introduction_intro_button {
+  height: 25px;
+}
+
+.my_introduction_photo {
+  display: flex;
+  padding: 20px;
+  border-bottom: 1px solid lighten($color: $border_color, $amount: 50%);
+  justify-content: space-between;
+  align-items: center;
+}
+.my_introduction_photo button {
+  height: 25px;
+}
+
+.bye_bye_container {
+  display: flex;
+  padding: 20px;
 }

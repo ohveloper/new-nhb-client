@@ -5,7 +5,7 @@
   flex-direction: column;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   #MyWork {
     font-size: 20px;
     padding: 24px 32px;
@@ -34,7 +34,7 @@
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (min-width: 1024px) {
   #MyWork {
     font-size: 20px;
     padding: 24px 32px;

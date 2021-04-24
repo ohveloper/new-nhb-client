@@ -9,7 +9,7 @@ export default function MyAchievementStars() {
 
   return (
     <div id="MyAchievementStars">
-      <div>MyAchievementStars</div>
+      <div className="my-starts-title">내가 받은 별</div>
       <div className="star-title-container-flexbox">
         <div className="star-title-container">
           <div className="star">별</div>
