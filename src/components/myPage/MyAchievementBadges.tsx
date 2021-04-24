@@ -41,9 +41,9 @@ export default function MyAchievementBadges() {
   return (
     <div id="MyAchievementBadges">
       <div className="title-button">
-        <div></div>
+        <div>MyAchievementBadges</div>
         <button onClick={onSubmitHandler} className="select-badge-button">
-          뱃지선택완료
+          선택완료
         </button>
       </div>
       <div className="i-have-some-tags">

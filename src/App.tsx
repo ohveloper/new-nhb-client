@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MyPage from './pages/MyPage';
 import Homepage from './pages/HomePage';
 import MainPage from './pages/MainPage';
-import ModalContainer from './components/Main/modal/ModalContainer';
 import './styles/styles.css';
 import ApiTestPage from './pages/ApiTestPage';
 import HomePage from './pages/HomePage';

@@ -27,7 +27,7 @@ $border_color: #39444d;
   background-color: $border_color;
   border-radius: 6px;
   // padding: 20px;
-  border: 2px solid orange;
+  border: 2px solid lighten($color: $border_color, $amount: 80%);
   height: 400px;
   -webkit-transition: opacity 400ms ease-in;
   -moz-transition: opacity 400ms ease-in;
