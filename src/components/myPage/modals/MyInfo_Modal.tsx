@@ -43,6 +43,7 @@ export default function MyInfo_Modal({
     if (accessToken) {
       delUserWithdrawalT(accessToken)
         .then((x) => {
+          console.log(x);
           getLogoutT()
             .then((x) => {
               console.log(x);
@@ -93,7 +94,10 @@ export default function MyInfo_Modal({
       )
         .then((x) =>
           //? 서버로 패치 끝나면 유저정보 새로 받아오고 디스패치
-          dispatch(postBringUserInfoThunk({ userId: null }, accessToken))
+          {
+            console.log(x);
+            dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
+          }
         )
         .catch((e) => console.log(e));
     }

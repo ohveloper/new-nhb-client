@@ -16,7 +16,6 @@ import { getTopicsT } from '../api/getTopics';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
 import SpaceBox from '../components/myPage/SpaceBox';
 import '../styles/Mypage.scss';
-import Loading from '../components/myPage/Loading';
 
 export default function MyPage() {
   const state = useSelector((state: RootState) => state.reducer);
