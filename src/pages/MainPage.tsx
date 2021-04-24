@@ -126,11 +126,6 @@ export default function MainPage() {
     }
   }, [isLoading]);
 
-  //? 첫 렌더. deps = []
-  useEffect(() => {
-    fetchData().catch((e) => console.log(e));
-  }, []);
-
   useEffect(() => {
     window.addEventListener('scroll', infiniteScroll, true);
   }, [infiniteScroll]);
@@ -168,6 +163,11 @@ export default function MainPage() {
     fetchItem(1, 20, nextId).catch((e) => console.log(e));
     console.log(isModalOpen);
   };
+
+  //? 첫 렌더. deps = []
+  useEffect(() => {
+    fetchData().catch((e) => console.log(e));
+  }, []);
 
   return (
     <>
