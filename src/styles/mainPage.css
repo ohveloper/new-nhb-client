@@ -2,6 +2,7 @@
 #main-page {
   height: 100%;
   display: flex;
+  justify-content: center;
 }
 #main-page ::-webkit-scrollbar {
   width: 5px;
@@ -10,24 +11,31 @@
 }
 
 /* feed */
+.feed-container {
+  display: flex;
+}
+.nav-open {
+  width: 300px;
+}
+
 @media only screen and (max-width: 767px) {
-  .feed-container {
+  .feed {
     width: 100%;
     max-width: 600px;
     min-width: 375px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
-  .feed-container {
+  .feed {
     width: 600px;
   }
 }
 @media only screen and (min-width: 1024px) {
-  .feed-container {
+  .feed {
     width: 600px;
   }
 }
-.feed-container {
+.feed {
   display: flex;
   flex-direction: column;
 }
