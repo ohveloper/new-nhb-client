@@ -3,29 +3,53 @@
   height: 100%;
   display: flex;
 }
+#main-page ::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 2px;
+  background-color: #798088;
+}
 
 /* feed */
-@media only screen and (min-width: 769px) and(max-width:991px) {
+@media only screen and (max-width: 767px) {
   .feed-container {
+    width: 100%;
     max-width: 600px;
+    min-width: 375px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .feed-container {
+    width: 600px;
   }
 }
 @media only screen and (min-width: 1024px) {
   .feed-container {
-    max-width: 600px;
+    width: 600px;
   }
 }
 .feed-container {
-  /* border: 3px teal solid; */
-  /* min-width: 375px; */
   display: flex;
   flex-direction: column;
 }
 
 /* poem input */
 #main-page-poem-input {
-  border-right: 1px #39444d solid;
-  border-left: 1px #39444d solid;
+  /* border-right: 1px #39444d solid; */
+  border-right: 1px white solid;
+  border-left: 1px white solid;
+  display: flex;
+}
+
+.edit-poem-input {
+  display: flex;
+  margin: 20px;
+}
+.edit-poem-input form {
+  width: 100%;
+}
+
+.my-pic-container {
   display: flex;
 }
 
@@ -39,6 +63,8 @@
 }
 
 #main-page-poem-input .word-input-container {
+  display: flex;
+  flex-direction: column;
   margin: 13px 0 5px 0;
   width: 80%;
 }
@@ -59,10 +85,11 @@
 #main-page-poem-input .word-input-container .input-btn-container {
   display: flex;
   flex-direction: column;
+  width: inherit;
 }
 
-#main-page-poem-input .word-input-container .input-container input {
-  /* min-width: 270px; */
+.input-container input {
+  min-width: 270px;
   width: 100%;
   background-color: transparent;
   outline: none;
@@ -93,7 +120,7 @@
   display: flex;
   flex-direction: column;
   margin: 20px 20px 0 20px;
-  border: 1px #39444d solid;
+  border: 1px gainsboro solid;
   border-radius: 20px;
   background-color: #192734;
   height: fit-content;
@@ -119,21 +146,6 @@
 }
 
 /* poem view */
-@media only screen and (max-width: 768px) {
-  .poem-content-container {
-  }
-}
-@media only screen and (min-width: 769px) and (max-width: 991) {
-  .poem-content-container {
-    max-width: 470px;
-  }
-}
-@media only screen and (min-width: 1024px) {
-  .poem-content-container {
-    max-width: 470px;
-  }
-}
-
 #main-page-poem-list {
   /* border: 3px solid skyblue; */
 }
@@ -142,8 +154,7 @@
 }
 
 #poem-view-container {
-  /* border: 3px rgb(255, 208, 0) solid; */
-  border: 1px #39444d solid;
+  border: 1px gainsboro solid;
 }
 #poem-view-container:hover {
   background-color: #192734;
@@ -156,6 +167,7 @@
 
 .pic-info-content-container {
   display: flex;
+  width: inherit;
 }
 .user-pic-container .user-pic {
   width: 50px;
@@ -192,10 +204,13 @@
 }
 
 .poem-content-container {
+  display: flex;
+  flex-direction: column;
+  width: inherit;
   max-width: 470px;
   margin: 10px 0 15px 0;
 }
-.poem-content {
+.poem-content-container .poem-content {
   width: inherit;
   color: #cdd9e5;
   font-size: 1rem;
@@ -317,11 +332,12 @@
 .modal {
   position: absolute;
   width: 600px;
-  height: 500px;
-  left: 20%;
-  top: 20%;
+  max-height: 550px;
+  left: 25%;
+  top: 5%;
   background-color: rgb(21, 32, 43);
   border-radius: 20px;
+  border: 1px gainsboro solid;
 }
 
 #modal-poem {
@@ -346,19 +362,33 @@
 #modal-comments-textarea .textarea-btn-container {
   display: flex;
   justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 #modal-comments-container textarea {
   width: 85%;
   min-height: 70px;
+  border-radius: 5px;
 }
 
 #modal-comments-view {
-  border: 3px green solid;
+  max-height: 230px;
+  overflow-y: scroll;
+}
+
+.modal-comment-item-container {
+  background-color: #39444d;
+  border-radius: 5px;
+  margin: 10px 0 10px 0;
+}
+
+.comment-del-btn {
+  padding: 5px;
 }
 
 .modal-comment-item {
-  border: 3px aquamarine solid;
+  padding: 0 10px 10px 10px;
 }
 
 /* button */
@@ -429,7 +459,7 @@
 }
 
 .gap {
-  border: 1px #39444d solid;
+  border: 1px gainsboro solid;
   background-color: #192734;
   height: 10px;
 }
