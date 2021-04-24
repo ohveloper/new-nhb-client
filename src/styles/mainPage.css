@@ -17,7 +17,6 @@
     min-width: 375px;
   }
 }
-
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .feed-container {
     width: 600px;
@@ -319,7 +318,8 @@
 /* modal */
 
 #modal-container {
-  /* border: 3px rgb(107, 0, 194) solid; */
+  display: flex;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -328,16 +328,33 @@
   background-color: rgba(47, 71, 97, 0.534);
   z-index: 999;
   opacity: 1;
+  padding: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+  .modal {
+    width: 100%;
+    max-width: 500px;
+    min-width: 375px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .modal {
+    width: 500px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .modal {
+    width: 500px;
+  }
 }
 .modal {
-  position: absolute;
-  width: 600px;
+  min-height: 500px;
   max-height: 550px;
-  left: 25%;
-  top: 5%;
   background-color: rgb(21, 32, 43);
   border-radius: 20px;
   border: 1px gainsboro solid;
+  box-shadow: 5px 10px 10px 1px rgba(0, 0, 0, 0.3);
 }
 
 #modal-poem {
@@ -373,7 +390,7 @@
 }
 
 #modal-comments-view {
-  max-height: 230px;
+  max-height: 34vh;
   overflow-y: scroll;
 }
 
