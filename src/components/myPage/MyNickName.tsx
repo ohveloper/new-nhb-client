@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
-import './MyNickName.scss';
+import './styles/MyNickName.scss';
 
 export default function MyNickName() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -8,7 +8,7 @@ export default function MyNickName() {
 
   return (
     <div id="MyNickName">
-      <div>{state.userInfo.data && nickName}</div>
+      <div className="myinfo-nickname">{state.userInfo.data && nickName}</div>
     </div>
   );
 }

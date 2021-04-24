@@ -1,5 +1,5 @@
 import React from 'react';
-import './SpaceBox.scss';
+import './styles/SpaceBox.scss';
 
 export default function SpaceBox() {
   return (

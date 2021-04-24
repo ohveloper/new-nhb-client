@@ -1,4 +1,4 @@
-import './MyPhoto.scss';
+import './styles/MyPhoto.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChild } from '@fortawesome/free-solid-svg-icons';
 

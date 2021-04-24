@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
-import './MyIntroduction.scss';
+import './styles/MyIntroduction.scss';
 
 export default function MyIntroduction() {
   const state = useSelector((state: RootState) => state.reducer);

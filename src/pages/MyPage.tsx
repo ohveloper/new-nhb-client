@@ -9,7 +9,6 @@ import {
   postGetUserAptInfoThunk,
 } from '../actions/actions';
 import { useEffect, useState } from 'react';
-import Badges_Modal from '../components/myPage/modals/Badges_Modal';
 import MyInfoContainer from '../components/myPage/MyInfoContainer';
 import MyInfo_Modal from '../components/myPage/modals/MyInfo_Modal';
 import { getTopicsT } from '../api/getTopics';
@@ -59,7 +58,6 @@ export default function MyPage() {
     <div id="MyPage">
       <NavSidebarContainer />
       <div>
-        {badgeModal && <Badges_Modal badgeModalHandler={badgeModalHandler} />}
         {myInfoModal && (
           <MyInfo_Modal myInfoModalHandler={myInfoModalHandler} />
         )}
@@ -81,9 +79,7 @@ export default function MyPage() {
       <div>
         {state.userInfo.loading && 'now loading...'}
         {state.userInfo.error && 'sorry now Error'}
-        {state.userInfo.data && (
-          <MyAchievementContainer badgeModalHandler={badgeModalHandler} />
-        )}
+        {state.userInfo.data && <MyAchievementContainer />}
       </div>
     </div>
   );

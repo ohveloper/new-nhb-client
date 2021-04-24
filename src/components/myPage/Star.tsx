@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
-import './Star.scss';
+import './styles/Star.scss';
 
 export default function Star() {
   const state = useSelector((state: RootState) => state.reducer);
