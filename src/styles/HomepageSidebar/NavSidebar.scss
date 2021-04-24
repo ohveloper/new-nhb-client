@@ -1,4 +1,5 @@
-$border: #39444d;
+@import '../index.scss';
+
 @keyframes flux {
   0%,
   100% {
@@ -18,10 +19,13 @@ $border: #39444d;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid $border;
+  border : {
+    bottom: 4px solid $border;
+    right: 2px solid $border;
+    left: 2px solid $border;
+  }
   margin: {
     top: 0.5rem;
-    bottom: 0.5rem;
   }
   padding: {
     right: 0.5rem;
@@ -33,13 +37,21 @@ $border: #39444d;
 #HomebuttonTxt,
 #SidebarTxt {
   color: #426dfb;
-  font-size: 5vmin;
+  font-size: 3vmin;
   line-height: 2vw;
   text-shadow: 0 0 3vw #2356ff;
   animation: flux 2s linear infinite;
   -moz-animation: flux 5s linear infinite;
   -webkit-animation: flux 5s linear infinite;
   -o-animation: flux 5s linear infinite;
+  margin: {
+    top: 1vmin;
+    bottom: 1vmin;
+  }
+
+  #logo {
+    height: 2vmin;
+  }
 }
 
 // * {
@@ -62,7 +74,6 @@ $border: #39444d;
 
 #NavSidebar {
   height: 60vh;
-  width: 38vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -74,34 +85,43 @@ $border: #39444d;
 }
 
 #NavSidebar > div {
+  font-size: 1.8vmin;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 10vh;
+  height: 10vmin;
   margin-bottom: 1rem;
-  border: 2px solid #677280;
+  z-index: 1;
 }
 
-#NavSidebar > div:last-of-type {
-  height: 4vh;
-  width: 20vw;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1rem;
-  border: 2px solid #677280;
-  border-radius: 0.3rem;
-}
+// #NavSidebar > div:last-of-type {
+//   height: 4vh;
+//   width: 20vw;
+//   justify-content: center;
+//   align-content: center;
+//   align-items: center;
+//   margin-bottom: 1rem;
+//   border: 2px solid #677280;
+//   border-radius: 0.3rem;
+// }
 
 .panel {
+  display: flex;
+  z-index: -1;
+  flex-direction: column;
+  height: auto;
   background-color: #3c4754;
+  border-radius: 1rem;
   opacity: 0.8;
+  padding: 2vmin;
   a:any-link {
     color: white;
   }
 
   a:hover {
-    text-decoration: underline;
-    font-size: 1.1rem;
+    text-decoration: none;
+    color: $mainYellow;
+    font-size: 2.5vmin;
   }
 }

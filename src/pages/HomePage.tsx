@@ -46,11 +46,11 @@ export default function HomePage() {
   return (
     <div id="Homepage">
       <NavSidebarContainer />
+      <div id="test"></div>
+      <HomepageWritersRanking />
       <Link to="/main">
         <div id="neon">N행시 작성하러 가기</div>
       </Link>
-      <div id="test"></div>
-      <HomepageWritersRanking />
       <div className="App">:sunglasses: </div>
       <ThanksTo />
       <Footer />

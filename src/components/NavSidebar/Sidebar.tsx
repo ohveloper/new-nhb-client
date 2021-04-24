@@ -25,7 +25,7 @@ const Sidebar = () => {
       <SlidingPanel
         type={'right'}
         isOpen={openPanel}
-        size={40}
+        size={30}
         noBackdrop={true}
       >
         <div id="NavSidebar">
