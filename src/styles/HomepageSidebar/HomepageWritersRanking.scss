@@ -1,10 +1,22 @@
 @import '../index.scss';
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 3;
+    transform: none;
+  }
+}
+
 #HomepageWritersRanking {
   width: auto;
   min-width: 172px;
   height: auto;
-  border: 2px solid $border;
+  // border: 2px solid $border;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -14,7 +26,9 @@
 #HomepageWritersRanking > div {
   align-items: center;
   margin-bottom: 2vmin;
+  animation: fadeIn 1s ease-in-out;
 }
+
 
 // #HomepageWritersRanking > div:first-child {
 //   margin-top: 2vmin;

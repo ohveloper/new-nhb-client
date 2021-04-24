@@ -1,11 +1,7 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../reducers';
 import { postSendAuthEmailT } from '../../api/postSendAuthEmail';
 
 function NavLogin() {
-  const state = useSelector((state: RootState) => state.reducer);
-  const accessToken = state.accessToken;
   const [inputValue, setInputValue] = useState('');
   const loginHandler = () => {
     postSendAuthEmailT({ email: inputValue })
@@ -38,10 +34,8 @@ function NavLogin() {
   return (
     <>
       <div>
-        <div className="loginContent">
-          {accessToken ? '로그인' : '회원가입'}
-        </div>
-        <div>이메일로 로그인 </div>
+        <div className="loginContent">로그인 / 회원가입</div>
+        {/* <div>이메일로 로그인 </div> */}
         <input
           className="inputId"
           type="text"
@@ -52,7 +46,7 @@ function NavLogin() {
         <button onClick={() => loginHandler()}>로그인</button>
       </div>
       <div>
-        <p onClick={() => googleOAuthHandler()}>google OAuth</p>
+        <p onClick={() => googleOAuthHandler()}>Google 간편 로그인</p>
       </div>
     </>
   );

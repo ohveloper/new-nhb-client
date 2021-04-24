@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
+import { getLogoutT } from '../../api/getLogout';
+
 import SlidingPanel from 'react-sliding-side-panel';
 import 'react-sliding-side-panel/lib/index.css';
 import NavMyPage from './NavMypage';
@@ -14,7 +16,15 @@ const Sidebar = () => {
   const accessToken = state.accessToken;
   const findName = state.userInfo.data?.data.userInfo.nickName;
   const [openPanel, setOpenPanel] = useState(false);
-  // onClick={() =>
+
+  const getLogoutHandler = () => {
+    getLogoutT()
+      .then((x) => {
+        console.log(x);
+        state.accessToken = '';
+      })
+      .catch((e) => console.log(e));
+  };
   return (
     <div id="Sidebar">
       <div id="SidebarTxt" onClick={() => setOpenPanel(true)}>
@@ -32,6 +42,7 @@ const Sidebar = () => {
           <div>{findName ? `Good Day ${findName}님` : `Good Day you`}</div>
           <div>{accessToken ? <NavMyPage /> : <NavLogin />}</div>
           <div>{accessToken ? <MyLog /> : <Induce />}</div>
+          <div onClick={getLogoutHandler}>{accessToken ? `LogOut` : <></>}</div>
           <div onClick={() => setOpenPanel(false)}>Close</div>
         </div>
       </SlidingPanel>
