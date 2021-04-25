@@ -311,4 +311,4 @@ export const getFakeDataAsync = createAsyncAction(
   FAKE_GUSET_API,
   FAKE_GUSET_SUCCESS,
   FAKE_GUSET_ERROR
-)<undefined, AccessToken, AxiosError>();
+)<undefined, InitState, AxiosError>();
