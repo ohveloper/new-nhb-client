@@ -5,7 +5,6 @@ import '../../styles/mainPage.css';
 
 type MainpagePoemListProps = {
   poem: Welcome;
-  isLoading: boolean;
   handleDelete: (feedId: FeedId) => void;
   handleModal: (feedId: number) => void;
   itemId: number;
@@ -13,7 +12,6 @@ type MainpagePoemListProps = {
 
 export default function MainpagePoemList({
   poem,
-  isLoading,
   handleDelete,
   handleModal,
   itemId,
@@ -22,7 +20,6 @@ export default function MainpagePoemList({
     <div id="main-page-poem-list">
       <MainpagePoemContainer
         poem={poem}
-        isLoading={isLoading}
         handleDelete={handleDelete}
         handleModal={handleModal}
         itemId={itemId}

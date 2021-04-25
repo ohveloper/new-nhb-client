@@ -7,7 +7,6 @@ import '../../styles/mainPage.css';
 
 type MainpagePoemContainerProps = {
   poem: Welcome;
-  isLoading: boolean;
   handleDelete: (feedId: FeedId) => void;
   handleModal: (feedId: number) => void;
   itemId: number;
@@ -15,7 +14,6 @@ type MainpagePoemContainerProps = {
 
 export default function MainpagePoemContainer({
   poem,
-  isLoading,
   handleDelete,
   handleModal,
   itemId,
@@ -31,7 +29,6 @@ export default function MainpagePoemContainer({
       <div className="gap"></div>
       <PoemView
         poem={poem}
-        isLoading={isLoading}
         handleDelete={handleDelete}
         handleModal={handleModal}
         itemId={itemId}

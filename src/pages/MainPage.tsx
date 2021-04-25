@@ -18,27 +18,39 @@ export default function MainPage() {
   const dispatch = useDispatch();
   console.log(state);
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isFetching, setIsFetching] = useState(true);
   const [poem, setPoem] = useState<Welcome>({ data: { userFeeds: [] } });
 
   // TODO: topicId를 api로 가져오기
   const topicId = 1;
-  const limit = 20;
+  const limit = 10;
 
-  const fetchData = async () => {
-    const _accessToken = '';
-    if (state.accessToken) {
-      const accessToken = _accessToken.concat(state.accessToken);
-      dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
+  //? 내 정보 가져오기
+  useEffect(() => {
+    const fetchUserData = () => {
+      const _accessToken = '';
+      if (state.accessToken) {
+        const accessToken = _accessToken.concat(state.accessToken);
+        dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
+      }
+    };
+    fetchUserData();
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', infiniteScroll, true);
+
+    return () => {
+      window.removeEventListener('scroll', infiniteScroll, true);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isFetching) {
+      return;
     }
-    await postBringFeedT({ topicId: topicId, limit: limit }).then((res) => {
-      const response = res.data;
-      setPoem({
-        data: { userFeeds: response.userFeeds },
-      });
-    });
-    setIsLoading(false);
-  };
+    fetchMoreData().catch((e) => console.log(e));
+  }, [isFetching]);
 
   //? 게시글 업로드 함수
   //? PoemInput 컴포넌트에 전달된다
@@ -67,59 +79,60 @@ export default function MainPage() {
     }
   };
 
-  //? 첫 렌더 이후 사용될 데이터 호출 함수
-  const fetchMoreData = async () => {
-    //? 세 번째 인자로 게시글 번호(feedId)를 받는다
-    //? feedId = 마지막 렌더 시점의 state에 저장된 게시글중 마지막 게시글의 feedId - 1
-    // TODO: 더이상 불러올 데이터가 없으면 어떻게 처리하나?
-    const lastIdx = poem.data.userFeeds.length - 1;
-    const lastItem = poem.data.userFeeds[lastIdx];
-    const feedId = lastItem?.feedId;
-    //? 이전에 불러온 목록의 이전 글 20개를 가져온다
-    //! state에 전달하지 않고 axios로 데이터 호출만 한다
-    await postBringFeedT({
-      topicId: topicId,
-      limit: limit,
-      feedId: feedId,
-    }).then((res) => {
+  //? 게시글 업데이트시 사용될 데이터 호출 함수
+  const fetchData = async () => {
+    await postBringFeedT({ topicId: topicId, limit: limit }).then((res) => {
       const response = res.data;
-      //? 현재 가지고 있는 글 목록에 더하기
       setPoem({
-        data: { userFeeds: poem.data.userFeeds.concat(response.userFeeds) },
+        data: { userFeeds: response.userFeeds },
       });
     });
   };
 
-  //? 스크롤 계산해서 데이터 불러오기
-  const infiniteScroll = useCallback(() => {
-    //? 화면 높이
-    let scrollHeight = Math.max(
-      document.documentElement.scrollHeight,
-      document.body.scrollHeight
-    );
-
-    //? 사용자가 보는 페이지와 전체페이지 최상단과의 차이
-    const scrollTop = Math.max(
-      document.documentElement.scrollTop,
-      document.body.scrollTop
-    );
-
-    //? 사용자가 현재 보고있는 높이
-    const clientHeight = document.documentElement.clientHeight;
-
-    //? 높이에서 -100을 해서 최하단에 내려오지 않아도 어느 정도 내려오면 데이터를 새로 받아오게 한다
-    scrollHeight -= 100;
-
-    if (scrollTop + clientHeight >= scrollHeight && isLoading === false) {
-      fetchMoreData().catch((e) => console.log(e));
+  //? 무한스크롤 구현시 사용될 데이터 호출 함수
+  const fetchMoreData = async () => {
+    //? feedId = 마지막 렌더 시점의 state에 저장된 게시글중 마지막 게시글의 feedId - 1
+    let lastIdx;
+    if (poem.data.userFeeds.length === 0) {
+      lastIdx = 0;
+    } else {
+      lastIdx = poem.data.userFeeds.length - 1;
     }
-  }, [isLoading]);
+    const lastItem = poem.data.userFeeds[lastIdx];
+    const feedId = lastItem?.feedId;
 
-  useEffect(() => {
-    window.addEventListener('scroll', infiniteScroll, true);
-  }, [infiniteScroll]);
+    await postBringFeedT({
+      topicId: topicId,
+      limit: limit,
+      feedId: feedId,
+    })
+      .then((res) => {
+        const response = res.data;
+        //? 현재 가지고 있는 글 목록에 더하기
+        setPoem({
+          data: {
+            userFeeds: [...poem.data.userFeeds, ...response.userFeeds],
+          },
+        });
+        setIsFetching(false);
+      })
+      .catch((err) => {
+        return Promise.reject(err);
+      });
+  };
 
-  //? ===========================모달 핸들러=============================//
+  //? 스크롤 계산해서 데이터 불러오기
+  const infiniteScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight &&
+      isFetching
+    ) {
+      setIsFetching(true);
+    }
+  };
+
+  //? ======================모달 핸들러========================//
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [poemItem, setPoemItem] = useState<UserFeeds>({
     feedId: 0,
@@ -171,7 +184,6 @@ export default function MainPage() {
             <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
             <MainpagePoemList
               poem={poem}
-              isLoading={isLoading}
               handleDelete={handleDelete}
               handleModal={handleModal}
               itemId={poemItem.feedId}
@@ -189,7 +201,6 @@ export default function MainPage() {
             <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
             <MainpagePoemList
               poem={poem}
-              isLoading={isLoading}
               handleDelete={handleDelete}
               handleModal={handleModal}
               itemId={poemItem.feedId}
@@ -208,7 +219,6 @@ export default function MainPage() {
             <MainpagePoemInput handlePostUploadFeed={handlePostUploadFeed} />
             <MainpagePoemList
               poem={poem}
-              isLoading={isLoading}
               handleDelete={handleDelete}
               handleModal={handleModal}
               itemId={poemItem.feedId}
