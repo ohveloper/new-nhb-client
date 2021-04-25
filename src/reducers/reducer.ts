@@ -959,30 +959,15 @@ export function reducer(
     case FAKE_GUSET_API:
       return {
         ...state,
-        login: {
-          loading: true,
-          error: null,
-          data: null,
-        },
       };
     case FAKE_GUSET_SUCCESS:
       return {
         ...state,
-        accessToken: action.payload.data.accessToken,
-        login: {
-          loading: false,
-          error: null,
-          data: action.payload.data,
-        },
+        ...fakedata,
       };
     case FAKE_GUSET_ERROR:
       return {
         ...state,
-        login: {
-          loading: false,
-          error: action.payload,
-          data: null,
-        },
       };
     case GET_ISSUE_ACCESS_TOKEN_SUCCESS:
       return {

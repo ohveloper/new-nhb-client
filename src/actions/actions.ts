@@ -287,10 +287,10 @@ export function getFakeDataThunk() {
     const { request, success, failure } = getFakeDataAsync;
     dispatch(request());
     try {
-      const rank = await getRankT();
-      // dispatch(success());
+      const logout = await getLogoutT();
+      dispatch(success(logout));
     } catch (e) {
-      // dispatch(failure());
+      dispatch(failure(e));
     }
   };
 }

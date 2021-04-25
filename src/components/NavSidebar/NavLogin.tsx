@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { getFakeDataThunk } from '../../actions/actions';
 import { postSendAuthEmailT } from '../../api/postSendAuthEmail';
 
 function NavLogin() {
   const [inputValue, setInputValue] = useState('');
   const [clientStatus, setClientStatus] = useState('로그인');
+  const dispatch = useDispatch();
   const loginHandler = () => {
     if (inputValue !== '') {
       postSendAuthEmailT({ email: inputValue })
@@ -37,7 +39,7 @@ function NavLogin() {
   };
 
   const guestLogin = () => {
-    getFakeDataThunk();
+    dispatch(getFakeDataThunk());
   };
 
   return (
