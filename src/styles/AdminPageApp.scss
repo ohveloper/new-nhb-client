@@ -6,7 +6,7 @@
 }
 
 #admin-header {
-  margin-bottom: 20px;
+  margin: 20px;
   font-size: 40px;
 }
 
@@ -46,7 +46,7 @@
 
 #admin-topic-card, #admin-tag-card {
   position: relative;
-  width: 250px;
+  width: auto;
   padding: 5px;
   border-bottom: 1px dotted #cdd9e5;
   line-height: 24px;
@@ -95,6 +95,10 @@
   display: none;
 }
 
+.admin-topic {
+  max-width: 592.67px;
+}
+
 #admin-topic-contaniner, #admin-tag-contaniner {
   width: auto;
   height: 300px;
@@ -117,7 +121,7 @@
   }
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1090px) {
   #admin-page-container {
     font-size: 8px;
   }
@@ -127,14 +131,21 @@
   }
 
   #admin-element {
-    width: 593px;
+    width: auto;
   }
-  .admin-topic {
-    width: 592.67px;
+  .admin-tag, .admin-topic {
+    width: 416.67px;
   }
 
   #admin-topic-card, #admin-tag-card {
     font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 915px) {
+  #admin-element {
+    width: auto;
+    justify-content: center;
   }
 }
 
@@ -143,32 +154,22 @@
     width: auto;
     justify-content: center;
   }
-  .admin-topic {
-    width: 469.67px;
-  }
-
-  .admin-tag {
-    width: auto
-  }
-
-  #admin-element input {
-    height: 16px;
-    font-size: 12px;
-  }
 }
 
 @media screen and (max-width: 511px) {
-  .admin-topic {
-    width: auto;
-  }
-
-  .admin-tag {
+  .admin-tag, .admin-topic{
     width: 334.67px
   }
 }
 
 @media screen and (max-width: 375px) {
-  .admin-tag {
-    width: auto;
+  .admin-tag, .admin-topic{
+    width: 320px;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .admin-tag, .admin-topic{
+    width: 280px;
   }
 }

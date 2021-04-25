@@ -9,7 +9,7 @@ export default function AdminGetallTagContainer() {
 
   return (
     <div>
-      <h1>모든벳지</h1>
+      <h1>모든 뱃지</h1>
       <div id="admin-tag-contaniner">
         {adminAllTags?.map((x) => {
           return (

@@ -23,7 +23,7 @@ export default function AdminUploadTag() {
   };
 
   const onClickHandler = (e: any) => {
-    if (!tagUrl || !tagName || !description) return;
+    if (!tagName || !description) return;
     e.preventDefault();
     if (accessToken) {
       AdminPostUploadTagT({ tagUrl, tagName, description }, accessToken)
@@ -47,13 +47,6 @@ export default function AdminUploadTag() {
       <h1>뱃지 업로드</h1>
       <input
         type="text"
-        name="tagUrl"
-        placeholder="tagUrl"
-        value={tagUrl}
-        onChange={onChangeHandler}
-      />
-      <input
-        type="text"
         name="tagName"
         placeholder="tagName"
         value={tagName}
@@ -66,6 +59,13 @@ export default function AdminUploadTag() {
         value={description}
         onChange={onChangeHandler}
       />
+      {/* <input
+        type="text"
+        name="tagUrl"
+        placeholder="tagUrl"
+        value={tagUrl}
+        onChange={onChangeHandler}
+      /> */}
       <button onClick={onClickHandler}>전송</button>
     </div>
   );
