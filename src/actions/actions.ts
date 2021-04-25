@@ -28,6 +28,8 @@ import {
   getOAuthAsync,
   getTopicsAsync,
   getAccessTokenAsync,
+  getLogOutAsync,
+  getFakeDataAsync,
 } from '../actions/actionTypes';
 import { postGetPrivateFeedsT, UserId } from '../api/postGetprivateFeeds';
 import { getAllTagsT } from '../api/getAllTags';
@@ -40,6 +42,7 @@ import { getAllTagsAdminT } from '../api/getAllTagsAdmin';
 import { getOAuthT } from '../api/getOAuth';
 import { getTopicsT } from '../api/getTopics';
 import { refreshTokenT } from '../api/refreshToken';
+import { getLogoutT } from '../api/getLogout';
 
 export function postLogInThunk(authCode: AuthCode) {
   return async (dispatch: Dispatch) => {
@@ -54,18 +57,18 @@ export function postLogInThunk(authCode: AuthCode) {
   };
 }
 
-// export function postLogOutThunk() {
-//   return async (dispatch: Dispatch) => {
-//     const { request, success, failure } = postLogInAsync;
-//     dispatch(request());
-//     try {
-//       const accessToken = await postLoginT();
-//       dispatch(success(accessToken));
-//     } catch (e) {
-//       dispatch(failure(e));
-//     }
-//   };
-// }
+export function getLogOutThunk() {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = getLogOutAsync;
+    dispatch(request());
+    try {
+      const logout = await getLogoutT();
+      dispatch(success(logout));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
 
 export function getOAuthThunk(accessToken: string) {
   return async (dispatch: Dispatch) => {
@@ -223,6 +226,7 @@ export function postGetUserAptInfoThunk(userId: postGetUserAptInfoTProps) {
     }
   };
 }
+
 export function getAllTopicsAdminThunk(accessToken: string) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = getAllTopicsAdminAsync;
@@ -274,6 +278,19 @@ export function patchEditTopicAdminThunk(
       dispatch(success(adminTags));
     } catch (e) {
       dispatch(failure(e));
+    }
+  };
+}
+
+export function getFakeDataThunk() {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = getFakeDataAsync;
+    dispatch(request());
+    try {
+      const rank = await getRankT();
+      // dispatch(success());
+    } catch (e) {
+      // dispatch(failure());
     }
   };
 }

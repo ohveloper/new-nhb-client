@@ -9,7 +9,9 @@ export default function Footer() {
   return (
     <div id="Footer">
       <div>{isAdmin ? <Link to="/apitest">API TEST</Link> : <div></div>}</div>
-      <div>TeamBBBA</div>
+      <div>
+        Team<span className="first">B</span>BBA
+      </div>
       <div>
         {isAdmin ? (
           <Link to="/admin">Admin</Link>

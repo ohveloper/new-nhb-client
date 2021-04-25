@@ -9,6 +9,7 @@ import {
   UserInfo,
   Data,
   AdminTags,
+  InitState,
 } from '../reducers/reducer';
 import { BringComment, Welcome } from '../reducers/reducer';
 import { FeedLike } from '../api/postLikeFeed';
@@ -193,6 +194,10 @@ export const PATCH_EDIT_TOPIC_ADMIN_SUCCESS = 'PATCH_EDIT_TOPIC_ADMIN_SUCCESS' a
 export const PATCH_EDIT_TOPIC_ADMIN_ERROR = 'PATCH_EDIT_TOPIC_ADMIN_ERROR' as const;
 
 //?===================================================
+//? edd FAKE GUSET DATA
+export const FAKE_GUSET_API = 'FAKE_GUSET_API' as const;
+export const FAKE_GUSET_SUCCESS = 'FAKE_GUSET_SUCCESS' as const;
+export const FAKE_GUSET_ERROR = 'FAKE_GUSET_ERROR' as const;
 
 export const getAccessTokenAsync = createAsyncAction(
   GET_ISSUE_ACCESS_TOKEN_API,
@@ -246,7 +251,7 @@ export const getLogOutAsync = createAsyncAction(
   GET_LOG_OUT_API,
   GET_LOG_OUT_SUCCESS,
   GET_LOG_OUT_ERROR
-)<undefined, AccessToken, AxiosError>();
+)<undefined, InitState, AxiosError>();
 
 export const postSignUpAsync = createAsyncAction(
   POST_SIGN_UP_API,
@@ -301,3 +306,9 @@ export const postGetUserAptInfoAsync = createAsyncAction(
   POST_GET_USER_APT_INFO_SUCCESS,
   POST_GET_USER_APT_INFO_ERROR
 )<undefined, Apt, AxiosError>();
+
+export const getFakeDataAsync = createAsyncAction(
+  FAKE_GUSET_API,
+  FAKE_GUSET_SUCCESS,
+  FAKE_GUSET_ERROR
+)<undefined, AccessToken, AxiosError>();
