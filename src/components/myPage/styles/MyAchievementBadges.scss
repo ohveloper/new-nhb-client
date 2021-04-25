@@ -12,10 +12,10 @@ $border_color: #39444d;
 .title-button {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 }
 
 .select-badge-button {
-  margin-right: 16px;
   cursor: pointer;
 }
 .title-button button:hover {
@@ -28,6 +28,14 @@ $border_color: #39444d;
 
 .i-dont-have-this-badges {
   padding: 12px 16px;
+}
+
+.i-dont-have-this-badges-title {
+  font-size: 16px;
+}
+
+.i-have-some-tags-title {
+  font-size: 16px;
 }
 
 .my-tags {
@@ -49,6 +57,10 @@ $border_color: #39444d;
     justify-content: center;
   }
 }
+
+// .my-tags-description {
+//   width: 10px;
+// }
 
 .my-tags-name-container {
   display: flex;
@@ -164,22 +176,36 @@ $border_color: #39444d;
 
 #tag-id-1 {
   content: url('../../../img/tag-id-1.png');
+  width: 30px;
+  height: 30px;
 }
 #tag-id-2 {
   content: url('../../../img/tag-id-2.gif');
+  width: 30px;
+  height: 30px;
 }
 #tag-id-3 {
   content: url('../../../img/tag-id-3.gif');
+  width: 30px;
+  height: 30px;
 }
 #tag-id-4 {
   content: url('../../../img/tag-id-4.gif');
+  width: 30px;
+  height: 30px;
 }
 #tag-id-5 {
   content: url('../../../img/tag-id-5.png');
+  width: 30px;
+  height: 30px;
 }
 #tag-id-6 {
   content: url('../../../img/tag-id-6.gif');
+  width: 30px;
+  height: 30px;
 }
 #tag-id-7 {
   content: url('../../../img/tag-id-7.gif');
+  width: 30px;
+  height: 30px;
 }

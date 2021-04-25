@@ -11,19 +11,15 @@ $border_color: #39444d;
   // border: 2px solid $border_color;
   margin: 10px;
   padding: 5px;
-  width: 57x;
+  width: 57px;
   height: 57px;
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.photo {
-  display: block;
-  font-size: 40px;
-  width: 57px;
-  height: 57px;
   border-radius: 50px;
   border: 2px gold solid;
+  justify-content: center;
+  width: 57px;
+  height: 57px;
+  font-size: 40px;
   color: aquamarine;
 }

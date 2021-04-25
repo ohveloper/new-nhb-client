@@ -10,7 +10,6 @@ export default function MyWorkContainer() {
 
   return (
     <div id="MyWorkContainer">
-      <div>MyWorkContainer</div>
       {state.privateFeeds.loading && 'now loading..'}
       {state.privateFeeds.error && 'now ERROR'}
       {state.privateFeeds.data ? <MyWork /> : '내 글이 없습니다'}

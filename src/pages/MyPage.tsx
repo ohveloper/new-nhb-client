@@ -51,32 +51,34 @@ export default function MyPage() {
   };
 
   return (
-    <div id="MyPage">
+    <>
       <NavSidebarContainer />
-      <div>
-        {myInfoModal && (
-          <MyInfo_Modal myInfoModalHandler={myInfoModalHandler} />
-        )}
+      <div id="MyPage">
+        <div>
+          {myInfoModal && (
+            <MyInfo_Modal myInfoModalHandler={myInfoModalHandler} />
+          )}
+        </div>
+        <div>
+          {state.userInfo.loading && 'now loading..'}
+          {state.userInfo.error && 'sorry now Error'}
+          {state.userInfo.data && (
+            <MyInfoContainer myInfoModalHandler={myInfoModalHandler} />
+          )}
+        </div>
+        <SpaceBox />
+        <div>
+          {state.privateFeeds.loading && 'now loading..'}
+          {state.privateFeeds.error && 'sorry now Error'}
+          {state.privateFeeds.data && <MyWorkContainer />}
+        </div>
+        <SpaceBox />
+        <div>
+          {state.userInfo.loading && 'now loading...'}
+          {state.userInfo.error && 'sorry now Error'}
+          {state.userInfo.data && <MyAchievementContainer />}
+        </div>
       </div>
-      <div>
-        {state.userInfo.loading && 'now loading..'}
-        {state.userInfo.error && 'sorry now Error'}
-        {state.userInfo.data && (
-          <MyInfoContainer myInfoModalHandler={myInfoModalHandler} />
-        )}
-      </div>
-      <SpaceBox />
-      <div>
-        {state.privateFeeds.loading && 'now loading..'}
-        {state.privateFeeds.error && 'sorry now Error'}
-        {state.privateFeeds.data && <MyWorkContainer />}
-      </div>
-      <SpaceBox />
-      <div>
-        {state.userInfo.loading && 'now loading...'}
-        {state.userInfo.error && 'sorry now Error'}
-        {state.userInfo.data && <MyAchievementContainer />}
-      </div>
-    </div>
+    </>
   );
 }
