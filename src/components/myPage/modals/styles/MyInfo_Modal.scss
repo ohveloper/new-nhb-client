@@ -1,5 +1,27 @@
 $border_color: #39444d;
 
+@keyframes slowMotion {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 3;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 3;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+.fade-out {
+  animation: feadOut 1s ease-in-out;
+}
+
 #my_introduction_modal_container {
   display: flex;
   justify-content: center;
@@ -13,6 +35,7 @@ $border_color: #39444d;
   z-index: 999;
   opacity: 1;
   padding: 20px;
+  animation: slowMotion 1s ease-in-out;
 }
 #my_introduction_modal_container button {
   cursor: pointer;
@@ -29,9 +52,7 @@ $border_color: #39444d;
   // padding: 20px;
   border: 2px solid lighten($color: $border_color, $amount: 80%);
   height: 400px;
-  -webkit-transition: opacity 400ms ease-in;
-  -moz-transition: opacity 400ms ease-in;
-  transition: all 400ms ease-in;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .my_introduction_modal_title_close_button {

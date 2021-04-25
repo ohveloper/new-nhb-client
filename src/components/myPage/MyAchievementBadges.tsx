@@ -41,7 +41,7 @@ export default function MyAchievementBadges() {
   return (
     <div id="MyAchievementBadges">
       <div className="title-button">
-        <div>MyAchievementBadges</div>
+        <div></div>
         <button onClick={onSubmitHandler} className="select-badge-button">
           선택완료
         </button>

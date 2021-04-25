@@ -16,6 +16,7 @@ import { UploadFeed } from '../api/postUploadFeed';
 import { SignUp } from '../api/postSignUp';
 import { OAuth } from '../api/getOAuth';
 import { AccessToken } from '../api/postLogin';
+import { accessTokenRefresh } from '../api/refreshToken';
 
 //? =============================MAIN============================= //
 //? send auth email
@@ -192,6 +193,12 @@ export const PATCH_EDIT_TOPIC_ADMIN_SUCCESS = 'PATCH_EDIT_TOPIC_ADMIN_SUCCESS' a
 export const PATCH_EDIT_TOPIC_ADMIN_ERROR = 'PATCH_EDIT_TOPIC_ADMIN_ERROR' as const;
 
 //?===================================================
+
+export const getAccessTokenAsync = createAsyncAction(
+  GET_ISSUE_ACCESS_TOKEN_API,
+  GET_ISSUE_ACCESS_TOKEN_SUCCESS,
+  GET_ISSUE_ACCESS_TOKEN_ERROR
+)<undefined, accessTokenRefresh, AxiosError>();
 
 export const patchEditTopicAdminAsync = createAsyncAction(
   PATCH_EDIT_TOPIC_ADMIN_API,
