@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { postBringUserInfoThunk } from '../../actions/actions';
+import { postBringUserInfoT } from '../../api/postBringUserInfo';
 import { RootState } from '../../reducers';
 
 function NavMyPage() {
@@ -9,11 +10,14 @@ function NavMyPage() {
   const dispatch = useDispatch();
   const accessToken = state.accessToken;
   useEffect(() => {
-    if (accessToken)
-      dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
-    return;
+    if (accessToken) {
+      postBringUserInfoT({ userId: null }, accessToken)
+        .then((x) =>
+          dispatch(postBringUserInfoThunk({ userId: null }, accessToken))
+        )
+        .catch((e) => console.log(e));
+    }
   }, []);
-
   return (
     <div>
       <div>Welcome back!</div>

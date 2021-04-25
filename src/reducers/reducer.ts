@@ -45,6 +45,10 @@ import {
   GET_OAUTH_API,
   GET_OAUTH_SUCCESS,
   GET_OAUTH_ERROR,
+  GET_OAUTH_ISSUE_ACCESS_TOKEN_API,
+  GET_ISSUE_ACCESS_TOKEN_API,
+  GET_ISSUE_ACCESS_TOKEN_SUCCESS,
+  GET_ISSUE_ACCESS_TOKEN_ERROR,
 } from '../actions/actionTypes';
 export interface InitState {
   userInfo: {
@@ -782,6 +786,12 @@ export function reducer(
           data: null,
         },
       };
+    case GET_ISSUE_ACCESS_TOKEN_SUCCESS:
+      return {
+        ...state,
+        accessToken: action.payload.data.accessToken,
+      };
+
     default:
       return state;
   }

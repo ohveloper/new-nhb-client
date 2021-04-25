@@ -27,6 +27,7 @@ import {
   patchEditTopicAdminAsync,
   getOAuthAsync,
   getTopicsAsync,
+  getAccessTokenAsync,
 } from '../actions/actionTypes';
 import { postGetPrivateFeedsT, UserId } from '../api/postGetprivateFeeds';
 import { getAllTagsT } from '../api/getAllTags';
@@ -38,6 +39,7 @@ import { getAllTopicsAdminT } from '../api/getAllTopicsAdmin';
 import { getAllTagsAdminT } from '../api/getAllTagsAdmin';
 import { getOAuthT } from '../api/getOAuth';
 import { getTopicsT } from '../api/getTopics';
+import { refreshTokenT } from '../api/refreshToken';
 
 export function postLogInThunk(authCode: AuthCode) {
   return async (dispatch: Dispatch) => {
@@ -227,6 +229,18 @@ export function getAllTagsAdminThunk(accessToken: string) {
     try {
       const adminTags = await getAllTagsAdminT(accessToken);
       dispatch(success(adminTags));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
+export function refreshTokenThunk() {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = getAccessTokenAsync;
+    dispatch(request());
+    try {
+      const accessToken = await refreshTokenT();
+      dispatch(success(accessToken));
     } catch (e) {
       dispatch(failure(e));
     }
