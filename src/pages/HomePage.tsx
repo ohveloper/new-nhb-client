@@ -10,6 +10,8 @@ import ThanksTo from '../components/Home/ThanksTo';
 import Footer from '../components/Home/Footer';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
 import '../styles/HomepageSidebar/Homepage.scss';
+import '../styles/index.scss';
+
 import Introduce from '../components/Home/Introduce';
 
 export default function HomePage() {
@@ -18,28 +20,29 @@ export default function HomePage() {
   const userAuthCode: string = url.slice(url.indexOf('=') + 1);
 
   //? 링크를 통해 들어온 client 구분하기 위한 함수
-  async function checkClient() {
+  function checkClient() {
     //? 회원가입한 유저
     if (url.includes('login')) {
-      console.log('loginT');
-
-      // eslint-disable-next-line @typescript-eslint/await-thenable
-      await dispatch(postLogInThunk({ authCode: userAuthCode }));
-
-      // ? 배포용 리다이렉트
-      window.location.assign('https://nhbomb.tk/');
+      setTimeout(() => {
+        dispatch(postLogInThunk({ authCode: userAuthCode }));
+      }, 1000);
+      setTimeout(() => {
+        // ? 배포용 리다이렉트
+        window.location.assign('https://nhbomb.tk');
+      }, 1001);
 
       // ? 테스트용 리다이렉트
       // window.location.assign('https://localhost:3000/');
     }
     //? 회원가입 유저
     else if (url.includes('signup')) {
-      console.log('signup');
-      // eslint-disable-next-line @typescript-eslint/await-thenable
-      await dispatch(postSignUpThunk({ authCode: userAuthCode }));
-
-      // ? 배포용 리다이렉트
-      window.location.assign('https://nhbomb.tk/');
+      setTimeout(() => {
+        dispatch(postSignUpThunk({ authCode: userAuthCode }));
+      }, 1000);
+      setTimeout(() => {
+        // ? 배포용 리다이렉트
+        window.location.assign('https://nhbomb.tk');
+      }, 1001);
 
       // ? 테스트용 리다이렉트
       // window.location.assign('https://localhost:3000/');
@@ -53,12 +56,13 @@ export default function HomePage() {
 
       const accessToken = url.hash.slice(first + 2, last);
 
-      // eslint-disable-next-line @typescript-eslint/await-thenable
-      await dispatch(getOAuthThunk(accessToken));
-
-      // ? 배포용 리다이렉트
-      window.location.assign('https://nhbomb.tk/');
-
+      setTimeout(() => {
+        dispatch(getOAuthThunk(accessToken));
+      }, 1000);
+      setTimeout(() => {
+        // ? 배포용 리다이렉트
+        window.location.assign('https://nhbomb.tk');
+      }, 1001);
       // ? 테스트용 리다이렉트
       // window.location.assign('https://localhost:3000/');
     }

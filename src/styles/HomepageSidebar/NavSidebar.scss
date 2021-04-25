@@ -1,18 +1,6 @@
 @import '../index.scss';
 
-@keyframes flux {
-  0%,
-  100% {
-    text-shadow: 0 0 1rem #1041ff, 0 0 5rem #1041ff, 0 0 10vw #1041ff,
-      0 0 10vw #1041ff, 0 0 0.4vw #8bfdfe, 0.1vw 0.1vw 0.1vw #147280;
-    color: #28d7fe;
-  }
-  50% {
-    text-shadow: 0 0 0.5rem #082180, 0 0 1.5rem #082180, 0 0 5vw #082180,
-      0 0 5vw #082180, 0 0 0.2vw #082180, 0.1vw 0.1vw 0.1vw #0a3940;
-    color: #146c80;
-  }
-}
+
 
 #NavSidebarContainer {
   display: flex;
@@ -54,22 +42,9 @@
   }
 }
 
-// * {
-//     // border: 1px solid #39444D;
-// }
-
-// #Homebutton{
-//     // flex: 1 0 auto;
-//     // margin-left: 0.5rem;
-// }
 
 #Sidebar {
   margin-right: 1rem;
-  // flex: 1 0 auto;
-  // z-index: -1;
-  // padding: 0.3rem;
-  // word-break:normal;
-  // white-space: inherit;
 }
 
 #NavSidebar {
@@ -96,6 +71,7 @@
 
 .panel {
   display: flex;
+  flex-wrap: wrap;
   z-index: -1;
   flex-direction: column;
   height: auto;
@@ -103,6 +79,7 @@
   opacity: 0.8;
   padding: 2vmin;
   align-items: center;
+  justify-items: center;
   a:any-link {
     color: white;
   }
@@ -112,4 +89,29 @@
     color: $mainYellow;
     font-size: 2.5vmin;
   }
+}
+
+.flux {
+  animation: flux 6s linear infinite;
+}
+
+
+.loginContent {
+  align-content: center;
+}
+
+#loginContainer{
+  margin: 1vmin;
+  display: flex;
+  flex-wrap: wrap;
+  padding:2vmin;
+}
+
+input {
+  width: 20vw;
+  height: 2vh;
+}
+
+#induce > div{
+  margin-bottom: 1vmax;
 }

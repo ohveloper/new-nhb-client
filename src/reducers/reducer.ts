@@ -45,10 +45,16 @@ import {
   GET_OAUTH_API,
   GET_OAUTH_SUCCESS,
   GET_OAUTH_ERROR,
+  GET_LOG_OUT_API,
+  GET_LOG_OUT_ERROR,
+  GET_LOG_OUT_SUCCESS,
   GET_OAUTH_ISSUE_ACCESS_TOKEN_API,
   GET_ISSUE_ACCESS_TOKEN_API,
   GET_ISSUE_ACCESS_TOKEN_SUCCESS,
   GET_ISSUE_ACCESS_TOKEN_ERROR,
+  FAKE_GUSET_API,
+  FAKE_GUSET_SUCCESS,
+  FAKE_GUSET_ERROR,
 } from '../actions/actionTypes';
 export interface InitState {
   userInfo: {
@@ -123,6 +129,156 @@ export interface InitState {
     data: AdminTags | null;
   };
 }
+const fakedata: InitState = {
+  userInfo: {
+    loading: false,
+    error: null,
+    data: {
+      data: {
+        userInfo: {
+          userId: 999,
+          avatarUrl: '',
+          nickName: 'Guest',
+          introduction: 'TeamBBBA',
+          tags: [],
+          userLikeNum: 0,
+          createdAt: '2021-04-25T22:21:48.000Z',
+          updatedAt: '2021-04-25T22:23:06.000Z',
+        },
+      },
+    },
+  },
+  userFeeds: {
+    loading: false,
+    error: {
+      message: 'Network Error',
+      name: 'Error',
+      stack:
+        'Error: Network Error\n    at e.exports (https://nhbomb.tk/static/js/2.a6d6453b.chunk.js:2:116296)\n    at XMLHttpRequest.p.onerror (https://nhbomb.tk/static/js/2.a6d6453b.chunk.js:2:115266)',
+    },
+    data: null,
+  },
+  likeFeed: { loading: false, error: null, data: null },
+  rank: {
+    loading: false,
+    error: null,
+    data: {
+      data: {
+        rank: [
+          { userId: 6, nickName: 'NBH TEST!', like: 1, tag: '' },
+          { userId: 6, nickName: 'By TeamBBBA!', like: 1, tag: '' },
+        ],
+      },
+    },
+  },
+  uploadFeed: { loading: false, error: null, data: null },
+  comments: { loading: false, error: null, data: null },
+  accessToken:
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjE5MzgwNDE2LCJleHAiOjE2MTkzOTg0MTZ9.csKMh2_2GalH_8k62WpYZbyqm1gU6UMgYRQ_6NVMDtw',
+  signup: { loading: false, error: null, data: null },
+  login: {
+    loading: false,
+    error: null,
+    data: {
+      accessToken:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjE5MzgwNDE2LCJleHAiOjE2MTkzOTg0MTZ9.csKMh2_2GalH_8k62WpYZbyqm1gU6UMgYRQ_6NVMDtw',
+    },
+  },
+  privateFeeds: {
+    loading: false,
+    error: null,
+    data: {
+      data: {
+        userFeeds: [
+          {
+            feedId: 17,
+            user: { userId: 7, nickName: 'Qukka', tag: 1 },
+            topic: '여행',
+            content: ['여기서 먹고 저기서 먹고', '행복하니까 됐어 @Choi_dol'],
+            likeNum: 0,
+            commentNum: 0,
+            createdAt: '2021-04-25T22:25:29.000Z',
+            updatedAt: '2021-04-25T22:25:29.000Z',
+          },
+        ],
+      },
+    },
+  },
+  topics: {
+    loading: false,
+    error: null,
+    data: {
+      data: {
+        topics: [
+          { id: 1, word: '여행', expiration: '2021-04-26T00:00:00.000Z' },
+        ],
+      },
+    },
+  },
+  tags: {
+    loading: false,
+    error: null,
+    data: {
+      data: {
+        tags: [
+          {
+            id: 1,
+            tagName: '어서오시오',
+            description: '가입 축하 뱃지',
+            tagUrl: 'null',
+          },
+          {
+            id: 2,
+            tagName: '대박사건',
+            description: '별 100개를 받음',
+            tagUrl: 'null',
+          },
+          {
+            id: 3,
+            tagName: '1등',
+            description: '별 랭킹 1위 뱃지',
+            tagUrl: 'null',
+          },
+          {
+            id: 4,
+            tagName: '2등',
+            description: '별 랭킹 2위 뱃지',
+            tagUrl: 'null',
+          },
+          {
+            id: 5,
+            tagName: '3등',
+            description: '별 랭킹 3위 뱃지',
+            tagUrl: 'null',
+          },
+          {
+            id: 6,
+            tagName: '노잼',
+            description: '재미없음....',
+            tagUrl: 'null',
+          },
+          {
+            id: 7,
+            tagName: 'TMI',
+            description: 'TMITMITMITMITMITMI',
+            tagUrl: 'null',
+          },
+        ],
+      },
+    },
+  },
+  apartment: {
+    loading: false,
+    error: null,
+    data: {
+      data: {
+        apartment: [[{ date: '2020-05-03', feedNum: null }]],
+      },
+    },
+  },
+  topicsAdmin: { loading: false, error: null, data: null },
+  adminTags: { loading: false, error: null, data: null },
+};
 
 export interface AdminTags {
   data: {
@@ -596,6 +752,20 @@ export function reducer(
           data: null,
         },
       };
+    case GET_LOG_OUT_API:
+      return {
+        ...state,
+      };
+    case GET_LOG_OUT_SUCCESS:
+      return {
+        ...state,
+        ...initState,
+        ...state.rank,
+      };
+    case GET_LOG_OUT_ERROR:
+      return {
+        ...state,
+      };
     case GET_OAUTH_API:
       return {
         ...state,
@@ -781,6 +951,34 @@ export function reducer(
       return {
         ...state,
         adminTags: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+    case FAKE_GUSET_API:
+      return {
+        ...state,
+        login: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case FAKE_GUSET_SUCCESS:
+      return {
+        ...state,
+        accessToken: action.payload.data.accessToken,
+        login: {
+          loading: false,
+          error: null,
+          data: action.payload.data,
+        },
+      };
+    case FAKE_GUSET_ERROR:
+      return {
+        ...state,
+        login: {
           loading: false,
           error: action.payload,
           data: null,

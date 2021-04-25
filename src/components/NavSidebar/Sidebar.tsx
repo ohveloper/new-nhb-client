@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../reducers';
-import { getLogoutT } from '../../api/getLogout';
 
 import SlidingPanel from 'react-sliding-side-panel';
 import 'react-sliding-side-panel/lib/index.css';
@@ -10,22 +9,27 @@ import NavLogin from './NavLogin';
 import MyLog from './Mylog';
 import Induce from './Induce';
 import '../../styles/HomepageSidebar/NavSidebar.scss';
+import { getLogOutThunk } from '../../actions/actions';
 
 const Sidebar = () => {
   const state = useSelector((state: RootState) => state.reducer);
   const accessToken = state.accessToken;
   const findName = state.userInfo.data?.data.userInfo.nickName;
   const [openPanel, setOpenPanel] = useState(false);
+  const [logoutTxt, setLogoutTxt] = useState('Logout');
+
+  const dispatch = useDispatch();
 
   const getLogoutHandler = () => {
-    getLogoutT()
-      .then((x) => {
-        console.log(x);
-        useSelector((state: RootState) => state.reducer);
-
-        window.location.assign('https://localhost:3000');
-      })
-      .catch((e) => console.log(e));
+    // dispatch(getLogOutThunk());
+    setLogoutTxt('정상적으로 로그아웃 되었습니다.');
+    setTimeout(() => {
+      setOpenPanel(false);
+      dispatch(getLogOutThunk());
+    }, 1000);
+    setTimeout(() => {
+      window.location.assign('https://nhbomb.tk');
+    }, 1001);
   };
   return (
     <div id="Sidebar">
@@ -41,10 +45,14 @@ const Sidebar = () => {
         noBackdrop={true}
       >
         <div id="NavSidebar">
-          <div>{findName ? `Good Day ${findName}님` : `Good Day you`}</div>
+          <div className="hi flux">
+            {findName ? `Good Day ${findName}님` : `Good Day you`}
+          </div>
           <div>{accessToken ? <NavMyPage /> : <NavLogin />}</div>
           <div>{accessToken ? <MyLog /> : <Induce />}</div>
-          <div onClick={getLogoutHandler}>{accessToken ? `LogOut` : <></>}</div>
+          <div onClick={getLogoutHandler}>
+            {accessToken ? logoutTxt : <></>}
+          </div>
           <div onClick={() => setOpenPanel(false)}>Close</div>
         </div>
       </SlidingPanel>
