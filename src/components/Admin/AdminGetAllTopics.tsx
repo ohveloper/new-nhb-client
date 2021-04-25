@@ -39,6 +39,7 @@ export default function AdminGetAllTopics({
         })
         .catch((e) => {
           alert('만료날짜가 지났거나 이미 있는 단어입니다.');
+          window.location.reload();
         });
     } else {
       const temp = document.querySelectorAll('.admin-topic-edit');
