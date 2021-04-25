@@ -242,6 +242,12 @@ export const postLogInAsync = createAsyncAction(
   POST_LOG_IN_ERROR
 )<undefined, AccessToken, AxiosError>();
 
+export const getLogOutAsync = createAsyncAction(
+  GET_LOG_OUT_API,
+  GET_LOG_OUT_SUCCESS,
+  GET_LOG_OUT_ERROR
+)<undefined, AccessToken, AxiosError>();
+
 export const postSignUpAsync = createAsyncAction(
   POST_SIGN_UP_API,
   POST_SIGN_UP_SUCCESS,

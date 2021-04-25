@@ -54,6 +54,19 @@ export function postLogInThunk(authCode: AuthCode) {
   };
 }
 
+// export function postLogOutThunk() {
+//   return async (dispatch: Dispatch) => {
+//     const { request, success, failure } = postLogInAsync;
+//     dispatch(request());
+//     try {
+//       const accessToken = await postLoginT();
+//       dispatch(success(accessToken));
+//     } catch (e) {
+//       dispatch(failure(e));
+//     }
+//   };
+// }
+
 export function getOAuthThunk(accessToken: string) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = getOAuthAsync;
