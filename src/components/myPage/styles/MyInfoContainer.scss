@@ -7,6 +7,7 @@ $orange: #f8ab20;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 12px;
   button {
     position: relative;
     width: 30px;
@@ -18,7 +19,6 @@ $orange: #f8ab20;
 }
 .set-button {
   color: $orange;
-  margin-right: 14px;
   margin-top: 5px;
   font-size: 30px;
   :hover {

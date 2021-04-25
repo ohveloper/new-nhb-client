@@ -8,6 +8,7 @@ export default function MyWork() {
 
   return (
     <div id="MyWork">
+      <div className="mywork-title">내 활동</div>
       {state.privateFeeds.loading && 'now loading..'}
       {state.privateFeeds.error && 'now error..'}
       {state.privateFeeds.data &&

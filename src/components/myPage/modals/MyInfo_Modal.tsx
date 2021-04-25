@@ -160,7 +160,7 @@ export default function MyInfo_Modal({
     <div id="my_introduction_modal_container" onClick={handleModalClose}>
       <div className="my_introduction_modal_container">
         <div className="my_introduction_modal_title_close_button">
-          <h1>내 정보 수정</h1>
+          <div className="my_introduction_modal_title">내 정보 수정</div>
           <div className="my_introduction_modal_x" onClick={myInfoModalHandler}>
             {setIcon}
           </div>

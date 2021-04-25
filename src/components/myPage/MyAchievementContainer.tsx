@@ -7,15 +7,12 @@ import SpaceBox from './SpaceBox';
 export default function MyAchievementContainer() {
   return (
     <div id="MyAchievementContainer">
-      <div>MyAchievementContainer</div>
-      <div>
-        <MyAchievementBadges />
-        <SpaceBox />
-        <MyAchievementApt />
-        <SpaceBox />
-        <MyAchievementStars />
-        <SpaceBox />
-      </div>
+      <MyAchievementBadges />
+      <SpaceBox />
+      <MyAchievementApt />
+      <SpaceBox />
+      <MyAchievementStars />
+      <SpaceBox />
     </div>
   );
 }

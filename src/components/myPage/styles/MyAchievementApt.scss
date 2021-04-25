@@ -58,15 +58,19 @@ $border_color: #39444d;
 .apt-light-none:hover {
   cursor: default;
   .apt-hide-info {
+    top: 15px;
+    right: 100px;
     display: flex;
-    width: 110px;
+    width: 100px;
     height: 20px;
-    justify-content: flex-end;
+    font-size: 16px;
+    justify-content: center;
     flex-direction: row;
+    align-items: center;
     border: 1px hotpink solid;
     position: relative;
     z-index: 999;
-    padding-right: 5px;
+    animation: fadeIn 0.5s ease-in-out;
   }
   border-right: 1px solid hotpink;
   border-bottom: 1px solid hotpink;
@@ -83,15 +87,19 @@ $border_color: #39444d;
 .apt-light:hover {
   cursor: default;
   .apt-hide-info {
+    top: 15px;
+    right: 100px;
     display: flex;
-    width: 110px;
+    width: 100px;
     height: 20px;
-    justify-content: flex-end;
+    font-size: 16px;
+    justify-content: center;
     flex-direction: row;
+    align-items: center;
     border: 1px hotpink solid;
     position: relative;
     z-index: 999;
-    padding-right: 5px;
+    animation: fadeIn 0.5s ease-in-out;
   }
   border-right: 1px solid hotpink;
   border-bottom: 1px solid hotpink;
