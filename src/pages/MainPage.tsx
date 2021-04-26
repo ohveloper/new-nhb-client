@@ -6,6 +6,7 @@ import { RootState } from '../reducers';
 import { postBringFeedT } from '../api/postBringFeeds';
 import { delRemoveFeedT, FeedId } from '../api/delRemoveFeed';
 import { postBringUserInfoThunk } from '../actions/actions';
+import { postLikeFeedT, LikeFeedId } from '../api/postLikeFeed';
 import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
 import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
@@ -70,12 +71,22 @@ export default function MainPage() {
 
   //? 게시글 삭제 함수
   const handleDelete = async (feedId: FeedId) => {
-    console.log(feedId);
     const _accessToken = '';
     if (state.accessToken) {
       const accessToken = _accessToken.concat(state.accessToken);
       await delRemoveFeedT(feedId, accessToken);
       await fetchData();
+    }
+  };
+
+  //? =======================Like Handler=====================//
+  const handlePostLikeFeed = async (feedId: LikeFeedId) => {
+    const _accessToken = '';
+    if (state.accessToken) {
+      const accessToken = _accessToken.concat(state.accessToken);
+      await postLikeFeedT(feedId, accessToken);
+      await fetchData();
+      console.log('clicked');
     }
   };
 
@@ -132,7 +143,7 @@ export default function MainPage() {
     }
   };
 
-  //? ======================모달 핸들러========================//
+  //? =====================Modal Handler=====================//
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [poemItem, setPoemItem] = useState<UserFeeds>({
     feedId: 0,
@@ -187,6 +198,7 @@ export default function MainPage() {
               handleDelete={handleDelete}
               handleModal={handleModal}
               itemId={poemItem.feedId}
+              handlePostLikeFeed={handlePostLikeFeed}
             />
           </div>
         </Mobile>
@@ -204,6 +216,7 @@ export default function MainPage() {
               handleDelete={handleDelete}
               handleModal={handleModal}
               itemId={poemItem.feedId}
+              handlePostLikeFeed={handlePostLikeFeed}
             />
           </div>
           <div className="nav-open"></div>
@@ -222,6 +235,7 @@ export default function MainPage() {
               handleDelete={handleDelete}
               handleModal={handleModal}
               itemId={poemItem.feedId}
+              handlePostLikeFeed={handlePostLikeFeed}
             />
           </div>
           <div className="nav-open"></div>

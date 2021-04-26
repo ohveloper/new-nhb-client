@@ -6,12 +6,14 @@ import {
   faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/mainPage.css';
+import { LikeFeedId } from '../../api/postLikeFeed';
 
 type PoemButtonGroupProps = {
   feedId: number;
   likeNum: string;
   commentNum: number;
   handleModal: (feedId: number) => void;
+  handlePostLikeFeed: (feedId: LikeFeedId) => void;
 };
 
 export default function PoemButtonGroup({
@@ -19,6 +21,7 @@ export default function PoemButtonGroup({
   likeNum,
   commentNum,
   handleModal,
+  handlePostLikeFeed,
 }: PoemButtonGroupProps) {
   const ref: any = useRef();
   const commentIcon = <FontAwesomeIcon icon={faComment} />;
@@ -29,6 +32,12 @@ export default function PoemButtonGroup({
   const onCommentIconClick = () => {
     const feedid = ref.current.dataset.feedid;
     handleModal(feedid);
+  };
+
+  const onLikeIconClick = () => {
+    const feedid = ref.current.dataset.feedid;
+    handlePostLikeFeed(feedid);
+    console.log('!');
   };
 
   return (
@@ -42,7 +51,12 @@ export default function PoemButtonGroup({
         <div className="comment-icon">{commentIcon}</div>
         <div className="comment-num">{commentNum}</div>
       </div>
-      <div className="like-container">
+      <div
+        className="like-container"
+        onClick={onLikeIconClick}
+        data-feedid={feedId}
+        ref={ref}
+      >
         <div className="like-icon">{starIcon}</div>
         <div className="like-num">{likeNum}</div>
       </div>

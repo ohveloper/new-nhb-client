@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { UserFeeds, Welcome } from '../../reducers/reducer';
+import { Welcome } from '../../reducers/reducer';
 import { FeedId } from '../../api/delRemoveFeed';
 import { RootState } from '../../reducers';
 import PoemInfo from './PoemInfo';
@@ -7,14 +7,14 @@ import PoemButtonGroup from './PoemButtonGroup';
 import PoemDeleteButton from './PoemDeleteButton';
 import PoemContent from './PoemContent';
 import '../../styles/mainPage.css';
-import { useState } from 'react';
-import { postBringFeedT } from '../../api/postBringFeeds';
+import { LikeFeedId } from '../../api/postLikeFeed';
 
 type poemViewProps = {
   poem: Welcome;
   handleDelete: (feedId: FeedId) => void;
   handleModal: (feedId: number) => void;
   itemId: number;
+  handlePostLikeFeed: (feedId: LikeFeedId) => void;
 };
 
 export default function PoemView({
@@ -22,6 +22,7 @@ export default function PoemView({
   handleDelete,
   handleModal,
   itemId,
+  handlePostLikeFeed,
 }: poemViewProps) {
   const state = useSelector((state: RootState) => state.reducer);
   const { userFeeds } = poem.data;
@@ -72,6 +73,7 @@ export default function PoemView({
                   likeNum={feed.likeNum}
                   commentNum={feed.commentNum}
                   handleModal={handleModal}
+                  handlePostLikeFeed={handlePostLikeFeed}
                 />
               </div>
             </div>
