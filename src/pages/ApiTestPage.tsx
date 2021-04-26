@@ -78,7 +78,7 @@ export default function ApiTestPage() {
   };
 
   const postLoginHandler = () => {
-    dispatch(postLogInThunk({ authCode: 'gqpbn9l71e' }));
+    dispatch(postLogInThunk({ authCode: 'a8skvi3yvjm' }));
   };
 
   const delRemoveFeedHandler = () => {
@@ -132,7 +132,7 @@ export default function ApiTestPage() {
   };
 
   const postSendAuthEmailHandler = () => {
-    postSendAuthEmailT({ email: 'minkyoaus@gmail.com' })
+    postSendAuthEmailT({ email: 'ohveloper@gmail.com' })
       .then((x) => console.log(x))
       .catch((e) => console.log(e));
   };

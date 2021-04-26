@@ -188,22 +188,24 @@ export default function MyInfo_Modal({
             <div className="my_introduction_intro">
               자기소개 : {introduction ? introduction : '정보가 없습니다'}
             </div>
-            <input
-              type="text"
-              placeholder="자기소개 30글자 이내"
-              name="_introduction"
-              value={_introduction}
-              onChange={onChangeEditMyInfo}
-              onKeyUp={onKeyUpIntroduction}
-              className="my_introduction_input"
-            />
-            <button
-              className="my_introduction_intro_button"
-              type="submit"
-              onClick={onSubmitEditIntroduction}
-            >
-              submit
-            </button>
+            <div className="my_introduction_info_input">
+              <input
+                type="text"
+                placeholder="자기소개 30글자 이내"
+                name="_introduction"
+                value={_introduction}
+                onChange={onChangeEditMyInfo}
+                onKeyUp={onKeyUpIntroduction}
+                className="my_introduction_input"
+              />
+              <button
+                className="my_introduction_intro_button"
+                type="submit"
+                onClick={onSubmitEditIntroduction}
+              >
+                submit
+              </button>
+            </div>
           </div>
           <div className="my_introduction_photo">
             {myPhoto ? <div>img</div> : <div>이미지 변경 / 준비중</div>}
