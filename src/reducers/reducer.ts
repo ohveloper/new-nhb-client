@@ -122,6 +122,10 @@ export interface InitState {
     error: Error | null;
     data: AdminTags | null;
   };
+  refreshToken: {
+    loading: boolean;
+    error: Error | null;
+  };
 }
 
 export interface AdminTags {
@@ -370,6 +374,10 @@ const initState: InitState = {
     loading: false,
     error: null,
     data: null,
+  },
+  refreshToken: {
+    loading: false,
+    error: null,
   },
 };
 
@@ -786,10 +794,26 @@ export function reducer(
           data: null,
         },
       };
+    case GET_ISSUE_ACCESS_TOKEN_API:
+      return {
+        ...state,
+        refreshToken: {
+          loading: true,
+          error: null,
+        },
+      };
     case GET_ISSUE_ACCESS_TOKEN_SUCCESS:
       return {
         ...state,
         accessToken: action.payload.data.accessToken,
+      };
+    case GET_ISSUE_ACCESS_TOKEN_ERROR:
+      return {
+        ...state,
+        refreshToken: {
+          loading: false,
+          error: action.payload,
+        },
       };
 
     default:

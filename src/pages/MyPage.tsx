@@ -21,6 +21,7 @@ export default function MyPage() {
   const state = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
   const userId = state.userInfo.data?.data.userInfo.userId;
+
   useEffect(() => {
     const accessToken = state.accessToken;
     if (accessToken && userId) {

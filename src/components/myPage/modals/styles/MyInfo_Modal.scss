@@ -9,18 +9,6 @@ $border_color: #39444d;
     opacity: 3;
   }
 }
-@keyframes fadeOut {
-  from {
-    opacity: 3;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-.fade-out {
-  animation: feadOut 1s ease-in-out;
-}
 
 #my_introduction_modal_container {
   display: flex;
@@ -56,6 +44,7 @@ $border_color: #39444d;
   height: 500px;
   width: 335px;
   animation: fadeIn 0.5s ease-in-out;
+  animation: fadeOut 0.5s ease-in-out;
 }
 
 .my_introduction_modal_title {

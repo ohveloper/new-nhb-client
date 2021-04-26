@@ -27,10 +27,10 @@ export default function HomePage() {
       await dispatch(postLogInThunk({ authCode: userAuthCode }));
 
       // ? 배포용 리다이렉트
-      window.location.assign('https://nhbomb.tk/');
+      // window.location.assign('https://nhbomb.tk/');
 
       // ? 테스트용 리다이렉트
-      // window.location.assign('https://localhost:3000/');
+      window.location.assign('https://localhost:3000/');
     }
     //? 회원가입 유저
     else if (url.includes('signup')) {
