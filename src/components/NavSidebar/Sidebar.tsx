@@ -51,7 +51,7 @@ const Sidebar = () => {
           </div>
           <div>{accessToken ? <NavMyPage /> : <NavLogin />}</div>
           <div>{accessToken ? <MyLog /> : <Induce />}</div>
-          <div onClick={getLogoutHandler}>
+          <div id="logoutTxt" onClick={getLogoutHandler}>
             {accessToken ? logoutTxt : <></>}
           </div>
           <div id="close" onClick={() => setOpenPanel(false)}>
