@@ -24,12 +24,13 @@ const Sidebar = () => {
     // dispatch(getLogOutThunk());
     setLogoutTxt('정상적으로 로그아웃 되었습니다.');
     setTimeout(() => {
-      setOpenPanel(false);
       dispatch(getLogOutThunk());
-    }, 1000);
+      setOpenPanel(false);
+    }, 2000);
     setTimeout(() => {
       window.location.assign('https://nhbomb.tk');
-    }, 1001);
+      // window.location.assign('https://localhost:3000');
+    }, 3001);
   };
   return (
     <div id="Sidebar">
@@ -53,7 +54,9 @@ const Sidebar = () => {
           <div onClick={getLogoutHandler}>
             {accessToken ? logoutTxt : <></>}
           </div>
-          <div onClick={() => setOpenPanel(false)}>Close</div>
+          <div id="close" onClick={() => setOpenPanel(false)}>
+            Close
+          </div>
         </div>
       </SlidingPanel>
     </div>

@@ -43,7 +43,6 @@ export default function ModalContainerEditInput({
       });
       setError(false);
     } else {
-      console.log('error!');
       setError(true);
     }
   };

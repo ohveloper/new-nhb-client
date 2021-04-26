@@ -50,7 +50,6 @@ export default function ModalContainer({
 
   //? 게시글 삭제 함수
   const handleDelete = async (feedId: FeedId) => {
-    console.log(feedId);
     const _accessToken = '';
     if (state.accessToken) {
       const accessToken = _accessToken.concat(state.accessToken);
@@ -88,7 +87,6 @@ export default function ModalContainer({
     setIsUploaded(true);
     setIsUploaded(false);
   };
-  console.log('upload', isUploaded);
 
   //? 댓글 삭제 함수
   const handleDelRemoveComment = async (feedCommentId: FeedIdCommentId) => {
@@ -123,11 +121,10 @@ export default function ModalContainer({
     const nextId = itemId + 1;
     postBringFeedT({ topicId, limit, feedId: nextId })
       .then((res) => {
-        console.log('res', res.data);
+        res;
       })
       .catch((e) => console.log(e));
     fetchCommentData({ feedId: itemId }).catch((e) => console.log(e));
-    console.log(1);
   }, [isUploaded]);
 
   return (

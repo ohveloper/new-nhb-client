@@ -1,41 +1,41 @@
-import React, { ChangeEvent, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { delRemoveTagAdminT } from '../../api/delRemoveTagAdmin';
-import { RootState } from '../../reducers';
+// import React, { useState } from 'react';
+// import { useSelector } from 'react-redux';
+// import { delRemoveTagAdminT } from '../../api/delRemoveTagAdmin';
+// import { RootState } from '../../reducers';
 import './AdminRemoveTag.scss';
 
 export default function AdminRemoveTag() {
-  const state = useSelector((state: RootState) => state.reducer);
-  const [tagId, setTagId] = useState('');
-  const wrong = document.querySelector('#wrong');
-  const correct = document.querySelector('#correct');
+  // const state = useSelector((state: RootState) => state.reducer);
+  // const [tagId, setTagId] = useState('');
+  // const wrong = document.querySelector('#wrong');
+  // const correct = document.querySelector('#correct');
 
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    if (tagId === '') {
-      correct?.classList.add('invisualble');
-      wrong?.classList.add('invisualble');
-    }
-    setTagId(value);
-  };
+  // const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  //   const { value } = e.target;
+  //   if (tagId === '') {
+  //     correct?.classList.add('invisualble');
+  //     wrong?.classList.add('invisualble');
+  //   }
+  //   setTagId(value);
+  // };
 
-  const onClickHandler = (e: any) => {
-    if (!tagId) return;
-    e.preventDefault();
-    const accessToken = state.accessToken;
-    if (accessToken && tagId) {
-      delRemoveTagAdminT({ data: { tagId } }, accessToken)
-        .then((x) => {
-          setTagId('');
-          correct?.classList.remove('invisualble');
-        })
-        .catch((e) => {
-          wrong?.classList.remove('invisualble');
-          console.log(e);
-        });
-      setTagId('');
-    }
-  };
+  // const onClickHandler = (e: any) => {
+  //   if (!tagId) return;
+  //   e.preventDefault();
+  //   const accessToken = state.accessToken;
+  //   if (accessToken && tagId) {
+  //     delRemoveTagAdminT({ data: { tagId } }, accessToken)
+  //       .then((x) => {
+  //         setTagId('');
+  //         correct?.classList.remove('invisualble');
+  //       })
+  //       .catch((e) => {
+  //         wrong?.classList.remove('invisualble');
+  //         e;
+  //       });
+  //     setTagId('');
+  //   }
+  // };
   return (
     <div>
       {/* <h1>AdminRemoveTag</h1>

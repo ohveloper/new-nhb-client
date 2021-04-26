@@ -22,12 +22,13 @@ export default function AdminUploadTag() {
     });
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onClickHandler = (e: any) => {
     if (!tagName || !description) return;
     e.preventDefault();
     if (accessToken) {
       AdminPostUploadTagT({ tagUrl, tagName, description }, accessToken)
-        .then((x) => {
+        .then(() => {
           setUploadTag({
             ...uploadTag,
             tagUrl: '',
@@ -35,10 +36,10 @@ export default function AdminUploadTag() {
             description: '',
           });
         })
-        .then((x) => {
+        .then(() => {
           window.location.reload();
         })
-        .catch((e) => console.log(e));
+        .catch((e) => e);
     }
   };
 
