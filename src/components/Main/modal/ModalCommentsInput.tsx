@@ -30,7 +30,6 @@ export default function ModalCommentsInput({
   const onCommentSubmit = (event: FormEvent) => {
     event.preventDefault();
     handlePostUploadComment(commentVal);
-    console.log(commentVal);
     setCommentVal({
       feedId: feedId,
       comment: '',

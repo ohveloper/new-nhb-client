@@ -6,9 +6,6 @@ import { Link } from 'react-router-dom';
 // import { postBringUserInfoThunk } from '../../actions/actions';
 
 function Mylog() {
-  const state = useSelector((state: RootState) => state.reducer);
-  const userState = state.userInfo.data;
-  console.log('userState : ', userState);
   return (
     <div>
       <div>하루 끝 N행시</div>

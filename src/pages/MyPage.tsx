@@ -37,7 +37,7 @@ export default function MyPage() {
             })
           );
         })
-        .catch((e) => console.log(e));
+        .catch((e) => e);
       dispatch(getAllTagsThunk());
       dispatch(getTopicsThunk());
       dispatch(postGetUserAptInfoThunk({ userId: userId }));

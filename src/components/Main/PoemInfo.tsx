@@ -11,9 +11,12 @@ export default function PoemInfo({
   nickName,
   createdAt,
 }: PoemInfoProps) {
+  console.log(userTag);
   return (
     <div className="poem-info">
-      <span className="tag">({userTag})</span>
+      <div className="tag-container">
+        <div id={'tag-'.concat(userTag)}></div>
+      </div>
       <span className="nick-name">{nickName}</span>
     </div>
   );
