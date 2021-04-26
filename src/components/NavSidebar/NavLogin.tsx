@@ -1,18 +1,25 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getFakeDataThunk } from '../../actions/actions';
 import { postSendAuthEmailT } from '../../api/postSendAuthEmail';
 
 function NavLogin() {
   const [inputValue, setInputValue] = useState('');
+  const [clientStatus, setClientStatus] = useState('로그인');
+  const dispatch = useDispatch();
   const loginHandler = () => {
-    postSendAuthEmailT({ email: inputValue })
-      .then((data) => {
-        if (data.message === '회원가입') {
-          setInputValue('회원가입 링크가 이메일로 전송되었습니다.');
-        } else if (data.message === '로그인') {
-          setInputValue('로그인 링크가 이메일로 전송되었습니다.');
-        }
-      })
-      .catch((e) => console.log(e));
+    if (inputValue !== '') {
+      postSendAuthEmailT({ email: inputValue })
+        .then((data) => {
+          if (data.message === '회원가입') {
+            setClientStatus('회원가입');
+            setInputValue('회원가입 링크가 이메일로 전송되었습니다.');
+          } else if (data.message === '로그인') {
+            setInputValue('로그인 링크가 이메일로 전송되었습니다.');
+          }
+        })
+        .catch((e) => console.log(e));
+    }
   };
 
   const googleOAuthHandler = () => {
@@ -31,23 +38,29 @@ function NavLogin() {
     window.location.assign(googleLoginUrl);
   };
 
+  const guestLogin = () => {
+    dispatch(getFakeDataThunk());
+  };
+
   return (
     <>
       <div>
-        <div className="loginContent">로그인 / 회원가입</div>
+        <div className="loginContent">{clientStatus}</div>
         {/* <div>이메일로 로그인 </div> */}
-        <input
-          className="inputId"
-          type="text"
-          value={inputValue || ''}
-          placeholder="이메일을 입력하세요"
-          onChange={(e) => setInputValue(e.currentTarget.value)}
-        />
-        <button onClick={() => loginHandler()}>로그인</button>
+        <div id="loginContainer">
+          <input
+            className="inputId"
+            type="email"
+            value={inputValue || ''}
+            placeholder="이메일을 입력하세요"
+            onChange={(e) => setInputValue(e.currentTarget.value)}
+          />
+          <button onClick={() => loginHandler()}>{clientStatus}</button>
+          <button onClick={() => googleOAuthHandler()}>Google 로그인</button>
+          <button onClick={() => guestLogin()}>GUEST 로그인</button>
+        </div>
       </div>
-      <div>
-        <p onClick={() => googleOAuthHandler()}>Google로 간편 로그인</p>
-      </div>
+      <div></div>
     </>
   );
 }

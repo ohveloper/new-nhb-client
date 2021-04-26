@@ -17,6 +17,22 @@ body {
   background-color: rgb(21, 32, 43);
   color: #cdd9e5;
 }
+body::-webkit-scrollbar {
+  width: 16px;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(219, 219, 224);
+  border-radius: 10px;
+  border: 4px rgb(123, 140, 156) solid;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background-color: slategray;
+}
+body::-webkit-scrollbar-track {
+  background-color: rgb(123, 140, 156);
+  border-right: 1px rgb(199, 199, 199) solid;
+  border-left: 1px rgb(199, 199, 199) solid;
+}
 
 @font-face {
   font-family: 'DungGeunMo';
