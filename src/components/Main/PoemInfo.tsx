@@ -1,4 +1,5 @@
 import '../../styles/mainPage.css';
+import '../myPage/styles/MyAchievementBadges.scss';
 
 type PoemInfoProps = {
   userTag: string;
@@ -11,9 +12,12 @@ export default function PoemInfo({
   nickName,
   createdAt,
 }: PoemInfoProps) {
+  console.log(userTag);
   return (
     <div className="poem-info">
-      <span className="tag">({userTag})</span>
+      <div className="tag-container">
+        <div id={'tag-id-'.concat(userTag)}></div>
+      </div>
       <span className="nick-name">{nickName}</span>
     </div>
   );
