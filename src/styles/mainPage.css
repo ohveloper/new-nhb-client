@@ -63,10 +63,9 @@
 #main-page-poem-input .my-pic-container .my-pic {
   width: 50px;
   height: 50px;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0);
   border-radius: 5px;
   margin: 5px 10px 0 10px;
-  opacity: 0.5;
 }
 
 #main-page-poem-input .word-input-container {
@@ -181,8 +180,7 @@
   height: 50px;
   border-radius: 5px;
   margin: 0 10px 0 0;
-  background-color: white;
-  opacity: 0.5;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .poem-info {
@@ -547,4 +545,57 @@
   width: 16px;
   height: 16px;
   background-repeat: no-repeat;
+}
+
+#pic-0 {
+  background-image: url('../img/88060065_111109990493637_6363429361139318784_n.jpg');
+  background-size: 50px 50px;
+}
+#pic-1 {
+  background-image: url('../img/99b983892094b5c6d2fc3736e15da7d1.png');
+  background-size: 50px 50px;
+}
+#pic-2 {
+  background-image: url('../img/113b00391eb2ac22fbc9c1cd0695afba.jpeg');
+  background-size: 50px 50px;
+}
+#pic-3 {
+  background-image: url('../img/7278.png_860.png');
+  background-size: 50px 50px;
+}
+#pic-4 {
+  background-image: url('../img/images-2.jpeg');
+  background-size: 50px 50px;
+}
+#pic-5 {
+  background-image: url('../img/drake-internet-meme-rapper-drake.jpg');
+  background-size: 50px 50px;
+}
+#pic-6 {
+  background-image: url('../img/drake-smiling-meme-front-view-11609576986cqdnkzyoey.png');
+  background-size: 50px 50px;
+}
+#pic-7 {
+  background-image: url('../img/shiba_inu_doge.jpg');
+  background-size: 50px 50px;
+}
+#pic-8 {
+  background-image: url('../img/images.jpeg');
+  background-size: 50px 50px;
+}
+#pic-9 {
+  background-image: url('../img/politeCat_1502827.png');
+  background-size: 50px 50px;
+}
+#pic-10 {
+  background-image: url('../img/Frog-Meme-PNG-Transparent.png');
+  background-size: 50px 50px;
+}
+#pic-11 {
+  background-image: url('../img/politeCat_1502827.png');
+  background-size: 50px 50px;
+}
+#pic-12 {
+  background-image: url('../img/politeCat_1502827.png');
+  background-size: 50px 50px;
 }

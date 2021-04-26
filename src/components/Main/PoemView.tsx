@@ -34,13 +34,12 @@ export default function PoemView({
   return (
     <>
       {poem &&
-        userFeeds.map((feed, idx) => {
+        userFeeds.map((feed) => {
           const delFeedId = {
             data: { feedId: feed.feedId },
           };
           return (
             <div id="poem-view-container">
-              <div>{idx}</div>
               <div key={feed.feedId} className="poem-view">
                 {userId === Number(feed.user.userId) && (
                   <div className="del-btn-container">
@@ -52,7 +51,10 @@ export default function PoemView({
                 )}
                 <div className="pic-info-content-container">
                   <div className="user-pic-container">
-                    <div className="user-pic"></div>
+                    <div
+                      className="user-pic"
+                      id={'pic-'.concat(feed.user.userId)}
+                    ></div>
                   </div>
                   <div className="info-content-container">
                     <PoemInfo
