@@ -17,7 +17,6 @@ export default function PoemContent({
 
   const onModalClick = () => {
     const feedid = ref.current.dataset.feedid;
-    console.log('ref:', feedid);
     handleModal(feedid);
   };
 

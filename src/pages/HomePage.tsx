@@ -55,16 +55,17 @@ export default function HomePage() {
       const last = url.hash.indexOf('&t');
 
       const accessToken = url.hash.slice(first + 2, last);
+      dispatch(getOAuthThunk(accessToken));
 
-      setTimeout(() => {
-        dispatch(getOAuthThunk(accessToken));
-      }, 1000);
+      // setTimeout(() => {
+      //   dispatch(getOAuthThunk(accessToken));
+      // }, 1000);
       setTimeout(() => {
         // ? 배포용 리다이렉트
         window.location.assign('https://nhbomb.tk');
-      }, 1001);
+        // window.location.assign('https://localhost:3000/');
+      }, 5001);
       // ? 테스트용 리다이렉트
-      // window.location.assign('https://localhost:3000/');
     }
   }
 

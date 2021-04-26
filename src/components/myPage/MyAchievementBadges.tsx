@@ -29,10 +29,9 @@ export default function MyAchievementBadges() {
     if (!tagId) return;
     if (accessToken) {
       await patchEditTagsT({ tagId: Number(tagId) }, accessToken)
-        .then((x) => {
+        .then(() => {
           dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
           setTagId('');
-          console.log(x);
         })
         .catch((e) => console.log(e));
     }

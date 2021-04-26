@@ -45,7 +45,6 @@ const MainpagePoemInput = ({
       handlePostUploadFeed(val);
       setError(false);
     } else {
-      console.log('error!');
       setError(true);
     }
 

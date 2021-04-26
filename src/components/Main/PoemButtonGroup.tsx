@@ -37,7 +37,6 @@ export default function PoemButtonGroup({
   const onLikeIconClick = () => {
     const feedid = ref.current.dataset.feedid;
     handlePostLikeFeed(feedid);
-    console.log('!');
   };
 
   return (

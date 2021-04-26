@@ -12,6 +12,7 @@ export default function UploadTopic() {
 
   const { word, expiration } = uploadTopic;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onClickHandler = (e: any) => {
     if (!word || !expiration) return;
     e.preventDefault();
@@ -19,7 +20,7 @@ export default function UploadTopic() {
     if (accessToken) {
       postUploadTopicT({ word, expiration }, accessToken)
         .then((x) => console.log(x))
-        .then((x) => {
+        .then(() => {
           window.location.reload();
         })
         .catch((e) => console.log(e));

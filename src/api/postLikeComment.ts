@@ -22,7 +22,6 @@ export async function postLikeCommentT(
     },
     withCredentials: true,
   });
-  console.log(accessToken);
   const response = await apiClient.post('/feed/comment/like', commentId);
   return response.data;
 }
