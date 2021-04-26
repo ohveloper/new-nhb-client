@@ -12,6 +12,8 @@ const MainpagePoemInput = ({
   handlePostUploadFeed,
 }: MainpagePoemInputProps) => {
   const state = useSelector((state: RootState) => state.reducer);
+  const userId = state.userInfo.data?.data.userInfo.userId || null;
+
   //? 오늘의 주제어 불러오기
   // const { todaysTopic } = state;
   // const topic = todaysTopic.join('');
@@ -58,7 +60,7 @@ const MainpagePoemInput = ({
   return (
     <div id="main-page-poem-input">
       <div className="my-pic-container">
-        <div className="my-pic"></div>
+        <div className="my-pic" id={'pic-'.concat(String(userId))}></div>
       </div>
       <div className="word-input-container">
         <div className="todays-word">
