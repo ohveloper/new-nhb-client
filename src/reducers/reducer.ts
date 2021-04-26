@@ -969,11 +969,6 @@ export function reducer(
       return {
         ...state,
       };
-    case GET_ISSUE_ACCESS_TOKEN_SUCCESS:
-      return {
-        ...state,
-        accessToken: action.payload.data.accessToken,
-      };
 
     default:
       return state;
