@@ -498,3 +498,53 @@
 .divider {
   border-bottom: 1px #39444d solid;
 }
+
+#tag-1 {
+  background-image: url('../img/tag-id-1.png');
+  background-size: 16px 16px;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+}
+#tag-2 {
+  background-image: url('../img/tag-id-2.gif');
+  background-size: 16px 16px;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+}
+#tag-3 {
+  background-image: url('../img/tag-id-3.gif');
+  background-size: 16px 16px;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+}
+#tag-4 {
+  background-image: url('../img/tag-id-4.gif');
+  background-size: 16px 16px;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+}
+#tag-5 {
+  background-image: url('../img/tag-id-5.png');
+  background-size: 16px 16px;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+}
+#tag-6 {
+  background-image: url('../img/tag-id-6.gif');
+  background-size: 16px 16px;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+}
+#tag-7 {
+  background-image: url('../img/tag-id-7.gif');
+  background-size: 16px 16px;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+}
