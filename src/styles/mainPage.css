@@ -191,7 +191,11 @@
   color: #8899a6;
   margin-top: 5px;
 }
-
+.tag-container {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
 .poem-info .tag {
   margin-right: 5px;
 }
