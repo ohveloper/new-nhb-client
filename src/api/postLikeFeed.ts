@@ -8,11 +8,11 @@ export interface FeedLike {
   message: string;
 }
 
-export interface FeedId {
+export interface LikeFeedId {
   feedId: number;
 }
 
-export async function postLikeFeedT(feedId: FeedId, accessToken: string) {
+export async function postLikeFeedT(feedId: LikeFeedId, accessToken: string) {
   const apiClient = axios.create({
     baseURL: api,
     responseType: 'json',
@@ -22,6 +22,6 @@ export async function postLikeFeedT(feedId: FeedId, accessToken: string) {
     },
     withCredentials: true,
   });
-  const response = await apiClient.post<FeedLike>('/feed/like', feedId);
+  const response = await apiClient.post<FeedLike>('/feed/like', { feedId });
   return response.data;
 }

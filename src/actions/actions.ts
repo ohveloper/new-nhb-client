@@ -1,11 +1,11 @@
 import { Dispatch } from 'redux';
 import { postBringUserInfoT, UUID } from '../api/postBringUserInfo';
 import { postBringFeedT } from '../api/postBringFeeds';
-import { FeedId, postLikeFeedT } from '../api/postLikeFeed';
+import { LikeFeedId, postLikeFeedT } from '../api/postLikeFeed';
 import { Feed } from '../api/postBringFeeds';
 import { getRankT } from '../api/getRank';
 import { Content, postUploadFeedT } from '../api/postUploadFeed';
-import { postBringCommentT } from '../api/postBringComment';
+import { Feed_Id, postBringCommentT } from '../api/postBringComment';
 import { AuthCode, postSignUpT } from '../api/postSignUp';
 import { postLoginT } from '../api/postLogin';
 import { patchEditTopicT } from '../api/patchEditTopic';
@@ -83,7 +83,7 @@ export function getOAuthThunk(accessToken: string) {
   };
 }
 
-export function postBringCommentThunk(feedId: FeedId) {
+export function postBringCommentThunk(feedId: Feed_Id) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = postBringCommentAsync;
     dispatch(request());
@@ -109,7 +109,7 @@ export function postSignUpThunk(authCode: AuthCode) {
   };
 }
 
-export function postLikeFeedThunk(feedId: FeedId, accessToken: string) {
+export function postLikeFeedThunk(feedId: LikeFeedId, accessToken: string) {
   return async (dispatch: Dispatch) => {
     const { request, success, failure } = postLikeFeedAsync;
     dispatch(request());
