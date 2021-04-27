@@ -34,7 +34,7 @@ export default function HomePage() {
         .then((x) => dispatch(success(x)))
         .catch(() => getLogOutThunk());
     }
-  });
+  }, []);
 
   //? 링크를 통해 들어온 client 구분하기 위한 함수
   function checkClient() {

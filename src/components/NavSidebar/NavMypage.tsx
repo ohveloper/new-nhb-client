@@ -2,10 +2,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {
-  postBringUserInfoThunk,
-  refreshTokenThunk,
-} from '../../actions/actions';
+import { postBringUserInfoThunk } from '../../actions/actions';
 import { RootState } from '../../reducers';
 
 function NavMyPage() {
