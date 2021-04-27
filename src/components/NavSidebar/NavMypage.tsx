@@ -14,6 +14,7 @@ function NavMyPage() {
   const accessToken = state.accessToken;
 
   useEffect(() => {
+    const count = 0;
     if (accessToken) {
       dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
     }

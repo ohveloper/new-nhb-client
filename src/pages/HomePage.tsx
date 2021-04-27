@@ -28,13 +28,14 @@ export default function HomePage() {
 
   useEffect(() => {
     const accessToken = state.accessToken;
+
     if (accessToken) {
       const { success } = getAccessTokenAsync;
       refreshTokenT()
         .then((x) => dispatch(success(x)))
         .catch(() => getLogOutThunk());
     }
-  });
+  }, []);
 
   //? 링크를 통해 들어온 client 구분하기 위한 함수
   function checkClient() {
