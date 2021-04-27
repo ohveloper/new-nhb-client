@@ -28,7 +28,6 @@ export default function HomePage() {
 
   useEffect(() => {
     const accessToken = state.accessToken;
-
     if (accessToken) {
       const { success } = getAccessTokenAsync;
       refreshTokenT()
