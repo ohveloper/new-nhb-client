@@ -10,7 +10,19 @@ export default function Footer() {
     <div id="Footer">
       <div>{isAdmin ? <Link to="/apitest">API TEST</Link> : <div></div>}</div>
       <div>
-        Team<span className="first">B</span>BBA
+        Team
+        <a href="https://www.naver.com">
+          <span className="first">B</span>
+        </a>
+        <a href="https://www.naver.com">
+          <span className="first">B</span>
+        </a>
+        <a href="https://www.naver.com">
+          <span className="first">B</span>
+        </a>
+        <a href="https://www.naver.com">
+          <span className="first">A</span>
+        </a>
       </div>
       <div>
         {isAdmin ? (
