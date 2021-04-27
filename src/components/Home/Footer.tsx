@@ -11,16 +11,16 @@ export default function Footer() {
       <div>{isAdmin ? <Link to="/apitest">API TEST</Link> : <div></div>}</div>
       <div>
         Team
-        <a href="https://www.naver.com">
+        <a href="https://github.com/Sangrae-Cho">
           <span className="first">B</span>
         </a>
-        <a href="https://www.naver.com">
+        <a href="https://github.com/ohveloper">
           <span className="first">B</span>
         </a>
-        <a href="https://www.naver.com">
+        <a href="https://github.com/riley909">
           <span className="first">B</span>
         </a>
-        <a href="https://www.naver.com">
+        <a href="https://github.com/duck-moon9392">
           <span className="first">A</span>
         </a>
       </div>
