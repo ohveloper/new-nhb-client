@@ -78,7 +78,7 @@ export default function ApiTestPage() {
   };
 
   const postLoginHandler = () => {
-    dispatch(postLogInThunk({ authCode: '0fqa683ylqyu' }));
+    dispatch(postLogInThunk({ authCode: 't4ddy5hbdni' }));
   };
 
   const delRemoveFeedHandler = () => {
