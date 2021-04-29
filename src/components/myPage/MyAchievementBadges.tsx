@@ -19,6 +19,7 @@ export default function MyAchievementBadges() {
   const accessToken = state.accessToken;
   const [tagId, setTagId] = useState('');
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onClickHandler = (e: any) => {
     if (e.target.value) {
       setTagId(e.target.value);

@@ -31,11 +31,11 @@ export default function AdminGetAllTag({
     const accessToken = state.accessToken;
     if (accessToken && tagId) {
       delRemoveTagAdminT({ data: { tagId } }, accessToken)
-        .then((x) => {
+        .then(() => {
           correct?.classList.remove('invisualble');
           window.location.reload();
         })
-        .catch((e) => {
+        .catch(() => {
           wrong?.classList.remove('invisualble');
         });
     }
