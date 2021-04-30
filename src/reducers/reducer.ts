@@ -51,6 +51,7 @@ import {
   FAKE_GUSET_API,
   FAKE_GUSET_SUCCESS,
   FAKE_GUSET_ERROR,
+  GET_ISSUE_ACCESS_TOKEN_SUCCESS,
 } from '../actions/actionTypes';
 export interface InitState {
   userInfo: {
@@ -965,7 +966,11 @@ export function reducer(
       return {
         ...state,
       };
-
+    case GET_ISSUE_ACCESS_TOKEN_SUCCESS:
+      return {
+        ...state,
+        accessToken: action.payload.data.accessToken,
+      };
     default:
       return state;
   }
