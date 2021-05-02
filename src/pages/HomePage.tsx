@@ -45,7 +45,7 @@ export default function HomePage() {
       }, 1000);
       setTimeout(() => {
         // ? 배포용 리다이렉트
-        window.location.assign('https://nhbomb.tk');
+        window.location.assign('https://nhbomb.com');
       }, 1001);
 
       // ? 테스트용 리다이렉트
@@ -58,7 +58,7 @@ export default function HomePage() {
       }, 1000);
       setTimeout(() => {
         // ? 배포용 리다이렉트
-        window.location.assign('https://nhbomb.tk');
+        window.location.assign('https://nhbomb.com');
       }, 1001);
 
       // ? 테스트용 리다이렉트
@@ -79,7 +79,7 @@ export default function HomePage() {
       // }, 1000);
       setTimeout(() => {
         // ? 배포용 리다이렉트
-        window.location.assign('https://nhbomb.tk');
+        window.location.assign('https://nhbomb.com');
         // window.location.assign('https://localhost:3000/');
       }, 5001);
       // ? 테스트용 리다이렉트
