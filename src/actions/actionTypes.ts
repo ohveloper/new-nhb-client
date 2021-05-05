@@ -9,6 +9,7 @@ import {
   UserInfo,
   Data,
   AdminTags,
+  LikeLog,
   InitState,
 } from '../reducers/reducer';
 import { BringComment, Welcome } from '../reducers/reducer';
@@ -83,7 +84,6 @@ export const GET_LIVE_RANKING_SUCCESS = 'GET_LIVE_RANKING_SUCCESS' as const;
 export const GET_LIVE_RANKING_ERROR = 'GET_LIVE_RANKING_ERROR' as const;
 
 //? get user like log
-// TODO: api만들기
 export const GET_USER_LIKE_LOG_API = 'GET_USER_LIKE_LOG_API' as const;
 export const GET_USER_LIKE_LOG_SUCCESS = 'GET_USER_LIKE_LOG_SUCCESS' as const;
 export const GET_USER_LIKE_LOG_ERROR = 'GET_USER_LIKE_LOG_ERROR' as const;
@@ -294,6 +294,12 @@ export const getRankAsync = createAsyncAction(
   GET_RANK_SUCCESS,
   GET_RANK_ERROR
 )<undefined, Data, AxiosError>();
+
+export const getUserLikeLogAsync = createAsyncAction(
+  GET_USER_LIKE_LOG_API,
+  GET_USER_LIKE_LOG_SUCCESS,
+  GET_USER_LIKE_LOG_ERROR
+)<undefined, LikeLog, AxiosError>();
 
 export const postLikeFeedAsync = createAsyncAction(
   POST_LIKE_FEED_API,

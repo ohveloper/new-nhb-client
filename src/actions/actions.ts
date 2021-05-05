@@ -30,6 +30,7 @@ import {
   getAccessTokenAsync,
   getLogOutAsync,
   getFakeDataAsync,
+  getUserLikeLogAsync,
 } from '../actions/actionTypes';
 import { postGetPrivateFeedsT, UserId } from '../api/postGetprivateFeeds';
 import { getAllTagsT } from '../api/getAllTags';
@@ -43,6 +44,7 @@ import { getOAuthT } from '../api/getOAuth';
 import { getTopicsT } from '../api/getTopics';
 import { refreshTokenT } from '../api/refreshToken';
 import { getLogoutT } from '../api/getLogout';
+import { getUserLikeLogT } from '../api/getUserLikeLog';
 
 export function postLogInThunk(authCode: AuthCode) {
   return async (dispatch: Dispatch) => {
@@ -276,6 +278,19 @@ export function patchEditTopicAdminThunk(
       const params = { topicId, word };
       const adminTags = await patchEditTopicT(params, accessToken);
       dispatch(success(adminTags));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
+
+export function getUserLikeLogThunk(accessToken: string) {
+  return async (dispatch: Dispatch) => {
+    const { request, success, failure } = getUserLikeLogAsync;
+    dispatch(request());
+    try {
+      const likeLogs = await getUserLikeLogT(accessToken);
+      dispatch(success(likeLogs));
     } catch (e) {
       dispatch(failure(e));
     }
