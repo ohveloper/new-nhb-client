@@ -41,7 +41,7 @@
     "build": "react-scripts build",
     "lint": "eslint --fix",
     "deployUpdate": "aws s3 sync ./build s3://nhb-client --profile=TeamBBBA",
-    "invalidate": "aws cloudfront create-invalidation --profile=TeamBBBA --distribution-id E1MHG0XTT7UVT8 --paths / /index.html /error.html /service-worker.js /manifest.json /favicon.ico"
+    "invalidate": "aws cloudfront create-invalidation --profile=TeamBBBA --distribution-id E1APOQF5PVADED --paths / /index.html /error.html /service-worker.js /manifest.json /favicon.ico"
   },
   "lint-staged": {
     "*.js": "npm run lint",
