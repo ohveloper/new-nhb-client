@@ -52,6 +52,8 @@ import {
   FAKE_GUSET_SUCCESS,
   FAKE_GUSET_ERROR,
   GET_ISSUE_ACCESS_TOKEN_SUCCESS,
+  GET_ISSUE_ACCESS_TOKEN_API,
+  GET_ISSUE_ACCESS_TOKEN_ERROR,
 } from '../actions/actionTypes';
 export interface InitState {
   userInfo: {
@@ -125,6 +127,15 @@ export interface InitState {
     error: Error | null;
     data: AdminTags | null;
   };
+  refreshToken: {
+    loading: boolean;
+    error: Error | null;
+    data: RefreshToken | null;
+  };
+}
+
+interface RefreshToken {
+  accessToken: string;
 }
 const fakedata: InitState = {
   userInfo: {
@@ -275,6 +286,7 @@ const fakedata: InitState = {
   },
   topicsAdmin: { loading: false, error: null, data: null },
   adminTags: { loading: false, error: null, data: null },
+  refreshToken: { loading: false, error: null, data: null },
 };
 
 export interface AdminTags {
@@ -520,6 +532,11 @@ const initState: InitState = {
     data: null,
   },
   adminTags: {
+    loading: false,
+    error: null,
+    data: null,
+  },
+  refreshToken: {
     loading: false,
     error: null,
     data: null,
@@ -966,10 +983,33 @@ export function reducer(
       return {
         ...state,
       };
+    case GET_ISSUE_ACCESS_TOKEN_API:
+      return {
+        ...state,
+        refreshToken: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
     case GET_ISSUE_ACCESS_TOKEN_SUCCESS:
       return {
         ...state,
         accessToken: action.payload.data.accessToken,
+        refreshToken: {
+          loading: true,
+          error: null,
+          data: action.payload.data,
+        },
+      };
+    case GET_ISSUE_ACCESS_TOKEN_ERROR:
+      return {
+        ...state,
+        refreshToken: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
       };
     default:
       return state;

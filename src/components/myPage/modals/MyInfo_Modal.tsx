@@ -10,6 +10,7 @@ import Withdrawal_Modal from './Withdrawal_Modal';
 import './styles/MyInfo_Modal.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import configureStore from '../../../store/store';
 
 interface MyIntroduction_ModalProps {
   myInfoModalHandler: () => void;
@@ -28,6 +29,9 @@ export default function MyInfo_Modal({
   const myPhoto = state.userInfo.data?.data.userInfo.avatarUrl || null;
   const introduction = state.userInfo.data?.data.userInfo.introduction || null;
 
+  const redirectUrl =
+    process.env.REACT_APP_CLIENT_ADDRESS || 'https://localhost:3000/';
+
   //? state가 변경되면 state로 랜더된 부분 재렌더
   useEffect(() => {
     console.log(state);
@@ -42,15 +46,16 @@ export default function MyInfo_Modal({
   const withdrawalHandler = () => {
     const accessToken = state.accessToken;
     if (accessToken) {
-      delUserWithdrawalT(accessToken)
+      getLogoutT()
         .then((x) => {
           console.log(x);
-          getLogoutT()
+          delUserWithdrawalT(accessToken)
             .then((x) => {
               console.log(x);
-              state.accessToken = '';
+              const { persistor } = configureStore();
+              void persistor.purge();
+              window.location.assign(redirectUrl);
             })
-
             .catch((e) => console.log(e));
         })
         .catch((e) => console.log(e));
