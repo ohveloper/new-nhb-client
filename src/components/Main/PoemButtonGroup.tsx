@@ -7,6 +7,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/mainPage.css';
 import { LikeFeedId } from '../../api/postLikeFeed';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducers';
 
 type PoemButtonGroupProps = {
   feedId: number;
@@ -23,6 +25,8 @@ export default function PoemButtonGroup({
   handleModal,
   handlePostLikeFeed,
 }: PoemButtonGroupProps) {
+  const state = useSelector((state: RootState) => state.reducer);
+  const likeLogs = state.likeLog.data?.data.likeAct;
   const ref: any = useRef();
   const commentIcon = <FontAwesomeIcon icon={faComment} />;
   const starIcon = <FontAwesomeIcon icon={faStar} />;
@@ -56,7 +60,12 @@ export default function PoemButtonGroup({
         data-feedid={feedId}
         ref={ref}
       >
-        <div className="like-icon">{starIcon}</div>
+        {likeLogs?.indexOf(feedId) === -1 ? (
+          <div className="like-icon">{starIcon}</div>
+        ) : (
+          <div className="like-icon-clicked">{starIcon}</div>
+        )}
+
         <div className="like-num">{likeNum}</div>
       </div>
       <div className="share-container">

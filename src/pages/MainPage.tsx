@@ -5,7 +5,10 @@ import { UserFeeds, Welcome } from '../reducers/reducer';
 import { RootState } from '../reducers';
 import { postBringFeedT } from '../api/postBringFeeds';
 import { delRemoveFeedT, FeedId } from '../api/delRemoveFeed';
-import { postBringUserInfoThunk } from '../actions/actions';
+import {
+  getUserLikeLogThunk,
+  postBringUserInfoThunk,
+} from '../actions/actions';
 import { postLikeFeedT, LikeFeedId } from '../api/postLikeFeed';
 import MainpagePoemInput from '../components/Main/MainpagePoemInput';
 import MainpagePoemList from '../components/Main/MainpagePoemList';
@@ -13,6 +16,7 @@ import NavSidebarContainer from '../components/NavSidebar/NavSidebarContainer';
 import MainpageUserRanking from '../components/Main/MainpageUserRanking';
 import ModalContainer from '../components/Main/modal/ModalContainer';
 import { Mobile, Tablet, PC } from '../lib/MediaQuery';
+import { getUserLikeLogT } from '../api/getUserLikeLog';
 
 export default function MainPage() {
   const state = useSelector((state: RootState) => state.reducer);
@@ -33,6 +37,7 @@ export default function MainPage() {
       if (state.accessToken) {
         const accessToken = _accessToken.concat(state.accessToken);
         dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
+        dispatch(getUserLikeLogThunk(accessToken));
       }
     };
     fetchUserData();
@@ -86,7 +91,7 @@ export default function MainPage() {
       const accessToken = _accessToken.concat(state.accessToken);
       await postLikeFeedT(feedId, accessToken);
       await fetchData();
-      console.log('clicked');
+      dispatch(getUserLikeLogThunk(accessToken));
     }
   };
 

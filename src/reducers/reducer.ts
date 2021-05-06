@@ -52,8 +52,12 @@ import {
   FAKE_GUSET_SUCCESS,
   FAKE_GUSET_ERROR,
   GET_ISSUE_ACCESS_TOKEN_SUCCESS,
+  GET_USER_LIKE_LOG_API,
+  GET_USER_LIKE_LOG_ERROR,
+  GET_USER_LIKE_LOG_SUCCESS,
   GET_ISSUE_ACCESS_TOKEN_API,
   GET_ISSUE_ACCESS_TOKEN_ERROR,
+
 } from '../actions/actionTypes';
 export interface InitState {
   userInfo: {
@@ -126,6 +130,11 @@ export interface InitState {
     loading: boolean;
     error: Error | null;
     data: AdminTags | null;
+  };
+  likeLog: {
+    loading: boolean;
+    error: Error | null;
+    data: LikeLog | null;
   };
   refreshToken: {
     loading: boolean;
@@ -286,6 +295,7 @@ const fakedata: InitState = {
   },
   topicsAdmin: { loading: false, error: null, data: null },
   adminTags: { loading: false, error: null, data: null },
+  likeLog: { loading: false, error: null, data: null },
   refreshToken: { loading: false, error: null, data: null },
 };
 
@@ -464,6 +474,12 @@ export interface User {
   tag: string;
 }
 
+export interface LikeLog {
+  data: {
+    likeAct: number[];
+  };
+}
+
 const initState: InitState = {
   userInfo: {
     loading: false,
@@ -536,6 +552,7 @@ const initState: InitState = {
     error: null,
     data: null,
   },
+  likeLog: {
   refreshToken: {
     loading: false,
     error: null,
@@ -965,6 +982,33 @@ export function reducer(
       return {
         ...state,
         adminTags: {
+          loading: false,
+          error: action.payload,
+          data: null,
+        },
+      };
+    case GET_USER_LIKE_LOG_API:
+      return {
+        ...state,
+        likeLog: {
+          loading: true,
+          error: null,
+          data: null,
+        },
+      };
+    case GET_USER_LIKE_LOG_SUCCESS:
+      return {
+        ...state,
+        likeLog: {
+          loading: false,
+          error: null,
+          data: action.payload,
+        },
+      };
+    case GET_USER_LIKE_LOG_ERROR:
+      return {
+        ...state,
+        likeLog: {
           loading: false,
           error: action.payload,
           data: null,
