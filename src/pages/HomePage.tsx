@@ -40,26 +40,25 @@ export default function HomePage() {
   function checkClient() {
     //? 회원가입한 유저
     if (url.includes('login')) {
-      setTimeout(() => {
-        dispatch(postLogInThunk({ authCode: userAuthCode }));
-      }, 1000);
+      dispatch(postLogInThunk({ authCode: userAuthCode }));
+
       setTimeout(() => {
         // ? 배포용 리다이렉트
-        window.location.assign('https://nhbomb.tk');
-      }, 1001);
+
+        window.location.assign('https://nhbomb.com');
+      }, 3001);
 
       // ? 테스트용 리다이렉트
       // window.location.assign('https://localhost:3000/');
     }
     //? 회원가입 유저
     else if (url.includes('signup')) {
-      setTimeout(() => {
-        dispatch(postSignUpThunk({ authCode: userAuthCode }));
-      }, 1000);
+      dispatch(postSignUpThunk({ authCode: userAuthCode }));
       setTimeout(() => {
         // ? 배포용 리다이렉트
-        window.location.assign('https://nhbomb.tk');
-      }, 1001);
+
+        window.location.assign('https://nhbomb.com');
+      }, 3001);
 
       // ? 테스트용 리다이렉트
       // window.location.assign('https://localhost:3000/');
@@ -79,7 +78,7 @@ export default function HomePage() {
       // }, 1000);
       setTimeout(() => {
         // ? 배포용 리다이렉트
-        window.location.assign('https://nhbomb.tk');
+        window.location.assign('https://nhbomb.com');
         // window.location.assign('https://localhost:3000/');
       }, 5001);
       // ? 테스트용 리다이렉트

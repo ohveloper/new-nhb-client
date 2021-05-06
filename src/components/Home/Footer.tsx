@@ -10,7 +10,19 @@ export default function Footer() {
     <div id="Footer">
       <div>{isAdmin ? <Link to="/apitest">API TEST</Link> : <div></div>}</div>
       <div>
-        Team<span className="first">B</span>BBA
+        Team
+        <a href="https://github.com/Sangrae-Cho">
+          <span className="first">B</span>
+        </a>
+        <a href="https://github.com/ohveloper">
+          <span className="first">B</span>
+        </a>
+        <a href="https://github.com/riley909">
+          <span className="first">B</span>
+        </a>
+        <a href="https://github.com/duck-moon9392">
+          <span className="first">A</span>
+        </a>
       </div>
       <div>
         {isAdmin ? (
