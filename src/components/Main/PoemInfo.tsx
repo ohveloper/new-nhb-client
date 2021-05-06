@@ -11,7 +11,6 @@ export default function PoemInfo({
   nickName,
   createdAt,
 }: PoemInfoProps) {
-  console.log(userTag);
   return (
     <div className="poem-info">
       <div className="tag-container">
