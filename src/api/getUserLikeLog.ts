@@ -11,7 +11,7 @@ export async function getUserLikeLogT(accessToken: string) {
     responseType: 'json',
     headers: {
       'Content-Type': 'application/json',
-      'authorization': accessToken,
+      'authorization': `Bearer ${accessToken}`,
     },
     withCredentials: true,
   });

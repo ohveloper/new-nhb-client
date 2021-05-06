@@ -283,6 +283,7 @@ const fakedata: InitState = {
   },
   topicsAdmin: { loading: false, error: null, data: null },
   adminTags: { loading: false, error: null, data: null },
+  likeLog: { loading: false, error: null, data: null },
 };
 
 export interface AdminTags {
