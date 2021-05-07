@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Content, postUploadFeedT } from '../api/postUploadFeed';
 import { UserFeeds, Welcome } from '../reducers/reducer';
@@ -17,7 +17,6 @@ import { Mobile, Tablet, PC } from '../lib/MediaQuery';
 export default function MainPage() {
   const state = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
-  console.log(state);
 
   const [isFetching, setIsFetching] = useState(true);
   const [poem, setPoem] = useState<Welcome>({ data: { userFeeds: [] } });
@@ -86,7 +85,6 @@ export default function MainPage() {
       const accessToken = _accessToken.concat(state.accessToken);
       await postLikeFeedT(feedId, accessToken);
       await fetchData();
-      console.log('clicked');
     }
   };
 

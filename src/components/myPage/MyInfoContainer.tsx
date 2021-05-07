@@ -1,4 +1,3 @@
-import React from 'react';
 import MyIntroduction from './MyIntroduction';
 import MyNickName from './MyNickName';
 import MyPhoto from './MyPhoto';

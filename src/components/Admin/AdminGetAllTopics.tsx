@@ -26,18 +26,18 @@ export default function AdminGetAllTopics({
   const checkButton: any = useRef();
   const edit = <FontAwesomeIcon icon={faEdit} />;
   const check = <FontAwesomeIcon icon={faCheck} />;
-  const topicEditHandler = async (e: any) => {
+  const topicEditHandler = async () => {
     if (checkButton.current.name === 'on') {
       const word = wordInput.current.value;
       const topicId = wordInput.current.name;
       await patchEditTopicT({ topicId, word }, accessToken)
-        .then((d) => {
+        .then(() => {
           return dispatch(getAllTopicsAdminThunk(accessToken));
         })
-        .then((d) => {
+        .then(() => {
           window.location.reload();
         })
-        .catch((e) => {
+        .catch(() => {
           alert('만료날짜가 지났거나 이미 있는 단어입니다.');
           window.location.reload();
         });

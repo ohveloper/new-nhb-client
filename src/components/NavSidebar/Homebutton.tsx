@@ -1,4 +1,3 @@
-import React from 'react';
 import moon from '../../img/moon.png';
 import { Link } from 'react-router-dom';
 import '../../styles/HomepageSidebar/NavSidebar.scss';

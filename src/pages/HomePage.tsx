@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   postLogInThunk,
   postSignUpThunk,
   getOAuthThunk,
-  refreshTokenThunk,
-  getLogOutThunk,
 } from '../actions/actions';
 import HomepageWritersRanking from '../components/Home/HomepageWritersRanking';
 import ThanksTo from '../components/Home/ThanksTo';
@@ -15,26 +13,11 @@ import '../styles/HomepageSidebar/Homepage.scss';
 import '../styles/index.scss';
 
 import Introduce from '../components/Home/Introduce';
-import { refreshTokenT } from '../api/refreshToken';
-import { useEffect } from 'react';
-import { RootState } from '../reducers';
-import { getAccessTokenAsync } from '../actions/actionTypes';
 
 export default function HomePage() {
   const dispatch = useDispatch();
   const url: string = document.location.href;
   const userAuthCode: string = url.slice(url.indexOf('=') + 1);
-  const state = useSelector((state: RootState) => state.reducer);
-
-  useEffect(() => {
-    const accessToken = state.accessToken;
-    if (accessToken) {
-      const { success } = getAccessTokenAsync;
-      refreshTokenT()
-        .then((x) => dispatch(success(x)))
-        .catch(() => getLogOutThunk());
-    }
-  }, []);
 
   //? 링크를 통해 들어온 client 구분하기 위한 함수
   function checkClient() {
@@ -44,7 +27,6 @@ export default function HomePage() {
 
       setTimeout(() => {
         // ? 배포용 리다이렉트
-
         window.location.assign('https://nhbomb.com');
       }, 3001);
 
@@ -56,7 +38,6 @@ export default function HomePage() {
       dispatch(postSignUpThunk({ authCode: userAuthCode }));
       setTimeout(() => {
         // ? 배포용 리다이렉트
-
         window.location.assign('https://nhbomb.com');
       }, 3001);
 

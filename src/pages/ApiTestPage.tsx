@@ -26,7 +26,6 @@ export interface FeedId {
 }
 export default function ApiTestPage() {
   const state = useSelector((state: RootState) => state.reducer);
-  console.log(state);
   const dispatch = useDispatch();
   const postBringUserInfoHandler = () => {
     const _accessToken = '';
@@ -34,7 +33,6 @@ export default function ApiTestPage() {
       const accessToken = _accessToken.concat(state.accessToken);
       dispatch(postBringUserInfoThunk({ userId: null }, accessToken));
     }
-    console.log(state.userInfo);
   };
 
   const postBringFeedsHandler = () => {
