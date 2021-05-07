@@ -92,7 +92,6 @@ export default function MainPage() {
       await fetchData();
 
       dispatch(getUserLikeLogThunk(accessToken));
-
     }
   };
 

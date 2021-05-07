@@ -57,7 +57,6 @@ import {
   GET_USER_LIKE_LOG_SUCCESS,
   GET_ISSUE_ACCESS_TOKEN_API,
   GET_ISSUE_ACCESS_TOKEN_ERROR,
-
 } from '../actions/actionTypes';
 export interface InitState {
   userInfo: {
@@ -553,6 +552,10 @@ const initState: InitState = {
     data: null,
   },
   likeLog: {
+    loading: false,
+    error: null,
+    data: null,
+  },
   refreshToken: {
     loading: false,
     error: null,
