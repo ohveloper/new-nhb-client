@@ -36,7 +36,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "HTTPS=true SSL_CRT_FILE='../nhb-server/cert.pem' SSL_KEY_FILE='../nhb-server/key.pem' react-scripts start",
+    "start": "HTTPS=true SSL_CRT_FILE='../new-nhb-server/cert.pem' SSL_KEY_FILE='../new-nhb-server/key.pem' react-scripts start",
     "nonssl": "react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint --fix",

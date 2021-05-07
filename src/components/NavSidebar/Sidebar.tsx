@@ -28,8 +28,8 @@ const Sidebar = () => {
       setOpenPanel(false);
     }, 2000);
     setTimeout(() => {
-      window.location.assign('https://nhbomb.tk');
-      // window.location.assign('https://localhost:3000');
+      // window.location.assign('https://nhbomb.com');
+      window.location.assign('https://localhost:3000');
     }, 3001);
   };
   return (

@@ -27,22 +27,22 @@ export default function HomePage() {
 
       setTimeout(() => {
         // ? 배포용 리다이렉트
-        window.location.assign('https://nhbomb.com');
+        // window.location.assign('https://nhbomb.com');
       }, 3001);
 
       // ? 테스트용 리다이렉트
-      // window.location.assign('https://localhost:3000/');
+      window.location.assign('https://localhost:3000');
     }
     //? 회원가입 유저
     else if (url.includes('signup')) {
       dispatch(postSignUpThunk({ authCode: userAuthCode }));
       setTimeout(() => {
         // ? 배포용 리다이렉트
-        window.location.assign('https://nhbomb.com');
+        // window.location.assign('https://nhbomb.com');
       }, 3001);
 
       // ? 테스트용 리다이렉트
-      // window.location.assign('https://localhost:3000/');
+      window.location.assign('https://localhost:3000');
     }
 
     //? googleOAuth용
@@ -59,9 +59,9 @@ export default function HomePage() {
       // }, 1000);
       setTimeout(() => {
         // ? 배포용 리다이렉트
-        window.location.assign('https://nhbomb.com');
-        // window.location.assign('https://localhost:3000/');
-      }, 5001);
+        // window.location.assign('https://nhbomb.com');
+        window.location.assign('https://localhost:3000');
+      }, 1001);
       // ? 테스트용 리다이렉트
     }
   }
