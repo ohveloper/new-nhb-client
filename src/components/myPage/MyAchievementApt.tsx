@@ -26,17 +26,17 @@ export default function MyAchievementApt() {
         {state.apartment.loading && 'now loading...'}
         {state.apartment.error && 'sorry now error'}
         {state.apartment.data &&
-          aptLight?.map((week) => (
-            <div className="apt-weekly-container">
-              {week.map((day, idx) =>
+          aptLight?.map((week, idx) => (
+            <div key={idx} className="apt-weekly-container">
+              {week.map((day) =>
                 day.date === null ? (
-                  <></>
+                  <div key={day.date}></div>
                 ) : day.feedNum === null ? (
-                  <div className="apt-light-none" key={idx}>
+                  <div className="apt-light-none" key={day.date}>
                     <div className="apt-hide-info">{day.date}</div>
                   </div>
                 ) : (
-                  <div title={day.date} key={idx} className="apt-light">
+                  <div title={day.date} key={day.date} className="apt-light">
                     <div className="apt-hide-info">{day.date}</div>
                   </div>
                 )

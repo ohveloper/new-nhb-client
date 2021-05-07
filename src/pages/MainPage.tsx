@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Content, postUploadFeedT } from '../api/postUploadFeed';
 import { UserFeeds, Welcome } from '../reducers/reducer';
@@ -21,7 +21,6 @@ import { getUserLikeLogT } from '../api/getUserLikeLog';
 export default function MainPage() {
   const state = useSelector((state: RootState) => state.reducer);
   const dispatch = useDispatch();
-  console.log(state);
 
   const [isFetching, setIsFetching] = useState(true);
   const [poem, setPoem] = useState<Welcome>({ data: { userFeeds: [] } });
@@ -91,7 +90,9 @@ export default function MainPage() {
       const accessToken = _accessToken.concat(state.accessToken);
       await postLikeFeedT(feedId, accessToken);
       await fetchData();
+
       dispatch(getUserLikeLogThunk(accessToken));
+
     }
   };
 

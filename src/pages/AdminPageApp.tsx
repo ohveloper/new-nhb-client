@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getAllTagsAdminThunk,
@@ -35,9 +35,6 @@ export default function AdminPageApp() {
         <div id="admin-element">
           <div className="admin-topic ad-ele">
             <UploadTopic />
-            {/* {state.topicsAdmin.loading && 'now loading..'}
-            {state.topicsAdmin.error && 'sorry now error'}
-            {state.topicsAdmin.data && <AdminGetAllTopicsContainer />} */}
             <AdminGetAllTopicsContainer />
           </div>
           <div className="admin-tag ad-ele">

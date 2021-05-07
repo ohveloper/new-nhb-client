@@ -56,10 +56,10 @@ export default function MyAchievementBadges() {
             !badge.isUsed ? (
               //? false일 확률이 더 높으니까 앞에
               //? 내가 선택하지 않은 테그 : 빨강글씨 테두리 없음
-              <>
+              <div key={badge.tagId}>
                 <label form="my-tags" onClick={onClickHandler}>
                   <input type="radio" name="chk_badge" value={badge.tagId} />
-                  <div key={badge.tagId} className="my-tags">
+                  <div className="my-tags">
                     <div className="my-tags-name-container">
                       <div id={'tag-id-'.concat(String(badge.tagId))}>
                         {badge.tagId}
@@ -71,26 +71,28 @@ export default function MyAchievementBadges() {
                     </div>
                   </div>
                 </label>
-              </>
+              </div>
             ) : (
               //? 내가 선택한 테그 :테두리 핫핑크
-              <label onClick={onClickHandler} defaultValue="1">
-                <input type="radio" name="chk_badge" value={badge.tagId} />
-                <div key={badge.tagId} className="pick-my-tag">
-                  <div className="pick-my-tags-name-container">
-                    <div id={'tag-id-'.concat(String(badge.tagId))}>
-                      {badge.tagId}
+              <div key={badge.tagId}>
+                <label onClick={onClickHandler} defaultValue="1">
+                  <input type="radio" name="chk_badge" value={badge.tagId} />
+                  <div key={badge.tagId} className="pick-my-tag">
+                    <div className="pick-my-tags-name-container">
+                      <div id={'tag-id-'.concat(String(badge.tagId))}>
+                        {badge.tagId}
+                      </div>
+                      <div className="pick-my-tags-name">{badge.tagName}</div>
                     </div>
-                    <div className="pick-my-tags-name">{badge.tagName}</div>
+                    <div
+                      style={{ pointerEvents: 'none' }}
+                      className="pick-my-tags-description"
+                    >
+                      {badge.description}
+                    </div>
                   </div>
-                  <div
-                    style={{ pointerEvents: 'none' }}
-                    className="pick-my-tags-description"
-                  >
-                    {badge.description}
-                  </div>
-                </div>
-              </label>
+                </label>
+              </div>
             )
           )
         }
@@ -102,7 +104,7 @@ export default function MyAchievementBadges() {
           allTags?.tags.map(
             (badge) =>
               !_myTagsId?.includes(badge.id) && (
-                <div className="not-my-tags">
+                <div key={badge.id} className="not-my-tags">
                   <div className="not-my-tag-name">
                     <div id={'tag-id-'.concat(String(badge.id))}>
                       {badge.id}

@@ -1,9 +1,4 @@
-import { RootState } from '../../reducers';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-// import { useDispatch, useSelector } from 'react-redux';
-// import { postBringUserInfoThunk } from '../../actions/actions';
 
 function Mylog() {
   return (
