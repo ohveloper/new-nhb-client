@@ -44,16 +44,16 @@ function NavLogin() {
         <div className="loginContent">{clientStatus}</div>
         {/* <div>이메일로 로그인 </div> */}
         <div id="loginContainer">
-          <input
+          {/* <input
             className="inputId"
             type="email"
             value={inputValue || ''}
             placeholder="이메일을 입력하세요"
             onChange={(e) => setInputValue(e.currentTarget.value)}
-          />
-          <button onClick={() => loginHandler()}>{clientStatus}</button>
+          /> */}
+          {/* <button onClick={() => loginHandler()}>{clientStatus}</button> */}
           <button onClick={() => googleOAuthHandler()}>Google 로그인</button>
-          <button onClick={() => guestLogin()}>GUEST 로그인</button>
+          {/* <button onClick={() => guestLogin()}>GUEST 로그인</button> */}
         </div>
       </div>
       <div></div>
